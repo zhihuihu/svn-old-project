@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysIndexDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysIndex">
+    <id column="sys_index_id" jdbcType="VARCHAR" property="sysIndexId" />
+    <result column="sys_index_name" jdbcType="VARCHAR" property="sysIndexName" />
+    <result column="sys_index_image_url" jdbcType="VARCHAR" property="sysIndexImageUrl" />
+    <result column="sys_index_image_content" jdbcType="VARCHAR" property="sysIndexImageContent" />
+    <result column="sys_index_type" jdbcType="INTEGER" property="sysIndexType" />
+    <result column="sys_index_number" jdbcType="INTEGER" property="sysIndexNumber" />
+    <result column="sys_index_create_time" jdbcType="VARCHAR" property="sysIndexCreateTime" />
+    <result column="sys_index_update_time" jdbcType="VARCHAR" property="sysIndexUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_index_id, sys_index_name, sys_index_image_url, sys_index_image_content, sys_index_type, 
+    sys_index_number, sys_index_create_time, sys_index_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_index
+    where sys_index_id = #{sysIndexId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_index
+    where sys_index_id = #{sysIndexId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysIndex">
+    insert into sys_index (sys_index_id, sys_index_name, sys_index_image_url, 
+      sys_index_image_content, sys_index_type, sys_index_number, 
+      sys_index_create_time, sys_index_update_time)
+    values (#{sysIndexId,jdbcType=VARCHAR}, #{sysIndexName,jdbcType=VARCHAR}, #{sysIndexImageUrl,jdbcType=VARCHAR}, 
+      #{sysIndexImageContent,jdbcType=VARCHAR}, #{sysIndexType,jdbcType=INTEGER}, #{sysIndexNumber,jdbcType=INTEGER}, 
+      #{sysIndexCreateTime,jdbcType=VARCHAR}, #{sysIndexUpdateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysIndex">
+    insert into sys_index
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysIndexId != null">
+        sys_index_id,
+      </if>
+      <if test="sysIndexName != null">
+        sys_index_name,
+      </if>
+      <if test="sysIndexImageUrl != null">
+        sys_index_image_url,
+      </if>
+      <if test="sysIndexImageContent != null">
+        sys_index_image_content,
+      </if>
+      <if test="sysIndexType != null">
+        sys_index_type,
+      </if>
+      <if test="sysIndexNumber != null">
+        sys_index_number,
+      </if>
+      <if test="sysIndexCreateTime != null">
+        sys_index_create_time,
+      </if>
+      <if test="sysIndexUpdateTime != null">
+        sys_index_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysIndexId != null">
+        #{sysIndexId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexName != null">
+        #{sysIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexImageUrl != null">
+        #{sysIndexImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexImageContent != null">
+        #{sysIndexImageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexType != null">
+        #{sysIndexType,jdbcType=INTEGER},
+      </if>
+      <if test="sysIndexNumber != null">
+        #{sysIndexNumber,jdbcType=INTEGER},
+      </if>
+      <if test="sysIndexCreateTime != null">
+        #{sysIndexCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexUpdateTime != null">
+        #{sysIndexUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysIndex">
+    update sys_index
+    <set>
+      <if test="sysIndexName != null">
+        sys_index_name = #{sysIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexImageUrl != null">
+        sys_index_image_url = #{sysIndexImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexImageContent != null">
+        sys_index_image_content = #{sysIndexImageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexType != null">
+        sys_index_type = #{sysIndexType,jdbcType=INTEGER},
+      </if>
+      <if test="sysIndexNumber != null">
+        sys_index_number = #{sysIndexNumber,jdbcType=INTEGER},
+      </if>
+      <if test="sysIndexCreateTime != null">
+        sys_index_create_time = #{sysIndexCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysIndexUpdateTime != null">
+        sys_index_update_time = #{sysIndexUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sys_index_id = #{sysIndexId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysIndex">
+    update sys_index
+    set sys_index_name = #{sysIndexName,jdbcType=VARCHAR},
+      sys_index_image_url = #{sysIndexImageUrl,jdbcType=VARCHAR},
+      sys_index_image_content = #{sysIndexImageContent,jdbcType=VARCHAR},
+      sys_index_type = #{sysIndexType,jdbcType=INTEGER},
+      sys_index_number = #{sysIndexNumber,jdbcType=INTEGER},
+      sys_index_create_time = #{sysIndexCreateTime,jdbcType=VARCHAR},
+      sys_index_update_time = #{sysIndexUpdateTime,jdbcType=VARCHAR}
+    where sys_index_id = #{sysIndexId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysIndex" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_index
+    <where>
+      <if test="sysIndexName != null">
+        and sys_index_name = #{sysIndexName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexImageUrl != null">
+        and sys_index_image_url = #{sysIndexImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexImageContent != null">
+        and sys_index_image_content = #{sysIndexImageContent,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexType != null">
+        and sys_index_type = #{sysIndexType,jdbcType=INTEGER}
+      </if>
+      <if test="sysIndexNumber != null">
+        and sys_index_number = #{sysIndexNumber,jdbcType=INTEGER}
+      </if>
+      <if test="sysIndexCreateTime != null">
+        and sys_index_create_time = #{sysIndexCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexUpdateTime != null">
+        and sys_index_update_time = #{sysIndexUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="orderByString != null">
+      ${orderByString}
+    </if>
+  </select>
+  
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysIndex" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_index
+    <where>
+      <if test="sysIndexName != null">
+        or sys_index_name = #{sysIndexName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexImageUrl != null">
+        or sys_index_image_url = #{sysIndexImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexImageContent != null">
+        or sys_index_image_content = #{sysIndexImageContent,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexType != null">
+        or sys_index_type = #{sysIndexType,jdbcType=INTEGER}
+      </if>
+      <if test="sysIndexNumber != null">
+        or sys_index_number = #{sysIndexNumber,jdbcType=INTEGER}
+      </if>
+      <if test="sysIndexCreateTime != null">
+        or sys_index_create_time = #{sysIndexCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysIndexUpdateTime != null">
+        or sys_index_update_time = #{sysIndexUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="orderByString != null">
+      ${orderByString}
+    </if>
+  </select>
+</mapper>

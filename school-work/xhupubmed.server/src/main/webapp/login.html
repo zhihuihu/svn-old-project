@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="overview & stats"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="base_component/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="base_component/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>后台登录界面</title>
+</head>
+<body>
+<!--登录主体-->
+<div class="content">
+    <div class="content-c">
+        <div class="content-left">
+            <div class="left-head-icon">
+                <span class="icon-building icon-5x" style="color: #046fb2;"></span>
+            </div>
+            <div><h3 style="color: #046fb2;font-weight: bold;">西华考研助手后台管理</h3></div>
+        </div>
+        <div class="content-right">
+            <div class="login-form">
+                <form class="login-form-content">
+                    <div class="input-line" id="line-name">
+                        <span class="icon icon-user icon-style"></span>
+                        <input type="text" id="sysUserLoginName" name="" class="name-text" required>
+                    </div>
+                    <br>
+                    <div class="input-line">
+                        <span class="icon icon-key icon-style"></span>
+                        <input type="password" id="sysUserPassword" name="" class="name-text" required>
+                    </div>
+                    <br>
+                    <div class="login-submit">
+                        <input type="submit" name="" value="登录" class="login-btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-->
+<script type="text/javascript" src="base_component/jquery-2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="base_component/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="base_component/layer-v2.2/layer/layer.js"></script>
+<script type="text/javascript" src="base_component/angular/angular.min.js"></script>
+<script type="text/javascript" src="base_component/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="js/API.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

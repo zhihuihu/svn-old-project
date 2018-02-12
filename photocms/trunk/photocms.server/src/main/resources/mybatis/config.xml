@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="DataType" type="com.hxkj.photocms.entity.DataType" />
+		<typeAlias alias="GlobalId" type="com.hxkj.photocms.entity.GlobalId" />
+		<typeAlias alias="PageBean" type="com.hxkj.photocms.entity.PageBean" />
+		<typeAlias alias="Special" type="com.hxkj.photocms.entity.Special" />
+		<typeAlias alias="SpecialContent" type="com.hxkj.photocms.entity.SpecialContent" />
+		<typeAlias alias="SpecialType" type="com.hxkj.photocms.entity.SpecialType" />
+		<typeAlias alias="SysUser" type="com.hxkj.photocms.entity.SysUser" />
+		<typeAlias alias="UserType" type="com.hxkj.photocms.entity.UserType" />
+	</typeAliases>
+</configuration>

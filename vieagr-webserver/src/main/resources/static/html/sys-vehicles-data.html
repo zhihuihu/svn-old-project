@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统车辆管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/cropper/cropper.min.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <style>
+        .am-edit-width-min {
+            min-width: 120px;
+            width: 180px;
+            max-width: 120px;
+        }
+        .am-tab-width-min {
+        	min-width: 80px;
+        	/* width: 80px; */
+        	max-width: 80px;
+        }
+    </style>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统车辆管理</strong>
+    </div>
+</div>
+
+<hr/>
+
+<div class="am-g">
+
+    <!-- 左侧数据 -->
+    <div class="am-u-sm-12 am-u-md-6">
+        <form class="am-form" id="sys-vehicles-add-form" data-am-validator>
+            <fieldset>
+                <legend>添加系统车辆</legend>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesType">车辆类型</label>
+                    <select id="sysVehiclesType">
+                        <option value="1">小型货车</option>
+                        <option value="2">中型货车</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesPlateNumber">车&nbsp;&nbsp;牌&nbsp;号</label>
+                    <input class="" type="text" class="" id="sysVehiclesPlateNumber" placeholder="请输入车牌号..." required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesRegisterName">注&nbsp;&nbsp;册&nbsp;人</label>
+                    <input class="" type="text" class="" id="sysVehiclesRegisterName" placeholder="请输入车辆注册人姓名..." required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesRegisterMobile">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
+                    <input class="" type="text" class="" id="sysVehiclesRegisterMobile" placeholder="请输入车辆注册人手机号..." required>
+                </div>
+
+                <div class="am-form-group am-form-file">
+                    <label for="">车辆图片</label>
+                    <div>
+                        <img id="sysVehiclesImgUrl" class="am-circle" src="../assets/i/head-icon.png" width="100" height="100"/>
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm" id="sysVehiclesImgUrlChoose">
+                            <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+                        </button>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesDesc">车辆描述</label>
+                    <textarea class="" rows="5" id="sysVehiclesDesc" placeholder="车辆目的的等等信息..." required></textarea>
+                </div>
+
+                <p>
+                    <button type="submit" class="am-btn am-btn-primary">提交</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="am-u-sm-12 am-u-md-6">
+        <legend>系统车辆列表</legend>
+        <form method="post" class="am-form" id="sys-vehicles-search-form">
+            <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">搜索:</span>
+                <input id="sysVehiclesSearchName" type="text" class="am-form-field" placeholder="请输入车牌号/用户手机号码">
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                </span>
+            </div>
+        </form>
+        <div class="am-scrollable-horizontal">
+	        <table class="am-table am-table-striped am-table-hover am-text-sm">
+	            <thead>
+	            <tr class="am-table">
+	                <th class="am-text-truncate am-tab-width-min">车牌号</th>
+	                <th class="am-text-truncate am-tab-width-min">注册人</th>
+	                <th class="am-text-truncate am-tab-width-min">手机号</th>
+	                <th class="am-text-truncate am-tab-width-min">车辆描述</th>
+	                <th class="am-text-truncate am-edit-width-min">操作</th>
+	            </tr>
+	            </thead>
+	            <tbody id="sys-vehicles-list-body">
+	            <!-- <tr>
+	                <td class="am-text-truncate am-tab-width-min">Amaze UI</td>
+	                <td class="am-text-truncate am-tab-width-min">http://amazeui.org</td>
+	                <td class="am-text-truncate am-tab-width-min">2012-10-01</td>
+	                <td class="am-text-truncate am-tab-width-min">2012-10-01</td>
+	                <td class="am-text-truncate am-edit-width-min">
+	                	<div class="am-btn-group am-btn-group-xs">
+	                		<input type="button" class="am-btn am-btn-primary btn-sys-user-update" value="修改">
+	                	</div>
+	                </td>
+	            </tr> -->
+	            </tbody>
+	        </table>
+        </div>
+        
+        <div id="sys-vehicles-list-body-page" class="am-fr"></div>
+    </div>
+
+</div>
+
+<!-- 修改模态窗口 -->
+<div class="am-modal-dialog" id="sys-vehicles-update-model" style="display: none;">
+	<div class="am-u-sm-12">
+        <form class="am-form" id="sys-vehicles-update-form" data-am-validator>
+            <fieldset>
+            	<input type="hidden" id="sysVehiclesIdUpdate">
+                <div class="am-form-group">
+                    <label for="sysVehiclesTypeUpdate">车辆类型</label>
+                    <select id="sysVehiclesTypeUpdate">
+                        <option value="1">小型货车</option>
+                        <option value="2">中型货车</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesPlateNumberUpdate">车&nbsp;&nbsp;牌&nbsp;号</label>
+                    <input class="" type="text" class="" id="sysVehiclesPlateNumberUpdate" placeholder="请输入车牌号..." required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesRegisterNameUpdate">注&nbsp;&nbsp;册&nbsp;人</label>
+                    <input class="" type="text" class="" id="sysVehiclesRegisterNameUpdate" placeholder="请输入车辆注册人姓名..." required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesRegisterMobileUpdate">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
+                    <input class="" type="text" class="" id="sysVehiclesRegisterMobileUpdate" placeholder="请输入车辆注册人手机号..." required>
+                </div>
+
+                <div class="am-form-group am-form-file">
+                    <label for="">车辆图片</label>
+                    <div>
+                        <img id="sysVehiclesImgUrlUpdate" class="am-circle" src="../assets/i/head-icon.png" width="100" height="100"/>
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm" id="sysVehiclesImgUrlUpdateChoose">
+                            <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+                        </button>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysVehiclesDescUpdate">车辆描述</label>
+                    <textarea class="" rows="5" id="sysVehiclesDescUpdate" placeholder="车辆目的的等等信息..." required></textarea>
+                </div>
+
+                <p>
+                    <button type="submit" class="am-btn am-btn-primary">保存</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script id="sysVehiclesListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <tr>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysVehiclesPlateNumber }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysVehiclesRegisterName }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysVehiclesRegisterMobile }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysVehiclesDesc }}</td>
+        <td class="am-text-truncate am-edit-width-min">
+            <div class="am-btn-group am-btn-group-xs">
+                <input type="button" class="am-btn am-btn-primary btn-sys-vehicles-update" sysVehiclesId="{{ item.sysVehiclesId }}" value="修改">
+                {{# if(item.sysVehiclesState === 1){ }}
+                <input type="button" class="am-btn am-btn-warning btn-sys-vehicles-states" sysVehiclesId="{{ item.sysVehiclesId }}" value="禁用">
+                {{# } }}
+                {{# if(item.sysVehiclesState === 2){ }}
+                <input type="button" class="am-btn am-btn-success btn-sys-vehicles-states" sysVehiclesId="{{ item.sysVehiclesId }}" value="启用">
+                {{# } }}
+            </div>
+        </td>
+    </tr>
+    {{#  }); }}
+</script>
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/cropper/cropper.min.js"></script>
+<script src="../assets/js/sys-vehicles-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet" th:href="@{/base/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/register.css}" />
+<title>注册</title>
+</head>
+<body>
+<!-- header design -->
+	<div class="header">
+		<div class="container">
+			<h2>Way Chat</h2>
+			<p>Fellow traveler<br></br>desgin</p>
+		</div>
+	</div>
+	
+	<!-- content design -->
+	<div class="content">
+		<div class="container">
+			<h3 style="text-align: center; margin-bottom: 30px;">注  册</h3>
+			<hr></hr>
+			<form class="form-horizontal" action="" id="register-form">
+				<div class="form-group">
+					<label for="sysUserLoginName" class="col-sm-2 control-label">邮箱:</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="sysUserLoginName"
+							placeholder="Email" name="sysUserLoginName" required="required"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sysUserPassword" class="col-sm-2 control-label">密码:</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="sysUserPassword"
+							placeholder="Password" name="sysUserPassword" required="required"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary pull-left">注  册</button>
+						<a th:href="@{/sysUser/login}" class="btn btn-default pull-right">登  录</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- footer design -->
+	<div class="footer">
+		<div class="container">
+			<hr></hr>
+			<p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+		</div>
+	</div>
+	
+	<!-- javascript文件区 -->
+	<script type="text/javascript" th:src="@{/base/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/base/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/base/layer/layer.js}"></script>
+	<script type="text/javascript" th:src="@{/js/api.js}"></script>
+	<script type="text/javascript" th:src="@{/js/register.js}"></script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IActiveDao" >
+	<resultMap id="BaseResultMap" type="Active" >
+    <id column="ACTIVE_ID" property="activeId"  />
+    <result column="TAG_ID" property="tagId"  />
+    <result column="USER_ID" property="userId"  />
+    <result column="ACTIVE_NAME" property="activeName" />
+    <result column="ACTIVE_ICON_URL" property="activeIconUrl" />
+    <result column="ACTIVE_TYPE" property="activeType" />
+    <result column="ACTIVE_MAIN_CONTENT" property="activeMainContent" />
+    <result column="ACTIVE_START_TIME" property="activeStartTime"  />
+    <result column="ACTIVE_END_TIME" property="activeEndTime"  />
+    <result column="ACTIVE_ADDRESS" property="activeAddress" />
+    <result column="ACTIVE_LOG" property="activeLog" />
+    <result column="ACTIVE_LAT" property="activeLat" />
+    <result column="ACTIVE_STATE" property="activeState"  />
+    <result column="ACTIVE_TAG" property="activeTag" />
+    <result column="ACTIVE_SORT" property="activeSort"  />
+    <result column="ACTIVE_CREATE_NAME" property="activeCreateName" />
+    <result column="ACTIVE_CREATE_TIME" property="activeCreateTime"  />
+    <result column="ACTIVE_UPDATE_TIME" property="activeUpdateTime"  />
+  </resultMap>
+	<sql id="Base_Column_List" >
+    ACTIVE_ID, TAG_ID, USER_ID, ACTIVE_NAME, ACTIVE_ICON_URL, ACTIVE_TYPE, ACTIVE_MAIN_CONTENT, 
+    ACTIVE_START_TIME, ACTIVE_END_TIME, ACTIVE_ADDRESS, ACTIVE_LOG, ACTIVE_LAT, ACTIVE_STATE, 
+    ACTIVE_TAG, ACTIVE_SORT, ACTIVE_CREATE_NAME, ACTIVE_CREATE_TIME, ACTIVE_UPDATE_TIME
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Active" >
+    select 
+    <include refid="Base_Column_List" />
+    from active
+    where ACTIVE_ID = #{activeId}
+  </select>
+  <delete id="doDeleteByPrimaryKey" parameterType="Active" >
+    delete from active
+    where ACTIVE_ID = #{activeId}
+  </delete>
+  <insert id="doInsert" parameterType="Active" >
+    insert into active (ACTIVE_ID, TAG_ID, USER_ID, 
+      ACTIVE_NAME, ACTIVE_ICON_URL, ACTIVE_TYPE, 
+      ACTIVE_MAIN_CONTENT, ACTIVE_START_TIME, ACTIVE_END_TIME, 
+      ACTIVE_ADDRESS, ACTIVE_LOG, ACTIVE_LAT, 
+      ACTIVE_STATE, ACTIVE_TAG, ACTIVE_SORT, 
+      ACTIVE_CREATE_NAME, ACTIVE_CREATE_TIME, ACTIVE_UPDATE_TIME
+      )
+    values (#{activeId}, #{tagId}, #{userId}, 
+      #{activeName}, #{activeIconUrl}, #{activeType}, 
+      #{activeMainContent}, #{activeStartTime}, #{activeEndTime}, 
+      #{activeAddress}, #{activeLog}, #{activeLat}, 
+      #{activeState}, #{activeTag}, #{activeSort}, 
+      #{activeCreateName}, #{activeCreateTime}, #{activeUpdateTime}
+      )
+  </insert>
+  <insert id="doInsertSelective" parameterType="Active" >
+    insert into active
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activeId != null" >
+        ACTIVE_ID,
+      </if>
+      <if test="tagId != null" >
+        TAG_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="activeName != null" >
+        ACTIVE_NAME,
+      </if>
+      <if test="activeIconUrl != null" >
+        ACTIVE_ICON_URL,
+      </if>
+      <if test="activeType != null" >
+        ACTIVE_TYPE,
+      </if>
+      <if test="activeMainContent != null" >
+        ACTIVE_MAIN_CONTENT,
+      </if>
+      <if test="activeStartTime != null" >
+        ACTIVE_START_TIME,
+      </if>
+      <if test="activeEndTime != null" >
+        ACTIVE_END_TIME,
+      </if>
+      <if test="activeAddress != null" >
+        ACTIVE_ADDRESS,
+      </if>
+      <if test="activeLog != null" >
+        ACTIVE_LOG,
+      </if>
+      <if test="activeLat != null" >
+        ACTIVE_LAT,
+      </if>
+      <if test="activeState != null" >
+        ACTIVE_STATE,
+      </if>
+      <if test="activeTag != null" >
+        ACTIVE_TAG,
+      </if>
+      <if test="activeSort != null" >
+        ACTIVE_SORT,
+      </if>
+      <if test="activeCreateName != null" >
+        ACTIVE_CREATE_NAME,
+      </if>
+      <if test="activeCreateTime != null" >
+        ACTIVE_CREATE_TIME,
+      </if>
+      <if test="activeUpdateTime != null" >
+        ACTIVE_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activeId != null" >
+        #{activeId},
+      </if>
+      <if test="tagId != null" >
+        #{tagId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="activeName != null" >
+        #{activeName},
+      </if>
+      <if test="activeIconUrl != null" >
+        #{activeIconUrl},
+      </if>
+      <if test="activeType != null" >
+        #{activeType},
+      </if>
+      <if test="activeMainContent != null" >
+        #{activeMainContent},
+      </if>
+      <if test="activeStartTime != null" >
+        #{activeStartTimeP},
+      </if>
+      <if test="activeEndTime != null" >
+        #{activeEndTimeP},
+      </if>
+      <if test="activeAddress != null" >
+        #{activeAddress},
+      </if>
+      <if test="activeLog != null" >
+        #{activeLog},
+      </if>
+      <if test="activeLat != null" >
+        #{activeLat},
+      </if>
+      <if test="activeState != null" >
+        #{activeState},
+      </if>
+      <if test="activeTag != null" >
+        #{activeTag},
+      </if>
+      <if test="activeSort != null" >
+        #{activeSort},
+      </if>
+      <if test="activeCreateName != null" >
+        #{activeCreateName},
+      </if>
+      <if test="activeCreateTime != null" >
+        #{activeCreateTimeP},
+      </if>
+      <if test="activeUpdateTime != null" >
+        #{activeUpdateTimeP},
+      </if>
+    </trim>
+  </insert>
+  <update id="doUpdateByPrimaryKeySelective" parameterType="Active" >
+    update active
+    <set >
+      <if test="tagId != null" >
+        TAG_ID = #{tagId},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId},
+      </if>
+      <if test="activeName != null" >
+        ACTIVE_NAME = #{activeName},
+      </if>
+      <if test="activeIconUrl != null" >
+        ACTIVE_ICON_URL = #{activeIconUrl},
+      </if>
+      <if test="activeType != null" >
+        ACTIVE_TYPE = #{activeType},
+      </if>
+      <if test="activeMainContent != null" >
+        ACTIVE_MAIN_CONTENT = #{activeMainContent},
+      </if>
+      <if test="activeStartTime != null" >
+        ACTIVE_START_TIME = #{activeStartTime},
+      </if>
+      <if test="activeEndTime != null" >
+        ACTIVE_END_TIME = #{activeEndTime},
+      </if>
+      <if test="activeAddress != null" >
+        ACTIVE_ADDRESS = #{activeAddress},
+      </if>
+      <if test="activeLog != null" >
+        ACTIVE_LOG = #{activeLog},
+      </if>
+      <if test="activeLat != null" >
+        ACTIVE_LAT = #{activeLat},
+      </if>
+      <if test="activeState != null" >
+        ACTIVE_STATE = #{activeState},
+      </if>
+      <if test="activeTag != null" >
+        ACTIVE_TAG = #{activeTag},
+      </if>
+      <if test="activeSort != null" >
+        ACTIVE_SORT = #{activeSort},
+      </if>
+      <if test="activeCreateName != null" >
+        ACTIVE_CREATE_NAME = #{activeCreateName},
+      </if>
+      <if test="activeCreateTime != null" >
+        ACTIVE_CREATE_TIME = #{activeCreateTime},
+      </if>
+      <if test="activeUpdateTime != null" >
+        ACTIVE_UPDATE_TIME = #{activeUpdateTime},
+      </if>
+    </set>
+    where ACTIVE_ID = #{activeId}
+  </update>
+  <update id="doUpdateByPrimaryKey" parameterType="Active" >
+    update active
+    set TAG_ID = #{tagId},
+      USER_ID = #{userId},
+      ACTIVE_NAME = #{activeName},
+      ACTIVE_ICON_URL = #{activeIconUrl},
+      ACTIVE_TYPE = #{activeType},
+      ACTIVE_MAIN_CONTENT = #{activeMainContent},
+      ACTIVE_START_TIME = #{activeStartTime},
+      ACTIVE_END_TIME = #{activeEndTime},
+      ACTIVE_ADDRESS = #{activeAddress},
+      ACTIVE_LOG = #{activeLog},
+      ACTIVE_LAT = #{activeLat},
+      ACTIVE_STATE = #{activeState},
+      ACTIVE_TAG = #{activeTag},
+      ACTIVE_SORT = #{activeSort},
+      ACTIVE_CREATE_NAME = #{activeCreateName},
+      ACTIVE_CREATE_TIME = #{activeCreateTime},
+      ACTIVE_UPDATE_TIME = #{activeUpdateTime}
+    where ACTIVE_ID = #{activeId}
+  </update>
+  
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from active
+    <where>
+      <if test="b.tagId != null and b.tagId != 0" >
+        TAG_ID = #{b.tagId}
+      </if>
+      <if test="b.userId != null  and b.userId != 0" >
+        and USER_ID = #{b.userId}
+      </if>
+      <if test="b.activeName != null" >
+        and ACTIVE_NAME = #{b.activeName}
+      </if>
+      <if test="b.activeIconUrl != null" >
+        and ACTIVE_ICON_URL = #{b.activeIconUrl}
+      </if>
+      <if test="b.activeType != null" >
+        and ACTIVE_TYPE = #{b.activeType}
+      </if>
+      <if test="b.activeMainContent != null" >
+        and ACTIVE_MAIN_CONTENT = #{b.activeMainContent}
+      </if>
+      <if test="b.activeStartTime != null" >
+        and ACTIVE_START_TIME = #{b.activeStartTime}
+      </if>
+      <if test="b.activeEndTime != null" >
+        and ACTIVE_END_TIME = #{b.activeEndTime}
+      </if>
+      <if test="b.activeAddress != null" >
+        and ACTIVE_ADDRESS = #{b.activeAddress}
+      </if>
+      <if test="b.activeLog != null" >
+        and ACTIVE_LOG = #{b.activeLog}
+      </if>
+      <if test="b.activeLat != null" >
+        and ACTIVE_LAT = #{b.activeLat}
+      </if>
+      <if test="b.activeState != null and b.activeState != 0" >
+        and ACTIVE_STATE = #{b.activeState}
+      </if>
+      <if test="b.activeTag != null" >
+        and ACTIVE_TAG = #{b.activeTag}
+      </if>
+      <if test="b.activeSort != null and b.activeSort != 0" >
+        and ACTIVE_SORT = #{b.activeSort}
+      </if>
+      <if test="b.activeCreateName != null" >
+        and ACTIVE_CREATE_NAME = #{b.activeCreateName}
+      </if>
+      <if test="b.activeCreateTime != null" >
+        and ACTIVE_CREATE_TIME = #{b.activeCreateTime}
+      </if>
+      <if test="b.activeUpdateTime != null" >
+        and ACTIVE_UPDATE_TIME = #{b.activeUpdateTime}
+      </if>
+    </where>
+    <if test="b.activeTag != null and b.activeTag == 'hot' " ><!--热度排序  -->
+        ORDER BY ACTIVE_SORT DESC,ACTIVE_CREATE_TIME DESC
+    </if>
+    <if test="b.activeTag == 'normal' or b.activeTag == null "><!--普通的排序  -->
+    	ORDER BY ACTIVE_CREATE_TIME DESC
+    </if>
+    LIMIT
+    	#{startLine},#{lineSize}
+  </select>
+  	
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    COUNT(1)
+    from active
+    <where>
+      <if test="b.tagId != null and b.tagId != 0" >
+        TAG_ID = #{b.tagId}
+      </if>
+      <if test="b.userId != null and b.userId != 0" >
+        and USER_ID = #{b.userId}
+      </if>
+      <if test="b.activeName != null" >
+        and ACTIVE_NAME = #{b.activeName}
+      </if>
+      <if test="b.activeIconUrl != null" >
+        and ACTIVE_ICON_URL = #{b.activeIconUrl}
+      </if>
+      <if test="b.activeType != null" >
+        and ACTIVE_TYPE = #{b.activeType}
+      </if>
+      <if test="b.activeMainContent != null" >
+        and ACTIVE_MAIN_CONTENT = #{b.activeMainContent}
+      </if>
+      <if test="b.activeStartTime != null" >
+        and ACTIVE_START_TIME = #{b.activeStartTime}
+      </if>
+      <if test="b.activeEndTime != null" >
+        and ACTIVE_END_TIME = #{b.activeEndTime}
+      </if>
+      <if test="b.activeAddress != null" >
+        and ACTIVE_ADDRESS = #{b.activeAddress}
+      </if>
+      <if test="b.activeLog != null" >
+        and ACTIVE_LOG = #{b.activeLog}
+      </if>
+      <if test="b.activeLat != null" >
+        and ACTIVE_LAT = #{b.activeLat}
+      </if>
+      <if test="b.activeState != null and b.activeState != 0" >
+        and ACTIVE_STATE = #{b.activeState}
+      </if>
+      <if test="b.activeTag != null" >
+        and ACTIVE_TAG = #{b.activeTag}
+      </if>
+      <if test="b.activeSort != null and b.activeSort != 0" >
+        and ACTIVE_SORT = #{b.activeSort}
+      </if>
+      <if test="b.activeCreateName != null" >
+        and ACTIVE_CREATE_NAME = #{b.activeCreateName}
+      </if>
+      <if test="b.activeCreateTime != null" >
+        and ACTIVE_CREATE_TIME = #{b.activeCreateTime}
+      </if>
+      <if test="b.activeUpdateTime != null" >
+        and ACTIVE_UPDATE_TIME = #{b.activeUpdateTime}
+      </if>
+    </where>
+  </select>
+  	
+  	<select id="selectAll" resultMap="BaseResultMap" parameterType="PageBean" >
+  	select 
+  	<include refid="Base_Column_List" />
+  	from active
+  	</select>
+  	
+  	<select id="selectByKeyWord" resultMap="BaseResultMap" parameterType="PageBean">
+  	select
+  	<include refid="Base_Column_List" />
+  	from active
+  	<where>
+      <if test="b.activeName != null" >
+         ACTIVE_NAME like '%' #{b.activeName} '%'
+      </if>
+      <if test="b.activeMainContent != null" >
+        or ACTIVE_MAIN_CONTENT like '%' #{b.activeMainContent} '%'
+      </if>
+      <if test="b.activeAddress != null" >
+        or ACTIVE_ADDRESS like '%' #{b.activeAddress} '%'
+      </if>
+    </where>
+    ORDER BY ACTIVE_CREATE_TIME DESC
+  	</select>
+</mapper>

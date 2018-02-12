@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.ITagDao" >
+	
+	<resultMap id="BaseResultMap" type="Tag" >
+	    <id column="TAG_ID" property="tagId"  />
+	    <result column="TAG_NAME" property="tagName"  />
+	    <result column="TAG_IMG" property="tagImg"  />
+  	</resultMap>
+  	<sql id="Base_Column_List" >
+    	TAG_ID, 
+    	TAG_NAME, 
+    	TAG_IMG
+  	</sql>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Tag" >
+    select 
+    <include refid="Base_Column_List" />
+    from tag
+    where TAG_ID = #{tagId}
+  </select>
+  
+  <delete id="doDeleteByPrimaryKey" parameterType="Tag" >
+    delete from tag
+    where TAG_ID = #{tagId}
+  </delete>
+  
+  <insert id="doInsert" parameterType="Tag" >
+  	<selectKey keyProperty="tagId" order="AFTER" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+    insert into tag (TAG_ID, TAG_NAME, TAG_IMG
+      )
+    values (#{tagId}, #{tagName}, #{tagImg}
+      )
+  </insert>
+  
+  <insert id="doInsertSelective" parameterType="Tag" >
+  	<selectKey keyProperty="tagId" order="AFTER" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+    insert into tag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        TAG_ID,
+      </if>
+      <if test="tagName != null" >
+        TAG_NAME,
+      </if>
+      <if test="tagImg != null" >
+        TAG_IMG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        #{tagId},
+      </if>
+      <if test="tagName != null" >
+        #{tagName},
+      </if>
+      <if test="tagImg != null" >
+        #{tagImg},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="doUpdateByPrimaryKeySelective" parameterType="Tag" >
+    update tag
+    <set >
+      <if test="tagName != null" >
+        TAG_NAME = #{tagName},
+      </if>
+      <if test="tagImg != null" >
+        TAG_IMG = #{tagImg},
+      </if>
+    </set>
+    where TAG_ID = #{tagId}
+  </update>
+  
+  <update id="doUpdateByPrimaryKey" parameterType="Tag" >
+    update tag
+    set TAG_NAME = #{tagName},
+      TAG_IMG = #{tagImg}
+    where TAG_ID = #{tagId}
+  </update>
+  
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from tag
+    <where>
+	    <if test="b.tagName != null" >
+	        TAG_NAME = #{b.tagName}
+	    </if>
+	    <if test="b.tagImg != null" >
+	        and TAG_IMG = #{b.tagImg}
+	    </if>
+    </where>
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    	COUNT(1)
+    from tag
+    <where>
+	    <if test="b.tagName != null" >
+	        TAG_NAME = #{b.tagName}
+	    </if>
+	    <if test="b.tagImg != null" >
+	        and TAG_IMG = #{b.tagImg}
+	    </if>
+    </where>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="PageBean">
+  	select
+  	<include refid="Base_Column_List" />
+    from tag
+  </select>
+</mapper>

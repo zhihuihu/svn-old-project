@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="E:mysql-connector-java-5.1.38-bin.jar" />
+	<context id="context1" targetRuntime="MyBatis3">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/waychat?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="root" />
+		<javaModelGenerator targetPackage="com.hxkj.waychat.entity"
+			targetProject="F:\soft_workspace\eclipse_work\mybatis.generator\src\main\java" />
+		<sqlMapGenerator targetPackage="com.hxkj.waychat.mapper"
+			targetProject="F:\soft_workspace\eclipse_work\mybatis.generator\src\main\java" />
+		<javaClientGenerator targetPackage="com.hxkj.waychat.dao"
+			targetProject="F:\soft_workspace\eclipse_work\mybatis.generator\src\main\java" type="XMLMAPPER" />
+		<!-- table create -->
+		<table schema="waychat" tableName="chat_history" />
+		<table schema="waychat" tableName="chat_room" />
+		<table schema="waychat" tableName="friend" />
+		<table schema="waychat" tableName="friend_group" />
+		<table schema="waychat" tableName="room_people" />
+		<table schema="waychat" tableName="sys_user" />
+	</context>
+</generatorConfiguration>
+<!--mybatis-generator:generate -->

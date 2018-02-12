@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IUserDao" >
+	
+	<resultMap id="BaseResultMap" type="User" >
+    <id column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="USER_ICON_URL" property="userIconUrl" jdbcType="VARCHAR" />
+    <result column="USER_LOGIN_NAME" property="userLoginName" jdbcType="VARCHAR" />
+    <result column="USER_REL_NAME" property="userRelName" jdbcType="VARCHAR" />
+    <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR" />
+    <result column="USER_HOBBY" property="userHobby" jdbcType="VARCHAR" />
+    <result column="USER_MAIN_RANGE" property="userMainRange" jdbcType="VARCHAR" />
+    <result column="USER_ACTIVE_RANGE" property="userActiveRange" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+    <result column="USER_STATE" property="userState" jdbcType="INTEGER" />
+    <result column="USER_TELE" property="userTele" jdbcType="VARCHAR" />
+    <result column="USER_EMAIL" property="userEmail" jdbcType="VARCHAR" />
+    <result column="USER_GPS_ADDRESS" property="userGpsAddress" jdbcType="VARCHAR" />
+    <result column="USER_LOG" property="userLog" jdbcType="VARCHAR" />
+    <result column="USER_LAT" property="userLat" jdbcType="VARCHAR" />
+    <result column="USER_ID_CODE" property="userIdCode" jdbcType="VARCHAR" />
+    <result column="USER_VER_CODE" property="userVerCode" jdbcType="VARCHAR" />
+    <result column="USER_CREATE_TIME" property="userCreateTime" jdbcType="TIMESTAMP" />
+    <result column="USER_UPDATE_TIME" property="userUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+	
+	<sql id="Base_Column_List" >
+    USER_ID, USER_ICON_URL, USER_LOGIN_NAME, USER_REL_NAME, USER_PASSWORD, USER_HOBBY, 
+    USER_MAIN_RANGE, USER_ACTIVE_RANGE, USER_TYPE, USER_STATE, USER_TELE, USER_EMAIL, 
+    USER_GPS_ADDRESS, USER_LOG, USER_LAT, USER_ID_CODE, USER_VER_CODE, USER_CREATE_TIME, 
+    USER_UPDATE_TIME
+  </sql>
+	
+	<delete id="doDeleteByPrimaryKey" parameterType="User" >
+    delete from user
+    where USER_ID = #{userId}
+  </delete>
+  	
+  	 <insert id="doInsert" parameterType="User" >
+    insert into user (USER_ID, USER_ICON_URL, USER_LOGIN_NAME, 
+      USER_REL_NAME, USER_PASSWORD, USER_HOBBY, 
+      USER_MAIN_RANGE, USER_ACTIVE_RANGE, USER_TYPE, 
+      USER_STATE, USER_TELE, USER_EMAIL, 
+      USER_GPS_ADDRESS, USER_LOG, USER_LAT, 
+      USER_ID_CODE, USER_VER_CODE, USER_CREATE_TIME, 
+      USER_UPDATE_TIME)
+    values (#{userId}, #{userIconUrl}, #{userLoginName}, 
+      #{userRelName}, #{userPassword}, #{userHobby}, 
+      #{userMainRange}, #{userActiveRange}, #{userType}, 
+      #{userState}, #{userTele}, #{userEmail}, 
+      #{userGpsAddress}, #{userLog}, #{userLat}, 
+      #{userIdCode}, #{userVerCode}, #{userCreateTime}, 
+      #{userUpdateTime})
+  </insert>
+	
+	<insert id="doInsertSelective" parameterType="User" >
+		<selectKey keyProperty="userId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into user
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="userId != null" >
+	        USER_ID,
+	      </if>
+	      <if test="userIconUrl != null" >
+	        USER_ICON_URL,
+	      </if>
+	      <if test="userLoginName != null" >
+	        USER_LOGIN_NAME,
+	      </if>
+	      <if test="userRelName != null" >
+	        USER_REL_NAME,
+	      </if>
+	      <if test="userPassword != null" >
+	        USER_PASSWORD,
+	      </if>
+	      <if test="userHobby != null" >
+	        USER_HOBBY,
+	      </if>
+	      <if test="userMainRange != null" >
+	        USER_MAIN_RANGE,
+	      </if>
+	      <if test="userActiveRange != null" >
+	        USER_ACTIVE_RANGE,
+	      </if>
+	      <if test="userType != null" >
+	        USER_TYPE,
+	      </if>
+	      <if test="userState != null" >
+	        USER_STATE,
+	      </if>
+	      <if test="userTele != null" >
+	        USER_TELE,
+	      </if>
+	      <if test="userEmail != null" >
+	        USER_EMAIL,
+	      </if>
+	      <if test="userGpsAddress != null" >
+	        USER_GPS_ADDRESS,
+	      </if>
+	      <if test="userLog != null" >
+	        USER_LOG,
+	      </if>
+	      <if test="userLat != null" >
+	        USER_LAT,
+	      </if>
+	      <if test="userCreateTime != null" >
+	        USER_CREATE_TIME,
+	      </if>
+	      <if test="userUpdateTime != null" >
+	        USER_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="userId != null" >
+	        #{userId},
+	      </if>
+	      <if test="userIconUrl != null" >
+	        #{userIconUrl},
+	      </if>
+	      <if test="userLoginName != null" >
+	        #{userLoginName},
+	      </if>
+	      <if test="userRelName != null" >
+	        #{userRelName},
+	      </if>
+	      <if test="userPassword != null" >
+	        #{userPassword},
+	      </if>
+	      <if test="userHobby != null" >
+	        #{userHobby},
+	      </if>
+	      <if test="userMainRange != null" >
+	        #{userMainRange},
+	      </if>
+	      <if test="userActiveRange != null" >
+	        #{userActiveRange},
+	      </if>
+	      <if test="userType != null" >
+	        #{userType},
+	      </if>
+	      <if test="userState != null" >
+	        #{userState},
+	      </if>
+	      <if test="userTele != null" >
+	        #{userTele},
+	      </if>
+	      <if test="userEmail != null" >
+	        #{userEmail},
+	      </if>
+	      <if test="userGpsAddress != null" >
+	        #{userGpsAddress},
+	      </if>
+	      <if test="userLog != null" >
+	        #{userLog},
+	      </if>
+	      <if test="userLat != null" >
+	        #{userLat},
+	      </if>
+	      <if test="userCreateTime != null" >
+	        #{userCreateTime},
+	      </if>
+	      <if test="userUpdateTime != null" >
+	        #{userUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+	
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="User" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where USER_ID = #{userId}
+  </select>
+	
+	<update id="doUpdateByPrimaryKeySelective" parameterType="User" >
+
+    update user
+    <set >
+      <if test="userIconUrl != null" >
+        USER_ICON_URL = #{userIconUrl},
+      </if>
+      <if test="userLoginName != null" >
+        USER_LOGIN_NAME = #{userLoginName},
+      </if>
+      <if test="userRelName != null" >
+        USER_REL_NAME = #{userRelName},
+      </if>
+      <if test="userPassword != null" >
+        USER_PASSWORD = #{userPassword},
+      </if>
+      <if test="userHobby != null" >
+        USER_HOBBY = #{userHobby},
+      </if>
+      <if test="userMainRange != null" >
+        USER_MAIN_RANGE = #{userMainRange},
+      </if>
+      <if test="userActiveRange != null" >
+        USER_ACTIVE_RANGE = #{userActiveRange},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType},
+      </if>
+      <if test="userState != null" >
+        USER_STATE = #{userState},
+      </if>
+      <if test="userTele != null" >
+        USER_TELE = #{userTele},
+      </if>
+      <if test="userEmail != null" >
+        USER_EMAIL = #{userEmail},
+      </if>
+      <if test="userGpsAddress != null" >
+        USER_GPS_ADDRESS = #{userGpsAddress},
+      </if>
+      <if test="userLog != null" >
+        USER_LOG = #{userLog},
+      </if>
+      <if test="userLat != null" >
+        USER_LAT = #{userLat},
+      </if>
+      <if test="userIdCode != null" >
+        USER_ID_CODE = #{userIdCode},
+      </if>
+      <if test="userVerCode != null" >
+        USER_VER_CODE = #{userVerCode},
+      </if>
+      <if test="userCreateTime != null" >
+        USER_CREATE_TIME = #{userCreateTime},
+      </if>
+      <if test="userUpdateTime != null" >
+        USER_UPDATE_TIME = #{userUpdateTime},
+      </if>
+    </set>
+    where USER_ID = #{userId}
+  </update>
+	
+	<update id="doUpdateByPrimaryKey" parameterType="User" >
+    update user
+    set USER_ICON_URL = #{userIconUrl},
+      USER_LOGIN_NAME = #{userLoginName},
+      USER_REL_NAME = #{userRelName},
+      USER_PASSWORD = #{userPassword},
+      USER_HOBBY = #{userHobby},
+      USER_MAIN_RANGE = #{userMainRange},
+      USER_ACTIVE_RANGE = #{userActiveRange},
+      USER_TYPE = #{userType},
+      USER_STATE = #{userState},
+      USER_TELE = #{userTele},
+      USER_EMAIL = #{userEmail},
+      USER_GPS_ADDRESS = #{userGpsAddress},
+      USER_LOG = #{userLog},
+      USER_LAT = #{userLat},
+      USER_ID_CODE = #{userIdCode},
+      USER_VER_CODE = #{userVerCode},
+      USER_CREATE_TIME = #{userCreateTime},
+      USER_UPDATE_TIME = #{userUpdateTime}
+    where USER_ID = #{userId}
+  </update>
+	
+	<select id="selectByAttribute" resultMap="BaseResultMap" parameterType="User" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from user
+	    <where>
+	    	<if test="userIconUrl != null" >
+	        USER_ICON_URL = #{userIconUrl}
+	      </if>
+	      <if test="userLoginName != null" >
+	        and USER_LOGIN_NAME = #{userLoginName}
+	      </if>
+	      <if test="userRelName != null" >
+	        and USER_REL_NAME = #{userRelName}
+	      </if>
+	      <if test="userPassword != null" >
+	        and USER_PASSWORD = #{userPassword}
+	      </if>
+	      <if test="userHobby != null" >
+	        and USER_HOBBY = #{userHobby}
+	      </if>
+	      <if test="userMainRange != null" >
+	        and USER_MAIN_RANGE = #{userMainRange}
+	      </if>
+	      <if test="userActiveRange != null" >
+	        and USER_ACTIVE_RANGE = #{userActiveRange}
+	      </if>
+	      <if test="userType != null" >
+	        and USER_TYPE = #{userType}
+	      </if>
+	      <if test="userState != null and userState != 0" >
+	        and USER_STATE = #{userState}
+	      </if>
+	      <if test="userTele != null" >
+	        and USER_TELE = #{userTele}
+	      </if>
+	      <if test="userEmail != null" >
+	        and USER_EMAIL = #{userEmail}
+	      </if>
+	      <if test="userGpsAddress != null" >
+	        and USER_GPS_ADDRESS = #{userGpsAddress}
+	      </if>
+	      <if test="userLog != null" >
+	        and USER_LOG = #{userLog}
+	      </if>
+	      <if test="userLat != null" >
+	        and USER_LAT = #{userLat}
+	      </if>
+	      <if test="userCreateTime != null" >
+	        and USER_CREATE_TIME = #{userCreateTime}
+	      </if>
+	      <if test="userUpdateTime != null" >
+	        and USER_UPDATE_TIME = #{userUpdateTime}
+	      </if>
+	    </where>
+  	</select>
+  	
+  	<select id="selectAll" resultMap="BaseResultMap" parameterType="User" >
+  		select 
+  		 <include refid="Base_Column_List" />
+  		from User
+  	</select>
+	
+</mapper>

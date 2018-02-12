@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.totops.dao.ISysFileDao">
+  <resultMap id="BaseResultMap" type="com.hxkj.totops.entity.SysFile">
+    <id column="sys_file_cuid" jdbcType="VARCHAR" property="sysFileCuid" />
+    <result column="sys_file_name" jdbcType="VARCHAR" property="sysFileName" />
+    <result column="sys_file_thumb_url" jdbcType="VARCHAR" property="sysFileThumbUrl" />
+    <result column="sys_file_url" jdbcType="VARCHAR" property="sysFileUrl" />
+    <result column="sys_file_type" jdbcType="INTEGER" property="sysFileType" />
+    <result column="sys_file_state" jdbcType="INTEGER" property="sysFileState" />
+    <result column="sys_file_create_time" jdbcType="VARCHAR" property="sysFileCreateTime" />
+    <result column="sys_file_update_time" jdbcType="VARCHAR" property="sysFileUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_file_cuid, sys_file_name, sys_file_thumb_url, sys_file_url, sys_file_type, sys_file_state, 
+    sys_file_create_time, sys_file_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_file
+    where sys_file_cuid = #{sysFileCuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_file
+    where sys_file_cuid = #{sysFileCuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxkj.totops.entity.SysFile">
+    insert into sys_file (sys_file_cuid, sys_file_name, sys_file_thumb_url, 
+      sys_file_url, sys_file_type, sys_file_state, 
+      sys_file_create_time, sys_file_update_time)
+    values (#{sysFileCuid,jdbcType=VARCHAR}, #{sysFileName,jdbcType=VARCHAR}, #{sysFileThumbUrl,jdbcType=VARCHAR}, 
+      #{sysFileUrl,jdbcType=VARCHAR}, #{sysFileType,jdbcType=INTEGER}, #{sysFileState,jdbcType=INTEGER}, 
+      #{sysFileCreateTime,jdbcType=VARCHAR}, #{sysFileUpdateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxkj.totops.entity.SysFile">
+    insert into sys_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysFileCuid != null">
+        sys_file_cuid,
+      </if>
+      <if test="sysFileName != null">
+        sys_file_name,
+      </if>
+      <if test="sysFileThumbUrl != null">
+        sys_file_thumb_url,
+      </if>
+      <if test="sysFileUrl != null">
+        sys_file_url,
+      </if>
+      <if test="sysFileType != null">
+        sys_file_type,
+      </if>
+      <if test="sysFileState != null">
+        sys_file_state,
+      </if>
+      <if test="sysFileCreateTime != null">
+        sys_file_create_time,
+      </if>
+      <if test="sysFileUpdateTime != null">
+        sys_file_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysFileCuid != null">
+        #{sysFileCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileName != null">
+        #{sysFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileThumbUrl != null">
+        #{sysFileThumbUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileUrl != null">
+        #{sysFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileType != null">
+        #{sysFileType,jdbcType=INTEGER},
+      </if>
+      <if test="sysFileState != null">
+        #{sysFileState,jdbcType=INTEGER},
+      </if>
+      <if test="sysFileCreateTime != null">
+        #{sysFileCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileUpdateTime != null">
+        #{sysFileUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.totops.entity.SysFile">
+    update sys_file
+    <set>
+      <if test="sysFileName != null">
+        sys_file_name = #{sysFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileThumbUrl != null">
+        sys_file_thumb_url = #{sysFileThumbUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileUrl != null">
+        sys_file_url = #{sysFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileType != null">
+        sys_file_type = #{sysFileType,jdbcType=INTEGER},
+      </if>
+      <if test="sysFileState != null">
+        sys_file_state = #{sysFileState,jdbcType=INTEGER},
+      </if>
+      <if test="sysFileCreateTime != null">
+        sys_file_create_time = #{sysFileCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFileUpdateTime != null">
+        sys_file_update_time = #{sysFileUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sys_file_cuid = #{sysFileCuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.totops.entity.SysFile">
+    update sys_file
+    set sys_file_name = #{sysFileName,jdbcType=VARCHAR},
+      sys_file_thumb_url = #{sysFileThumbUrl,jdbcType=VARCHAR},
+      sys_file_url = #{sysFileUrl,jdbcType=VARCHAR},
+      sys_file_type = #{sysFileType,jdbcType=INTEGER},
+      sys_file_state = #{sysFileState,jdbcType=INTEGER},
+      sys_file_create_time = #{sysFileCreateTime,jdbcType=VARCHAR},
+      sys_file_update_time = #{sysFileUpdateTime,jdbcType=VARCHAR}
+    where sys_file_cuid = #{sysFileCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" parameterType="com.hxkj.totops.entity.SysFile" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_file
+    <where>
+      <if test="sysFileName != null">
+        sys_file_name = #{sysFileName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysFileThumbUrl != null">
+        and sys_file_thumb_url = #{sysFileThumbUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysFileUrl != null">
+        and sys_file_url = #{sysFileUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysFileType != null">
+        and sys_file_type = #{sysFileType,jdbcType=INTEGER}
+      </if>
+      <if test="sysFileState != null">
+        and sys_file_state = #{sysFileState,jdbcType=INTEGER}
+      </if>
+      <if test="sysFileCreateTime != null">
+        and sys_file_create_time = #{sysFileCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysFileUpdateTime != null">
+        and sys_file_update_time = #{sysFileUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by sys_file_create_time desc
+  </select>
+  
+  <select id="selectByPageAnd" parameterType="com.hxkj.totops.entity.query.PageBean" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_file
+    <where>
+      <if test="b.sysFileName != null">
+        sys_file_name = #{b.sysFileName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileThumbUrl != null">
+        and sys_file_thumb_url = #{b.sysFileThumbUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileUrl != null">
+        and sys_file_url = #{b.sysFileUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileType != null">
+        and sys_file_type = #{b.sysFileType,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysFileState != null">
+        and sys_file_state = #{b.sysFileState,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysFileCreateTime != null">
+        and sys_file_create_time = #{b.sysFileCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileUpdateTime != null">
+        and sys_file_update_time = #{b.sysFileUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by sys_file_create_time desc
+    limit #{startLine},#{pageSize}
+  </select>
+  
+  <select id="selectByPageAndCount" parameterType="com.hxkj.totops.entity.query.PageBean" resultType="int">
+    select 
+    count(1)
+    from sys_file
+    <where>
+      <if test="b.sysFileName != null">
+        sys_file_name = #{b.sysFileName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileThumbUrl != null">
+        and sys_file_thumb_url = #{b.sysFileThumbUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileUrl != null">
+        and sys_file_url = #{b.sysFileUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileType != null">
+        and sys_file_type = #{b.sysFileType,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysFileState != null">
+        and sys_file_state = #{b.sysFileState,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysFileCreateTime != null">
+        and sys_file_create_time = #{b.sysFileCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysFileUpdateTime != null">
+        and sys_file_update_time = #{b.sysFileUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  
+</mapper>

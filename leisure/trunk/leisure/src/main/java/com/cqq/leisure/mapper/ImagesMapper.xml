@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IImagesDao" >
+	
+	<resultMap id="BaseResultMap" type="Images" >
+	    <id column="IMAGES_ID" property="imagesId" />
+	    <result column="HOLIDAY_PLAN_ID" property="holidayPlanId" />
+	    <result column="PROGRAM_PLAN_ID" property="programPlanId" />
+	    <result column="ACTIVE_ID" property="activeId" />
+	    <result column="IMAGES_DESC" property="imagesDesc" />
+	    <result column="IMAGES_URL" property="imagesUrl" />
+	    <result column="IMAGES_SUF_CONTENT" property="imagesSufContent" />
+	    <result column="IMAGES_STATE" property="imagesState" />
+	    <result column="IMAGES_CREATE_TIME" property="imagesCreateTime" />
+  	</resultMap>
+	
+	
+	<sql id="Base_Column_List" >
+	    IMAGES_ID, HOLIDAY_PLAN_ID, PROGRAM_PLAN_ID, ACTIVE_ID, IMAGES_DESC, IMAGES_URL, 
+	    IMAGES_SUF_CONTENT, IMAGES_STATE, IMAGES_CREATE_TIME
+  	</sql>
+  	
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Images" >
+	    delete from images
+	    where IMAGES_ID = #{imagesId}
+  	</delete>
+	
+	<insert id="doInsert" parameterType="Images" >
+		<selectKey keyProperty="imagesId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into images (IMAGES_ID, HOLIDAY_PLAN_ID, PROGRAM_PLAN_ID, 
+	      ACTIVE_ID, IMAGES_DESC, IMAGES_URL, 
+	      IMAGES_SUF_CONTENT, IMAGES_STATE, IMAGES_CREATE_TIME
+	      )
+	    values (#{imagesId}, #{holidayPlanId}, #{programPlanId}, 
+	      #{activeId}, #{imagesDesc}, #{imagesUrl}, 
+	      #{imagesSufContent}, #{imagesState}, #{imagesCreateTime}
+	      )
+  	</insert>
+	
+	<insert id="doInsertSelective" parameterType="Images" >
+		<selectKey keyProperty="imagesId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into images
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="imagesId != null" >
+	        IMAGES_ID,
+	      </if>
+	      <if test="holidayPlanId != null" >
+	        HOLIDAY_PLAN_ID,
+	      </if>
+	      <if test="programPlanId != null" >
+	        PROGRAM_PLAN_ID,
+	      </if>
+	      <if test="activeId != null" >
+	        ACTIVE_ID,
+	      </if>
+	      <if test="imagesDesc != null" >
+	        IMAGES_DESC,
+	      </if>
+	      <if test="imagesUrl != null" >
+	        IMAGES_URL,
+	      </if>
+	      <if test="imagesSufContent != null" >
+	        IMAGES_SUF_CONTENT,
+	      </if>
+	      <if test="imagesState != null" >
+	        IMAGES_STATE,
+	      </if>
+	      <if test="imagesCreateTime != null" >
+	        IMAGES_CREATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="imagesId != null" >
+	        #{imagesId},
+	      </if>
+	      <if test="holidayPlanId != null" >
+	        #{holidayPlanId},
+	      </if>
+	      <if test="programPlanId != null" >
+	        #{programPlanId},
+	      </if>
+	      <if test="activeId != null" >
+	        #{activeId},
+	      </if>
+	      <if test="imagesDesc != null" >
+	        #{imagesDesc},
+	      </if>
+	      <if test="imagesUrl != null" >
+	        #{imagesUrl},
+	      </if>
+	      <if test="imagesSufContent != null" >
+	        #{imagesSufContent},
+	      </if>
+	      <if test="imagesState != null" >
+	        #{imagesState},
+	      </if>
+	      <if test="imagesCreateTime != null" >
+	        #{imagesCreateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Images" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from images
+	    where IMAGES_ID = #{imagesId}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Images" >
+	    update images
+	    <set >
+	      <if test="holidayPlanId != null" >
+	        HOLIDAY_PLAN_ID = #{holidayPlanId},
+	      </if>
+	      <if test="programPlanId != null" >
+	        PROGRAM_PLAN_ID = #{programPlanId},
+	      </if>
+	      <if test="activeId != null" >
+	        ACTIVE_ID = #{activeId},
+	      </if>
+	      <if test="imagesDesc != null" >
+	        IMAGES_DESC = #{imagesDesc},
+	      </if>
+	      <if test="imagesUrl != null" >
+	        IMAGES_URL = #{imagesUrl},
+	      </if>
+	      <if test="imagesSufContent != null" >
+	        IMAGES_SUF_CONTENT = #{imagesSufContent},
+	      </if>
+	      <if test="imagesState != null" >
+	        IMAGES_STATE = #{imagesState},
+	      </if>
+	      <if test="imagesCreateTime != null" >
+	        IMAGES_CREATE_TIME = #{imagesCreateTime},
+	      </if>
+	    </set>
+	    where IMAGES_ID = #{imagesId}
+  	</update>
+	
+	<update id="doUpdateByPrimaryKey" parameterType="Images" >
+	    update images
+	    set HOLIDAY_PLAN_ID = #{holidayPlanId},
+	      PROGRAM_PLAN_ID = #{programPlanId},
+	      ACTIVE_ID = #{activeId},
+	      IMAGES_DESC = #{imagesDesc},
+	      IMAGES_URL = #{imagesUrl},
+	      IMAGES_SUF_CONTENT = #{imagesSufContent},
+	      IMAGES_STATE = #{imagesState},
+	      IMAGES_CREATE_TIME = #{imagesCreateTime}
+	    where IMAGES_ID = #{imagesId}
+  	</update>
+	
+</mapper>

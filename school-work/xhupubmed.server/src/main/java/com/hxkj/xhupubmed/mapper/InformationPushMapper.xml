@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IInformationPushDao" >
+	
+	<resultMap id="BaseResultMap" type="InformationPush" >
+	    <id column="INFORMATION_PUSH_CUID" property="informationPushCuid" />
+	    <result column="INFORMATION_PUSH_TITLE" property="informationPushTitle"  />
+	    <result column="INFORMATION_PUSH_CONTENT" property="informationPushContent"  />
+	    <result column="INFORMATION_PUSH_PEOPLE" property="informationPushPeople"  />
+	    <result column="INFORMATION_PUSH_URL" property="informationPushUrl" />
+	    <result column="INFORMATION_PUSH_STATE" property="informationPushState"  />
+	    <result column="INFORMATION_PUSH_CREATE_TIME" property="informationPushCreateTime"  />
+	    <result column="INFORMATION_PUSH_UPDATE_TIME" property="informationPushUpdateTime"  />
+  	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	    INFORMATION_PUSH_CUID, 
+	    INFORMATION_PUSH_TITLE, 
+	    INFORMATION_PUSH_CONTENT, 
+	    INFORMATION_PUSH_PEOPLE, 
+	    INFORMATION_PUSH_URL, 
+	    INFORMATION_PUSH_STATE, 
+	    INFORMATION_PUSH_CREATE_TIME, 
+	    INFORMATION_PUSH_UPDATE_TIME
+  	</sql>
+	
+	<delete id="doDeleteByPrimaryKey" parameterType="InformationPush" >
+	    delete 
+	    from 
+	    	information_push
+	    where 
+	    	INFORMATION_PUSH_CUID = #{informationPushCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="InformationPush" >
+	    insert into 
+	    	information_push 
+	    	(INFORMATION_PUSH_CUID, 
+	    	INFORMATION_PUSH_TITLE, 
+	      INFORMATION_PUSH_CONTENT, 
+	      INFORMATION_PUSH_PEOPLE, 
+	      INFORMATION_PUSH_URL, 
+	      INFORMATION_PUSH_STATE, 
+	      INFORMATION_PUSH_CREATE_TIME, 
+	      INFORMATION_PUSH_UPDATE_TIME
+	      )
+	    values 
+	    	(#{informationPushCuid}, 
+	    	#{informationPushTitle}, 
+	      #{informationPushContent}, 
+	      #{informationPushPeople}, 
+	      #{informationPushUrl}, 
+	      #{informationPushState}, 
+	      #{informationPushCreateTime}, 
+	      #{informationPushUpdateTime}
+	      )
+  	</insert>
+  	
+	
+	<insert id="doInsertSelective" parameterType="InformationPush" >
+	    insert into information_push
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="informationPushCuid != null" >
+	        INFORMATION_PUSH_CUID,
+	      </if>
+	      <if test="informationPushTitle != null" >
+	        INFORMATION_PUSH_TITLE,
+	      </if>
+	      <if test="informationPushContent != null" >
+	        INFORMATION_PUSH_CONTENT,
+	      </if>
+	      <if test="informationPushPeople != null" >
+	        INFORMATION_PUSH_PEOPLE,
+	      </if>
+	      <if test="informationPushUrl != null" >
+	        INFORMATION_PUSH_URL,
+	      </if>
+	      <if test="informationPushState != null" >
+	        INFORMATION_PUSH_STATE,
+	      </if>
+	      <if test="informationPushCreateTime != null" >
+	        INFORMATION_PUSH_CREATE_TIME,
+	      </if>
+	      <if test="informationPushUpdateTime != null" >
+	        INFORMATION_PUSH_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="informationPushCuid != null" >
+	        #{informationPushCuid},
+	      </if>
+	      <if test="informationPushTitle != null" >
+	        #{informationPushTitle},
+	      </if>
+	      <if test="informationPushContent != null" >
+	        #{informationPushContent},
+	      </if>
+	      <if test="informationPushPeople != null" >
+	        #{informationPushPeople},
+	      </if>
+	      <if test="informationPushUrl != null" >
+	        #{informationPushUrl},
+	      </if>
+	      <if test="informationPushState != null" >
+	        #{informationPushState},
+	      </if>
+	      <if test="informationPushCreateTime != null" >
+	        #{informationPushCreateTime},
+	      </if>
+	      <if test="informationPushUpdateTime != null" >
+	        #{informationPushUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="InformationPush" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	information_push
+	    where 
+	    	INFORMATION_PUSH_CUID = #{informationPushCuid}
+  	</select>
+	
+	<update id="doUpdateByPrimaryKeySelective" parameterType="InformationPush" >
+	    update information_push
+	    <set >
+	      <if test="informationPushTitle != null" >
+	        INFORMATION_PUSH_TITLE = #{informationPushTitle},
+	      </if>
+	      <if test="informationPushContent != null" >
+	        INFORMATION_PUSH_CONTENT = #{informationPushContent},
+	      </if>
+	      <if test="informationPushPeople != null" >
+	        INFORMATION_PUSH_PEOPLE = #{informationPushPeople},
+	      </if>
+	      <if test="informationPushUrl != null" >
+	        INFORMATION_PUSH_URL = #{informationPushUrl},
+	      </if>
+	      <if test="informationPushState != null and informationPushState != 0" >
+	        INFORMATION_PUSH_STATE = #{informationPushState},
+	      </if>
+	      <if test="informationPushCreateTime != null" >
+	        INFORMATION_PUSH_CREATE_TIME = #{informationPushCreateTime},
+	      </if>
+	      <if test="informationPushUpdateTime != null" >
+	        INFORMATION_PUSH_UPDATE_TIME = #{informationPushUpdateTime},
+	      </if>
+	    </set>
+	    where INFORMATION_PUSH_CUID = #{informationPushCuid}
+  	</update>
+	
+	<update id="doUpdateByPrimaryKey" parameterType="InformationPush" >
+	    update information_push
+	    set INFORMATION_PUSH_TITLE = #{informationPushTitle},
+	      INFORMATION_PUSH_CONTENT = #{informationPushContent},
+	      INFORMATION_PUSH_PEOPLE = #{informationPushPeople},
+	      INFORMATION_PUSH_URL = #{informationPushUrl},
+	      INFORMATION_PUSH_STATE = #{informationPushState},
+	      INFORMATION_PUSH_CREATE_TIME = #{informationPushCreateTime},
+	      INFORMATION_PUSH_UPDATE_TIME = #{informationPushUpdateTime}
+	    where INFORMATION_PUSH_CUID = #{informationPushCuid}
+  	</update>
+	
+	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	information_push
+	    <where>
+	    	<if test="b.informationPushTitle != null" >
+	        INFORMATION_PUSH_TITLE = #{b.informationPushTitle}
+	      </if>
+	      <if test="b.informationPushContent != null" >
+	        and INFORMATION_PUSH_CONTENT = #{b.informationPushContent}
+	      </if>
+	      <if test="b.informationPushPeople != null" >
+	        and INFORMATION_PUSH_PEOPLE = #{b.informationPushPeople}
+	      </if>
+	      <if test="b.informationPushUrl != null" >
+	        and INFORMATION_PUSH_URL = #{b.informationPushUrl}
+	      </if>
+	      <if test="b.informationPushState != null and b.informationPushState != 0" >
+	        and INFORMATION_PUSH_STATE = #{b.informationPushState}
+	      </if>
+	      <if test="b.informationPushCreateTime != null" >
+	        and INFORMATION_PUSH_CREATE_TIME = #{b.informationPushCreateTime}
+	      </if>
+	      <if test="b.informationPushUpdateTime != null" >
+	        and INFORMATION_PUSH_UPDATE_TIME = #{b.informationPushUpdateTime}
+	      </if>
+	      <if test="startTime != null and startTime != '' ">
+	      	and INFORMATION_PUSH_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' ">
+	      	and INFORMATION_PUSH_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      <if test="searchName != null and searchName != '' ">
+	      	and INFORMATION_PUSH_TITLE like '%' #{searchName} '%'
+	      </if>
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	information_push
+	    <where>
+	    	<if test="b.informationPushTitle != null" >
+	        INFORMATION_PUSH_TITLE = #{b.informationPushTitle}
+	      </if>
+	      <if test="b.informationPushContent != null" >
+	        and INFORMATION_PUSH_CONTENT = #{b.informationPushContent}
+	      </if>
+	      <if test="b.informationPushPeople != null" >
+	        and INFORMATION_PUSH_PEOPLE = #{b.informationPushPeople}
+	      </if>
+	      <if test="b.informationPushUrl != null" >
+	        and INFORMATION_PUSH_URL = #{b.informationPushUrl}
+	      </if>
+	      <if test="b.informationPushState != null and b.informationPushState != 0" >
+	        and INFORMATION_PUSH_STATE = #{b.informationPushState}
+	      </if>
+	      <if test="b.informationPushCreateTime != null" >
+	        and INFORMATION_PUSH_CREATE_TIME = #{b.informationPushCreateTime}
+	      </if>
+	      <if test="b.informationPushUpdateTime != null" >
+	        and INFORMATION_PUSH_UPDATE_TIME = #{b.informationPushUpdateTime}
+	      </if>
+	      <if test="startTime != null and startTime != '' ">
+	      	and INFORMATION_PUSH_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' ">
+	      	and INFORMATION_PUSH_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      <if test="searchName != null and searchName != '' ">
+	      	and INFORMATION_PUSH_TITLE like '%' #{searchName} '%'
+	      </if>
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	information_push
+	    <where>
+	    	<choose>
+	    		<when test="b.informationPushTitle != null" >
+		        INFORMATION_PUSH_TITLE = #{b.informationPushTitle}
+		      </when>
+		      <when test="b.informationPushContent != null" >
+		        and INFORMATION_PUSH_CONTENT = #{b.informationPushContent}
+		      </when>
+		      <when test="b.informationPushPeople != null" >
+		        and INFORMATION_PUSH_PEOPLE = #{b.informationPushPeople}
+		      </when>
+		      <when test="b.informationPushUrl != null" >
+		        and INFORMATION_PUSH_URL = #{b.informationPushUrl}
+		      </when>
+		      <when test="b.informationPushState != null and b.informationPushState != 0" >
+		        and INFORMATION_PUSH_STATE = #{b.informationPushState}
+		      </when>
+		      <when test="b.informationPushCreateTime != null" >
+		        and INFORMATION_PUSH_CREATE_TIME = #{b.informationPushCreateTime}
+		      </when>
+		      <when test="b.informationPushUpdateTime != null" >
+		        and INFORMATION_PUSH_UPDATE_TIME = #{b.informationPushUpdateTime}
+		      </when>
+	    	</choose>
+	      and INFORMATION_PUSH_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+	
+	
+	<select id="selectByAttributeCountOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	information_push
+	    <where>
+	    	<choose>
+	    		<when test="b.informationPushTitle != null" >
+		        INFORMATION_PUSH_TITLE = #{b.informationPushTitle}
+		      </when>
+		      <when test="b.informationPushContent != null" >
+		        and INFORMATION_PUSH_CONTENT = #{b.informationPushContent}
+		      </when>
+		      <when test="b.informationPushPeople != null" >
+		        and INFORMATION_PUSH_PEOPLE = #{b.informationPushPeople}
+		      </when>
+		      <when test="b.informationPushUrl != null" >
+		        and INFORMATION_PUSH_URL = #{b.informationPushUrl}
+		      </when>
+		      <when test="b.informationPushState != null and b.informationPushState != 0" >
+		        and INFORMATION_PUSH_STATE = #{b.informationPushState}
+		      </when>
+		      <when test="b.informationPushCreateTime != null" >
+		        and INFORMATION_PUSH_CREATE_TIME = #{b.informationPushCreateTime}
+		      </when>
+		      <when test="b.informationPushUpdateTime != null" >
+		        and INFORMATION_PUSH_UPDATE_TIME = #{b.informationPushUpdateTime}
+		      </when>
+	    	</choose>
+	      and INFORMATION_PUSH_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+	
+</mapper>

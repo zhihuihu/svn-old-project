@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.IGlobalIdDao">
+
+	<resultMap id="GlobalIdResultMap" type="GlobalId">
+		<id property="globalCuid" column="GLOBAL_CUID" />
+		<result property="globalTableName" column="GLOBAL_TABLE_NAME" />
+		<result property="globalNotes" column="GLOBAL_NOTES" />
+		<result property="globalCreateTime" column="GLOBAL_CREATE_TIME" />
+	</resultMap>
+
+	<select id="getAll" resultMap="GlobalIdResultMap">
+		SELECT
+			global_id.GLOBAL_CUID,
+			global_id.GLOBAL_TABLE_NAME,
+			global_id.GLOBAL_NOTES,
+			global_id.GLOBAL_CREATE_TIME
+		FROM
+			global_id
+	</select>
+
+	<select id="getById" parameterType="int" resultMap="GlobalIdResultMap">
+		SELECT
+			global_id.GLOBAL_CUID,
+			global_id.GLOBAL_TABLE_NAME,
+			global_id.GLOBAL_NOTES,
+			global_id.GLOBAL_CREATE_TIME
+		FROM
+			global_id
+		WHERE
+			global_id.GLOBAL_CUID = #{globalCuid}
+	</select>
+
+	<insert id="doInsert" parameterType="GlobalId">
+		<!-- 如果数据库是MySql则取消下面的注解 -->
+		<selectKey keyProperty="globalCuid" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO global_id
+			(GLOBAL_TABLE_NAME,GLOBAL_NOTES,GLOBAL_CREATE_TIME)
+		VALUES 
+			(#{globalTableName},#{globalNotes},#{globalCreateTime})
+	</insert>
+
+	<update id="doUpdate" parameterType="GlobalId">
+		UPDATE global_id
+		<set>
+			<if test="GLOBAL_TABLE_NAME != null and GLOBAL_TABLE_NAME !=''">
+				GLOBAL_TABLE_NAME = #{globalTableName},
+			</if>
+			<if test="globalNotes != null and globalNotes !=''">
+				USER_TYPE_CREATE_TIME = #{globalNotes},
+			</if>
+			<if test="globalCreateTime != null and globalCreateTime !=''">
+				GLOBAL_CREATE_TIME = #{globalCreateTime},
+			</if>
+		</set>
+		WHERE
+			GLOBAL_CUID = #{globalCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="GlobalIdResultMap">
+		SELECT
+			global_id.GLOBAL_CUID,
+			global_id.GLOBAL_TABLE_NAME,
+			global_id.GLOBAL_NOTES,
+			global_id.GLOBAL_CREATE_TIME
+		FROM
+			global_id
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			global_id
+	</select>
+
+</mapper>

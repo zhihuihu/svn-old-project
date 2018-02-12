@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IIntelligentMessageDao" >
+	
+	<resultMap id="BaseResultMap" type="IntelligentMessage" >
+	    <id column="INTELLIGENT_MESSAGE_CUID" property="intelligentMessageCuid" />
+	    <result column="SYS_USER_CUID" property="sysUserCuid" />
+	    <result column="INTELLIGENT_MESSAGE_NAME" property="intelligentMessageName" />
+	    <result column="INTELLIGENT_MESSAGE_TITLE" property="intelligentMessageTitle" />
+	    <result column="INTELLIGENT_MESSAGE_CONTENT" property="intelligentMessageContent" />
+	    <result column="INTELLIGENT_MESSAGE_DIRECTION" property="intelligentMessageDirection" />
+	    <result column="INTELLIGENT_MESSAGE_STATE" property="intelligentMessageState" />
+	    <result column="INTELLIGENT_MESSAGE_CREATE_TIME" property="intelligentMessageCreateTime" />
+	    <result column="INTELLIGENT_MESSAGE_UPDATE_TIME" property="intelligentMessageUpdateTime" />
+  	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	    INTELLIGENT_MESSAGE_CUID, 
+	    SYS_USER_CUID, 
+	    INTELLIGENT_MESSAGE_NAME, 
+	    INTELLIGENT_MESSAGE_TITLE, 
+	    INTELLIGENT_MESSAGE_CONTENT, 
+	    INTELLIGENT_MESSAGE_DIRECTION, 
+	    INTELLIGENT_MESSAGE_STATE, 
+	    INTELLIGENT_MESSAGE_CREATE_TIME, 
+	    INTELLIGENT_MESSAGE_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="IntelligentMessage" >
+	    delete 
+	    from 
+	    	intelligent_message
+	    where 
+	    	INTELLIGENT_MESSAGE_CUID = #{intelligentMessageCuid,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="IntelligentMessage" >
+	    insert into 
+	    	intelligent_message 
+	    		(INTELLIGENT_MESSAGE_CUID, 
+	    		SYS_USER_CUID, 
+		      INTELLIGENT_MESSAGE_NAME, 
+		      INTELLIGENT_MESSAGE_TITLE, 
+		      INTELLIGENT_MESSAGE_CONTENT, 
+		      INTELLIGENT_MESSAGE_DIRECTION, 
+		      INTELLIGENT_MESSAGE_STATE, 
+		      INTELLIGENT_MESSAGE_CREATE_TIME, 
+		      INTELLIGENT_MESSAGE_UPDATE_TIME)
+	    values 
+		    	(#{intelligentMessageCuid,jdbcType=VARCHAR}, 
+		    	#{sysUserCuid,jdbcType=VARCHAR}, 
+		      #{intelligentMessageName,jdbcType=VARCHAR}, 
+		      #{intelligentMessageTitle,jdbcType=VARCHAR}, 
+		      #{intelligentMessageContent,jdbcType=VARCHAR}, 
+		      #{intelligentMessageDirection,jdbcType=INTEGER}, 
+		      #{intelligentMessageState,jdbcType=INTEGER}, 
+		      #{intelligentMessageCreateTime,jdbcType=TIMESTAMP}, 
+		      #{intelligentMessageUpdateTime,jdbcType=TIMESTAMP})
+  	</insert>
+	
+	<insert id="doInsertSelective" parameterType="IntelligentMessage" >
+	    insert into intelligent_message
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="intelligentMessageCuid != null" >
+	        INTELLIGENT_MESSAGE_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="intelligentMessageName != null" >
+	        INTELLIGENT_MESSAGE_NAME,
+	      </if>
+	      <if test="intelligentMessageTitle != null" >
+	        INTELLIGENT_MESSAGE_TITLE,
+	      </if>
+	      <if test="intelligentMessageContent != null" >
+	        INTELLIGENT_MESSAGE_CONTENT,
+	      </if>
+	      <if test="intelligentMessageDirection != null" >
+	        INTELLIGENT_MESSAGE_DIRECTION,
+	      </if>
+	      <if test="intelligentMessageState != null" >
+	        INTELLIGENT_MESSAGE_STATE,
+	      </if>
+	      <if test="intelligentMessageCreateTime != null" >
+	        INTELLIGENT_MESSAGE_CREATE_TIME,
+	      </if>
+	      <if test="intelligentMessageUpdateTime != null" >
+	        INTELLIGENT_MESSAGE_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="intelligentMessageCuid != null" >
+	        #{intelligentMessageCuid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageName != null" >
+	        #{intelligentMessageName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageTitle != null" >
+	        #{intelligentMessageTitle,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageContent != null" >
+	        #{intelligentMessageContent,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageDirection != null" >
+	        #{intelligentMessageDirection,jdbcType=INTEGER},
+	      </if>
+	      <if test="intelligentMessageState != null" >
+	        #{intelligentMessageState,jdbcType=INTEGER},
+	      </if>
+	      <if test="intelligentMessageCreateTime != null" >
+	        #{intelligentMessageCreateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="intelligentMessageUpdateTime != null" >
+	        #{intelligentMessageUpdateTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+  	</insert>
+	
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="IntelligentMessage" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	intelligent_message
+	    where 
+	    	INTELLIGENT_MESSAGE_CUID = #{intelligentMessageCuid,jdbcType=VARCHAR}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="IntelligentMessage" >
+	    update intelligent_message
+	    <set >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageName != null" >
+	        INTELLIGENT_MESSAGE_NAME = #{intelligentMessageName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageTitle != null" >
+	        INTELLIGENT_MESSAGE_TITLE = #{intelligentMessageTitle,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageContent != null" >
+	        INTELLIGENT_MESSAGE_CONTENT = #{intelligentMessageContent,jdbcType=VARCHAR},
+	      </if>
+	      <if test="intelligentMessageDirection != null and intelligentMessageDirection != 0" >
+	        INTELLIGENT_MESSAGE_DIRECTION = #{intelligentMessageDirection,jdbcType=INTEGER},
+	      </if>
+	      <if test="intelligentMessageState != null and intelligentMessageState != 0" >
+	        INTELLIGENT_MESSAGE_STATE = #{intelligentMessageState,jdbcType=INTEGER},
+	      </if>
+	      <if test="intelligentMessageCreateTime != null" >
+	        INTELLIGENT_MESSAGE_CREATE_TIME = #{intelligentMessageCreateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="intelligentMessageUpdateTime != null" >
+	        INTELLIGENT_MESSAGE_UPDATE_TIME = #{intelligentMessageUpdateTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </set>
+	    where INTELLIGENT_MESSAGE_CUID = #{intelligentMessageCuid,jdbcType=VARCHAR}
+  	</update>
+	
+	<update id="doUpdateByPrimaryKey" parameterType="IntelligentMessage" >
+	    update intelligent_message
+	    set SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR},
+	      INTELLIGENT_MESSAGE_NAME = #{intelligentMessageName,jdbcType=VARCHAR},
+	      INTELLIGENT_MESSAGE_TITLE = #{intelligentMessageTitle,jdbcType=VARCHAR},
+	      INTELLIGENT_MESSAGE_CONTENT = #{intelligentMessageContent,jdbcType=VARCHAR},
+	      INTELLIGENT_MESSAGE_DIRECTION = #{intelligentMessageDirection,jdbcType=INTEGER},
+	      INTELLIGENT_MESSAGE_STATE = #{intelligentMessageState,jdbcType=INTEGER},
+	      INTELLIGENT_MESSAGE_CREATE_TIME = #{intelligentMessageCreateTime,jdbcType=TIMESTAMP},
+	      INTELLIGENT_MESSAGE_UPDATE_TIME = #{intelligentMessageUpdateTime,jdbcType=TIMESTAMP}
+	    where INTELLIGENT_MESSAGE_CUID = #{intelligentMessageCuid,jdbcType=VARCHAR}
+  	</update>
+  	
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	intelligent_message
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageName != null" >
+	        and INTELLIGENT_MESSAGE_NAME = #{b.intelligentMessageName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageTitle != null" >
+	        and INTELLIGENT_MESSAGE_TITLE = #{b.intelligentMessageTitle,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageContent != null" >
+	        and INTELLIGENT_MESSAGE_CONTENT = #{b.intelligentMessageContent,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageDirection != null and b.intelligentMessageDirection != 0" >
+	        and INTELLIGENT_MESSAGE_DIRECTION = #{b.intelligentMessageDirection,jdbcType=INTEGER}
+	      </if>
+	      <if test="b.intelligentMessageState != null and b.intelligentMessageState != 0" >
+	        and INTELLIGENT_MESSAGE_STATE = #{b.intelligentMessageState,jdbcType=INTEGER}
+	      </if>
+	      <if test="b.intelligentMessageCreateTime != null" >
+	        and INTELLIGENT_MESSAGE_CREATE_TIME = #{b.intelligentMessageCreateTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="b.intelligentMessageUpdateTime != null" >
+	        and INTELLIGENT_MESSAGE_UPDATE_TIME = #{b.intelligentMessageUpdateTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <!-- and INTELLIGENT_MESSAGE_STATE != 4 -->
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	intelligent_message
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageName != null" >
+	        and INTELLIGENT_MESSAGE_NAME = #{b.intelligentMessageName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageTitle != null" >
+	        and INTELLIGENT_MESSAGE_TITLE = #{b.intelligentMessageTitle,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageContent != null" >
+	        and INTELLIGENT_MESSAGE_CONTENT = #{b.intelligentMessageContent,jdbcType=VARCHAR}
+	      </if>
+	      <if test="b.intelligentMessageDirection != null and b.intelligentMessageDirection != 0" >
+	        and INTELLIGENT_MESSAGE_DIRECTION = #{b.intelligentMessageDirection,jdbcType=INTEGER}
+	      </if>
+	      <if test="b.intelligentMessageState != null and b.intelligentMessageState != 0" >
+	        and INTELLIGENT_MESSAGE_STATE = #{b.intelligentMessageState,jdbcType=INTEGER}
+	      </if>
+	      <if test="b.intelligentMessageCreateTime != null" >
+	        and INTELLIGENT_MESSAGE_CREATE_TIME = #{b.intelligentMessageCreateTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="b.intelligentMessageUpdateTime != null" >
+	        and INTELLIGENT_MESSAGE_UPDATE_TIME = #{b.intelligentMessageUpdateTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <!-- and INTELLIGENT_MESSAGE_STATE != 4 -->
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	intelligent_message
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageName != null" >
+		        and INTELLIGENT_MESSAGE_NAME = #{b.intelligentMessageName,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageTitle != null" >
+		        and INTELLIGENT_MESSAGE_TITLE = #{b.intelligentMessageTitle,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageContent != null" >
+		        and INTELLIGENT_MESSAGE_CONTENT = #{b.intelligentMessageContent,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageDirection != null and b.intelligentMessageDirection != 0" >
+		        and INTELLIGENT_MESSAGE_DIRECTION = #{b.intelligentMessageDirection,jdbcType=INTEGER}
+		      </when>
+		      <when test="b.intelligentMessageState != null and b.intelligentMessageState != 0" >
+		        and INTELLIGENT_MESSAGE_STATE = #{b.intelligentMessageState,jdbcType=INTEGER}
+		      </when>
+		      <when test="b.intelligentMessageCreateTime != null" >
+		        and INTELLIGENT_MESSAGE_CREATE_TIME = #{b.intelligentMessageCreateTime,jdbcType=TIMESTAMP}
+		      </when>
+		      <when test="b.intelligentMessageUpdateTime != null" >
+		        and INTELLIGENT_MESSAGE_UPDATE_TIME = #{b.intelligentMessageUpdateTime,jdbcType=TIMESTAMP}
+		      </when>
+	    	</choose>
+	      and INTELLIGENT_MESSAGE_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+	
+	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	intelligent_message
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageName != null" >
+		        and INTELLIGENT_MESSAGE_NAME = #{b.intelligentMessageName,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageTitle != null" >
+		        and INTELLIGENT_MESSAGE_TITLE = #{b.intelligentMessageTitle,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageContent != null" >
+		        and INTELLIGENT_MESSAGE_CONTENT = #{b.intelligentMessageContent,jdbcType=VARCHAR}
+		      </when>
+		      <when test="b.intelligentMessageDirection != null and b.intelligentMessageDirection != 0" >
+		        and INTELLIGENT_MESSAGE_DIRECTION = #{b.intelligentMessageDirection,jdbcType=INTEGER}
+		      </when>
+		      <when test="b.intelligentMessageState != null and b.intelligentMessageState != 0" >
+		        and INTELLIGENT_MESSAGE_STATE = #{b.intelligentMessageState,jdbcType=INTEGER}
+		      </when>
+		      <when test="b.intelligentMessageCreateTime != null" >
+		        and INTELLIGENT_MESSAGE_CREATE_TIME = #{b.intelligentMessageCreateTime,jdbcType=TIMESTAMP}
+		      </when>
+		      <when test="b.intelligentMessageUpdateTime != null" >
+		        and INTELLIGENT_MESSAGE_UPDATE_TIME = #{b.intelligentMessageUpdateTime,jdbcType=TIMESTAMP}
+		      </when>
+	    	</choose>
+	      and INTELLIGENT_MESSAGE_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	<select id="selectListByInitTask" resultMap="BaseResultMap" parameterType="IntelligentMessage" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	intelligent_message
+	    <where>
+	    	<if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR}
+	      </if>
+	      <if test="intelligentMessageName != null" >
+	        and INTELLIGENT_MESSAGE_NAME = #{intelligentMessageName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="intelligentMessageTitle != null" >
+	        and INTELLIGENT_MESSAGE_TITLE = #{intelligentMessageTitle,jdbcType=VARCHAR}
+	      </if>
+	      <if test="intelligentMessageContent != null" >
+	        and INTELLIGENT_MESSAGE_CONTENT = #{intelligentMessageContent,jdbcType=VARCHAR}
+	      </if>
+	      <if test="intelligentMessageDirection != null and intelligentMessageDirection != 0" >
+	        and INTELLIGENT_MESSAGE_DIRECTION = #{intelligentMessageDirection,jdbcType=INTEGER}
+	      </if>
+	      <if test="intelligentMessageState != null and intelligentMessageState != 0" >
+	        and INTELLIGENT_MESSAGE_STATE = #{intelligentMessageState,jdbcType=INTEGER}
+	      </if>
+	      <if test="intelligentMessageCreateTime != null" >
+	        and INTELLIGENT_MESSAGE_CREATE_TIME = #{intelligentMessageCreateTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="intelligentMessageUpdateTime != null" >
+	        and INTELLIGENT_MESSAGE_UPDATE_TIME = #{intelligentMessageUpdateTime,jdbcType=TIMESTAMP}
+	      </if>
+	    </where>
+	    ORDER BY INTELLIGENT_MESSAGE_CREATE_TIME DESC
+  	</select>
+	
+	
+</mapper>

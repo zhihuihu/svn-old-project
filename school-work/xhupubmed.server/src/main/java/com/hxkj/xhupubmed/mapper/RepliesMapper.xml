@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IRepliesDao" >
+	
+	
+	<resultMap id="BaseResultMap" type="Replies" >
+	    <id column="REPLIES_CUID" property="repliesCuid" />
+	    <result column="POST_CUID" property="postCuid" />
+	    <result column="CLASSROOM_CUID" property="classroomCuid" />
+	    <result column="SYS_USER_CUID" property="sysUserCuid" />
+	    <result column="REPLIES_TITLE" property="repliesTitle" />
+	    <result column="REPLIES_CONTENT" property="repliesContent" />
+	    <result column="REPLIES_STATE" property="repliesState" />
+	    <result column="REPLIES_TIME" property="repliesTime" />
+	    <result column="REPLIES_ADDRESS" property="repliesAddress" />
+	    <result column="REPLIES_CREATE_TIME" property="repliesCreateTime" />
+	    <result column="REPLIES_UPDATE_TIME" property="repliesUpdateTime" />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    REPLIES_CUID, 
+	    POST_CUID, 
+	    CLASSROOM_CUID, 
+	    SYS_USER_CUID, 
+	    REPLIES_TITLE, 
+	    REPLIES_CONTENT, 
+	    REPLIES_STATE, 
+	    REPLIES_TIME, 
+	    REPLIES_ADDRESS, 
+	    REPLIES_CREATE_TIME, 
+	    REPLIES_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Replies" >
+	    delete 
+	    from 
+	    	replies
+	    where 
+	    	REPLIES_CUID = #{repliesCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Replies" >
+	    insert into 
+	    	replies 
+	    		(REPLIES_CUID, 
+	    		POST_CUID, 
+	    		CLASSROOM_CUID, 
+		      SYS_USER_CUID, 
+		      REPLIES_TITLE, 
+		      REPLIES_CONTENT, 
+		      REPLIES_STATE, 
+		      REPLIES_TIME, 
+		      REPLIES_ADDRESS, 
+		      REPLIES_CREATE_TIME, 
+		      REPLIES_UPDATE_TIME
+		      )
+	    values 
+		    (#{repliesCuid}, 
+		    #{postCuid}, 
+		    #{classroomCuid}, 
+		      #{sysUserCuid}, 
+		      #{repliesTitle}, 
+		      #{repliesContent}, 
+		      #{repliesState}, 
+		      #{repliesTime}, 
+		      #{repliesAddress}, 
+		      #{repliesCreateTime}, 
+		      #{repliesUpdateTime}
+		      )
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="Replies" >
+	    insert into replies
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="repliesCuid != null" >
+	        REPLIES_CUID,
+	      </if>
+	      <if test="postCuid != null" >
+	        POST_CUID,
+	      </if>
+	      <if test="classroomCuid != null" >
+	        CLASSROOM_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="repliesTitle != null" >
+	        REPLIES_TITLE,
+	      </if>
+	      <if test="repliesContent != null" >
+	        REPLIES_CONTENT,
+	      </if>
+	      <if test="repliesState != null" >
+	        REPLIES_STATE,
+	      </if>
+	      <if test="repliesTime != null" >
+	        REPLIES_TIME,
+	      </if>
+	      <if test="repliesAddress != null" >
+	        REPLIES_ADDRESS,
+	      </if>
+	      <if test="repliesCreateTime != null" >
+	        REPLIES_CREATE_TIME,
+	      </if>
+	      <if test="repliesUpdateTime != null" >
+	        REPLIES_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="repliesCuid != null" >
+	        #{repliesCuid},
+	      </if>
+	      <if test="postCuid != null" >
+	        #{postCuid},
+	      </if>
+	      <if test="classroomCuid != null" >
+	        #{classroomCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="repliesTitle != null" >
+	        #{repliesTitle},
+	      </if>
+	      <if test="repliesContent != null" >
+	        #{repliesContent},
+	      </if>
+	      <if test="repliesState != null" >
+	        #{repliesState},
+	      </if>
+	      <if test="repliesTime != null" >
+	        #{repliesTime},
+	      </if>
+	      <if test="repliesAddress != null" >
+	        #{repliesAddress},
+	      </if>
+	      <if test="repliesCreateTime != null" >
+	        #{repliesCreateTime},
+	      </if>
+	      <if test="repliesUpdateTime != null" >
+	        #{repliesUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Replies" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	replies
+	    where 
+	    	REPLIES_CUID = #{repliesCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Replies" >
+	    update replies
+	    <set >
+	      <if test="postCuid != null" >
+	        POST_CUID = #{postCuid},
+	      </if>
+	      <if test="classroomCuid != null" >
+	        CLASSROOM_CUID = #{classroomCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="repliesTitle != null" >
+	        REPLIES_TITLE = #{repliesTitle},
+	      </if>
+	      <if test="repliesContent != null" >
+	        REPLIES_CONTENT = #{repliesContent},
+	      </if>
+	      <if test="repliesState != null and repliesState != 0" >
+	        REPLIES_STATE = #{repliesState},
+	      </if>
+	      <if test="repliesTime != null" >
+	        REPLIES_TIME = #{repliesTime},
+	      </if>
+	      <if test="repliesAddress != null" >
+	        REPLIES_ADDRESS = #{repliesAddress},
+	      </if>
+	      <if test="repliesCreateTime != null" >
+	        REPLIES_CREATE_TIME = #{repliesCreateTime},
+	      </if>
+	      <if test="repliesUpdateTime != null" >
+	        REPLIES_UPDATE_TIME = #{repliesUpdateTime},
+	      </if>
+	    </set>
+	    where REPLIES_CUID = #{repliesCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Replies" >
+	    update replies
+	    set POST_CUID = #{postCuid},
+	      CLASSROOM_CUID = #{classroomCuid},
+	      SYS_USER_CUID = #{sysUserCuid},
+	      REPLIES_TITLE = #{repliesTitle},
+	      REPLIES_CONTENT = #{repliesContent},
+	      REPLIES_STATE = #{repliesState},
+	      REPLIES_TIME = #{repliesTime},
+	      REPLIES_ADDRESS = #{repliesAddress},
+	      REPLIES_CREATE_TIME = #{repliesCreateTime},
+	      REPLIES_UPDATE_TIME = #{repliesUpdateTime}
+	    where REPLIES_CUID = #{repliesCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	replies
+	    <where>
+	    	<if test="b.postCuid != null" >
+	        POST_CUID = #{b.postCuid}
+	      </if>
+	      <if test="b.classroomCuid != null" >
+	        and CLASSROOM_CUID = #{b.classroomCuid}
+	      </if>
+	      <if test="b.sysUserCuid != null" >
+	        and SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.repliesTitle != null" >
+	       and  REPLIES_TITLE = #{b.repliesTitle}
+	      </if>
+	      <if test="b.repliesContent != null" >
+	        and REPLIES_CONTENT = #{b.repliesContent}
+	      </if>
+	      <if test="b.repliesState != null and b.repliesState != 0" >
+	        and REPLIES_STATE = #{b.repliesState}
+	      </if>
+	      <if test="b.repliesTime != null" >
+	       and  REPLIES_TIME = #{b.repliesTime}
+	      </if>
+	      <if test="b.repliesAddress != null" >
+	        and REPLIES_ADDRESS = #{b.repliesAddress}
+	      </if>
+	      <if test="b.repliesCreateTime != null" >
+	        and REPLIES_CREATE_TIME like '%' #{b.repliesCreateTime} '%'
+	      </if>
+	      <if test="b.repliesUpdateTime != null" >
+	        and REPLIES_UPDATE_TIME = #{b.repliesUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName !=''" >
+	        and REPLIES_CONTENT like '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and REPLIES_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and REPLIES_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and REPLIES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	replies
+	    <where>
+	    	<if test="b.postCuid != null" >
+	        POST_CUID = #{b.postCuid}
+	      </if>
+	      <if test="b.classroomCuid != null" >
+	        and CLASSROOM_CUID = #{b.classroomCuid}
+	      </if>
+	      <if test="b.sysUserCuid != null" >
+	        and SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.repliesTitle != null" >
+	       and  REPLIES_TITLE = #{b.repliesTitle}
+	      </if>
+	      <if test="b.repliesContent != null" >
+	        and REPLIES_CONTENT = #{b.repliesContent}
+	      </if>
+	      <if test="b.repliesState != null and b.repliesState != 0" >
+	        and REPLIES_STATE = #{b.repliesState}
+	      </if>
+	      <if test="b.repliesTime != null" >
+	       and  REPLIES_TIME = #{b.repliesTime}
+	      </if>
+	      <if test="b.repliesAddress != null" >
+	        and REPLIES_ADDRESS = #{b.repliesAddress}
+	      </if>
+	      <if test="b.repliesCreateTime != null" >
+	        and REPLIES_CREATE_TIME like '%' #{b.repliesCreateTime} '%'
+	      </if>
+	      <if test="b.repliesUpdateTime != null" >
+	        and REPLIES_UPDATE_TIME = #{b.repliesUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName !=''" >
+	        and REPLIES_CONTENT like '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and REPLIES_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and REPLIES_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and REPLIES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	replies
+	    <where>
+	    	<choose>
+	    		<when test="b.postCuid != null" >
+		        POST_CUID = #{b.postCuid}
+		      </when>
+		      <when test="b.classroomCuid != null" >
+		        and CLASSROOM_CUID = #{b.classroomCuid}
+		      </when>
+		      <when test="b.sysUserCuid != null" >
+		        and SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.repliesTitle != null" >
+		       and  REPLIES_TITLE = #{b.repliesTitle}
+		      </when>
+		      <when test="b.repliesContent != null" >
+		        and REPLIES_CONTENT = #{b.repliesContent}
+		      </when>
+		      <when test="b.repliesState != null and b.repliesState != 0" >
+		        and REPLIES_STATE = #{b.repliesState}
+		      </when>
+		      <when test="b.repliesTime != null" >
+		       and  REPLIES_TIME = #{b.repliesTime}
+		      </when>
+		      <when test="b.repliesAddress != null" >
+		        and REPLIES_ADDRESS = #{b.repliesAddress}
+		      </when>
+		      <when test="b.repliesCreateTime != null" >
+		        and REPLIES_CREATE_TIME = #{b.repliesCreateTime}
+		      </when>
+		      <when test="b.repliesUpdateTime != null" >
+		        and REPLIES_UPDATE_TIME = #{b.repliesUpdateTime}
+		      </when>
+	    	</choose>
+	      and REPLIES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	replies
+	    <where>
+	    	<choose>
+	    		<when test="b.postCuid != null" >
+		        POST_CUID = #{b.postCuid}
+		      </when>
+		      <when test="b.classroomCuid != null" >
+		        and CLASSROOM_CUID = #{b.classroomCuid}
+		      </when>
+		      <when test="b.sysUserCuid != null" >
+		        and SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.repliesTitle != null" >
+		       and  REPLIES_TITLE = #{b.repliesTitle}
+		      </when>
+		      <when test="b.repliesContent != null" >
+		        and REPLIES_CONTENT = #{b.repliesContent}
+		      </when>
+		      <when test="b.repliesState != null and b.repliesState != 0" >
+		        and REPLIES_STATE = #{b.repliesState}
+		      </when>
+		      <when test="b.repliesTime != null" >
+		       and  REPLIES_TIME = #{b.repliesTime}
+		      </when>
+		      <when test="b.repliesAddress != null" >
+		        and REPLIES_ADDRESS = #{b.repliesAddress}
+		      </when>
+		      <when test="b.repliesCreateTime != null" >
+		        and REPLIES_CREATE_TIME = #{b.repliesCreateTime}
+		      </when>
+		      <when test="b.repliesUpdateTime != null" >
+		        and REPLIES_UPDATE_TIME = #{b.repliesUpdateTime}
+		      </when>
+	    	</choose>
+	      and REPLIES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	<update id="doUpdateImage" parameterType="Replies" >
+	    update replies
+	    set
+	      REPLIES_TITLE = CONCAT(REPLIES_TITLE,#{repliesTitle},';')
+	    where REPLIES_CUID = #{repliesCuid}
+  	</update>
+  	
+  	
+  	
+</mapper>

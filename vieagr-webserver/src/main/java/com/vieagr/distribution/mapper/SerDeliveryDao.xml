@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SerDeliveryDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SerDelivery">
+    <id column="ser_deliver_id" jdbcType="VARCHAR" property="serDeliverId" />
+    <result column="ser_deliver_send_time" jdbcType="VARCHAR" property="serDeliverSendTime" />
+    <result column="ser_deliver_send_id" jdbcType="VARCHAR" property="serDeliverSendId" />
+    <result column="ser_deliver_order_id" jdbcType="VARCHAR" property="serDeliverOrderId" />
+    <result column="ser_deliver_amount" jdbcType="DECIMAL" property="serDeliverAmount" />
+    <result column="ser_deliver_create_time" jdbcType="VARCHAR" property="serDeliverCreateTime" />
+    <result column="ser_deliver_update_time" jdbcType="TIMESTAMP" property="serDeliverUpdateTime" />
+    <result column="ser_deliver_back_time" jdbcType="VARCHAR" property="serDeliverBackTime" />
+    <result column="ser_deliver_back_state" jdbcType="INTEGER" property="serDeliverBackState" />
+    <result column="ser_deliver_back_details" jdbcType="VARCHAR" property="serDeliverBackDetails" />
+    <result column="ser_deliver_remark" jdbcType="VARCHAR" property="serDeliverRemark" />
+    <result column="ser_deliver_del_flag" jdbcType="INTEGER" property="serDeliverDelFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ser_deliver_id, ser_deliver_send_time, ser_deliver_send_id, ser_deliver_order_id, 
+    ser_deliver_amount, ser_deliver_create_time, ser_deliver_update_time, ser_deliver_back_time, 
+    ser_deliver_back_state, ser_deliver_back_details, ser_deliver_remark, ser_deliver_del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ser_delivery
+    where ser_deliver_id = #{serDeliverId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ser_delivery
+    where ser_deliver_id = #{serDeliverId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SerDelivery">
+    insert into ser_delivery (ser_deliver_id, ser_deliver_send_time, 
+      ser_deliver_send_id, ser_deliver_order_id, ser_deliver_amount, 
+      ser_deliver_create_time, ser_deliver_update_time, 
+      ser_deliver_back_time, ser_deliver_back_state, 
+      ser_deliver_back_details, ser_deliver_remark, 
+      ser_deliver_del_flag)
+    values (#{serDeliverId,jdbcType=VARCHAR}, #{serDeliverSendTime,jdbcType=VARCHAR}, 
+      #{serDeliverSendId,jdbcType=VARCHAR}, #{serDeliverOrderId,jdbcType=VARCHAR}, #{serDeliverAmount,jdbcType=DECIMAL}, 
+      #{serDeliverCreateTime,jdbcType=VARCHAR}, #{serDeliverUpdateTime,jdbcType=TIMESTAMP}, 
+      #{serDeliverBackTime,jdbcType=VARCHAR}, #{serDeliverBackState,jdbcType=INTEGER}, 
+      #{serDeliverBackDetails,jdbcType=VARCHAR}, #{serDeliverRemark,jdbcType=VARCHAR}, 
+      #{serDeliverDelFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SerDelivery">
+    insert into ser_delivery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serDeliverId != null">
+        ser_deliver_id,
+      </if>
+      <if test="serDeliverSendTime != null">
+        ser_deliver_send_time,
+      </if>
+      <if test="serDeliverSendId != null">
+        ser_deliver_send_id,
+      </if>
+      <if test="serDeliverOrderId != null">
+        ser_deliver_order_id,
+      </if>
+      <if test="serDeliverAmount != null">
+        ser_deliver_amount,
+      </if>
+      <if test="serDeliverCreateTime != null">
+        ser_deliver_create_time,
+      </if>
+      <if test="serDeliverUpdateTime != null">
+        ser_deliver_update_time,
+      </if>
+      <if test="serDeliverBackTime != null">
+        ser_deliver_back_time,
+      </if>
+      <if test="serDeliverBackState != null">
+        ser_deliver_back_state,
+      </if>
+      <if test="serDeliverBackDetails != null">
+        ser_deliver_back_details,
+      </if>
+      <if test="serDeliverRemark != null">
+        ser_deliver_remark,
+      </if>
+      <if test="serDeliverDelFlag != null">
+        ser_deliver_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serDeliverId != null">
+        #{serDeliverId,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverSendTime != null">
+        #{serDeliverSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverSendId != null">
+        #{serDeliverSendId,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverOrderId != null">
+        #{serDeliverOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverAmount != null">
+        #{serDeliverAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="serDeliverCreateTime != null">
+        #{serDeliverCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverUpdateTime != null">
+        #{serDeliverUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serDeliverBackTime != null">
+        #{serDeliverBackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverBackState != null">
+        #{serDeliverBackState,jdbcType=INTEGER},
+      </if>
+      <if test="serDeliverBackDetails != null">
+        #{serDeliverBackDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverRemark != null">
+        #{serDeliverRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverDelFlag != null">
+        #{serDeliverDelFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SerDelivery">
+    update ser_delivery
+    <set>
+      <if test="serDeliverSendTime != null">
+        ser_deliver_send_time = #{serDeliverSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverSendId != null">
+        ser_deliver_send_id = #{serDeliverSendId,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverOrderId != null">
+        ser_deliver_order_id = #{serDeliverOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverAmount != null">
+        ser_deliver_amount = #{serDeliverAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="serDeliverCreateTime != null">
+        ser_deliver_create_time = #{serDeliverCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverUpdateTime != null">
+        ser_deliver_update_time = #{serDeliverUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serDeliverBackTime != null">
+        ser_deliver_back_time = #{serDeliverBackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverBackState != null">
+        ser_deliver_back_state = #{serDeliverBackState,jdbcType=INTEGER},
+      </if>
+      <if test="serDeliverBackDetails != null">
+        ser_deliver_back_details = #{serDeliverBackDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverRemark != null">
+        ser_deliver_remark = #{serDeliverRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="serDeliverDelFlag != null">
+        ser_deliver_del_flag = #{serDeliverDelFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ser_deliver_id = #{serDeliverId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SerDelivery">
+    update ser_delivery
+    set ser_deliver_send_time = #{serDeliverSendTime,jdbcType=VARCHAR},
+      ser_deliver_send_id = #{serDeliverSendId,jdbcType=VARCHAR},
+      ser_deliver_order_id = #{serDeliverOrderId,jdbcType=VARCHAR},
+      ser_deliver_amount = #{serDeliverAmount,jdbcType=DECIMAL},
+      ser_deliver_create_time = #{serDeliverCreateTime,jdbcType=VARCHAR},
+      ser_deliver_update_time = #{serDeliverUpdateTime,jdbcType=TIMESTAMP},
+      ser_deliver_back_time = #{serDeliverBackTime,jdbcType=VARCHAR},
+      ser_deliver_back_state = #{serDeliverBackState,jdbcType=INTEGER},
+      ser_deliver_back_details = #{serDeliverBackDetails,jdbcType=VARCHAR},
+      ser_deliver_remark = #{serDeliverRemark,jdbcType=VARCHAR},
+      ser_deliver_del_flag = #{serDeliverDelFlag,jdbcType=INTEGER}
+    where ser_deliver_id = #{serDeliverId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SerDelivery" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from ser_delivery
+  </select>
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SerDelivery" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from ser_delivery
+  </select>
+  <cache />
+</mapper>

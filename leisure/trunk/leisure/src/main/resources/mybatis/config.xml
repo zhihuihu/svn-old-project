@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="User" type="com.cqq.leisure.entity.User"/>
+		<typeAlias alias="Merchant" type="com.cqq.leisure.entity.Merchant"/>
+		<typeAlias alias="Active" type="com.cqq.leisure.entity.Active"/>
+		<typeAlias alias="Tag" type="com.cqq.leisure.entity.Tag"/>
+		<typeAlias alias="HolidayPlan" type="com.cqq.leisure.entity.HolidayPlan"/>
+		<typeAlias alias="Images" type="com.cqq.leisure.entity.Images"/>
+		<typeAlias alias="ProgramPlan" type="com.cqq.leisure.entity.ProgramPlan"/>
+		<typeAlias alias="UserPlan" type="com.cqq.leisure.entity.UserPlan"/>
+		<typeAlias alias="UserTag" type="com.cqq.leisure.entity.UserTag"/>
+		<typeAlias alias="UserHolidayComment" type="com.cqq.leisure.entity.UserHolidayComment"/>
+		<typeAlias alias="UserActiveComment" type="com.cqq.leisure.entity.UserActiveComment"/>
+		<typeAlias alias="UserCollectCommit" type="com.cqq.leisure.entity.UserCollectCommit"/>
+		<typeAlias alias="Forbidden" type="com.cqq.leisure.entity.Forbidden"/>
+		<typeAlias alias="PageBean" type="com.cqq.leisure.entity.PageBean"/>
+	</typeAliases>
+	
+</configuration>

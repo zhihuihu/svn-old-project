@@ -1,0 +1,18 @@
+--  *********************************************************************
+--  SQL to roll back currently unexecuted changes
+--  *********************************************************************
+--  Change Log: classpath:/liquibase/test.xml
+--  Ran at: 16-10-8 上午9:29
+--  Against: root@localhost@jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8
+--  Liquibase version: 3.5.1
+--  *********************************************************************
+
+--  Lock Database
+UPDATE test.DATABASECHANGELOGLOCK SET LOCKED = 1, LOCKEDBY = 'DESKTOP-Q3DIT5P (192.168.0.22)', LOCKGRANTED = '2016-10-08 09:29:57.274' WHERE ID = 1 AND LOCKED = 0;
+
+--  Adding missing databasechangelog.deployment_id column
+ALTER TABLE test.DATABASECHANGELOG ADD DEPLOYMENT_ID VARCHAR(10) NULL;
+
+--  Release Database Lock
+UPDATE test.DATABASECHANGELOGLOCK SET LOCKED = 0, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+

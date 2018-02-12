@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.totop.dao.IRichTextDao" >
+    <resultMap id="BaseResultMap" type="RichText" >
+        <id column="RICH_TEXT_CUID" property="richTextCuid" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_CUID" property="pingLifeCuid" jdbcType="VARCHAR" />
+        <result column="RICH_TEXT_THUMB_URL" property="richTextThumbUrl" jdbcType="VARCHAR" />
+        <result column="RICH_TEXT_TITLE" property="richTextTitle" jdbcType="VARCHAR" />
+        <result column="RICH_TEXT_CONTENT" property="richTextContent" />
+        <result column="RICH_TEXT_STATE" property="richTextState" jdbcType="INTEGER" />
+        <result column="RICH_TEXT_CREATE_TIME" property="richTextCreateTime" jdbcType="TIMESTAMP" />
+        <result column="RICH_TEXT_UPDATE_TIME" property="richTextUpdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        RICH_TEXT_CUID, PING_LIFE_CUID, RICH_TEXT_THUMB_URL, RICH_TEXT_TITLE, RICH_TEXT_STATE,
+        RICH_TEXT_CREATE_TIME, RICH_TEXT_UPDATE_TIME
+    </sql>
+
+    <insert id="doInsert" parameterType="RichText" >
+        <selectKey keyProperty="richTextCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_RICH_TEXT_CUID()
+        </selectKey>
+        insert into rich_text (RICH_TEXT_CUID, PING_LIFE_CUID, RICH_TEXT_THUMB_URL,
+        RICH_TEXT_TITLE, RICH_TEXT_STATE, RICH_TEXT_CREATE_TIME,
+        RICH_TEXT_UPDATE_TIME, RICH_TEXT_CONTENT
+        )
+        values (#{richTextCuid,jdbcType=VARCHAR}, #{pingLifeCuid,jdbcType=VARCHAR}, #{richTextThumbUrl,jdbcType=VARCHAR},
+        #{richTextTitle,jdbcType=VARCHAR}, #{richTextState,jdbcType=INTEGER}, #{richTextCreateTime,jdbcType=TIMESTAMP},
+        #{richTextUpdateTime,jdbcType=TIMESTAMP}, #{richTextContent,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+
+    <insert id="doInsertSelective" parameterType="RichText" >
+        <selectKey keyProperty="richTextCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_RICH_TEXT_CUID()
+        </selectKey>
+        insert into rich_text
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="richTextCuid != null" >
+                RICH_TEXT_CUID,
+            </if>
+            <if test="pingLifeCuid != null" >
+                PING_LIFE_CUID,
+            </if>
+            <if test="richTextThumbUrl != null" >
+                RICH_TEXT_THUMB_URL,
+            </if>
+            <if test="richTextTitle != null" >
+                RICH_TEXT_TITLE,
+            </if>
+            <if test="richTextState != null" >
+                RICH_TEXT_STATE,
+            </if>
+            <if test="richTextCreateTime != null" >
+                RICH_TEXT_CREATE_TIME,
+            </if>
+            <if test="richTextUpdateTime != null" >
+                RICH_TEXT_UPDATE_TIME,
+            </if>
+            <if test="richTextContent != null" >
+                RICH_TEXT_CONTENT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="richTextCuid != null" >
+                #{richTextCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeCuid != null" >
+                #{pingLifeCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="richTextThumbUrl != null" >
+                #{richTextThumbUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="richTextTitle != null" >
+                #{richTextTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="richTextState != null" >
+                #{richTextState,jdbcType=INTEGER},
+            </if>
+            <if test="richTextCreateTime != null" >
+                #{richTextCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="richTextUpdateTime != null" >
+                #{richTextUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="richTextContent != null" >
+                #{richTextContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="doDeleteByPrimaryKey" parameterType="RichText" >
+        delete from rich_text
+        where RICH_TEXT_CUID = #{richTextCuid,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="doUpdateByPrimaryKeySelective" parameterType="RichText" >
+        update rich_text
+        <set >
+            <if test="pingLifeCuid != null" >
+                PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="richTextThumbUrl != null" >
+                RICH_TEXT_THUMB_URL = #{richTextThumbUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="richTextTitle != null" >
+                RICH_TEXT_TITLE = #{richTextTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="richTextState != null" >
+                RICH_TEXT_STATE = #{richTextState,jdbcType=INTEGER},
+            </if>
+            <if test="richTextCreateTime != null" >
+                RICH_TEXT_CREATE_TIME = #{richTextCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="richTextUpdateTime != null" >
+                RICH_TEXT_UPDATE_TIME = #{richTextUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="richTextContent != null" >
+                RICH_TEXT_CONTENT = #{richTextContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where RICH_TEXT_CUID = #{richTextCuid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="doUpdateByPrimaryKey" parameterType="RichText" >
+        update rich_text
+        set PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR},
+        RICH_TEXT_THUMB_URL = #{richTextThumbUrl,jdbcType=VARCHAR},
+        RICH_TEXT_TITLE = #{richTextTitle,jdbcType=VARCHAR},
+        RICH_TEXT_STATE = #{richTextState,jdbcType=INTEGER},
+        RICH_TEXT_CREATE_TIME = #{richTextCreateTime,jdbcType=TIMESTAMP},
+        RICH_TEXT_UPDATE_TIME = #{richTextUpdateTime,jdbcType=TIMESTAMP},
+        RICH_TEXT_CONTENT = #{richTextContent,jdbcType=LONGVARCHAR}
+        where RICH_TEXT_CUID = #{richTextCuid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="RichText">
+        select
+        <include refid="Base_Column_List" />
+        from rich_text
+        <where>
+            <if test="pingLifeCuid != null" >
+                PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR}
+            </if>
+            <if test="richTextThumbUrl != null" >
+                and RICH_TEXT_THUMB_URL = #{richTextThumbUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="richTextTitle != null" >
+                and RICH_TEXT_TITLE = #{richTextTitle,jdbcType=VARCHAR}
+            </if>
+            <if test="richTextContent != null" >
+                and RICH_TEXT_CONTENT = #{richTextContent}
+            </if>
+            <if test="richTextState != null" >
+                and RICH_TEXT_STATE = #{richTextState,jdbcType=INTEGER}
+            </if>
+            <if test="richTextCreateTime != null" >
+                and RICH_TEXT_CREATE_TIME = #{richTextCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="richTextUpdateTime != null" >
+                and RICH_TEXT_UPDATE_TIME = #{richTextUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="richTextContent != null" >
+                and RICH_TEXT_CONTENT = #{richTextContent,jdbcType=LONGVARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IGlobalTableDao">
+
+
+	<resultMap id="GlobalTableResultMap" type="GlobalTable">
+		<id column="GLOBAL_TABLE_CUID" property="globalTableCuid" />
+		<result column="GLOBAL_TABLE_TABLE_NAME" property="globalTableTableName" />
+		<result column="GLOBAL_TABLE_NOTES" property="globalTableNotes" />
+		<result column="GLOBAL_TABLE_CREATE_TIME" property="globalTableCreateTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		GLOBAL_TABLE_CUID, 
+		GLOBAL_TABLE_TABLE_NAME,
+		GLOBAL_TABLE_NOTES, 
+		GLOBAL_TABLE_CREATE_TIME
+	</sql>
+
+	<delete id="doDeleteByPrimaryKey" parameterType="GlobalTable">
+		delete 
+		from 
+			global_table
+		where 
+			GLOBAL_TABLE_CUID = #{globalTableCuid}
+	</delete>
+	
+	<insert id="doInsert" parameterType="GlobalTable">
+		<selectKey keyProperty="globalTableCuid" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into 
+			global_table
+				(GLOBAL_TABLE_CUID, 
+				GLOBAL_TABLE_TABLE_NAME,
+				GLOBAL_TABLE_NOTES,
+				GLOBAL_TABLE_CREATE_TIME
+				)	
+			values 
+				(#{globalTableCuid},
+				#{globalTableTableName},
+				#{globalTableNotes},
+				#{globalTableCreateTime})
+	</insert>
+	
+	<insert id="doInsertSelective" parameterType="GlobalTable" >
+		<selectKey keyProperty="globalTableCuid" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into global_table
+   	 		<trim prefix="(" suffix=")" suffixOverrides="," >
+      			<if test="globalTableCuid != null" >
+       			 	GLOBAL_TABLE_CUID,
+      			</if>
+      			<if test="globalTableTableName != null" >
+        			GLOBAL_TABLE_TABLE_NAME,
+      			</if>
+      			<if test="globalTableNotes != null" >
+        			GLOBAL_TABLE_NOTES,
+      			</if>
+      			<if test="globalTableCreateTime != null" >
+        			GLOBAL_TABLE_CREATE_TIME,
+      			</if>
+    		</trim>
+    		<trim prefix="values (" suffix=")" suffixOverrides="," >
+      			<if test="globalTableCuid != null" >
+        			#{globalTableCuid},
+      			</if>
+      			<if test="globalTableTableName != null" >
+        			#{globalTableTableName},
+      			</if>
+      			<if test="globalTableNotes != null" >
+        			#{globalTableNotes},
+      			</if>
+      			<if test="globalTableCreateTime != null" >
+        			#{globalTableCreateTime},
+      			</if>
+    		</trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="GlobalTableResultMap" parameterType="GlobalTable" >
+    	select 
+    		<include refid="Base_Column_List" />
+    	from 
+    		global_table
+    	where 
+    		GLOBAL_TABLE_CUID = #{globalTableCuid}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="GlobalTable" >
+    	update 
+    		global_table
+    	<set >
+      		<if test="globalTableTableName != null" >
+        		GLOBAL_TABLE_TABLE_NAME = #{globalTableTableName},
+      		</if>
+      		<if test="globalTableNotes != null" >
+        		GLOBAL_TABLE_NOTES = #{globalTableNotes},
+      		</if>
+      		<if test="globalTableCreateTime != null" >
+        		GLOBAL_TABLE_CREATE_TIME = #{globalTableCreateTime},
+      		</if>
+    	</set>
+    	where 
+    		GLOBAL_TABLE_CUID = #{globalTableCuid}
+  	</update>
+  
+  	<update id="doUpdateByPrimaryKey" parameterType="GlobalTable" >
+  		update 
+  			global_table
+   	 	set 
+   	 		GLOBAL_TABLE_TABLE_NAME = #{globalTableTableName},
+      		GLOBAL_TABLE_NOTES = #{globalTableNotes},
+      		GLOBAL_TABLE_CREATE_TIME = #{globalTableCreateTime}
+    	where 
+    		GLOBAL_TABLE_CUID = #{globalTableCuid}
+  	</update>
+  
+  
+  	<select id="selectByAttributeAnd" resultMap="GlobalTableResultMap" parameterType="GlobalTable" >
+    	select 
+    		<include refid="Base_Column_List" />
+    	from 
+    		global_table
+    	where 
+    	<where>
+    		<if test="globalTableTableName != null" >
+        		GLOBAL_TABLE_TABLE_NAME = #{globalTableTableName}
+      		</if>
+      		<if test="globalTableNotes != null" >
+        		AND GLOBAL_TABLE_NOTES = #{globalTableNotes}
+      		</if>
+      		<if test="globalTableCreateTime != null" >
+        		AND GLOBAL_TABLE_CREATE_TIME = #{globalTableCreateTime}
+      		</if>
+    	</where>
+  	</select>	
+  	
+  	
+  	<select id="selectCountByAttributeAnd"  parameterType="GlobalTable" >
+    	select 
+    		COUNT(1)
+    	from 
+    		global_table
+    	where 
+    	<where>
+    		<if test="globalTableTableName != null" >
+        		GLOBAL_TABLE_TABLE_NAME = #{globalTableTableName}
+      		</if>
+      		<if test="globalTableNotes != null" >
+        		AND GLOBAL_TABLE_NOTES = #{globalTableNotes}
+      		</if>
+      		<if test="globalTableCreateTime != null" >
+        		AND GLOBAL_TABLE_CREATE_TIME = #{globalTableCreateTime}
+      		</if>
+    	</where>
+  	</select>
+  	
+  	<select id="selectByAttributeOr" resultMap="GlobalTableResultMap" parameterType="GlobalTable" >
+    	select 
+    		<include refid="Base_Column_List" />
+    	from 
+    		global_table
+    	<where>
+    		<choose>
+    			<when test="globalTableTableName != null" >
+        			GLOBAL_TABLE_TABLE_NAME = #{globalTableTableName}
+      			</when>
+      			<when test="globalTableNotes != null" >
+        			AND GLOBAL_TABLE_NOTES = #{globalTableNotes}
+      			</when>
+      			<when test="globalTableCreateTime != null" >
+        			AND GLOBAL_TABLE_CREATE_TIME = #{globalTableCreateTime}
+      			</when>
+    		</choose>
+    	</where>
+  	</select>
+  	
+  	<select id="selectCountByAttributeOr"  parameterType="GlobalTable" >
+    	select 
+    		count(1)
+    	from 
+    		global_table
+    	<where>
+    		<choose>
+    			<when test="globalTableTableName != null" >
+        			GLOBAL_TABLE_TABLE_NAME = #{globalTableTableName}
+      			</when>
+      			<when test="globalTableNotes != null" >
+        			AND GLOBAL_TABLE_NOTES = #{globalTableNotes}
+      			</when>
+      			<when test="globalTableCreateTime != null" >
+        			AND GLOBAL_TABLE_CREATE_TIME = #{globalTableCreateTime}
+      			</when>
+    		</choose>
+    	</where>
+  	</select>
+</mapper>

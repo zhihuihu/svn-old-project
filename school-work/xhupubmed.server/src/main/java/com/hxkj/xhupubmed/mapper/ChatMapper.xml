@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IChatDao" >
+	
+	<resultMap id="BaseResultMap" type="com.hxkj.xhupubmed.entity.Chat" >
+	    <id column="CHAT_CUID" property="chatCuid"  />
+	    <result column="SYS_USER_CUID" property="sysUserCuid"  />
+	    <result column="CHAT_LEFT_CUID" property="chatLeftCuid" />
+	    <result column="CHAT_LEFT_NAME" property="chatLeftName" />
+	    <result column="CHAT_RIGHT_CUID" property="chatRightCuid"  />
+	    <result column="CHAT_RIGHT_NAME" property="chatRightName"  />
+	    <result column="CHAT_CONTENT" property="chatContent"  />
+	    <result column="CHAT_PHOTO_URL" property="chatPhotoUrl"  />
+	    <result column="CHAT_STATE" property="chatState" />
+	    <result column="CHAT_CREATE_TIME" property="chatCreateTime"  />
+	    <result column="CHAT_UPDATE_TIME" property="chatUpdateTime"  />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    CHAT_CUID, 
+	    SYS_USER_CUID, 
+	    CHAT_LEFT_CUID, 
+	    CHAT_LEFT_NAME, 
+	    CHAT_RIGHT_CUID, 
+	    CHAT_RIGHT_NAME, 
+	    CHAT_CONTENT, 
+	    CHAT_PHOTO_URL, 
+	    CHAT_STATE, 
+	    CHAT_CREATE_TIME, 
+	    CHAT_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Chat" >
+	    delete 
+	    from 
+	    	chat
+	    where 
+	    	CHAT_CUID = #{chatCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Chat" >
+	    insert into 
+	    	chat (CHAT_CUID, 
+	    	SYS_USER_CUID, 
+	    	CHAT_LEFT_CUID, 
+		    CHAT_LEFT_NAME, 
+		    CHAT_RIGHT_CUID, 
+		    CHAT_RIGHT_NAME, 
+		    CHAT_CONTENT, 
+		    CHAT_PHOTO_URL, 
+		    CHAT_STATE, 
+		    CHAT_CREATE_TIME, 
+		    CHAT_UPDATE_TIME)
+	    values 
+	    	(#{chatCuid},
+	    	#{sysUserCuid}, 
+	    	#{chatLeftCuid}, 
+		    #{chatLeftName}, 
+		    #{chatRightCuid},
+		    #{chatRightName}, 
+		    #{chatContent}, 
+		    #{chatPhotoUrl}, 
+		    #{chatState}, 
+		    #{chatCreateTime}, 
+		    #{chatUpdateTime})
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="Chat" >
+	    insert into chat
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="chatCuid != null" >
+	        CHAT_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="chatLeftCuid != null" >
+	        CHAT_LEFT_CUID,
+	      </if>
+	      <if test="chatLeftName != null" >
+	        CHAT_LEFT_NAME,
+	      </if>
+	      <if test="chatRightCuid != null" >
+	        CHAT_RIGHT_CUID,
+	      </if>
+	      <if test="chatRightName != null" >
+	        CHAT_RIGHT_NAME,
+	      </if>
+	      <if test="chatContent != null" >
+	        CHAT_CONTENT,
+	      </if>
+	      <if test="chatPhotoUrl != null" >
+	        CHAT_PHOTO_URL,
+	      </if>
+	      <if test="chatState != null" >
+	        CHAT_STATE,
+	      </if>
+	      <if test="chatCreateTime != null" >
+	        CHAT_CREATE_TIME,
+	      </if>
+	      <if test="chatUpdateTime != null" >
+	        CHAT_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="chatCuid != null" >
+	        #{chatCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="chatLeftCuid != null" >
+	        #{chatLeftCuid},
+	      </if>
+	      <if test="chatLeftName != null" >
+	        #{chatLeftName},
+	      </if>
+	      <if test="chatRightCuid != null" >
+	        #{chatRightCuid},
+	      </if>
+	      <if test="chatRightName != null" >
+	        #{chatRightName},
+	      </if>
+	      <if test="chatContent != null" >
+	        #{chatContent},
+	      </if>
+	      <if test="chatPhotoUrl != null" >
+	        #{chatPhotoUrl},
+	      </if>
+	      <if test="chatState != null" >
+	        #{chatState},
+	      </if>
+	      <if test="chatCreateTime != null" >
+	        #{chatCreateTime},
+	      </if>
+	      <if test="chatUpdateTime != null" >
+	        #{chatUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Chat" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	    	chat
+	    where 
+	    	CHAT_CUID = #{chatCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Chat" >
+	    update chat
+	    <set >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="chatLeftCuid != null" >
+	        CHAT_LEFT_CUID = #{chatLeftCuid},
+	      </if>
+	      <if test="chatLeftName != null" >
+	        CHAT_LEFT_NAME = #{chatLeftName},
+	      </if>
+	      <if test="chatRightCuid != null" >
+	        CHAT_RIGHT_CUID = #{chatRightCuid},
+	      </if>
+	      <if test="chatRightName != null" >
+	        CHAT_RIGHT_NAME = #{chatRightName},
+	      </if>
+	      <if test="chatContent != null" >
+	        CHAT_CONTENT = #{chatContent},
+	      </if>
+	      <if test="chatPhotoUrl != null" >
+	        CHAT_PHOTO_URL = #{chatPhotoUrl},
+	      </if>
+	      <if test="chatState != null" >
+	        CHAT_STATE = #{chatState},
+	      </if>
+	      <if test="chatCreateTime != null" >
+	        CHAT_CREATE_TIME = #{chatCreateTime},
+	      </if>
+	      <if test="chatUpdateTime != null" >
+	        CHAT_UPDATE_TIME = #{chatUpdateTime},
+	      </if>
+	    </set>
+    	where CHAT_CUID = #{chatCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Chat" >
+	    update 
+	    	chat
+	    set 
+	    	SYS_USER_CUID = #{sysUserCuid},
+	        CHAT_LEFT_CUID = #{chatLeftCuid},
+	        CHAT_LEFT_NAME = #{chatLeftName},
+	        CHAT_RIGHT_CUID = #{chatRightCuid},
+	        CHAT_RIGHT_NAME = #{chatRightName},
+	        CHAT_CONTENT = #{chatContent},
+	        CHAT_PHOTO_URL = #{chatPhotoUrl},
+	        CHAT_STATE = #{chatState},
+	        CHAT_CREATE_TIME = #{chatCreateTime},
+	        CHAT_UPDATE_TIME = #{chatUpdateTime}
+	    where CHAT_CUID = #{chatCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	    	chat
+	    <where>
+	      <if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.chatLeftCuid != null" >
+	        and CHAT_LEFT_CUID = #{b.chatLeftCuid}
+	      </if>
+	      <if test="b.chatLeftName != null" >
+	        and CHAT_LEFT_NAME = #{b.chatLeftName}
+	      </if>
+	      <if test="b.chatRightCuid != null" >
+	        and CHAT_RIGHT_CUID = #{b.chatRightCuid}
+	      </if>
+	      <if test="b.chatRightName != null" >
+	        and CHAT_RIGHT_NAME = #{b.chatRightName}
+	      </if>
+	      <if test="b.chatContent != null" >
+	        and CHAT_CONTENT = #{b.chatContent}
+	      </if>
+	      <if test="b.chatPhotoUrl != null" >
+	        and CHAT_PHOTO_URL = #{b.chatPhotoUrl}
+	      </if>
+	      <if test="b.chatCreateTime != null" >
+	        and CHAT_CREATE_TIME = #{b.chatCreateTime}
+	      </if>
+	      <if test="b.chatUpdateTime != null" >
+	        and CHAT_UPDATE_TIME = #{b.chatUpdateTime}
+	      </if>
+	      and CHAT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	chat
+	    <where>
+	      <if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.chatLeftCuid != null" >
+	        and CHAT_LEFT_CUID = #{b.chatLeftCuid}
+	      </if>
+	      <if test="b.chatLeftName != null" >
+	        and CHAT_LEFT_NAME = #{b.chatLeftName}
+	      </if>
+	      <if test="b.chatRightCuid != null" >
+	        and CHAT_RIGHT_CUID = #{b.chatRightCuid}
+	      </if>
+	      <if test="b.chatRightName != null" >
+	        and CHAT_RIGHT_NAME = #{b.chatRightName}
+	      </if>
+	      <if test="b.chatContent != null" >
+	        and CHAT_CONTENT = #{b.chatContent}
+	      </if>
+	      <if test="b.chatPhotoUrl != null" >
+	        and CHAT_PHOTO_URL = #{b.chatPhotoUrl}
+	      </if>
+	      <if test="b.chatCreateTime != null" >
+	        and CHAT_CREATE_TIME = #{b.chatCreateTime}
+	      </if>
+	      <if test="b.chatUpdateTime != null" >
+	        and CHAT_UPDATE_TIME = #{b.chatUpdateTime}
+	      </if>
+	     	and CHAT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	    	chat
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+			        SYS_USER_CUID = #{b.sysUserCuid}
+			      </when>
+			      <when test="b.chatLeftCuid != null" >
+			        and CHAT_LEFT_CUID = #{b.chatLeftCuid}
+			      </when>
+			      <when test="b.chatLeftName != null" >
+			        and CHAT_LEFT_NAME = #{b.chatLeftName}
+			      </when>
+			      <when test="b.chatRightCuid != null" >
+			       and  CHAT_RIGHT_CUID = #{b.chatRightCuid}
+			      </when>
+			      <when test="b.chatRightName != null" >
+			        and CHAT_RIGHT_NAME = #{b.chatRightName}
+			      </when>
+			      <when test="b.chatContent != null" >
+			        and CHAT_CONTENT = #{b.chatContent}
+			      </when>
+			      <when test="b.chatPhotoUrl != null" >
+			        and CHAT_PHOTO_URL = #{b.chatPhotoUrl}
+			      </when>
+			      <when test="b.chatCreateTime != null" >
+			        and CHAT_CREATE_TIME = #{b.chatCreateTime}
+			      </when>
+			      <when test="b.chatUpdateTime != null" >
+			        and CHAT_UPDATE_TIME = #{b.chatUpdateTime}
+			      </when>
+	    	</choose>
+	    	and CHAT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	chat
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+			        SYS_USER_CUID = #{b.sysUserCuid}
+			      </when>
+			      <when test="b.chatLeftCuid != null" >
+			        and CHAT_LEFT_CUID = #{b.chatLeftCuid}
+			      </when>
+			      <when test="b.chatLeftName != null" >
+			        and CHAT_LEFT_NAME = #{b.chatLeftName}
+			      </when>
+			      <when test="b.chatRightCuid != null" >
+			       and  CHAT_RIGHT_CUID = #{b.chatRightCuid}
+			      </when>
+			      <when test="b.chatRightName != null" >
+			        and CHAT_RIGHT_NAME = #{b.chatRightName}
+			      </when>
+			      <when test="b.chatContent != null" >
+			        and CHAT_CONTENT = #{b.chatContent}
+			      </when>
+			      <when test="b.chatPhotoUrl != null" >
+			        and CHAT_PHOTO_URL = #{b.chatPhotoUrl}
+			      </when>
+			      <when test="b.chatCreateTime != null" >
+			        and CHAT_CREATE_TIME = #{b.chatCreateTime}
+			      </when>
+			      <when test="b.chatUpdateTime != null" >
+			        and CHAT_UPDATE_TIME = #{b.chatUpdateTime}
+			      </when>
+	    	</choose>
+	    	and CHAT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+</mapper>

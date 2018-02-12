@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IUserCollectCommitDao" >
+  <resultMap id="BaseResultMap" type="UserCollectCommit" >
+    <id column="MERCHANT_ID" property="merchantId" />
+    <id column="USER_ID" property="userId" />
+    <result column="USER_COLLECT_COMMIT_TYPE" property="userCollectCommitType" />
+    <result column="USER_COLLECT_COMMIT_STATE" property="userCollectCommitState" />
+    <result column="USER_COLLECT_COMMIT_TITLE" property="userCollectCommitTitle"  />
+    <result column="USER_COLLECT_COMMIT_CONTENT" property="userCollectCommitContent"  />
+    <result column="USER_COLLECT_COMMIT_CREATE_TIME" property="userCollectCommitCreateTime" />
+    <result column="USER_COLLECT_COMMIT_UPDATE_TIME" property="userCollectCommitUpdateTime"/>
+  </resultMap>
+    <sql id="Base_Column_List" >
+    MERCHANT_ID, USER_ID, USER_COLLECT_COMMIT_TYPE, USER_COLLECT_COMMIT_STATE, USER_COLLECT_COMMIT_TITLE, 
+    USER_COLLECT_COMMIT_CONTENT, USER_COLLECT_COMMIT_CREATE_TIME, USER_COLLECT_COMMIT_UPDATE_TIME
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="UserCollectCommit" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_collect_commit
+    where MERCHANT_ID = #{merchantId}
+      and USER_ID = #{userId}
+      and USER_COLLECT_COMMIT_STATE = #{userCollectCommitState}
+  </select>
+  <delete id="doDeleteByPrimaryKey" parameterType="UserCollectCommit" >
+    delete from user_collect_commit
+    where MERCHANT_ID = #{merchantId}
+      and USER_ID = #{userId}
+  </delete>
+  <insert id="doInsert" parameterType="UserCollectCommit" >
+    insert into user_collect_commit (MERCHANT_ID, USER_ID, USER_COLLECT_COMMIT_TYPE, 
+      USER_COLLECT_COMMIT_STATE, USER_COLLECT_COMMIT_TITLE, 
+      USER_COLLECT_COMMIT_CONTENT, USER_COLLECT_COMMIT_CREATE_TIME, 
+      USER_COLLECT_COMMIT_UPDATE_TIME)
+    values (#{merchantId}, #{userId}, #{userCollectCommitType}, 
+      #{userCollectCommitState}, #{userCollectCommitTitle}, 
+      #{userCollectCommitContent}, #{userCollectCommitCreateTime}, 
+      #{userCollectCommitUpdateTime})
+  </insert>
+  <insert id="doInsertSelective" parameterType="UserCollectCommit" >
+
+    insert into user_collect_commit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userCollectCommitType != null" >
+        USER_COLLECT_COMMIT_TYPE,
+      </if>
+      <if test="userCollectCommitState != null" >
+        USER_COLLECT_COMMIT_STATE,
+      </if>
+      <if test="userCollectCommitTitle != null" >
+        USER_COLLECT_COMMIT_TITLE,
+      </if>
+      <if test="userCollectCommitContent != null" >
+        USER_COLLECT_COMMIT_CONTENT,
+      </if>
+      <if test="userCollectCommitCreateTime != null" >
+        USER_COLLECT_COMMIT_CREATE_TIME,
+      </if>
+      <if test="userCollectCommitUpdateTime != null" >
+        USER_COLLECT_COMMIT_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        #{merchantId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="userCollectCommitType != null" >
+        #{userCollectCommitType},
+      </if>
+      <if test="userCollectCommitState != null" >
+        #{userCollectCommitState},
+      </if>
+      <if test="userCollectCommitTitle != null" >
+        #{userCollectCommitTitle},
+      </if>
+      <if test="userCollectCommitContent != null" >
+        #{userCollectCommitContent},
+      </if>
+      <if test="userCollectCommitCreateTime != null" >
+        #{userCollectCommitCreateTime},
+      </if>
+      <if test="userCollectCommitUpdateTime != null" >
+        #{userCollectCommitUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="doUpdateByPrimaryKeySelective" parameterType="UserCollectCommit" >
+    update user_collect_commit
+    <set >
+      <if test="userCollectCommitType != null" >
+        USER_COLLECT_COMMIT_TYPE = #{userCollectCommitType},
+      </if>
+      <if test="userCollectCommitState != null" >
+        USER_COLLECT_COMMIT_STATE = #{userCollectCommitState},
+      </if>
+      <if test="userCollectCommitTitle != null" >
+        USER_COLLECT_COMMIT_TITLE = #{userCollectCommitTitle},
+      </if>
+      <if test="userCollectCommitContent != null" >
+        USER_COLLECT_COMMIT_CONTENT = #{userCollectCommitContent},
+      </if>
+      <if test="userCollectCommitCreateTime != null" >
+        USER_COLLECT_COMMIT_CREATE_TIME = #{userCollectCommitCreateTime},
+      </if>
+      <if test="userCollectCommitUpdateTime != null" >
+        USER_COLLECT_COMMIT_UPDATE_TIME = #{userCollectCommitUpdateTime},
+      </if>
+    </set>
+    where MERCHANT_ID = #{merchantId}
+      and USER_ID = #{userId}
+  </update>
+  <update id="doUpdateByPrimaryKey" parameterType="UserCollectCommit" >
+    update user_collect_commit
+    set USER_COLLECT_COMMIT_TYPE = #{userCollectCommitType},
+      USER_COLLECT_COMMIT_STATE = #{userCollectCommitState},
+      USER_COLLECT_COMMIT_TITLE = #{userCollectCommitTitle},
+      USER_COLLECT_COMMIT_CONTENT = #{userCollectCommitContent},
+      USER_COLLECT_COMMIT_UPDATE_TIME = #{userCollectCommitUpdateTime}
+    where MERCHANT_ID = #{merchantId}
+      and USER_ID = #{userId}
+      and USER_COLLECT_COMMIT_CREATE_TIME = #{userCollectCommitCreateTime}
+  </update>
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_collect_commit
+    <where>
+	    <if test="b.userCollectCommitType != null" >
+        USER_COLLECT_COMMIT_TYPE = #{b.userCollectCommitType}
+      </if>
+      <if test="b.merchantId != null and b.merchantId != 0 " >
+        and MERCHANT_ID = #{b.merchantId}
+      </if>
+      <if test="b.userCollectCommitState != null and  b.userCollectCommitState !=0" >
+        and USER_COLLECT_COMMIT_STATE = #{b.userCollectCommitState}
+      </if>
+      <if test="b.userCollectCommitTitle != null" >
+        and USER_COLLECT_COMMIT_TITLE = #{b.userCollectCommitTitle}
+      </if>
+      <if test="b.userCollectCommitContent != null" >
+        and USER_COLLECT_COMMIT_CONTENT = #{b.userCollectCommitContent}
+      </if>
+      <if test="b.userCollectCommitCreateTime != null" >
+        and USER_COLLECT_COMMIT_CREATE_TIME = #{b.userCollectCommitCreateTime}
+      </if>
+      <if test="b.userCollectCommitUpdateTime != null" >
+        and USER_COLLECT_COMMIT_UPDATE_TIME = #{b.userCollectCommitUpdateTime}
+      </if>
+    </where>
+    ORDER BY USER_COLLECT_COMMIT_CREATE_TIME DESC
+	    LIMIT
+	    	#{startLine},#{lineSize}
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    COUNT(1)
+    from user_collect_commit
+    <where>
+	    <if test="b.userCollectCommitType != null" >
+        USER_COLLECT_COMMIT_TYPE = #{b.userCollectCommitType}
+      </if>
+      <if test="b.merchantId != null and b.merchantId != 0 " >
+        and MERCHANT_ID = #{b.merchantId}
+      </if>
+      <if test="b.userCollectCommitState != null and b.userCollectCommitState != 0" >
+        and USER_COLLECT_COMMIT_STATE = #{b.userCollectCommitState}
+      </if>
+      <if test="b.userCollectCommitTitle != null" >
+        and USER_COLLECT_COMMIT_TITLE = #{b.userCollectCommitTitle}
+      </if>
+      <if test="b.userCollectCommitContent != null" >
+        and USER_COLLECT_COMMIT_CONTENT = #{b.userCollectCommitContent}
+      </if>
+      <if test="b.userCollectCommitCreateTime != null" >
+        and USER_COLLECT_COMMIT_CREATE_TIME = #{b.userCollectCommitCreateTime}
+      </if>
+      <if test="b.userCollectCommitUpdateTime != null" >
+        and USER_COLLECT_COMMIT_UPDATE_TIME = #{b.userCollectCommitUpdateTime}
+      </if>
+    </where>
+  </select>
+  </mapper>

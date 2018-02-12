@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry
+        location="E:\softwork\bin\mysql-connector-java-5.1.38-bin.jar" />
+    <context id="context1" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://127.0.0.1:3306/leisure?useUnicode=true&amp;characterEncoding=UTF-8"
+            userId="root"  />
+        <javaModelGenerator targetPackage="com.cqq.leisure.entity"
+            targetProject="E:\softwork\eclipse_java\mybatis.generator\src\main\java" />
+        <sqlMapGenerator targetPackage="com.cqq.leisure.mapper"
+            targetProject="E:\softwork\eclipse_java\mybatis.generator\src\main\java" />
+        <javaClientGenerator targetPackage="com.cqq.leisure.dao"
+            targetProject="E:\softwork\eclipse_java\mybatis.generator\src\main\java" type="XMLMAPPER" />
+        <table schema="leisure" tableName="active" />
+        <table schema="leisure" tableName="holiday_plan" />
+        <table schema="leisure" tableName="images" />
+        <table schema="leisure" tableName="merchant" />
+        <table schema="leisure" tableName="program_plan" />
+        <table schema="leisure" tableName="tag" />
+        <table schema="leisure" tableName="user" />
+        <table schema="leisure" tableName="user_plan" />
+    </context>
+</generatorConfiguration>

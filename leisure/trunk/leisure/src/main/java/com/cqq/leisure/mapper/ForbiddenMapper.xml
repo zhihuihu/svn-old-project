@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IForbiddenDao" >
+	<resultMap id="BaseResultMap" type="Forbidden" >
+		 <id column="FORBIDDEN_ID" property="forbiddenId"  />
+		 <result column="FORBIDDEN_CITY_NAME" property="forbiddenCityName" />
+		 <result column="FORBIDDEN_TITLE" property="forbiddenTitle" />
+		 <result column="FORBIDDEN_MAIN_CONTENT" property="forbiddenMainContent" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+		FORBIDDEN_ID,FORBIDDEN_CITY_NAME,FORBIDDEN_TITLE,FORBIDDEN_MAIN_CONTENT
+	</sql>
+	<insert id="doInsert" parameterType="Forbidden" >
+		insert into forbidden(FORBIDDEN_ID,FORBIDDEN_CITY_NAME,FORBIDDEN_TITLE,FORBIDDEN_MAIN_CONTENT)
+		values (#{forbiddenId},#{forbiddenCityName},#{forbiddenTitle},#{forbiddenMainContent})
+	</insert>
+	
+	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+		select 
+	    <include refid="Base_Column_List" />
+	    from forbidden
+	    <where>
+		    <if test=" b.forbiddenCityName != null ">
+		    	FORBIDDEN_CITY_NAME like '%' #{b.forbiddenCityName} '%'
+		    </if>
+		    <if test=" b.forbiddenTitle != null ">
+		    	and FORBIDDEN_TITLE = #{b.forbiddenTitle}
+		    </if>
+		    <if test=" b.forbiddenMainContent != null ">
+		    	and FORBIDDEN_MAIN_CONTENT = #{b.forbiddenMainContent}
+		    </if>
+	    </where>
+	    	LIMIT
+    		#{startLine},#{lineSize}
+	</select>
+	
+	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+		select 
+		COUNT(1)
+	    from forbidden
+	    <where>
+		    <if test=" b.forbiddenCityName != null ">
+		    	FORBIDDEN_CITY_NAME = #{b.forbiddenCityName}
+		    </if>
+		    <if test=" b.forbiddenTitle != null ">
+		    	and FORBIDDEN_TITLE = #{b.forbiddenTitle}
+		    </if>
+		    <if test=" b.forbiddenMainContent != null ">
+		    	and FORBIDDEN_MAIN_CONTENT = #{b.forbiddenMainContent}
+		    </if>
+	    </where>
+	</select>
+</mapper>

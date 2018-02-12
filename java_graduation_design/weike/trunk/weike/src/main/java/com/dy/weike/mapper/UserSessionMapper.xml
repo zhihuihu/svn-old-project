@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IUserSessionDao" >
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.UserSession" >
+    <id column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <id column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="session_state" property="sessionState" jdbcType="INTEGER" />
+    <result column="user_session_createTime" property="userSessionCreatetime" jdbcType="TIMESTAMP" />
+    <result column="user_session_planTime" property="userSessionPlantime" jdbcType="TIMESTAMP" />
+    <result column="user_session_endTime" property="userSessionEndtime" jdbcType="TIMESTAMP" />
+    <result column="plan_type" property="planType" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    session_id, user_id, class_id, session_state, user_session_createTime,
+    user_session_planTime, user_session_endTime, plan_type
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserSession" >
+     select 
+    <include refid="Base_Column_List" />
+    from user_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+      and class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.UserSession" >
+    insert into user_session (session_id, user_id, class_id, session_state, 
+      user_session_createTime, user_session_planTime, user_session_endTime, plan_type)
+    values (#{sessionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER},
+      #{sessionState,jdbcType=INTEGER}, #{userSessionCreatetime,jdbcType=TIMESTAMP}, 
+      #{userSessionPlantime,jdbcType=TIMESTAMP}, #{userSessionEndtime,jdbcType=TIMESTAMP},
+      #{planType,jdbcType=INTEGER})
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.UserSession" >
+    update user_session
+    <set >
+      <if test="sessionState != null" >
+        session_state = #{sessionState,jdbcType=INTEGER},
+      </if>
+      <if test="userSessionCreatetime != null" >
+        user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSessionPlantime != null" >
+        user_session_planTime = #{userSessionPlantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSessionEndtime != null" >
+        user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planType != null" >
+        plan_type = #{planType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+      and class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.UserSession" >
+    update user_session
+    set session_state = #{sessionState,jdbcType=INTEGER},
+      user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP},
+      user_session_planTime = #{userSessionPlantime,jdbcType=TIMESTAMP},
+      user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP},
+      plan_type = #{plan_Type,jdbcType=INTEGER}
+    where session_id = #{sessionId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+      and class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserSession" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_session
+    <where>
+      <if test="sessionId != null and sessionId != 0" >
+        session_id = #{sessionId,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != 0" >
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId != 0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionState != null and sessionState != 0" >
+        and session_state = #{sessionState,jdbcType=INTEGER}
+      </if>
+      <if test="userSessionCreatetime != null" >
+        and user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionPlantime != null" >
+        and user_session_planTime = #{userSessionPlantime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionEndtime != null" >
+        and user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="planType != null and planType !=0" >
+        and plan_type = #{planType,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectBySessionId" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserSession" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_session
+    <where>
+      <if test="sessionId != null and sessionId != 0" >
+        session_id = #{sessionId,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != 0" >
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId != 0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionState != null and sessionState != 0" >
+        and session_state = #{sessionState,jdbcType=INTEGER}
+      </if>
+      <if test="userSessionCreatetime != null" >
+        and user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionPlantime != null" >
+        and user_session_planTime = #{userSessionPlantime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionEndtime != null" >
+        and user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="planType != null and planType !=0" >
+        and plan_type = #{planType,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectDaySession" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserSession" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_session
+    <where>
+      <if test="sessionId != null and sessionId != 0" >
+        session_id = #{sessionId,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != 0" >
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId != 0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionState != null and sessionState != 0" >
+        and session_state = #{sessionState,jdbcType=INTEGER}
+      </if>
+      <if test="userSessionCreatetime != null" >
+        and user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionPlantime != null" >
+        and user_session_planTime like "%" #{userSessionPlantime,jdbcType=TIMESTAMP} "%"
+      </if>
+      <if test="userSessionEndtime != null" >
+        and user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="planType != null and planType !=0" >
+        and plan_type = #{planType,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectWeekSession" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserSession" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_session
+    <where>
+      <if test="sessionId != null and sessionId != 0" >
+        session_id = #{sessionId,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != 0" >
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId != 0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionState != null and sessionState != 0" >
+        and session_state = #{sessionState,jdbcType=INTEGER}
+      </if>
+      <if test="userSessionCreatetime != null" >
+        and user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionPlantime != null" >
+        and user_session_planTime like "%" #{userSessionPlantime,jdbcType=TIMESTAMP} "%"
+      </if>
+      <if test="userSessionEndtime != null" >
+        and user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="planType != null and planType !=0" >
+        and plan_type = #{planType,jdbcType=INTEGER}
+      </if>
+    </where>
+    GROUP BY class_id
+  </select>
+  
+  <select id="selectMonSession" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserSession" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_session    
+    <where>
+      <if test="sessionId != null and sessionId != 0" >
+        session_id = #{sessionId,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != 0" >
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId != 0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionState != null and sessionState != 0" >
+        and session_state = #{sessionState,jdbcType=INTEGER}
+      </if>
+      <if test="userSessionCreatetime != null" >
+        and user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionPlantime != null" >
+        and user_session_planTime like "%" #{userSessionPlantime,jdbcType=TIMESTAMP} "%"
+      </if>
+      <if test="userSessionEndtime != null" >
+        and user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="planType != null and planType !=0" >
+        and plan_type = #{planType,jdbcType=INTEGER}
+      </if>
+    </where>
+    GROUP BY class_id
+  </select>
+  
+  
+  
+  <delete id="deleteByAttribute" parameterType="com.dy.weike.entity.UserSession" >
+    delete from user_session
+    <where>
+      <if test="sessionId != null and sessionId != 0" >
+        session_id = #{sessionId,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null" >
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionState != null and sessionState != 0" >
+        and session_state = #{sessionState,jdbcType=INTEGER}
+      </if>
+      <if test="userSessionCreatetime != null" >
+        and user_session_createTime = #{userSessionCreatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionPlantime != null" >
+        and user_session_planTime = #{userSessionPlantime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userSessionEndtime != null" >
+        and user_session_endTime = #{userSessionEndtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="planType != null and planType !=0" >
+        and plan_type = #{planType,jdbcType=INTEGER}
+      </if>
+    </where>
+  </delete>
+  
+  
+</mapper>

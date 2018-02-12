@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IUserActiveCommentDao" >
+<resultMap id="BaseResultMap" type="UserActiveComment" >
+    <id column="USER_ACTIVE_COMMENT_ID" property="userActiveCommentId" />
+    <result column="USER_ACTIVE_COMMENT_USER_ID" property="userActiveCommentUserId" />
+    <result column="USER_ACTIVE_COMMENT_ACTIVE_ID" property="userActiveCommentActiveId" />
+    <result column="USER_ACTIVE_COMMENT_TITLE" property="userActiveCommentTitle"  />
+    <result column="USER_ACTIVE_COMMENT_TYPE" property="userActiveCommentType" />
+    <result column="USER_ACTIVE_COMMENT_CONTENT" property="userActiveCommentContent"  />
+    <result column="USER_ACTIVE_COMMENT_ADDRESS" property="userActiveCommentAddress"  />
+    <result column="USER_ACTIVE_COMMENT_CREATE_TIME" property="userActiveCommentCreateTime"/>
+    <result column="USER_ACTIVE_COMMENT_UPDATE_TIME" property="userActiveCommentUpdateTime"/>
+  </resultMap>
+    <sql id="Base_Column_List" >
+    USER_ACTIVE_COMMENT_ID, USER_ACTIVE_COMMENT_USER_ID, USER_ACTIVE_COMMENT_ACTIVE_ID, 
+    USER_ACTIVE_COMMENT_TITLE, USER_ACTIVE_COMMENT_TYPE, USER_ACTIVE_COMMENT_CONTENT, 
+    USER_ACTIVE_COMMENT_ADDRESS, USER_ACTIVE_COMMENT_CREATE_TIME, USER_ACTIVE_COMMENT_UPDATE_TIME
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="UserActiveComment" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_active_comment
+    <where>
+      <if test="userActiveCommentId != null">
+      	USER_ACTIVE_COMMENT_ID = #{userActiveCommentId}
+      </if>
+      <if test="userActiveCommentUserId != null">
+      	and USER_ACTIVE_COMMENT_USER_ID = #{userActiveCommentUserId}
+      </if>
+      <if test="userActiveCommentActiveId != null">
+      	and USER_ACTIVE_COMMENT_ACTIVE_ID = #{userActiveCommentActiveId}
+      </if>
+    </where>
+  </select>
+  <delete id="doDeleteByPrimaryKey" parameterType="UserActiveComment" >
+    delete from user_active_comment
+    where USER_ACTIVE_COMMENT_ID = #{userActiveCommentId}
+  </delete>
+  <insert id="doInsert" parameterType="UserActiveComment" >
+
+    insert into user_active_comment (USER_ACTIVE_COMMENT_ID, USER_ACTIVE_COMMENT_USER_ID, 
+      USER_ACTIVE_COMMENT_ACTIVE_ID, USER_ACTIVE_COMMENT_TITLE, 
+      USER_ACTIVE_COMMENT_TYPE, USER_ACTIVE_COMMENT_CONTENT, 
+      USER_ACTIVE_COMMENT_ADDRESS, USER_ACTIVE_COMMENT_CREATE_TIME, 
+      USER_ACTIVE_COMMENT_UPDATE_TIME)
+    values (#{userActiveCommentId}, #{userActiveCommentUserId}, 
+      #{userActiveCommentActiveId}, #{userActiveCommentTitle}, 
+      #{userActiveCommentType}, #{userActiveCommentContent}, 
+      #{userActiveCommentAddress}, #{userActiveCommentCreateTime}, 
+      #{userActiveCommentUpdateTime})
+  </insert>
+  <insert id="doInsertSelective" parameterType="UserActiveComment" >
+    insert into user_active_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userActiveCommentId != null" >
+        USER_ACTIVE_COMMENT_ID,
+      </if>
+      <if test="userActiveCommentUserId != null" >
+        USER_ACTIVE_COMMENT_USER_ID,
+      </if>
+      <if test="userActiveCommentActiveId != null" >
+        USER_ACTIVE_COMMENT_ACTIVE_ID,
+      </if>
+      <if test="userActiveCommentTitle != null" >
+        USER_ACTIVE_COMMENT_TITLE,
+      </if>
+      <if test="userActiveCommentType != null" >
+        USER_ACTIVE_COMMENT_TYPE,
+      </if>
+      <if test="userActiveCommentContent != null" >
+        USER_ACTIVE_COMMENT_CONTENT,
+      </if>
+      <if test="userActiveCommentAddress != null" >
+        USER_ACTIVE_COMMENT_ADDRESS,
+      </if>
+      <if test="userActiveCommentCreateTime != null" >
+        USER_ACTIVE_COMMENT_CREATE_TIME,
+      </if>
+      <if test="userActiveCommentUpdateTime != null" >
+        USER_ACTIVE_COMMENT_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userActiveCommentId != null" >
+        #{userActiveCommentId},
+      </if>
+      <if test="userActiveCommentUserId != null" >
+        #{userActiveCommentUserId},
+      </if>
+      <if test="userActiveCommentActiveId != null" >
+        #{userActiveCommentActiveId},
+      </if>
+      <if test="userActiveCommentTitle != null" >
+        #{userActiveCommentTitle},
+      </if>
+      <if test="userActiveCommentType != null" >
+        #{userActiveCommentType},
+      </if>
+      <if test="userActiveCommentContent != null" >
+        #{userActiveCommentContent},
+      </if>
+      <if test="userActiveCommentAddress != null" >
+        #{userActiveCommentAddress},
+      </if>
+      <if test="userActiveCommentCreateTime != null" >
+        #{userActiveCommentCreateTime},
+      </if>
+      <if test="userActiveCommentUpdateTime != null" >
+        #{userActiveCommentUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="doUpdateByPrimaryKeySelective" parameterType="UserActiveComment" >
+    update user_active_comment
+    <set >
+      <if test="userActiveCommentUserId != null" >
+        USER_ACTIVE_COMMENT_USER_ID = #{userActiveCommentUserId},
+      </if>
+      <if test="userActiveCommentActiveId != null" >
+        USER_ACTIVE_COMMENT_ACTIVE_ID = #{userActiveCommentActiveId},
+      </if>
+      <if test="userActiveCommentTitle != null" >
+        USER_ACTIVE_COMMENT_TITLE = #{userActiveCommentTitle},
+      </if>
+      <if test="userActiveCommentType != null" >
+        USER_ACTIVE_COMMENT_TYPE = #{userActiveCommentType},
+      </if>
+      <if test="userActiveCommentContent != null" >
+        USER_ACTIVE_COMMENT_CONTENT = #{userActiveCommentContent},
+      </if>
+      <if test="userActiveCommentAddress != null" >
+        USER_ACTIVE_COMMENT_ADDRESS = #{userActiveCommentAddress},
+      </if>
+      <if test="userActiveCommentCreateTime != null" >
+        USER_ACTIVE_COMMENT_CREATE_TIME = #{userActiveCommentCreateTime},
+      </if>
+      <if test="userActiveCommentUpdateTime != null" >
+        USER_ACTIVE_COMMENT_UPDATE_TIME = #{userActiveCommentUpdateTime},
+      </if>
+    </set>
+    where USER_ACTIVE_COMMENT_ID = #{userActiveCommentId}
+  </update>
+  <update id="doUpdateByPrimaryKey" parameterType="UserActiveComment" >
+    update user_active_comment
+    set USER_ACTIVE_COMMENT_USER_ID = #{userActiveCommentUserId},
+      USER_ACTIVE_COMMENT_ACTIVE_ID = #{userActiveCommentActiveId},
+      USER_ACTIVE_COMMENT_TITLE = #{userActiveCommentTitle},
+      USER_ACTIVE_COMMENT_TYPE = #{userActiveCommentType},
+      USER_ACTIVE_COMMENT_CONTENT = #{userActiveCommentContent},
+      USER_ACTIVE_COMMENT_ADDRESS = #{userActiveCommentAddress},
+      USER_ACTIVE_COMMENT_CREATE_TIME = #{userActiveCommentCreateTime},
+      USER_ACTIVE_COMMENT_UPDATE_TIME = #{userActiveCommentUpdateTime}
+      <where>
+      	<if test="userActiveCommentId != null">
+      	USER_ACTIVE_COMMENT_ID = #{userActiveCommentId}
+      	</if>
+      	<if  test="userActiveCommentUserId != null">
+      	and USER_ACTIVE_COMMENT_USER_ID = #{userActiveCommentUserId}
+      	</if>
+      	<if  test="userActiveCommentActiveId != null">
+      	and USER_ACTIVE_COMMENT_ACTIVE_ID = #{userActiveCommentActiveId}
+      	</if>
+      </where>
+  </update>
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_active_comment
+    <where>
+      <if test="b.userActiveCommentUserId != null and b.userActiveCommentUserId != 0" >
+        USER_ACTIVE_COMMENT_USER_ID = #{b.userActiveCommentUserId}
+      </if>
+      <if test="b.userActiveCommentActiveId != null and b.userActiveCommentActiveId != 0" >
+        and USER_ACTIVE_COMMENT_ACTIVE_ID = #{b.userActiveCommentActiveId}
+      </if>
+      <if test="b.userActiveCommentTitle != null" >
+        and USER_ACTIVE_COMMENT_TITLE = #{b.userActiveCommentTitle}
+      </if>
+      <if test="b.userActiveCommentType != null and b.userActiveCommentType != 0 " >
+        and USER_ACTIVE_COMMENT_TYPE = #{b.userActiveCommentType}
+      </if>
+      <if test="b.userActiveCommentContent != null" >
+        and USER_ACTIVE_COMMENT_CONTENT = #{b.userActiveCommentContent}
+      </if>
+      <if test="b.userActiveCommentAddress != null" >
+        and USER_ACTIVE_COMMENT_ADDRESS = #{b.userActiveCommentAddress}
+      </if>
+      <if test="b.userActiveCommentCreateTime != null" >
+        and USER_ACTIVE_COMMENT_CREATE_TIME = #{b.userActiveCommentCreateTime}
+      </if>
+      <if test="b.userActiveCommentUpdateTime != null" >
+        and USER_ACTIVE_COMMENT_UPDATE_TIME = #{b.userActiveCommentUpdateTime}
+      </if>
+    </where>
+    ORDER BY USER_ACTIVE_COMMENT_CREATE_TIME DESC
+    LIMIT
+    	#{startLine},#{lineSize}
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    COUNT(1)
+    from user_active_comment
+    <where>
+      <if test="b.userActiveCommentUserId != null and b.userActiveCommentUserId != 0" >
+        USER_ACTIVE_COMMENT_USER_ID = #{b.userActiveCommentUserId}
+      </if>
+      <if test="b.userActiveCommentActiveId != null and b.userActiveCommentActiveId != 0" >
+        and USER_ACTIVE_COMMENT_ACTIVE_ID = #{b.userActiveCommentActiveId}
+      </if>
+      <if test="b.userActiveCommentTitle != null" >
+        and USER_ACTIVE_COMMENT_TITLE = #{b.userActiveCommentTitle}
+      </if>
+      <if test="b.userActiveCommentType != null and b.userActiveCommentType != 0" >
+        and USER_ACTIVE_COMMENT_TYPE = #{b.userActiveCommentType}
+      </if>
+      <if test="b.userActiveCommentContent != null" >
+        and USER_ACTIVE_COMMENT_CONTENT = #{b.userActiveCommentContent}
+      </if>
+      <if test="b.userActiveCommentAddress != null" >
+        and USER_ACTIVE_COMMENT_ADDRESS = #{b.userActiveCommentAddress}
+      </if>
+      <if test="b.userActiveCommentCreateTime != null" >
+        and USER_ACTIVE_COMMENT_CREATE_TIME = #{b.userActiveCommentCreateTime}
+      </if>
+      <if test="b.userActiveCommentUpdateTime != null" >
+        and USER_ACTIVE_COMMENT_UPDATE_TIME = #{b.userActiveCommentUpdateTime}
+      </if>
+    </where>
+  </select>
+</mapper>

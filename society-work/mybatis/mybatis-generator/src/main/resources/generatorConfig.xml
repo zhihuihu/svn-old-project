@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="F:\soft_workspace\eclipse_work\mybatis-generator\src\main\resources\mysql-connector-java-5.1.38-bin.jar" />
+
+	<context id="MysqlTables" targetRuntime="MyBatis3">
+		<commentGenerator type="com.hxkj.mybatis.config.MyCommentGenerator">
+			<property name="javaFileEncoding" value="UTF-8" />
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/waychat?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.hxkj.entiry"
+			targetProject="F:\soft_workspace\eclipse_work\mybatis-generator\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.hxkj.mapper"
+			targetProject="F:\soft_workspace\eclipse_work\mybatis-generator\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.hxkj.dao"
+			targetProject="F:\soft_workspace\eclipse_work\mybatis-generator\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- table create -->
+		<table schema="waychat" tableName="chat_history"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false" />
+		<table schema="waychat" tableName="chat_room"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false" />
+		<table schema="waychat" tableName="friend" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" />
+		<table schema="waychat" tableName="friend_group"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false" />
+		<table schema="waychat" tableName="room_people"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false" />
+		<table schema="waychat" tableName="sys_user"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false" />
+
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人资料维护</title>
+    <link href="css/baseCss.css" rel="stylesheet">
+    <script type="text/javascript" src="js/editSelf.js"></script>
+</head>
+<body>
+<div style="width: 100%;font-weight: bold;margin-top: 5px;">
+	<center>
+	<p>个人信息管理</p>
+	</center>
+	<hr style="margin-top: 5px;">
+</div>
+<form class="form-horizontal" role="form" style="padding: 50px;">
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">真实姓名:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="sysUserRealName"
+                   placeholder="真实姓名">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">登录账号:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="sysUserLoginName"
+                   placeholder="登录账号" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">登录密码:</label>
+        <div class="col-sm-11">
+            <input type="password" class="form-control" id="sysUserPassword"
+                   placeholder="登录密码">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">备忘邮箱:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="sysUserEmail"
+                   placeholder="备忘邮箱">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">联系电话:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="sysUserTele"
+                   placeholder="联系电话">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">联系地址:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="sysUserAddress"
+                   placeholder="联系地址">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label"></label>
+        <div class="col-sm-11">
+            <button type="submit" class="btn btn-default btn-update" id="sysUserCuid">确定修改</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

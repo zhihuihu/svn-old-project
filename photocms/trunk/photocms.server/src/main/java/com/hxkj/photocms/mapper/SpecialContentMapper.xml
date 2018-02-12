@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.ISpecialContentDao">
+
+	<resultMap id="SpecialContentResultMap" type="SpecialContent">
+		<id property="specialContentCuid" column="SPECIAL_CONTENT_CUID" />
+		<result property="specialCuid" column="SPECIAL_CUID" />
+		<result property="specialContentName" column="SPECIAL_CONTENT_NAME" />
+		<result property="specialContentThumbUrl" column="SPECIAL_CONTENT_THUMB_URL" />
+		<result property="specialContentMainUrl" column="SPECIAL_CONTENT_MAIN_URL" />
+		<result property="specialContentShow" column="SPECIAL_CONTENT_SHOW" />
+		<result property="specialContentHot" column="SPECIAL_CONTENT_HOT" />
+		<result property="specialContentCreateUser" column="SPECIAL_CONTENT_CREATE_USER" />
+		<result property="specialContentAuthor" column="SPECIAL_CONTENT_AUTHOR" />
+		<result property="specialContentCreateAddress" column="SPECIAL_CONTENT_CREATE_ADDRESS" />
+		<result property="specialContentCreateTime" column="SPECIAL_CONTENT_CREATE_TIME" />
+		<result property="specialContentUpdateTime" column="SPECIAL_CONTENT_UPDATE_TIME" />
+	</resultMap>
+
+	<select id="getAll" resultMap="SpecialContentResultMap">
+		SELECT
+			special_content.SPECIAL_CONTENT_CUID,
+			special_content.SPECIAL_CUID,
+			special_content.SPECIAL_CONTENT_NAME,
+			special_content.SPECIAL_CONTENT_THUMB_URL,
+			special_content.SPECIAL_CONTENT_MAIN_URL,
+			special_content.SPECIAL_CONTENT_SHOW,
+			special_content.SPECIAL_CONTENT_HOT,
+			special_content.SPECIAL_CONTENT_CREATE_USER,
+			special_content.SPECIAL_CONTENT_AUTHOR,
+			special_content.SPECIAL_CONTENT_CREATE_ADDRESS,
+			special_content.SPECIAL_CONTENT_CREATE_TIME,
+			special_content.SPECIAL_CONTENT_UPDATE_TIME
+		FROM
+			special_content
+		WHERE
+			special_content.SPECIAL_CONTENT_SHOW = "1"
+		ORDER BY 
+			special_content.SPECIAL_CONTENT_CREATE_TIME DESC
+	</select>
+
+	<select id="getById" parameterType="int" resultMap="SpecialContentResultMap">
+		SELECT
+			special_content.SPECIAL_CONTENT_CUID,
+			special_content.SPECIAL_CUID,
+			special_content.SPECIAL_CONTENT_NAME,
+			special_content.SPECIAL_CONTENT_THUMB_URL,
+			special_content.SPECIAL_CONTENT_MAIN_URL,
+			special_content.SPECIAL_CONTENT_SHOW,
+			special_content.SPECIAL_CONTENT_HOT,
+			special_content.SPECIAL_CONTENT_CREATE_USER,
+			special_content.SPECIAL_CONTENT_AUTHOR,
+			special_content.SPECIAL_CONTENT_CREATE_ADDRESS,
+			special_content.SPECIAL_CONTENT_CREATE_TIME,
+			special_content.SPECIAL_CONTENT_UPDATE_TIME
+		FROM
+			special_content
+		WHERE
+			special_content.SPECIAL_CONTENT_CUID = #{specialContentCuid}
+			AND special_content.SPECIAL_CONTENT_SHOW = "1"
+	</select>
+
+	<insert id="doInsert" parameterType="SpecialContent">
+		INSERT INTO special_content
+			(SPECIAL_CONTENT_CUID,SPECIAL_CUID,SPECIAL_CONTENT_NAME,SPECIAL_CONTENT_THUMB_URL,SPECIAL_CONTENT_MAIN_URL,SPECIAL_CONTENT_SHOW,SPECIAL_CONTENT_HOT,
+			SPECIAL_CONTENT_CREATE_USER,SPECIAL_CONTENT_AUTHOR,SPECIAL_CONTENT_CREATE_ADDRESS,SPECIAL_CONTENT_CREATE_TIME,SPECIAL_CONTENT_UPDATE_TIME)
+		VALUES 
+			(#{specialContentCuid},#{specialCuid},#{specialContentName},#{specialContentThumbUrl},#{specialContentMainUrl},#{specialContentShow},#{specialContentHot},
+			#{specialContentCreateUser},
+			#{specialContentAuthor},#{specialContentCreateAddress},#{specialContentCreateTime},#{specialContentUpdateTime})
+	</insert>
+
+	<update id="doUpdate" parameterType="SpecialContent">
+		UPDATE special_content
+		<set>
+			<if test="specialCuid != null and specialCuid !=''">
+				SPECIAL_CUID = #{specialCuid},
+			</if>
+			<if test="specialContentName != null and specialContentName !=''">
+				SPECIAL_CONTENT_NAME = #{specialContentName},
+			</if>
+			<if test="specialContentThumbUrl != null and specialContentThumbUrl !=''">
+				SPECIAL_CONTENT_THUMB_URL = #{specialContentThumbUrl},
+			</if>
+			<if test="specialContentMainUrl != null and specialContentMainUrl !=''">
+				SPECIAL_CONTENT_MAIN_URL = #{specialContentMainUrl},
+			</if>
+			<if test="specialContentShow != null and specialContentShow !=''">
+				SPECIAL_CONTENT_SHOW = #{specialContentShow},
+			</if>
+			<if test="specialContentHot != null and specialContentHot !=''">
+				SPECIAL_CONTENT_HOT = #{specialContentHot},
+			</if>
+			<if test="specialContentCreateUser != null and specialContentCreateUser !=''">
+				SPECIAL_CONTENT_CREATE_USER = #{specialContentCreateUser},
+			</if>
+			<if test="specialContentAuthor != null and specialContentAuthor !=''">
+				SPECIAL_CONTENT_AUTHOR = #{specialContentAuthor},
+			</if>
+			<if test="specialContentCreateAddress != null and specialContentCreateAddress !=''">
+				SPECIAL_CONTENT_CREATE_ADDRESS = #{specialContentCreateAddress},
+			</if>
+			<if test="specialContentCreateTime != null and specialContentCreateTime !=''">
+				SPECIAL_CONTENT_CREATE_TIME = #{specialContentCreateTime},
+			</if>
+			<if test="specialContentUpdateTime != null and specialContentUpdateTime !=''">
+				SPECIAL_CONTENT_UPDATE_TIME = #{specialContentUpdateTime}
+			</if>
+		</set>
+		WHERE
+			SPECIAL_CONTENT_CUID = #{specialContentCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="SpecialContentResultMap">
+		SELECT
+			special_content.SPECIAL_CONTENT_CUID,
+			special_content.SPECIAL_CUID,
+			special_content.SPECIAL_CONTENT_NAME,
+			special_content.SPECIAL_CONTENT_THUMB_URL,
+			special_content.SPECIAL_CONTENT_MAIN_URL,
+			special_content.SPECIAL_CONTENT_SHOW,
+			special_content.SPECIAL_CONTENT_HOT,
+			special_content.SPECIAL_CONTENT_CREATE_USER,
+			special_content.SPECIAL_CONTENT_AUTHOR,
+			special_content.SPECIAL_CONTENT_CREATE_ADDRESS,
+			special_content.SPECIAL_CONTENT_CREATE_TIME,
+			special_content.SPECIAL_CONTENT_UPDATE_TIME
+		FROM
+			special_content
+		WHERE
+			special_content.SPECIAL_CONTENT_SHOW = "1"
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+	
+	<select id="getSpecialContentBySpecial" parameterType="PageBean"
+		resultMap="SpecialContentResultMap">
+		SELECT
+			special_content.SPECIAL_CONTENT_CUID,
+			special_content.SPECIAL_CUID,
+			special_content.SPECIAL_CONTENT_NAME,
+			special_content.SPECIAL_CONTENT_THUMB_URL,
+			special_content.SPECIAL_CONTENT_MAIN_URL,
+			special_content.SPECIAL_CONTENT_SHOW,
+			special_content.SPECIAL_CONTENT_HOT,
+			special_content.SPECIAL_CONTENT_CREATE_USER,
+			special_content.SPECIAL_CONTENT_AUTHOR,
+			special_content.SPECIAL_CONTENT_CREATE_ADDRESS,
+			special_content.SPECIAL_CONTENT_CREATE_TIME,
+			special_content.SPECIAL_CONTENT_UPDATE_TIME
+		FROM
+			special_content
+		WHERE 
+			special_content.SPECIAL_CUID = #{b.specialCuid}
+			AND special_content.SPECIAL_CONTENT_SHOW = "1"
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			special_content
+		<where>
+			<if test="b.specialCuid != null and b.specialCuid !=''">
+				SPECIAL_CUID = #{b.specialCuid}
+			</if>
+			<if test="b.specialContentName != null and b.specialContentName !=''">
+				AND SPECIAL_CONTENT_NAME = #{b.specialContentName}
+			</if>
+			<if test="b.specialContentThumbUrl != null and b.specialContentThumbUrl !=''">
+				AND SPECIAL_CONTENT_THUMB_URL = #{b.specialContentThumbUrl}
+			</if>
+			<if test="b.specialContentMainUrl != null and b.specialContentMainUrl !=''">
+				AND SPECIAL_CONTENT_MAIN_URL = #{b.specialContentMainUrl}
+			</if>
+			<if test="b.specialContentShow != null and b.specialContentShow !=''">
+				AND SPECIAL_CONTENT_SHOW = #{b.specialContentShow}
+			</if>
+			<if test="b.specialContentHot != null and b.specialContentHot !=''">
+				AND SPECIAL_CONTENT_HOT = #{b.specialContentHot}
+			</if>
+			<if test="b.specialContentCreateUser != null and b.specialContentCreateUser !=''">
+				AND SPECIAL_CONTENT_CREATE_USER = #{b.specialContentCreateUser}
+			</if>
+			<if test="b.specialContentAuthor != null and b.specialContentAuthor !=''">
+				AND SPECIAL_CONTENT_AUTHOR = #{b.specialContentAuthor}
+			</if>
+			<if test="b.specialContentCreateAddress != null and b.specialContentCreateAddress !=''">
+				AND SPECIAL_CONTENT_CREATE_ADDRESS = #{b.specialContentCreateAddress}
+			</if>
+			<if test="b.specialContentCreateTime != null and b.specialContentCreateTime !=''">
+				AND SPECIAL_CONTENT_CREATE_TIME = #{b.specialContentCreateTime}
+			</if>
+			<if test="b.specialContentUpdateTime != null and b.specialContentUpdateTime !=''">
+				AND SPECIAL_CONTENT_UPDATE_TIME = #{b.specialContentUpdateTime}
+			</if>
+			AND special_content.SPECIAL_CONTENT_SHOW = "1"
+		</where>
+	</select>
+	
+	<select id="getSpecialContentByAttributeAnd" parameterType="PageBean"
+		resultMap="SpecialContentResultMap">
+		SELECT
+			special_content.SPECIAL_CONTENT_CUID,
+			special_content.SPECIAL_CUID,
+			special_content.SPECIAL_CONTENT_NAME,
+			special_content.SPECIAL_CONTENT_THUMB_URL,
+			special_content.SPECIAL_CONTENT_MAIN_URL,
+			special_content.SPECIAL_CONTENT_SHOW,
+			special_content.SPECIAL_CONTENT_HOT,
+			special_content.SPECIAL_CONTENT_CREATE_USER,
+			special_content.SPECIAL_CONTENT_AUTHOR,
+			special_content.SPECIAL_CONTENT_CREATE_ADDRESS,
+			special_content.SPECIAL_CONTENT_CREATE_TIME,
+			special_content.SPECIAL_CONTENT_UPDATE_TIME
+		FROM
+			special_content
+		<where>
+			<if test="b.specialCuid != null and b.specialCuid !=''">
+				SPECIAL_CUID = #{b.specialCuid}
+			</if>
+			<if test="b.specialContentName != null and b.specialContentName !=''">
+				AND SPECIAL_CONTENT_NAME = #{b.specialContentName}
+			</if>
+			<if test="b.specialContentThumbUrl != null and b.specialContentThumbUrl !=''">
+				AND SPECIAL_CONTENT_THUMB_URL = #{b.specialContentThumbUrl}
+			</if>
+			<if test="b.specialContentMainUrl != null and b.specialContentMainUrl !=''">
+				AND SPECIAL_CONTENT_MAIN_URL = #{b.specialContentMainUrl}
+			</if>
+			<if test="b.specialContentHot != null and b.specialContentHot !=''">
+				AND SPECIAL_CONTENT_HOT = #{b.specialContentHot}
+			</if>
+			<if test="b.specialContentCreateUser != null and b.specialContentCreateUser !=''">
+				AND SPECIAL_CONTENT_CREATE_USER = #{b.specialContentCreateUser}
+			</if>
+			<if test="b.specialContentAuthor != null and b.specialContentAuthor !=''">
+				AND SPECIAL_CONTENT_AUTHOR = #{b.specialContentAuthor}
+			</if>
+			<if test="b.specialContentCreateAddress != null and b.specialContentCreateAddress !=''">
+				AND SPECIAL_CONTENT_CREATE_ADDRESS = #{b.specialContentCreateAddress}
+			</if>
+			<if test="b.specialContentCreateTime != null and b.specialContentCreateTime !=''">
+				AND SPECIAL_CONTENT_CREATE_TIME = #{b.specialContentCreateTime}
+			</if>
+			<if test="b.specialContentUpdateTime != null and b.specialContentUpdateTime !=''">
+				AND SPECIAL_CONTENT_UPDATE_TIME = #{b.specialContentUpdateTime}
+			</if>
+			AND special_content.SPECIAL_CONTENT_SHOW = "1"
+		</where>
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+	
+	<select id="getAllByPageCountOr" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			special_content
+		<where>
+			<choose>
+				<when test="b.specialCuid != null and b.specialCuid !=''">
+					SPECIAL_CUID = #{b.specialCuid}
+				</when>
+				<when test="b.specialContentName != null and b.specialContentName !=''">
+					AND SPECIAL_CONTENT_NAME = #{b.specialContentName}
+				</when>
+				<when test="b.specialContentThumbUrl != null and b.specialContentThumbUrl !=''">
+					AND SPECIAL_CONTENT_THUMB_URL = #{b.specialContentThumbUrl}
+				</when>
+				<when test="b.specialContentMainUrl != null and b.specialContentMainUrl !=''">
+					AND SPECIAL_CONTENT_MAIN_URL = #{b.specialContentMainUrl}
+				</when>
+				<when test="b.specialContentShow != null and b.specialContentShow !=''">
+					AND SPECIAL_CONTENT_SHOW = #{b.specialContentShow}
+				</when>
+				<when test="b.specialContentHot != null and b.specialContentHot !=''">
+					AND SPECIAL_CONTENT_HOT = #{b.specialContentHot}
+				</when>
+				<when test="b.specialContentCreateUser != null and b.specialContentCreateUser !=''">
+					AND SPECIAL_CONTENT_CREATE_USER = #{b.specialContentCreateUser}
+				</when>
+				<when test="b.specialContentAuthor != null and b.specialContentAuthor !=''">
+					AND SPECIAL_CONTENT_AUTHOR = #{b.specialContentAuthor}
+				</when>
+				<when test="b.specialContentCreateAddress != null and b.specialContentCreateAddress !=''">
+					AND SPECIAL_CONTENT_CREATE_ADDRESS = #{b.specialContentCreateAddress}
+				</when>
+				<when test="b.specialContentCreateTime != null and b.specialContentCreateTime !=''">
+					AND SPECIAL_CONTENT_CREATE_TIME = #{b.specialContentCreateTime}
+				</when>
+				<when test="b.specialContentUpdateTime != null and b.specialContentUpdateTime !=''">
+					AND SPECIAL_CONTENT_UPDATE_TIME = #{b.specialContentUpdateTime}
+				</when>
+			</choose>
+			AND special_content.SPECIAL_CONTENT_SHOW = "1"
+		</where>
+	</select>
+	
+	<select id="getSpecialContentByAttributeOr" parameterType="PageBean"
+		resultMap="SpecialContentResultMap">
+		SELECT
+			special_content.SPECIAL_CONTENT_CUID,
+			special_content.SPECIAL_CUID,
+			special_content.SPECIAL_CONTENT_NAME,
+			special_content.SPECIAL_CONTENT_THUMB_URL,
+			special_content.SPECIAL_CONTENT_MAIN_URL,
+			special_content.SPECIAL_CONTENT_SHOW,
+			special_content.SPECIAL_CONTENT_HOT,
+			special_content.SPECIAL_CONTENT_CREATE_USER,
+			special_content.SPECIAL_CONTENT_AUTHOR,
+			special_content.SPECIAL_CONTENT_CREATE_ADDRESS,
+			special_content.SPECIAL_CONTENT_CREATE_TIME,
+			special_content.SPECIAL_CONTENT_UPDATE_TIME
+		FROM
+			special_content
+		<where>
+			<choose>
+				<when test="b.specialCuid != null and b.specialCuid !=''">
+					SPECIAL_CUID = #{b.specialCuid}
+				</when>
+				<when test="b.specialContentName != null and b.specialContentName !=''">
+					AND SPECIAL_CONTENT_NAME = #{b.specialContentName}
+				</when>
+				<when test="b.specialContentThumbUrl != null and b.specialContentThumbUrl !=''">
+					AND SPECIAL_CONTENT_THUMB_URL = #{b.specialContentThumbUrl}
+				</when>
+				<when test="b.specialContentMainUrl != null and b.specialContentMainUrl !=''">
+					AND SPECIAL_CONTENT_MAIN_URL = #{b.specialContentMainUrl}
+				</when>
+				<when test="b.specialContentShow != null and b.specialContentShow !=''">
+					AND SPECIAL_CONTENT_SHOW = #{b.specialContentShow}
+				</when>
+				<when test="b.specialContentHot != null and b.specialContentHot !=''">
+					AND SPECIAL_CONTENT_HOT = #{b.specialContentHot}
+				</when>
+				<when test="b.specialContentCreateUser != null and b.specialContentCreateUser !=''">
+					AND SPECIAL_CONTENT_CREATE_USER = #{b.specialContentCreateUser}
+				</when>
+				<when test="b.specialContentAuthor != null and b.specialContentAuthor !=''">
+					AND SPECIAL_CONTENT_AUTHOR = #{b.specialContentAuthor}
+				</when>
+				<when test="b.specialContentCreateAddress != null and b.specialContentCreateAddress !=''">
+					AND SPECIAL_CONTENT_CREATE_ADDRESS = #{b.specialContentCreateAddress}
+				</when>
+				<when test="b.specialContentCreateTime != null and b.specialContentCreateTime !=''">
+					AND SPECIAL_CONTENT_CREATE_TIME = #{b.specialContentCreateTime}
+				</when>
+				<when test="b.specialContentUpdateTime != null and b.specialContentUpdateTime !=''">
+					AND SPECIAL_CONTENT_UPDATE_TIME = #{b.specialContentUpdateTime}
+				</when>
+			</choose>
+			AND special_content.SPECIAL_CONTENT_SHOW = "1"
+		</where>
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+</mapper>

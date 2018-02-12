@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学校简介管理</title>
+    <link href="css/baseCss.css" rel="stylesheet">
+    <script type="text/javascript" src="js/schoolProfileManager.js"></script>
+</head>
+<body>
+<div style="width: 100%;font-weight: bold;margin-top: 5px;">
+	<center>
+	<p>学校资料简介管理</p>
+	</center>
+	<hr style="margin-top: 5px;">
+</div>
+<div class="header-search">
+    <div class="header-one">
+        <div class="header-name">
+            开始时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="startTime"
+                   placeholder="请输入开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+    <div class="header-one">
+        <div class="header-name">
+            结束时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="endTime"
+                   placeholder="请输入结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+
+    <div class="header-right">
+        <button class="btn btn-success" style="margin-left: 5px" id="searchBtn">搜索</button>
+        <button class="btn btn-success" style="margin-left: 5px" id="addOneSchoolProfile">添加学校</button>
+    </div>
+    <div class="header-right">
+        <div class="header-name">
+            搜索框:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="searchName"
+                   placeholder="学校名称">
+        </div>
+    </div>
+    <div style="clear: both">
+
+    </div>
+</div>
+<div class="content-body">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>学校名称</th>
+            <th>学校置顶</th>
+            <th>学校标签</th>
+            <th>创建时间</th>
+            <th>学校基本资料</th>
+            <th>学校详情简介</th>
+            <th>学校最好专业</th>
+            <th>学校最好导师</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="appendBody">
+        <tr>
+            <td>TanmaeBangalore</td>
+            <td>Bangalangalorev</td>
+            <td>560lore</td>
+            <td>Tanmay</td>
+            <td>Bangal</td>
+            <td>560001</td>
+            <td>560001</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showSchoolProfile">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Sachin</td>
+            <td>Mumbai</td>
+            <td>400003</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>560001</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showSchoolProfile">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Uma</td>
+            <td>Pune</td>
+            <td>411027</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>560001</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showSchoolProfile">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="jqueryPage" class="tcdPageCode">
+
+    </div>
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="showSchoolProfile" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+                    考研学校资料维护
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学校名称:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="schoolProfileName" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否置顶学校:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="schoolProfileIsTop">
+                                <option value="10">是</option>
+                                <option value="1">否</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学校标签:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="schoolProfileTag" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学校基本资料:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="schoolProfileBaseProfile"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学校详情介绍:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="schoolProfileMainProfile"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学校最好专业:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="schoolProfileBestMajor"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学校最好导师:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="schoolProfileBestTeacher"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary add-schoolProfile">
+                    添加学校
+                </button>
+                <button type="button" class="btn btn-warning do-update">
+                    编辑学校
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script id="schoolProfile-template" type="text/html">
+    {{each msg as schoolProfile i }}
+    <tr>
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileName}}</td>
+        {{if schoolProfile.schoolProfileIsTop==1}}
+            <td style="max-width: 200px;min-width: 50px;">否</td>
+            {{else}}
+            <td style="max-width: 200px;min-width: 50px;">是</td>
+        {{/if}}
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileTag}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileCreateTime}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileBaseProfile}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileMainProfile}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileBestMajor}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{schoolProfile.schoolProfileBestTeacher}}</td>
+        <td style="max-width: 200px;min-width: 50px;">
+            <button class="btn btn-success show-details" style="margin-left: 5px" data-toggle="modal"
+                    data-target="#showSchoolProfile" schoolProfileCuid="{{schoolProfile.schoolProfileCuid}}">查看详情
+            </button>
+            <a class="btn" href="#schoolInformationManager?schoolProfileCuid={{schoolProfile.schoolProfileCuid}}&schoolProfileName={{schoolProfile.schoolProfileName}}">增加资料</a>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+</html>

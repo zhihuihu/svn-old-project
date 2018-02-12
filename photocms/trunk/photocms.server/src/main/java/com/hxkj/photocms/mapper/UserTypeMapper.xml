@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.IUserTypeDao">
+
+	<resultMap id="UserTypeResultMap" type="UserType">
+		<id property="userTypeCuid" column="USER_TYPE_CUID" />
+		<result property="userTypeName" column="USER_TYPE_NAME" />
+		<result property="userTypeCode" column="USER_TYPE_CODE" />
+		<result property="userTypeCreateTime" column="USER_TYPE_CREATE_TIME" />
+	</resultMap>
+
+	<select id="getAll" resultMap="UserTypeResultMap">
+		SELECT
+			user_type.USER_TYPE_CUID,
+			user_type.USER_TYPE_NAME,
+			user_type.USER_TYPE_CODE,
+			user_type.USER_TYPE_CREATE_TIME
+		FROM
+			user_type
+	</select>
+
+	<select id="getById" parameterType="int" resultMap="UserTypeResultMap">
+		SELECT
+			user_type.USER_TYPE_CUID,
+			user_type.USER_TYPE_NAME,
+			user_type.USER_TYPE_CODE,
+			user_type.USER_TYPE_CREATE_TIME
+		FROM
+			user_type
+		WHERE
+			user_type.USER_TYPE_CUID = #{userTypeCuid}
+	</select>
+
+	<insert id="doInsert" parameterType="UserType">
+		INSERT INTO user_type
+			(USER_TYPE_CUID,USER_TYPE_NAME,USER_TYPE_CODE,USER_TYPE_CREATE_TIME)
+		VALUES 
+			(#{userTypeCuid},#{userTypeName},#{userTypeCode},#{userTypeCreateTime})
+	</insert>
+
+	<update id="doUpdate" parameterType="UserType">
+		UPDATE user_type
+		<set>
+			<if test="userTypeName != null and userTypeName !=''">
+				USER_TYPE_NAME = #{userTypeName},
+			</if>
+			<if test="userTypeCode != null and userTypeCode !=''">
+				USER_TYPE_CODE = #{userTypeCode},
+			</if>
+			<if test="userTypeCreateTime != null and userTypeCreateTime !=''">
+				USER_TYPE_CREATE_TIME = #{userTypeCreateTime}
+			</if>
+		</set>
+		WHERE
+			USER_TYPE_CUID = #{userTypeCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="UserTypeResultMap">
+		SELECT
+			user_type.USER_TYPE_CUID,
+			user_type.USER_TYPE_NAME,
+			user_type.USER_TYPE_CODE,
+			user_type.USER_TYPE_CREATE_TIME
+		FROM
+			user_type
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			user_type
+	</select>
+
+</mapper>

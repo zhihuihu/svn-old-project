@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IOppointmentDao" >
+	
+	<resultMap id="BaseResultMap" type="Oppointment" >
+	    <id column="OPPOINTMENT_CUID" property="oppointmentCuid"  />
+	    <result column="CLASSROOM_CUID" property="classroomCuid" />
+	    <result column="SYS_USER_CUID" property="sysUserCuid"  />
+	    <result column="OPPOINTMENT_NAME" property="oppointmentName" />
+	    <result column="OPPOINTMENT_USER_NAME" property="oppointmentUserName"  />
+	    <result column="OPPOINTMENT_USER_URL" property="oppointmentUserUrl"  />
+	    <result column="OPPOINTMENT_STATE" property="oppointmentState"  />
+	    <result column="OPPOINTMENT_END_TIME" property="oppointmentEndTime"  />
+	    <result column="OPPOINTMENT_CREATE_TIME" property="oppointmentCreateTime"  />
+	    <result column="OPPOINTMENT_UPDATE_TIME" property="oppointmentUpdateTime"  />
+  	</resultMap>
+  	
+  	
+  	<sql id="Base_Column_List" >
+	    OPPOINTMENT_CUID, 
+	    CLASSROOM_CUID, 
+	    SYS_USER_CUID, 
+	    OPPOINTMENT_NAME, 
+	    OPPOINTMENT_USER_NAME, 
+	    OPPOINTMENT_USER_URL, 
+	    OPPOINTMENT_STATE, 
+	    OPPOINTMENT_END_TIME, 
+	    OPPOINTMENT_CREATE_TIME, 
+	    OPPOINTMENT_UPDATE_TIME
+  	</sql>
+	
+	<delete id="doDeleteByPrimaryKey" parameterType="Oppointment" >
+	    delete 
+	    from 
+	    	oppointment
+	    where 
+	    	OPPOINTMENT_CUID = #{oppointmentCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Oppointment" >
+	    insert into 
+	    	oppointment 
+	    		(OPPOINTMENT_CUID, 
+	    		CLASSROOM_CUID, 
+	    		SYS_USER_CUID, 
+		      OPPOINTMENT_NAME, 
+		      OPPOINTMENT_USER_NAME, 
+		      OPPOINTMENT_USER_URL, 
+		      OPPOINTMENT_STATE, 
+		      OPPOINTMENT_END_TIME, 
+		      OPPOINTMENT_CREATE_TIME, 
+		      OPPOINTMENT_UPDATE_TIME
+		      )
+	    values 
+	    	(#{oppointmentCuid}, 
+	    	#{classroomCuid}, 
+	    	#{sysUserCuid}, 
+	      #{oppointmentName}, 
+	      #{oppointmentUserName}, 
+	      #{oppointmentUserUrl}, 
+	      #{oppointmentState}, 
+	      #{oppointmentEndTime}, 
+	      #{oppointmentCreateTime}, 
+	      #{oppointmentUpdateTime}
+	      )
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="Oppointment" >
+	    insert into oppointment
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="oppointmentCuid != null" >
+	        OPPOINTMENT_CUID,
+	      </if>
+	      <if test="classroomCuid != null" >
+	        CLASSROOM_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="oppointmentName != null" >
+	        OPPOINTMENT_NAME,
+	      </if>
+	      <if test="oppointmentUserName != null" >
+	        OPPOINTMENT_USER_NAME,
+	      </if>
+	      <if test="oppointmentUserUrl != null" >
+	        OPPOINTMENT_USER_URL,
+	      </if>
+	      <if test="oppointmentState != null" >
+	        OPPOINTMENT_STATE,
+	      </if>
+	      <if test="oppointmentEndTime != null" >
+	        OPPOINTMENT_END_TIME,
+	      </if>
+	      <if test="oppointmentCreateTime != null" >
+	        OPPOINTMENT_CREATE_TIME,
+	      </if>
+	      <if test="oppointmentUpdateTime != null" >
+	        OPPOINTMENT_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="oppointmentCuid != null" >
+	        #{oppointmentCuid},
+	      </if>
+	      <if test="classroomCuid != null" >
+	        #{classroomCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="oppointmentName != null" >
+	        #{oppointmentName},
+	      </if>
+	      <if test="oppointmentUserName != null" >
+	        #{oppointmentUserName},
+	      </if>
+	      <if test="oppointmentUserUrl != null" >
+	        #{oppointmentUserUrl},
+	      </if>
+	      <if test="oppointmentState != null" >
+	        #{oppointmentState},
+	      </if>
+	      <if test="oppointmentEndTime != null" >
+	        #{oppointmentEndTime},
+	      </if>
+	      <if test="oppointmentCreateTime != null" >
+	        #{oppointmentCreateTime},
+	      </if>
+	      <if test="oppointmentUpdateTime != null" >
+	        #{oppointmentUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Oppointment" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	oppointment
+	    where 
+	    	OPPOINTMENT_CUID = #{oppointmentCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Oppointment" >
+	    update oppointment
+	    <set >
+	      <if test="classroomCuid != null" >
+	        CLASSROOM_CUID = #{classroomCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="oppointmentName != null" >
+	        OPPOINTMENT_NAME = #{oppointmentName},
+	      </if>
+	      <if test="oppointmentUserName != null" >
+	        OPPOINTMENT_USER_NAME = #{oppointmentUserName},
+	      </if>
+	      <if test="oppointmentUserUrl != null" >
+	        OPPOINTMENT_USER_URL = #{oppointmentUserUrl},
+	      </if>
+	      <if test="oppointmentState != null and oppointmentState != 0" >
+	        OPPOINTMENT_STATE = #{oppointmentState},
+	      </if>
+	      <if test="oppointmentEndTime != null" >
+	        OPPOINTMENT_END_TIME = #{oppointmentEndTime},
+	      </if>
+	      <if test="oppointmentCreateTime != null" >
+	        OPPOINTMENT_CREATE_TIME = #{oppointmentCreateTime},
+	      </if>
+	      <if test="oppointmentUpdateTime != null" >
+	        OPPOINTMENT_UPDATE_TIME = #{oppointmentUpdateTime},
+	      </if>
+	    </set>
+	    where OPPOINTMENT_CUID = #{oppointmentCuid}
+  	</update>
+  	
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Oppointment" >
+	    update oppointment
+	    set CLASSROOM_CUID = #{classroomCuid},
+	      SYS_USER_CUID = #{sysUserCuid},
+	      OPPOINTMENT_NAME = #{oppointmentName},
+	      OPPOINTMENT_USER_NAME = #{oppointmentUserName},
+	      OPPOINTMENT_USER_URL = #{oppointmentUserUrl},
+	      OPPOINTMENT_STATE = #{oppointmentState},
+	      OPPOINTMENT_END_TIME = #{oppointmentEndTime},
+	      OPPOINTMENT_CREATE_TIME = #{oppointmentCreateTime},
+	      OPPOINTMENT_UPDATE_TIME = #{oppointmentUpdateTime}
+	    where OPPOINTMENT_CUID = #{oppointmentCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	oppointment
+	    <where>
+	    	<if test="b.classroomCuid != null" >
+	        CLASSROOM_CUID = #{b.classroomCuid}
+	      </if>
+	      <if test="b.sysUserCuid != null" >
+	        and SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.oppointmentName != null" >
+	        and OPPOINTMENT_NAME = #{b.oppointmentName}
+	      </if>
+	      <if test="b.oppointmentUserName != null" >
+	        and OPPOINTMENT_USER_NAME = #{b.oppointmentUserName}
+	      </if>
+	      <if test="b.oppointmentUserUrl != null" >
+	        and OPPOINTMENT_USER_URL = #{b.oppointmentUserUrl}
+	      </if>
+	      <if test="b.oppointmentState != null and b.oppointmentState != 0" >
+	        and OPPOINTMENT_STATE = #{b.oppointmentState}
+	      </if>
+	      <if test="b.oppointmentEndTime != null" >
+	        and OPPOINTMENT_END_TIME = #{b.oppointmentEndTime}
+	      </if>
+	      <if test="b.oppointmentCreateTime != null" >
+	        and OPPOINTMENT_CREATE_TIME = #{b.oppointmentCreateTime}
+	      </if>
+	      <if test="b.oppointmentUpdateTime != null" >
+	        and OPPOINTMENT_UPDATE_TIME = #{b.oppointmentUpdateTime}
+	      </if>
+	      and OPPOINTMENT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	oppointment
+	    <where>
+	    	<if test="b.classroomCuid != null" >
+	        CLASSROOM_CUID = #{b.classroomCuid}
+	      </if>
+	      <if test="b.sysUserCuid != null" >
+	        and SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.oppointmentName != null" >
+	        and OPPOINTMENT_NAME = #{b.oppointmentName}
+	      </if>
+	      <if test="b.oppointmentUserName != null" >
+	        and OPPOINTMENT_USER_NAME = #{b.oppointmentUserName}
+	      </if>
+	      <if test="b.oppointmentUserUrl != null" >
+	        and OPPOINTMENT_USER_URL = #{b.oppointmentUserUrl}
+	      </if>
+	      <if test="b.oppointmentState != null and b.oppointmentState != 0" >
+	        and OPPOINTMENT_STATE = #{b.oppointmentState}
+	      </if>
+	      <if test="b.oppointmentEndTime != null" >
+	        and OPPOINTMENT_END_TIME = #{b.oppointmentEndTime}
+	      </if>
+	      <if test="b.oppointmentCreateTime != null" >
+	        and OPPOINTMENT_CREATE_TIME = #{b.oppointmentCreateTime}
+	      </if>
+	      <if test="b.oppointmentUpdateTime != null" >
+	        and OPPOINTMENT_UPDATE_TIME = #{b.oppointmentUpdateTime}
+	      </if>
+	      and OPPOINTMENT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	oppointment
+	    <where>
+	    	<choose>
+	    		<when test="b.classroomCuid != null" >
+		        CLASSROOM_CUID = #{b.classroomCuid}
+		      </when>
+		      <when test="b.sysUserCuid != null" >
+		        and SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.oppointmentName != null" >
+		        and OPPOINTMENT_NAME = #{b.oppointmentName}
+		      </when>
+		      <when test="b.oppointmentUserName != null" >
+		        and OPPOINTMENT_USER_NAME = #{b.oppointmentUserName}
+		      </when>
+		      <when test="b.oppointmentUserUrl != null" >
+		        and OPPOINTMENT_USER_URL = #{b.oppointmentUserUrl}
+		      </when>
+		      <when test="b.oppointmentState != null and b.oppointmentState != 0" >
+		        and OPPOINTMENT_STATE = #{b.oppointmentState}
+		      </when>
+		      <when test="b.oppointmentEndTime != null" >
+		        and OPPOINTMENT_END_TIME = #{b.oppointmentEndTime}
+		      </when>
+		      <when test="b.oppointmentCreateTime != null" >
+		        and OPPOINTMENT_CREATE_TIME = #{b.oppointmentCreateTime}
+		      </when>
+		      <when test="b.oppointmentUpdateTime != null" >
+		        and OPPOINTMENT_UPDATE_TIME = #{b.oppointmentUpdateTime}
+		      </when>
+	    	</choose>
+	      and OPPOINTMENT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	oppointment
+	    <where>
+	    	<choose>
+	    		<when test="b.classroomCuid != null" >
+		        CLASSROOM_CUID = #{b.classroomCuid}
+		      </when>
+		      <when test="b.sysUserCuid != null" >
+		        and SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.oppointmentName != null" >
+		        and OPPOINTMENT_NAME = #{b.oppointmentName}
+		      </when>
+		      <when test="b.oppointmentUserName != null" >
+		        and OPPOINTMENT_USER_NAME = #{b.oppointmentUserName}
+		      </when>
+		      <when test="b.oppointmentUserUrl != null" >
+		        and OPPOINTMENT_USER_URL = #{b.oppointmentUserUrl}
+		      </when>
+		      <when test="b.oppointmentState != null and b.oppointmentState != 0" >
+		        and OPPOINTMENT_STATE = #{b.oppointmentState}
+		      </when>
+		      <when test="b.oppointmentEndTime != null" >
+		        and OPPOINTMENT_END_TIME = #{b.oppointmentEndTime}
+		      </when>
+		      <when test="b.oppointmentCreateTime != null" >
+		        and OPPOINTMENT_CREATE_TIME = #{b.oppointmentCreateTime}
+		      </when>
+		      <when test="b.oppointmentUpdateTime != null" >
+		        and OPPOINTMENT_UPDATE_TIME = #{b.oppointmentUpdateTime}
+		      </when>
+	    	</choose>
+	      and OPPOINTMENT_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectByAttribute" resultMap="BaseResultMap" parameterType="Oppointment" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	oppointment
+	    <where>
+	    	<if test="classroomCuid != null" >
+	        CLASSROOM_CUID = #{classroomCuid}
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        and SYS_USER_CUID = #{sysUserCuid}
+	      </if>
+	      <if test="oppointmentName != null" >
+	        and OPPOINTMENT_NAME = #{oppointmentName}
+	      </if>
+	      <if test="oppointmentUserName != null" >
+	        and OPPOINTMENT_USER_NAME = #{oppointmentUserName}
+	      </if>
+	      <if test="oppointmentUserUrl != null" >
+	        and OPPOINTMENT_USER_URL = #{oppointmentUserUrl}
+	      </if>
+	      <if test="oppointmentState != null and oppointmentState != 0" >
+	        and OPPOINTMENT_STATE = #{oppointmentState}
+	      </if>
+	      <if test="oppointmentEndTime != null" >
+	        and OPPOINTMENT_END_TIME = #{oppointmentEndTime}
+	      </if>
+	      <if test="oppointmentCreateTime != null" >
+	        and OPPOINTMENT_CREATE_TIME = #{oppointmentCreateTime}
+	      </if>
+	      <if test="oppointmentUpdateTime != null" >
+	        and OPPOINTMENT_UPDATE_TIME = #{oppointmentUpdateTime}
+	      </if>
+	      and OPPOINTMENT_STATE != 4
+	    </where>
+  	</select>
+  	
+  	
+	
+</mapper>

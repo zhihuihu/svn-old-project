@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+	</settings>
+	<typeAliases>
+		<!--<typeAlias alias="Chat" type="com.hxkj.xhupubmed.entity.Chat"/>
+		<typeAlias alias="Classroom" type="com.hxkj.xhupubmed.entity.Classroom" />
+		<typeAlias alias="College" type="com.hxkj.xhupubmed.entity.College" />
+		<typeAlias alias="Follow" type="com.hxkj.xhupubmed.entity.Follow" />
+		<typeAlias alias="FollowPost" type="com.hxkj.xhupubmed.entity.FollowPost" />
+		<typeAlias alias="Friend" type="com.hxkj.xhupubmed.entity.Friend" />
+		<typeAlias alias="GlobalTable" type="com.hxkj.xhupubmed.entity.GlobalTable" />
+		<typeAlias alias="Images" type="com.hxkj.xhupubmed.entity.Images" />
+		<typeAlias alias="InformationPush" type="com.hxkj.xhupubmed.entity.InformationPush" />
+		<typeAlias alias="IntelligentMessage" type="com.hxkj.xhupubmed.entity.IntelligentMessage" />
+		<typeAlias alias="KeyLog" type="com.hxkj.xhupubmed.entity.KeyLog" />
+		<typeAlias alias="LearnPlan" type="com.hxkj.xhupubmed.entity.LearnPlan" />
+		<typeAlias alias="Major" type="com.hxkj.xhupubmed.entity.Major" />
+		<typeAlias alias="Oppointment" type="com.hxkj.xhupubmed.entity.Oppointment" />
+		<typeAlias alias="PageBean" type="com.hxkj.xhupubmed.entity.PageBean" />
+		<typeAlias alias="Post" type="com.hxkj.xhupubmed.entity.Post" />
+		<typeAlias alias="Replies" type="com.hxkj.xhupubmed.entity.Replies" />
+		<typeAlias alias="SysUser" type="com.hxkj.xhupubmed.entity.SysUser" />-->
+	</typeAliases>
+</configuration>

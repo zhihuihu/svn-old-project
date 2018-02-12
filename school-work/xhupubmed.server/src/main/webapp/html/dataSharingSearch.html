@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/baseCss.css" rel="stylesheet">
+    <script type="text/javascript" src="js/dataSharingSearch.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 100%;font-weight: bold;margin-top: 5px;">
+	<center>
+	<p>数据共享管理</p>
+	</center>
+	<hr style="margin-top: 5px;">
+</div>
+<div class="header-search">
+    <div class="header-one">
+        <div class="header-name">
+            开始时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="startTime"
+                   placeholder="请输入开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+    <div class="header-one">
+        <div class="header-name">
+            结束时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="endTime"
+                   placeholder="请输入结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+
+    <div class="header-right">
+        <button class="btn btn-success" style="margin-left: 5px" id="searchBtn">搜索</button>
+    </div>
+    <div class="header-right">
+        <div class="header-name">
+            搜索框:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="searchName"
+                   placeholder="搜索内容">
+        </div>
+    </div>
+    <div style="clear: both">
+
+    </div>
+</div>
+<div class="content-body">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>共享标题</th>
+            <th>共享类型</th>
+            <th>共享标签</th>
+            <th>主要内容</th>
+            <th>附录URL</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="appendBody">
+        <tr>
+            <td>TanmaeBangalore</td>
+            <td>Bangalangalorev</td>
+            <td>560lore</td>
+            <td>Tanmay</td>
+            <td>Bangal</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showPostDetails">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="jqueryPage" class="tcdPageCode">
+
+    </div>
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="showPostDetails" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+                    数据分享管理
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">共享标题:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="dataSharingTitle" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">共享类型</label>
+                        <div class="col-sm-10" >
+                        	<select class="form-control" id="dataSharingType">
+                                <option value="1">文本</option>
+                                <option value="2">文件</option>
+                                <option value="3">链接</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">共享标签:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="dataSharingTag" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">主要内容:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="dataSharingMainContent"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分享URL:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="dataSharingUrl" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分享文件:</label>
+                        <div class="col-sm-10" id="show-file">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">创建时间:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="dataSharingCreateTime" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-default" id="dataSharing-btn-update"
+                       >更新
+                </button>
+                <button type="button" class="btn btn-danger btn-delete" id="dataSharing-delete-btn">
+                    删除
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script id="dataSharing-template" type="text/html">
+    {{each msg as dataSharing i}}
+    <tr>
+        <td>{{dataSharing.dataSharingTitle}}</td>
+		{{if dataSharing.dataSharingType==1 }}
+		<td>文本</td>
+		{{/if}}
+		{{if dataSharing.dataSharingType==2 }}
+		<td>文件</td>
+		{{/if}}
+		{{if dataSharing.dataSharingType==3 }}
+		<td>链接</td>
+		{{/if}}
+        <td>{{dataSharing.dataSharingTag}}</td>
+        <td>{{dataSharing.dataSharingMainContent}}</td>
+        <td>{{dataSharing.dataSharingUrl}}</td>
+        <td>{{dataSharing.dataSharingCreateTime}}</td>
+        <td>
+            <button class="btn btn-success btn-details" style="margin-left: 5px" data-toggle="modal"
+                    data-target="#showPostDetails" dataSharingCuid ="{{dataSharing.dataSharingCuid}}">查看详情
+            </button>
+            <button class="btn btn-danger btn-delete" style="margin-left: 5px" dataSharingCuid ="{{dataSharing.dataSharingCuid}}">删除</button>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+</html>

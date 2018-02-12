@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.ISchoolProfileDao" >
+  <resultMap id="BaseResultMap" type="SchoolProfile" >
+    <id column="SCHOOL_PROFILE_CUID" property="schoolProfileCuid" />
+    <result column="SCHOOL_PROFILE_NAME" property="schoolProfileName" />
+    <result column="SCHOOL_PROFILE_IS_TOP" property="schoolProfileIsTop" />
+    <result column="SCHOOL_PROFILE_TAG" property="schoolProfileTag" />
+    <result column="SCHOOL_PROFILE_CODE" property="schoolProfileCode" />
+    <result column="SCHOOL_PROFILE_SC_CREATE_TIME" property="schoolProfileScCreateTime" />
+    <result column="SCHOOL_PROFILE_BASE_PROFILE" property="schoolProfileBaseProfile" />
+    <result column="SCHOOL_PROFILE_MAIN_PROFILE" property="schoolProfileMainProfile" />
+    <result column="SCHOOL_PROFILE_BEST_MAJOR" property="schoolProfileBestMajor" />
+    <result column="SCHOOL_PROFILE_BEST_TEACHER" property="schoolProfileBestTeacher" />
+    <result column="SCHOOL_PROFILE_STATE" property="schoolProfileState" />
+    <result column="SCHOOL_PROFILE_CREATE_TIME" property="schoolProfileCreateTime" />
+    <result column="SCHOOL_PROFILE_UPDATE_TIME" property="schoolProfileUpdateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    SCHOOL_PROFILE_CUID, SCHOOL_PROFILE_NAME, SCHOOL_PROFILE_IS_TOP, SCHOOL_PROFILE_TAG, 
+    SCHOOL_PROFILE_CODE, SCHOOL_PROFILE_SC_CREATE_TIME, SCHOOL_PROFILE_BASE_PROFILE, 
+    SCHOOL_PROFILE_MAIN_PROFILE, SCHOOL_PROFILE_BEST_MAJOR, SCHOOL_PROFILE_BEST_TEACHER, 
+    SCHOOL_PROFILE_STATE, SCHOOL_PROFILE_CREATE_TIME, SCHOOL_PROFILE_UPDATE_TIME
+  </sql>
+  
+  <delete id="doDeleteByPrimaryKey" parameterType="SchoolProfile" >
+    delete from school_profile
+    where SCHOOL_PROFILE_CUID = #{schoolProfileCuid}
+  </delete>
+  
+  <insert id="doInsert" parameterType="SchoolProfile" >
+    insert into school_profile (SCHOOL_PROFILE_CUID, SCHOOL_PROFILE_NAME, 
+      SCHOOL_PROFILE_IS_TOP, SCHOOL_PROFILE_TAG, SCHOOL_PROFILE_CODE, 
+      SCHOOL_PROFILE_SC_CREATE_TIME, SCHOOL_PROFILE_BASE_PROFILE, 
+      SCHOOL_PROFILE_MAIN_PROFILE, SCHOOL_PROFILE_BEST_MAJOR, 
+      SCHOOL_PROFILE_BEST_TEACHER, SCHOOL_PROFILE_STATE, 
+      SCHOOL_PROFILE_CREATE_TIME, SCHOOL_PROFILE_UPDATE_TIME
+      )
+    values (#{schoolProfileCuid}, #{schoolProfileName}, 
+      #{schoolProfileIsTop}, #{schoolProfileTag}, #{schoolProfileCode}, 
+      #{schoolProfileScCreateTime}, #{schoolProfileBaseProfile}, 
+      #{schoolProfileMainProfile}, #{schoolProfileBestMajor}, 
+      #{schoolProfileBestTeacher}, #{schoolProfileState}, 
+      #{schoolProfileCreateTime}, #{schoolProfileUpdateTime}
+      )
+  </insert>
+  
+  <insert id="doInsertSelective" parameterType="SchoolProfile" >
+    insert into school_profile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schoolProfileCuid != null" >
+        SCHOOL_PROFILE_CUID,
+      </if>
+      <if test="schoolProfileName != null" >
+        SCHOOL_PROFILE_NAME,
+      </if>
+      <if test="schoolProfileIsTop != null" >
+        SCHOOL_PROFILE_IS_TOP,
+      </if>
+      <if test="schoolProfileTag != null" >
+        SCHOOL_PROFILE_TAG,
+      </if>
+      <if test="schoolProfileCode != null" >
+        SCHOOL_PROFILE_CODE,
+      </if>
+      <if test="schoolProfileScCreateTime != null" >
+        SCHOOL_PROFILE_SC_CREATE_TIME,
+      </if>
+      <if test="schoolProfileBaseProfile != null" >
+        SCHOOL_PROFILE_BASE_PROFILE,
+      </if>
+      <if test="schoolProfileMainProfile != null" >
+        SCHOOL_PROFILE_MAIN_PROFILE,
+      </if>
+      <if test="schoolProfileBestMajor != null" >
+        SCHOOL_PROFILE_BEST_MAJOR,
+      </if>
+      <if test="schoolProfileBestTeacher != null" >
+        SCHOOL_PROFILE_BEST_TEACHER,
+      </if>
+      <if test="schoolProfileState != null" >
+        SCHOOL_PROFILE_STATE,
+      </if>
+      <if test="schoolProfileCreateTime != null" >
+        SCHOOL_PROFILE_CREATE_TIME,
+      </if>
+      <if test="schoolProfileUpdateTime != null" >
+        SCHOOL_PROFILE_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schoolProfileCuid != null" >
+        #{schoolProfileCuid},
+      </if>
+      <if test="schoolProfileName != null" >
+        #{schoolProfileName},
+      </if>
+      <if test="schoolProfileIsTop != null" >
+        #{schoolProfileIsTop},
+      </if>
+      <if test="schoolProfileTag != null" >
+        #{schoolProfileTag},
+      </if>
+      <if test="schoolProfileCode != null" >
+        #{schoolProfileCode},
+      </if>
+      <if test="schoolProfileScCreateTime != null" >
+        #{schoolProfileScCreateTime},
+      </if>
+      <if test="schoolProfileBaseProfile != null" >
+        #{schoolProfileBaseProfile},
+      </if>
+      <if test="schoolProfileMainProfile != null" >
+        #{schoolProfileMainProfile},
+      </if>
+      <if test="schoolProfileBestMajor != null" >
+        #{schoolProfileBestMajor},
+      </if>
+      <if test="schoolProfileBestTeacher != null" >
+        #{schoolProfileBestTeacher},
+      </if>
+      <if test="schoolProfileState != null" >
+        #{schoolProfileState},
+      </if>
+      <if test="schoolProfileCreateTime != null" >
+        #{schoolProfileCreateTime},
+      </if>
+      <if test="schoolProfileUpdateTime != null" >
+        #{schoolProfileUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="SchoolProfile" >
+    select 
+    <include refid="Base_Column_List" />
+    from school_profile
+    where SCHOOL_PROFILE_CUID = #{schoolProfileCuid}
+  </select>
+  
+  <update id="doUpdateByPrimaryKeySelective" parameterType="SchoolProfile" >
+    update school_profile
+    <set >
+      <if test="schoolProfileName != null" >
+        SCHOOL_PROFILE_NAME = #{schoolProfileName},
+      </if>
+      <if test="schoolProfileIsTop != null and schoolProfileIsTop != 0" >
+        SCHOOL_PROFILE_IS_TOP = #{schoolProfileIsTop},
+      </if>
+      <if test="schoolProfileTag != null" >
+        SCHOOL_PROFILE_TAG = #{schoolProfileTag},
+      </if>
+      <if test="schoolProfileCode != null" >
+        SCHOOL_PROFILE_CODE = #{schoolProfileCode},
+      </if>
+      <if test="schoolProfileScCreateTime != null" >
+        SCHOOL_PROFILE_SC_CREATE_TIME = #{schoolProfileScCreateTime},
+      </if>
+      <if test="schoolProfileBaseProfile != null" >
+        SCHOOL_PROFILE_BASE_PROFILE = #{schoolProfileBaseProfile},
+      </if>
+      <if test="schoolProfileMainProfile != null" >
+        SCHOOL_PROFILE_MAIN_PROFILE = #{schoolProfileMainProfile},
+      </if>
+      <if test="schoolProfileBestMajor != null" >
+        SCHOOL_PROFILE_BEST_MAJOR = #{schoolProfileBestMajor},
+      </if>
+      <if test="schoolProfileBestTeacher != null" >
+        SCHOOL_PROFILE_BEST_TEACHER = #{schoolProfileBestTeacher},
+      </if>
+      <if test="schoolProfileState != null and schoolProfileState != 0" >
+        SCHOOL_PROFILE_STATE = #{schoolProfileState},
+      </if>
+      <if test="schoolProfileCreateTime != null" >
+        SCHOOL_PROFILE_CREATE_TIME = #{schoolProfileCreateTime},
+      </if>
+      <if test="schoolProfileUpdateTime != null" >
+        SCHOOL_PROFILE_UPDATE_TIME = #{schoolProfileUpdateTime},
+      </if>
+    </set>
+    where SCHOOL_PROFILE_CUID = #{schoolProfileCuid}
+  </update>
+  
+  
+  <update id="doUpdateByPrimaryKey" parameterType="SchoolProfile" >
+    update school_profile
+    set SCHOOL_PROFILE_NAME = #{schoolProfileName},
+      SCHOOL_PROFILE_IS_TOP = #{schoolProfileIsTop},
+      SCHOOL_PROFILE_TAG = #{schoolProfileTag},
+      SCHOOL_PROFILE_CODE = #{schoolProfileCode},
+      SCHOOL_PROFILE_SC_CREATE_TIME = #{schoolProfileScCreateTime},
+      SCHOOL_PROFILE_BASE_PROFILE = #{schoolProfileBaseProfile},
+      SCHOOL_PROFILE_MAIN_PROFILE = #{schoolProfileMainProfile},
+      SCHOOL_PROFILE_BEST_MAJOR = #{schoolProfileBestMajor},
+      SCHOOL_PROFILE_BEST_TEACHER = #{schoolProfileBestTeacher},
+      SCHOOL_PROFILE_STATE = #{schoolProfileState},
+      SCHOOL_PROFILE_CREATE_TIME = #{schoolProfileCreateTime},
+      SCHOOL_PROFILE_UPDATE_TIME = #{schoolProfileUpdateTime}
+    where SCHOOL_PROFILE_CUID = #{schoolProfileCuid}
+  </update>
+  
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from school_profile
+    <where>
+      <if test="b.schoolProfileName != null" >
+        SCHOOL_PROFILE_NAME = #{b.schoolProfileName}
+      </if>
+      <if test="b.schoolProfileIsTop != null and b.schoolProfileIsTop != 0" >
+        and SCHOOL_PROFILE_IS_TOP = #{b.schoolProfileIsTop}
+      </if>
+      <if test="b.schoolProfileTag != null" >
+        and SCHOOL_PROFILE_TAG = #{b.schoolProfileTag}
+      </if>
+      <if test="b.schoolProfileCode != null" >
+        and SCHOOL_PROFILE_CODE = #{b.schoolProfileCode}
+      </if>
+      <if test="b.schoolProfileScCreateTime != null" >
+        and SCHOOL_PROFILE_SC_CREATE_TIME = #{b.schoolProfileScCreateTime}
+      </if>
+      <if test="b.schoolProfileBaseProfile != null" >
+        and SCHOOL_PROFILE_BASE_PROFILE = #{b.schoolProfileBaseProfile}
+      </if>
+      <if test="b.schoolProfileMainProfile != null" >
+        and SCHOOL_PROFILE_MAIN_PROFILE = #{b.schoolProfileMainProfile}
+      </if>
+      <if test="b.schoolProfileBestMajor != null" >
+        and SCHOOL_PROFILE_BEST_MAJOR = #{b.schoolProfileBestMajor}
+      </if>
+      <if test="b.schoolProfileBestTeacher != null" >
+        and SCHOOL_PROFILE_BEST_TEACHER = #{b.schoolProfileBestTeacher}
+      </if>
+      <if test="b.schoolProfileState != null and b.schoolProfileState != 0" >
+        and SCHOOL_PROFILE_STATE = #{b.schoolProfileState}
+      </if>
+      <if test="b.schoolProfileCreateTime != null" >
+        and SCHOOL_PROFILE_CREATE_TIME = #{b.schoolProfileCreateTime}
+      </if>
+      <if test="b.schoolProfileUpdateTime != null" >
+        and SCHOOL_PROFILE_UPDATE_TIME = #{b.schoolProfileUpdateTime}
+      </if>
+      <if test="searchName != null and searchName != ''" >
+        and SCHOOL_PROFILE_NAME like '%' #{searchName} '%'
+      </if>
+      <if test="startTime != null and startTime != '' " >
+        and SCHOOL_PROFILE_CREATE_TIME >= #{startTime}
+      </if>
+      <if test="endTime != null and endTime != '' " >
+        and SCHOOL_PROFILE_CREATE_TIME &lt;= #{endTime}
+      </if>
+    </where>
+    <if test="orderByString != null">
+    	${orderByString}
+    </if>
+    limit 
+    	#{startLine},#{lineSize}
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    COUNT(1)
+    from school_profile
+    <where>
+      <if test="b.schoolProfileName != null" >
+        SCHOOL_PROFILE_NAME = #{b.schoolProfileName}
+      </if>
+      <if test="b.schoolProfileIsTop != null and b.schoolProfileIsTop != 0" >
+        and SCHOOL_PROFILE_IS_TOP = #{b.schoolProfileIsTop}
+      </if>
+      <if test="b.schoolProfileTag != null" >
+        and SCHOOL_PROFILE_TAG = #{b.schoolProfileTag}
+      </if>
+      <if test="b.schoolProfileCode != null" >
+        and SCHOOL_PROFILE_CODE = #{b.schoolProfileCode}
+      </if>
+      <if test="b.schoolProfileScCreateTime != null" >
+        and SCHOOL_PROFILE_SC_CREATE_TIME = #{b.schoolProfileScCreateTime}
+      </if>
+      <if test="b.schoolProfileBaseProfile != null" >
+        and SCHOOL_PROFILE_BASE_PROFILE = #{b.schoolProfileBaseProfile}
+      </if>
+      <if test="b.schoolProfileMainProfile != null" >
+        and SCHOOL_PROFILE_MAIN_PROFILE = #{b.schoolProfileMainProfile}
+      </if>
+      <if test="b.schoolProfileBestMajor != null" >
+        and SCHOOL_PROFILE_BEST_MAJOR = #{b.schoolProfileBestMajor}
+      </if>
+      <if test="b.schoolProfileBestTeacher != null" >
+        and SCHOOL_PROFILE_BEST_TEACHER = #{b.schoolProfileBestTeacher}
+      </if>
+      <if test="b.schoolProfileState != null and b.schoolProfileState != 0" >
+        and SCHOOL_PROFILE_STATE = #{b.schoolProfileState}
+      </if>
+      <if test="b.schoolProfileCreateTime != null" >
+        and SCHOOL_PROFILE_CREATE_TIME = #{b.schoolProfileCreateTime}
+      </if>
+      <if test="b.schoolProfileUpdateTime != null" >
+        and SCHOOL_PROFILE_UPDATE_TIME = #{b.schoolProfileUpdateTime}
+      </if>
+      <if test="searchName != null and searchName != ''" >
+        and SCHOOL_PROFILE_NAME like '%' #{searchName} '%'
+      </if>
+      <if test="startTime != null and startTime != '' " >
+        and SCHOOL_PROFILE_CREATE_TIME >= #{startTime}
+      </if>
+      <if test="endTime != null and endTime != '' " >
+        and SCHOOL_PROFILE_CREATE_TIME &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
+</mapper>

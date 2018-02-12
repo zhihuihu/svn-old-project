@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.waychat.dao.IRoomPeopleDao" >
+
+  <resultMap id="BaseResultMap" type="com.hxkj.waychat.entity.RoomPeople" >
+    <id column="room_people_cuid" property="roomPeopleCuid" jdbcType="VARCHAR" />
+    <result column="chat_room_cuid" property="chatRoomCuid" jdbcType="VARCHAR" />
+    <result column="sys_user_cuid" property="sysUserCuid" jdbcType="VARCHAR" />
+    <result column="room_people_state" property="roomPeopleState" jdbcType="SMALLINT" />
+    <result column="room_people_create_time" property="roomPeopleCreateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    room_people_cuid, chat_room_cuid, sys_user_cuid, room_people_state, room_people_create_time
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    delete from room_people
+    where room_people_cuid = #{roomPeopleCuid,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    insert into room_people (room_people_cuid, chat_room_cuid, sys_user_cuid, 
+      room_people_state, room_people_create_time)
+    values (#{roomPeopleCuid,jdbcType=VARCHAR}, #{chatRoomCuid,jdbcType=VARCHAR}, #{sysUserCuid,jdbcType=VARCHAR}, 
+      #{roomPeopleState,jdbcType=SMALLINT}, #{roomPeopleCreateTime,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    insert into room_people
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomPeopleCuid != null" >
+        room_people_cuid,
+      </if>
+      <if test="chatRoomCuid != null" >
+        chat_room_cuid,
+      </if>
+      <if test="sysUserCuid != null" >
+        sys_user_cuid,
+      </if>
+      <if test="roomPeopleState != null" >
+        room_people_state,
+      </if>
+      <if test="roomPeopleCreateTime != null" >
+        room_people_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomPeopleCuid != null" >
+        #{roomPeopleCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="chatRoomCuid != null" >
+        #{chatRoomCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCuid != null" >
+        #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPeopleState != null" >
+        #{roomPeopleState,jdbcType=SMALLINT},
+      </if>
+      <if test="roomPeopleCreateTime != null" >
+        #{roomPeopleCreateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    select 
+    <include refid="Base_Column_List" />
+    from room_people
+    where room_people_cuid = #{roomPeopleCuid,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    update room_people
+    <set >
+      <if test="chatRoomCuid != null" >
+        chat_room_cuid = #{chatRoomCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCuid != null" >
+        sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPeopleState != null" >
+        room_people_state = #{roomPeopleState,jdbcType=SMALLINT},
+      </if>
+      <if test="roomPeopleCreateTime != null" >
+        room_people_create_time = #{roomPeopleCreateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where room_people_cuid = #{roomPeopleCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    update room_people
+    set chat_room_cuid = #{chatRoomCuid,jdbcType=VARCHAR},
+      sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR},
+      room_people_state = #{roomPeopleState,jdbcType=SMALLINT},
+      room_people_create_time = #{roomPeopleCreateTime,jdbcType=VARCHAR}
+    where room_people_cuid = #{roomPeopleCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.RoomPeople" >
+    select 
+    <include refid="Base_Column_List" />
+    from room_people
+    <where>
+      <if test="chatRoomCuid != null" >
+        chat_room_cuid = #{chatRoomCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserCuid != null" >
+        and sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="roomPeopleState != null" >
+        and room_people_state = #{roomPeopleState,jdbcType=SMALLINT}
+      </if>
+      <if test="roomPeopleCreateTime != null" >
+        and room_people_create_time = #{roomPeopleCreateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

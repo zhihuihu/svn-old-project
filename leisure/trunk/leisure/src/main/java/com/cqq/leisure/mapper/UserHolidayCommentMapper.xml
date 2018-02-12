@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IUserHolidayCommentDao" >
+<resultMap id="BaseResultMap" type="UserHolidayComment" >
+    <id column="HOLIDAY_PLAN_ID" property="holidayPlanId" />
+    <id column="USER_ID" property="userId"  />
+    <result column="USER_HOLIDAY_COMMENT_TYPE" property="userHolidayCommentType" jdbcType="INTEGER" />
+    <result column="USER_HOLIDAY_COMMENT_STATE" property="userHolidayCommentState" jdbcType="INTEGER" />
+    <result column="USER_HOLIDAY_COMMENT_TITLE" property="userHolidayCommentTitle" jdbcType="VARCHAR" />
+    <result column="USER_HOLIDAY_COMMENT_CONTENT" property="userHolidayCommentContent" jdbcType="VARCHAR" />
+    <result column="USER_HOLIDAY_COMMENT_CREATE_TIME" property="userHolidayCommentCreateTime"  />
+    <result column="USER_HOLIDAY_COMMENT_UPDATE_TIME" property="userHolidayCommentUpdateTime"  />
+  </resultMap>
+    <sql id="Base_Column_List" >
+    HOLIDAY_PLAN_ID, USER_ID, USER_HOLIDAY_COMMENT_TYPE, USER_HOLIDAY_COMMENT_STATE, 
+    USER_HOLIDAY_COMMENT_TITLE, USER_HOLIDAY_COMMENT_CONTENT, USER_HOLIDAY_COMMENT_CREATE_TIME, 
+    USER_HOLIDAY_COMMENT_UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="UserHolidayComment" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_holiday_comment
+    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+      and USER_ID = #{userId}
+  </select>
+    <delete id="doDeleteByPrimaryKey" parameterType="UserHolidayComment" >
+    delete from user_holiday_comment
+    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+      and USER_ID = #{userId}
+  </delete>
+  <insert id="doInsert" parameterType="UserHolidayComment" >
+    insert into user_holiday_comment (HOLIDAY_PLAN_ID, USER_ID, USER_HOLIDAY_COMMENT_TYPE, 
+      USER_HOLIDAY_COMMENT_STATE, USER_HOLIDAY_COMMENT_TITLE, 
+      USER_HOLIDAY_COMMENT_CONTENT, USER_HOLIDAY_COMMENT_CREATE_TIME, 
+      USER_HOLIDAY_COMMENT_UPDATE_TIME)
+    values (#{holidayPlanId}, #{userId}, #{userHolidayCommentType}, 
+      #{userHolidayCommentState}, #{userHolidayCommentTitle}, 
+      #{userHolidayCommentContent}, #{userHolidayCommentCreateTime}, 
+      #{userHolidayCommentUpdateTime})
+  </insert>
+  <insert id="doInsertSelective" parameterType="UserHolidayComment" >
+    insert into user_holiday_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="holidayPlanId != null" >
+        HOLIDAY_PLAN_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userHolidayCommentType != null" >
+        USER_HOLIDAY_COMMENT_TYPE,
+      </if>
+      <if test="userHolidayCommentState != null" >
+        USER_HOLIDAY_COMMENT_STATE,
+      </if>
+      <if test="userHolidayCommentTitle != null" >
+        USER_HOLIDAY_COMMENT_TITLE,
+      </if>
+      <if test="userHolidayCommentContent != null" >
+        USER_HOLIDAY_COMMENT_CONTENT,
+      </if>
+      <if test="userHolidayCommentCreateTime != null" >
+        USER_HOLIDAY_COMMENT_CREATE_TIME,
+      </if>
+      <if test="userHolidayCommentUpdateTime != null" >
+        USER_HOLIDAY_COMMENT_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="holidayPlanId != null" >
+        #{holidayPlanId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="userHolidayCommentType != null" >
+        #{userHolidayCommentType},
+      </if>
+      <if test="userHolidayCommentState != null" >
+        #{userHolidayCommentState},
+      </if>
+      <if test="userHolidayCommentTitle != null" >
+        #{userHolidayCommentTitle},
+      </if>
+      <if test="userHolidayCommentContent != null" >
+        #{userHolidayCommentContent},
+      </if>
+      <if test="userHolidayCommentCreateTime != null" >
+        #{userHolidayCommentCreateTime},
+      </if>
+      <if test="userHolidayCommentUpdateTime != null" >
+        #{userHolidayCommentUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="doUpdateByPrimaryKeySelective" parameterType="UserHolidayComment" >
+    update user_holiday_comment
+    <set >
+      <if test="userHolidayCommentType != null" >
+        USER_HOLIDAY_COMMENT_TYPE = #{userHolidayCommentType},
+      </if>
+      <if test="userHolidayCommentState != null" >
+        USER_HOLIDAY_COMMENT_STATE = #{userHolidayCommentState},
+      </if>
+      <if test="userHolidayCommentTitle != null" >
+        USER_HOLIDAY_COMMENT_TITLE = #{userHolidayCommentTitle},
+      </if>
+      <if test="userHolidayCommentContent != null" >
+        USER_HOLIDAY_COMMENT_CONTENT = #{userHolidayCommentContent},
+      </if>
+      <if test="userHolidayCommentCreateTime != null" >
+        USER_HOLIDAY_COMMENT_CREATE_TIME = #{userHolidayCommentCreateTime},
+      </if>
+      <if test="userHolidayCommentUpdateTime != null" >
+        USER_HOLIDAY_COMMENT_UPDATE_TIME = #{userHolidayCommentUpdateTime},
+      </if>
+    </set>
+    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+      and USER_ID = #{userId}
+  </update>
+  <update id="doUpdateByPrimaryKey" parameterType="UserHolidayComment" >
+    update user_holiday_comment
+    set USER_HOLIDAY_COMMENT_TYPE = #{userHolidayCommentType},
+      USER_HOLIDAY_COMMENT_STATE = #{userHolidayCommentState},
+      USER_HOLIDAY_COMMENT_TITLE = #{userHolidayCommentTitle},
+      USER_HOLIDAY_COMMENT_CONTENT = #{userHolidayCommentContent},
+      USER_HOLIDAY_COMMENT_CREATE_TIME = #{userHolidayCommentCreateTime},
+      USER_HOLIDAY_COMMENT_UPDATE_TIME = #{userHolidayCommentUpdateTime}
+    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+      and USER_ID = #{userId}
+  </update>
+</mapper>

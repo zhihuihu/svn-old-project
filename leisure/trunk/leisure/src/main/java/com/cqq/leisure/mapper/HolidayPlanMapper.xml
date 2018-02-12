@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IHolidayPlanDao" >
+	
+	<resultMap id="BaseResultMap" type="HolidayPlan" >
+	    <id column="HOLIDAY_PLAN_ID" property="holidayPlanId" />
+	    <result column="TAG_ID" property="tagId" />
+	    <result column="HOLIDAY_PLAN_NAME" property="holidayPlanName" />
+	    <result column="HOLIDAY_PLAN_ICON_URL" property="holidayPlanIconUrl" />
+	    <result column="HOLIDAY_PLAN_START_TIME" property="holidayPlanStartTime" />
+	    <result column="HOLIDAY_PLAN_END_TIME" property="holidayPlanEndTime" />
+	    <result column="HOLIDAY_PLAN_DESC" property="holidayPlanDesc" />
+	    <result column="HOLIDAY_PLAN_IMG_URL" property="holidayPlanImgUrl" />
+	    <result column="HOLIDAY_PLAN_STATE" property="holidayPlanState" />
+	    <result column="HOLIDAY_PLAN_CREATE_TIME" property="holidayPlanCreateTime" />
+	    <result column="HOLIDAY_PLAN_UPDATE_TIME" property="holidayPlanUpdateTime" />
+	    <result column="HOLIDAY_PLAY_TAG" property="holidayPlayTag" />
+	    <result column="HOLIDAY_PLAY_SORT" property="holidayPlaySort" />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    HOLIDAY_PLAN_ID, TAG_ID, HOLIDAY_PLAN_NAME, HOLIDAY_PLAN_ICON_URL, HOLIDAY_PLAN_START_TIME, 
+	    HOLIDAY_PLAN_END_TIME, HOLIDAY_PLAN_DESC, HOLIDAY_PLAN_IMG_URL, HOLIDAY_PLAN_STATE, 
+	    HOLIDAY_PLAN_CREATE_TIME, HOLIDAY_PLAN_UPDATE_TIME, HOLIDAY_PLAY_TAG, HOLIDAY_PLAY_SORT
+  	</sql>
+  	
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="HolidayPlan" >
+	    delete from holiday_plan
+	    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="HolidayPlan" >
+  		<selectKey keyProperty="holidayPlanId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into holiday_plan (HOLIDAY_PLAN_ID, TAG_ID, HOLIDAY_PLAN_NAME, 
+	      HOLIDAY_PLAN_ICON_URL, HOLIDAY_PLAN_START_TIME, 
+	      HOLIDAY_PLAN_END_TIME, HOLIDAY_PLAN_DESC, 
+	      HOLIDAY_PLAN_IMG_URL, HOLIDAY_PLAN_STATE, HOLIDAY_PLAN_CREATE_TIME, 
+	      HOLIDAY_PLAN_UPDATE_TIME, HOLIDAY_PLAY_TAG, 
+	      HOLIDAY_PLAY_SORT)
+	    values (#{holidayPlanId}, #{tagId}, #{holidayPlanName}, 
+	      #{holidayPlanIconUrl}, #{holidayPlanStartTime}, 
+	      #{holidayPlanEndTime}, #{holidayPlanDesc}, 
+	      #{holidayPlanImgUrl}, #{holidayPlanState}, #{holidayPlanCreateTime}, 
+	      #{holidayPlanUpdateTime}, #{holidayPlayTag}, 
+	      #{holidayPlaySort})
+  	</insert>
+  	
+  	
+  	<insert id="doInsertSelective" parameterType="HolidayPlan" >
+  		<selectKey keyProperty="holidayPlanId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into holiday_plan
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="holidayPlanId != null" >
+	        HOLIDAY_PLAN_ID,
+	      </if>
+	      <if test="tagId != null" >
+	        TAG_ID,
+	      </if>
+	      <if test="holidayPlanName != null" >
+	        HOLIDAY_PLAN_NAME,
+	      </if>
+	      <if test="holidayPlanIconUrl != null" >
+	        HOLIDAY_PLAN_ICON_URL,
+	      </if>
+	      <if test="holidayPlanStartTime != null" >
+	        HOLIDAY_PLAN_START_TIME,
+	      </if>
+	      <if test="holidayPlanEndTime != null" >
+	        HOLIDAY_PLAN_END_TIME,
+	      </if>
+	      <if test="holidayPlanDesc != null" >
+	        HOLIDAY_PLAN_DESC,
+	      </if>
+	      <if test="holidayPlanImgUrl != null" >
+	        HOLIDAY_PLAN_IMG_URL,
+	      </if>
+	      <if test="holidayPlanState != null" >
+	        HOLIDAY_PLAN_STATE,
+	      </if>
+	      <if test="holidayPlanCreateTime != null" >
+	        HOLIDAY_PLAN_CREATE_TIME,
+	      </if>
+	      <if test="holidayPlanUpdateTime != null" >
+	        HOLIDAY_PLAN_UPDATE_TIME,
+	      </if>
+	      <if test="holidayPlayTag != null" >
+	        HOLIDAY_PLAY_TAG,
+	      </if>
+	      <if test="holidayPlaySort != null" >
+	        HOLIDAY_PLAY_SORT,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="holidayPlanId != null" >
+	        #{holidayPlanId},
+	      </if>
+	      <if test="tagId != null" >
+	        #{tagId},
+	      </if>
+	      <if test="holidayPlanName != null" >
+	        #{holidayPlanName},
+	      </if>
+	      <if test="holidayPlanIconUrl != null" >
+	        #{holidayPlanIconUrl},
+	      </if>
+	      <if test="holidayPlanStartTime != null" >
+	        #{holidayPlanStartTime},
+	      </if>
+	      <if test="holidayPlanEndTime != null" >
+	        #{holidayPlanEndTime},
+	      </if>
+	      <if test="holidayPlanDesc != null" >
+	        #{holidayPlanDesc},
+	      </if>
+	      <if test="holidayPlanImgUrl != null" >
+	        #{holidayPlanImgUrl},
+	      </if>
+	      <if test="holidayPlanState != null" >
+	        #{holidayPlanState},
+	      </if>
+	      <if test="holidayPlanCreateTime != null" >
+	        #{holidayPlanCreateTime},
+	      </if>
+	      <if test="holidayPlanUpdateTime != null" >
+	        #{holidayPlanUpdateTime},
+	      </if>
+	      <if test="holidayPlayTag != null" >
+	        #{holidayPlayTag},
+	      </if>
+	      <if test="holidayPlaySort != null" >
+	        #{holidayPlaySort},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="HolidayPlan" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from holiday_plan
+	    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="HolidayPlan" >
+	    update holiday_plan
+	    <set >
+	      <if test="tagId != null" >
+	        TAG_ID = #{tagId},
+	      </if>
+	      <if test="holidayPlanName != null" >
+	        HOLIDAY_PLAN_NAME = #{holidayPlanName},
+	      </if>
+	      <if test="holidayPlanIconUrl != null" >
+	        HOLIDAY_PLAN_ICON_URL = #{holidayPlanIconUrl},
+	      </if>
+	      <if test="holidayPlanStartTime != null" >
+	        HOLIDAY_PLAN_START_TIME = #{holidayPlanStartTime},
+	      </if>
+	      <if test="holidayPlanEndTime != null" >
+	        HOLIDAY_PLAN_END_TIME = #{holidayPlanEndTime},
+	      </if>
+	      <if test="holidayPlanDesc != null" >
+	        HOLIDAY_PLAN_DESC = #{holidayPlanDesc},
+	      </if>
+	      <if test="holidayPlanImgUrl != null" >
+	        HOLIDAY_PLAN_IMG_URL = #{holidayPlanImgUrl},
+	      </if>
+	      <if test="holidayPlanState != null" >
+	        HOLIDAY_PLAN_STATE = #{holidayPlanState},
+	      </if>
+	      <if test="holidayPlanCreateTime != null" >
+	        HOLIDAY_PLAN_CREATE_TIME = #{holidayPlanCreateTime},
+	      </if>
+	      <if test="holidayPlanUpdateTime != null" >
+	        HOLIDAY_PLAN_UPDATE_TIME = #{holidayPlanUpdateTime},
+	      </if>
+	      <if test="holidayPlayTag != null" >
+	        HOLIDAY_PLAY_TAG = #{holidayPlayTag},
+	      </if>
+	      <if test="holidayPlaySort != null" >
+	        HOLIDAY_PLAY_SORT = #{holidayPlaySort},
+	      </if>
+	    </set>
+	    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+  	</update>
+  	
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="HolidayPlan" >
+	    update holiday_plan
+	    set TAG_ID = #{tagId},
+	      HOLIDAY_PLAN_NAME = #{holidayPlanName},
+	      HOLIDAY_PLAN_ICON_URL = #{holidayPlanIconUrl},
+	      HOLIDAY_PLAN_START_TIME = #{holidayPlanStartTime},
+	      HOLIDAY_PLAN_END_TIME = #{holidayPlanEndTime},
+	      HOLIDAY_PLAN_DESC = #{holidayPlanDesc},
+	      HOLIDAY_PLAN_IMG_URL = #{holidayPlanImgUrl},
+	      HOLIDAY_PLAN_STATE = #{holidayPlanState},
+	      HOLIDAY_PLAN_CREATE_TIME = #{holidayPlanCreateTime},
+	      HOLIDAY_PLAN_UPDATE_TIME = #{holidayPlanUpdateTime},
+	      HOLIDAY_PLAY_TAG = #{holidayPlayTag},
+	      HOLIDAY_PLAY_SORT = #{holidayPlaySort}
+	    where HOLIDAY_PLAN_ID = #{holidayPlanId}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from holiday_plan
+    <where>
+      	  <if test="b.tagId != null and b.tagId != 0" >
+	        TAG_ID = #{b.tagId}
+	      </if>
+	      <if test="b.holidayPlanName != null" >
+	       	and HOLIDAY_PLAN_NAME = #{b.holidayPlanName}
+	      </if>
+	      <if test="b.holidayPlanIconUrl != null" >
+	        and HOLIDAY_PLAN_ICON_URL = #{b.holidayPlanIconUrl}
+	      </if>
+	      <if test="b.holidayPlanStartTime != null" >
+	        and HOLIDAY_PLAN_START_TIME = #{b.holidayPlanStartTime}
+	      </if>
+	      <if test="b.holidayPlanEndTime != null" >
+	        and HOLIDAY_PLAN_END_TIME = #{b.holidayPlanEndTime}
+	      </if>
+	      <if test="b.holidayPlanDesc != null" >
+	        and HOLIDAY_PLAN_DESC = #{b.holidayPlanDesc}
+	      </if>
+	      <if test="b.holidayPlanImgUrl != null" >
+	        and HOLIDAY_PLAN_IMG_URL = #{b.holidayPlanImgUrl}
+	      </if>
+	      <if test="b.holidayPlanState != null and test= b.holidayPlanState != 0">
+	        and HOLIDAY_PLAN_STATE = #{b.holidayPlanState}
+	      </if>
+	      <if test="b.holidayPlanCreateTime != null" >
+	        and HOLIDAY_PLAN_CREATE_TIME = #{b.holidayPlanCreateTime}
+	      </if>
+	      <if test="b.holidayPlanUpdateTime != null" >
+	        and HOLIDAY_PLAN_UPDATE_TIME = #{b.holidayPlanUpdateTime}
+	      </if>
+	      <if test="b.holidayPlayTag != null" >
+	        and HOLIDAY_PLAY_TAG = #{b.holidayPlayTag}
+	      </if>
+	      <if test="b.holidayPlaySort != null and test= b.holidayPlaySort != 0" >
+	        and HOLIDAY_PLAY_SORT = #{b.holidayPlaySort}
+	      </if>
+	      <if test=" searchName != null and searchName != ''" >
+	       	and (
+	       		HOLIDAY_PLAN_NAME like '%' #{searchName} '%'
+	       		or HOLIDAY_PLAN_DESC like '%' #{searchName} '%'
+	       	)
+	      </if>
+	      <if test="startTime != null and startTime != ''" >
+	        and HOLIDAY_PLAN_END_TIME >= #{startTime}
+	      </if>
+    </where>
+    	ORDER BY HOLIDAY_PLAN_CREATE_TIME DESC
+    LIMIT
+    	#{startLine},#{lineSize}
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    COUNT(1)
+    from holiday_plan
+    <where>
+      	  <if test="b.tagId != null and b.tagId != 0" >
+	        TAG_ID = #{b.tagId}
+	      </if>
+	      <if test="b.holidayPlanName != null" >
+	       	and HOLIDAY_PLAN_NAME = #{b.holidayPlanName}
+	      </if>
+	      <if test="b.holidayPlanIconUrl != null" >
+	        and HOLIDAY_PLAN_ICON_URL = #{b.holidayPlanIconUrl}
+	      </if>
+	      <if test="b.holidayPlanStartTime != null" >
+	        and HOLIDAY_PLAN_START_TIME = #{b.holidayPlanStartTime}
+	      </if>
+	      <if test="b.holidayPlanEndTime != null" >
+	        and HOLIDAY_PLAN_END_TIME = #{b.holidayPlanEndTime}
+	      </if>
+	      <if test="b.holidayPlanDesc != null" >
+	        and HOLIDAY_PLAN_DESC = #{b.holidayPlanDesc}
+	      </if>
+	      <if test="b.holidayPlanImgUrl != null" >
+	        and HOLIDAY_PLAN_IMG_URL = #{b.holidayPlanImgUrl}
+	      </if>
+	      <if test="b.holidayPlanState != null and b.holidayPlanState != 0" >
+	        and HOLIDAY_PLAN_STATE = #{b.holidayPlanState}
+	      </if>
+	      <if test="b.holidayPlanCreateTime != null" >
+	        and HOLIDAY_PLAN_CREATE_TIME = #{b.holidayPlanCreateTime}
+	      </if>
+	      <if test="b.holidayPlanUpdateTime != null" >
+	        and HOLIDAY_PLAN_UPDATE_TIME = #{b.holidayPlanUpdateTime}
+	      </if>
+	      <if test="b.holidayPlayTag != null" >
+	        and HOLIDAY_PLAY_TAG = #{b.holidayPlayTag}
+	      </if>
+	      <if test="b.holidayPlaySort != null and b.holidayPlaySort != 0" >
+	        and HOLIDAY_PLAY_SORT = #{b.holidayPlaySort}
+	      </if>
+	      <if test=" searchName != null and searchName != ''" >
+	       	and (
+	       		HOLIDAY_PLAN_NAME like '%' #{searchName} '%'
+	       		or HOLIDAY_PLAN_DESC like '%' #{searchName} '%'
+	       	)
+	      </if>
+	      <if test="startTime != null and startTime != ''" >
+	        and HOLIDAY_PLAN_END_TIME >= #{startTime}
+	      </if>
+    </where>
+  </select>
+  	
+</mapper>

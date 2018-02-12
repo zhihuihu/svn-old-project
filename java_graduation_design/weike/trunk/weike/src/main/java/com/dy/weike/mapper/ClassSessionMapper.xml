@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IClassSessionDao" >
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.ClassSession" >
+    <id column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="session_name" property="sessionName" jdbcType="VARCHAR" />
+    <result column="session_url" property="sessionUrl" jdbcType="VARCHAR" />
+    <result column="session_free" property="sessionFree" jdbcType="BIT" />
+    <result column="session_value" property="sessionValue" jdbcType="INTEGER" />
+    <result column="session_brith" property="sessionBrith" jdbcType="DATE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    session_id, class_id, session_name, session_url, session_free, session_value, session_brith
+  </sql>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.ClassSession" >
+    delete from class_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.ClassSession" >
+    insert into class_session (session_id, class_id, session_name, 
+      session_url, session_free, session_value, 
+      session_brith)
+    values (#{sessionId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{sessionName,jdbcType=VARCHAR}, 
+      #{sessionUrl,jdbcType=VARCHAR}, #{sessionFree,jdbcType=BIT}, #{sessionValue,jdbcType=INTEGER}, 
+      #{sessionBrith,jdbcType=DATE})
+  </insert> 
+  
+  <insert id="insertSelective" parameterType="com.dy.weike.entity.ClassSession" >
+    insert into class_session
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="sessionName != null" >
+        session_name,
+      </if>
+      <if test="sessionUrl != null" >
+        session_url,
+      </if>
+      <if test="sessionFree != null" >
+        session_free,
+      </if>
+      <if test="sessionValue != null" >
+        session_value,
+      </if>
+      <if test="sessionBrith != null" >
+        session_brith,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionName != null" >
+        #{sessionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionUrl != null" >
+        #{sessionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionFree != null" >
+        #{sessionFree,jdbcType=BIT},
+      </if>
+      <if test="sessionValue != null" >
+        #{sessionValue,jdbcType=INTEGER},
+      </if>
+      <if test="sessionBrith != null" >
+        #{sessionBrith,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from class_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.ClassSession" >
+    update class_session
+    <set >
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionName != null" >
+        session_name = #{sessionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionUrl != null" >
+        session_url = #{sessionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionFree != null" >
+        session_free = #{sessionFree,jdbcType=BIT},
+      </if>
+      <if test="sessionValue != null" >
+        session_value = #{sessionValue,jdbcType=INTEGER},
+      </if>
+      <if test="sessionBrith != null" >
+        session_brith = #{sessionBrith,jdbcType=DATE},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.ClassSession" >
+    update class_session
+    set class_id = #{classId,jdbcType=INTEGER},
+      session_name = #{sessionName,jdbcType=VARCHAR},
+      session_url = #{sessionUrl,jdbcType=VARCHAR},
+      session_free = #{sessionFree,jdbcType=BIT},
+      session_value = #{sessionValue,jdbcType=INTEGER},
+      session_brith = #{sessionBrith,jdbcType=DATE}
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.ClassSession" >
+    select 
+    <include refid="Base_Column_List" />
+    from class_session
+    <where> 
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="sessionName != null" >
+        and session_name = #{sessionName,jdbcType=VARCHAR}
+      </if>
+      <if test="sessionUrl != null" >
+        and session_url = #{sessionUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sessionFree != null" >
+        and session_free = #{sessionFree,jdbcType=BIT}
+      </if>
+      <if test="sessionValue != null and sessionValue != 0" >
+        and session_value = #{sessionValue,jdbcType=INTEGER}
+      </if>
+      <if test="sessionBrith != null" >
+        and session_brith = #{sessionBrith,jdbcType=DATE}
+      </if>   
+    </where>  
+    ORDER BY session_id
+  </select>
+
+</mapper>

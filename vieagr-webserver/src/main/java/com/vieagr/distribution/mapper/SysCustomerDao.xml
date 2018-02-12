@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysCustomerDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysCustomer">
+    <id column="sys_customer_id" jdbcType="VARCHAR" property="sysCustomerId" />
+    <result column="sys_customer_name" jdbcType="VARCHAR" property="sysCustomerName" />
+    <result column="sys_customer_sex" jdbcType="INTEGER" property="sysCustomerSex" />
+    <result column="sys_customer_age" jdbcType="INTEGER" property="sysCustomerAge" />
+    <result column="sys_customer_real_name" jdbcType="VARCHAR" property="sysCustomerRealName" />
+    <result column="sys_customer_mobile_number" jdbcType="VARCHAR" property="sysCustomerMobileNumber" />
+    <result column="sys_customer_qq_number" jdbcType="VARCHAR" property="sysCustomerQqNumber" />
+    <result column="sys_customer_email" jdbcType="VARCHAR" property="sysCustomerEmail" />
+    <result column="sys_customer_img_url" jdbcType="VARCHAR" property="sysCustomerImgUrl" />
+    <result column="sys_customer_store_name" jdbcType="VARCHAR" property="sysCustomerStoreName" />
+    <result column="sys_customer_store_address" jdbcType="VARCHAR" property="sysCustomerStoreAddress" />
+    <result column="sys_customer_type" jdbcType="INTEGER" property="sysCustomerType" />
+    <result column="sys_customer_grade" jdbcType="INTEGER" property="sysCustomerGrade" />
+    <result column="sys_customer_state" jdbcType="INTEGER" property="sysCustomerState" />
+    <result column="sys_customer_create_time" jdbcType="VARCHAR" property="sysCustomerCreateTime" />
+    <result column="sys_customer_update_time" jdbcType="TIMESTAMP" property="sysCustomerUpdateTime" />
+    <result column="sys_customer_del_flag" jdbcType="INTEGER" property="sysCustomerDelFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_customer_id, sys_customer_name, sys_customer_sex, sys_customer_age, sys_customer_real_name, 
+    sys_customer_mobile_number, sys_customer_qq_number, sys_customer_email, sys_customer_img_url, 
+    sys_customer_store_name, sys_customer_store_address, sys_customer_type, sys_customer_grade, 
+    sys_customer_state, sys_customer_create_time, sys_customer_update_time, sys_customer_del_flag
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_customer
+    where sys_customer_id = #{sysCustomerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_customer
+    where sys_customer_id = #{sysCustomerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysCustomer">
+    insert into sys_customer (sys_customer_id, sys_customer_name, sys_customer_sex, 
+      sys_customer_age, sys_customer_real_name, sys_customer_mobile_number, 
+      sys_customer_qq_number, sys_customer_email, 
+      sys_customer_img_url, sys_customer_store_name, 
+      sys_customer_store_address, sys_customer_type, 
+      sys_customer_grade, sys_customer_state, sys_customer_create_time, 
+      sys_customer_update_time, sys_customer_del_flag
+      )
+    values (#{sysCustomerId,jdbcType=VARCHAR}, #{sysCustomerName,jdbcType=VARCHAR}, #{sysCustomerSex,jdbcType=INTEGER}, 
+      #{sysCustomerAge,jdbcType=INTEGER}, #{sysCustomerRealName,jdbcType=VARCHAR}, #{sysCustomerMobileNumber,jdbcType=VARCHAR}, 
+      #{sysCustomerQqNumber,jdbcType=VARCHAR}, #{sysCustomerEmail,jdbcType=VARCHAR}, 
+      #{sysCustomerImgUrl,jdbcType=VARCHAR}, #{sysCustomerStoreName,jdbcType=VARCHAR}, 
+      #{sysCustomerStoreAddress,jdbcType=VARCHAR}, #{sysCustomerType,jdbcType=INTEGER}, 
+      #{sysCustomerGrade,jdbcType=INTEGER}, #{sysCustomerState,jdbcType=INTEGER}, #{sysCustomerCreateTime,jdbcType=VARCHAR}, 
+      #{sysCustomerUpdateTime,jdbcType=TIMESTAMP}, #{sysCustomerDelFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysCustomer">
+    insert into sys_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysCustomerId != null">
+        sys_customer_id,
+      </if>
+      <if test="sysCustomerName != null">
+        sys_customer_name,
+      </if>
+      <if test="sysCustomerSex != null">
+        sys_customer_sex,
+      </if>
+      <if test="sysCustomerAge != null">
+        sys_customer_age,
+      </if>
+      <if test="sysCustomerRealName != null">
+        sys_customer_real_name,
+      </if>
+      <if test="sysCustomerMobileNumber != null">
+        sys_customer_mobile_number,
+      </if>
+      <if test="sysCustomerQqNumber != null">
+        sys_customer_qq_number,
+      </if>
+      <if test="sysCustomerEmail != null">
+        sys_customer_email,
+      </if>
+      <if test="sysCustomerImgUrl != null">
+        sys_customer_img_url,
+      </if>
+      <if test="sysCustomerStoreName != null">
+        sys_customer_store_name,
+      </if>
+      <if test="sysCustomerStoreAddress != null">
+        sys_customer_store_address,
+      </if>
+      <if test="sysCustomerType != null">
+        sys_customer_type,
+      </if>
+      <if test="sysCustomerGrade != null">
+        sys_customer_grade,
+      </if>
+      <if test="sysCustomerState != null">
+        sys_customer_state,
+      </if>
+      <if test="sysCustomerCreateTime != null">
+        sys_customer_create_time,
+      </if>
+      <if test="sysCustomerUpdateTime != null">
+        sys_customer_update_time,
+      </if>
+      <if test="sysCustomerDelFlag != null">
+        sys_customer_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysCustomerId != null">
+        #{sysCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerName != null">
+        #{sysCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerSex != null">
+        #{sysCustomerSex,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerAge != null">
+        #{sysCustomerAge,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerRealName != null">
+        #{sysCustomerRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerMobileNumber != null">
+        #{sysCustomerMobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerQqNumber != null">
+        #{sysCustomerQqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerEmail != null">
+        #{sysCustomerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerImgUrl != null">
+        #{sysCustomerImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerStoreName != null">
+        #{sysCustomerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerStoreAddress != null">
+        #{sysCustomerStoreAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerType != null">
+        #{sysCustomerType,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerGrade != null">
+        #{sysCustomerGrade,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerState != null">
+        #{sysCustomerState,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerCreateTime != null">
+        #{sysCustomerCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerUpdateTime != null">
+        #{sysCustomerUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCustomerDelFlag != null">
+        #{sysCustomerDelFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysCustomer">
+    update sys_customer
+    <set>
+      <if test="sysCustomerName != null">
+        sys_customer_name = #{sysCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerSex != null">
+        sys_customer_sex = #{sysCustomerSex,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerAge != null">
+        sys_customer_age = #{sysCustomerAge,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerRealName != null">
+        sys_customer_real_name = #{sysCustomerRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerMobileNumber != null">
+        sys_customer_mobile_number = #{sysCustomerMobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerQqNumber != null">
+        sys_customer_qq_number = #{sysCustomerQqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerEmail != null">
+        sys_customer_email = #{sysCustomerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerImgUrl != null">
+        sys_customer_img_url = #{sysCustomerImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerStoreName != null">
+        sys_customer_store_name = #{sysCustomerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerStoreAddress != null">
+        sys_customer_store_address = #{sysCustomerStoreAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerType != null">
+        sys_customer_type = #{sysCustomerType,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerGrade != null">
+        sys_customer_grade = #{sysCustomerGrade,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerState != null">
+        sys_customer_state = #{sysCustomerState,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerCreateTime != null">
+        sys_customer_create_time = #{sysCustomerCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerUpdateTime != null">
+        sys_customer_update_time = #{sysCustomerUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCustomerDelFlag != null">
+        sys_customer_del_flag = #{sysCustomerDelFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sys_customer_id = #{sysCustomerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysCustomer">
+    update sys_customer
+    set sys_customer_name = #{sysCustomerName,jdbcType=VARCHAR},
+      sys_customer_sex = #{sysCustomerSex,jdbcType=INTEGER},
+      sys_customer_age = #{sysCustomerAge,jdbcType=INTEGER},
+      sys_customer_real_name = #{sysCustomerRealName,jdbcType=VARCHAR},
+      sys_customer_mobile_number = #{sysCustomerMobileNumber,jdbcType=VARCHAR},
+      sys_customer_qq_number = #{sysCustomerQqNumber,jdbcType=VARCHAR},
+      sys_customer_email = #{sysCustomerEmail,jdbcType=VARCHAR},
+      sys_customer_img_url = #{sysCustomerImgUrl,jdbcType=VARCHAR},
+      sys_customer_store_name = #{sysCustomerStoreName,jdbcType=VARCHAR},
+      sys_customer_store_address = #{sysCustomerStoreAddress,jdbcType=VARCHAR},
+      sys_customer_type = #{sysCustomerType,jdbcType=INTEGER},
+      sys_customer_grade = #{sysCustomerGrade,jdbcType=INTEGER},
+      sys_customer_state = #{sysCustomerState,jdbcType=INTEGER},
+      sys_customer_create_time = #{sysCustomerCreateTime,jdbcType=VARCHAR},
+      sys_customer_update_time = #{sysCustomerUpdateTime,jdbcType=TIMESTAMP},
+      sys_customer_del_flag = #{sysCustomerDelFlag,jdbcType=INTEGER}
+    where sys_customer_id = #{sysCustomerId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysCustomer" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_customer
+  </select>
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysCustomer" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_customer
+  </select>
+  
+  <select id="selectCustomerListByLike" parameterType="com.vieagr.distribution.entity.SysCustomer" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_customer
+  	<where>
+  	  <if test="sysCustomerName != null">
+        sys_customer_name like '%' #{sysCustomerName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerRealName != null">
+        or sys_customer_real_name like '%' #{sysCustomerRealName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerMobileNumber != null">
+        or sys_customer_mobile_number like '%' #{sysCustomerMobileNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerQqNumber != null">
+        or sys_customer_qq_number like '%' #{sysCustomerQqNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerEmail != null">
+        or sys_customer_email like '%' #{sysCustomerEmail,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerImgUrl != null">
+        and sys_customer_img_url = #{sysCustomerImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysCustomerStoreName != null">
+        or sys_customer_store_name like '%' #{sysCustomerStoreName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerStoreAddress != null">
+        or sys_customer_store_address like '%' #{sysCustomerStoreAddress,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerType != null">
+        and sys_customer_type = #{sysCustomerType,jdbcType=INTEGER}
+      </if>
+      <if test="sysCustomerGrade != null">
+        and sys_customer_grade = #{sysCustomerGrade,jdbcType=INTEGER}
+      </if>
+      <if test="sysCustomerState != null">
+        and sys_customer_state = #{sysCustomerState,jdbcType=INTEGER}
+      </if>
+      <if test="sysCustomerDelFlag != null">
+        and sys_customer_del_flag = #{sysCustomerDelFlag,jdbcType=INTEGER}
+      </if>
+  	</where>
+  	order by sys_customer_create_time asc
+  </select>
+  <select id="selectCustomerOrderByOrderTotal" parameterType="com.vieagr.distribution.entity.SysCustomer" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_customer customer
+  		<where>
+  	  <if test="sysCustomerName != null">
+        sys_customer_name like '%' #{sysCustomerName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerRealName != null">
+        or sys_customer_real_name like '%' #{sysCustomerRealName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerMobileNumber != null">
+        or sys_customer_mobile_number like '%' #{sysCustomerMobileNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerQqNumber != null">
+        or sys_customer_qq_number like '%' #{sysCustomerQqNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerEmail != null">
+        or sys_customer_email like '%' #{sysCustomerEmail,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerImgUrl != null">
+        and sys_customer_img_url = #{sysCustomerImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysCustomerStoreName != null">
+        or sys_customer_store_name like '%' #{sysCustomerStoreName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerStoreAddress != null">
+        or sys_customer_store_address like '%' #{sysCustomerStoreAddress,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysCustomerType != null">
+        and sys_customer_type = #{sysCustomerType,jdbcType=INTEGER}
+      </if>
+      <if test="sysCustomerGrade != null">
+        and sys_customer_grade = #{sysCustomerGrade,jdbcType=INTEGER}
+      </if>
+      <if test="sysCustomerState != null">
+        and sys_customer_state = #{sysCustomerState,jdbcType=INTEGER}
+      </if>
+      <if test="sysCustomerDelFlag != null">
+        and sys_customer_del_flag = #{sysCustomerDelFlag,jdbcType=INTEGER}
+      </if>
+  	</where> 
+  	order by (
+		select count(ser_order_customer_id) from ser_order `order` where `order`.ser_order_customer_id = customer.sys_customer_id)
+	desc
+  </select>
+  <select id="selectCustomerCount"  resultType="int">
+  	select 
+  		count(sys_customer_id)
+  	from sys_customer
+  </select>
+  
+  <select id="selectCustomerForCustomerGroup" parameterType="com.vieagr.distribution.query.SysCustomerQuery" resultMap="BaseResultMap">
+	select  
+	   <include refid="Base_Column_List"/>,sys_customer_group_id as sysCustomerGroupId, 
+	   sys_customer_group_name as sysCustomerGroupName
+	from sys_customer 
+		left join bet_customer_group on sys_customer_id = bet_customer_group_customer_id
+		left join sys_customer_group on bet_customer_group_customer_group_id = sys_customer_group_id
+	where sys_customer_state = 1 and sys_customer_group_id = #{customerGroupId, jdbcType=VARCHAR}
+  </select>
+  
+    <select id="selectCustomerCountByCustomerGroupId" parameterType="string" resultType="int">
+  	select count(sys_customer_id) 
+  	from sys_customer
+  		left join bet_customer_group on sys_customer_id = bet_customer_group_customer_id
+  	where bet_customer_group_customer_group_id = #{sysCustomerGroupId, jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

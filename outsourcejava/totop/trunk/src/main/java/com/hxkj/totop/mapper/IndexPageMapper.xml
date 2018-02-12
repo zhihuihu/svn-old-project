@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.totop.dao.IIndexPageDao">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" >
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+    <resultMap id="BaseResultMap" type="IndexPage" >
+        <id column="INDEX_PAGE_CUID" property="indexPageCuid" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_IMAGE_URL" property="indexPageImageUrl" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_IMAGE_NOTES" property="indexPageImageNotes" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_SUB_CONTENT" property="indexPageSubContent" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_TO_URL" property="indexPageToUrl" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_TITLE_NAME" property="indexPageTitleName" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_MAIN_CONTENT" property="indexPageMainContent" jdbcType="VARCHAR" />
+        <result column="INDEX_PAGE_TYPE" property="indexPageType" jdbcType="INTEGER" />
+        <result column="INDEX_PAGE_STATE" property="indexPageState" jdbcType="INTEGER" />
+        <result column="INDEX_PAGE_CREATE_TIME" property="indexPageCreateTime" jdbcType="TIMESTAMP" />
+        <result column="INDEX_PAGE_UPDATE_TIME" property="indexPageUpdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        INDEX_PAGE_CUID, INDEX_PAGE_IMAGE_URL, INDEX_PAGE_IMAGE_NOTES, INDEX_PAGE_SUB_CONTENT,
+        INDEX_PAGE_TO_URL, INDEX_PAGE_TITLE_NAME, INDEX_PAGE_MAIN_CONTENT, INDEX_PAGE_TYPE,
+        INDEX_PAGE_STATE, INDEX_PAGE_CREATE_TIME, INDEX_PAGE_UPDATE_TIME
+    </sql>
+
+    <insert id="doInsert" parameterType="IndexPage" >
+        <selectKey keyProperty="indexPageCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_INDEX_PAGE_CUID()
+        </selectKey>
+        insert into index_page (INDEX_PAGE_CUID, INDEX_PAGE_IMAGE_URL,
+        INDEX_PAGE_IMAGE_NOTES, INDEX_PAGE_SUB_CONTENT,
+        INDEX_PAGE_TO_URL, INDEX_PAGE_TITLE_NAME, INDEX_PAGE_MAIN_CONTENT,
+        INDEX_PAGE_TYPE, INDEX_PAGE_STATE, INDEX_PAGE_CREATE_TIME,
+        INDEX_PAGE_UPDATE_TIME)
+        values (#{indexPageCuid,jdbcType=VARCHAR}, #{indexPageImageUrl,jdbcType=VARCHAR},
+        #{indexPageImageNotes,jdbcType=VARCHAR}, #{indexPageSubContent,jdbcType=VARCHAR},
+        #{indexPageToUrl,jdbcType=VARCHAR}, #{indexPageTitleName,jdbcType=VARCHAR}, #{indexPageMainContent,jdbcType=VARCHAR},
+        #{indexPageType,jdbcType=INTEGER}, #{indexPageState,jdbcType=INTEGER}, #{indexPageCreateTime,jdbcType=TIMESTAMP},
+        #{indexPageUpdateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="doInsertSelective" parameterType="IndexPage" >
+        <selectKey keyProperty="indexPageCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_INDEX_PAGE_CUID()
+        </selectKey>
+        insert into index_page
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="indexPageCuid != null" >
+                INDEX_PAGE_CUID,
+            </if>
+            <if test="indexPageImageUrl != null" >
+                INDEX_PAGE_IMAGE_URL,
+            </if>
+            <if test="indexPageImageNotes != null" >
+                INDEX_PAGE_IMAGE_NOTES,
+            </if>
+            <if test="indexPageSubContent != null" >
+                INDEX_PAGE_SUB_CONTENT,
+            </if>
+            <if test="indexPageToUrl != null" >
+                INDEX_PAGE_TO_URL,
+            </if>
+            <if test="indexPageTitleName != null" >
+                INDEX_PAGE_TITLE_NAME,
+            </if>
+            <if test="indexPageMainContent != null" >
+                INDEX_PAGE_MAIN_CONTENT,
+            </if>
+            <if test="indexPageType != null" >
+                INDEX_PAGE_TYPE,
+            </if>
+            <if test="indexPageState != null" >
+                INDEX_PAGE_STATE,
+            </if>
+            <if test="indexPageCreateTime != null" >
+                INDEX_PAGE_CREATE_TIME,
+            </if>
+            <if test="indexPageUpdateTime != null" >
+                INDEX_PAGE_UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="indexPageCuid != null" >
+                #{indexPageCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageImageUrl != null" >
+                #{indexPageImageUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageImageNotes != null" >
+                #{indexPageImageNotes,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageSubContent != null" >
+                #{indexPageSubContent,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageToUrl != null" >
+                #{indexPageToUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageTitleName != null" >
+                #{indexPageTitleName,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageMainContent != null" >
+                #{indexPageMainContent,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageType != null" >
+                #{indexPageType,jdbcType=INTEGER},
+            </if>
+            <if test="indexPageState != null" >
+                #{indexPageState,jdbcType=INTEGER},
+            </if>
+            <if test="indexPageCreateTime != null" >
+                #{indexPageCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="indexPageUpdateTime != null" >
+                #{indexPageUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <delete id="doDeleteByPrimaryKey" parameterType="IndexPage" >
+        delete from index_page
+        where INDEX_PAGE_CUID = #{indexPageCuid,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="doUpdateByPrimaryKeySelective" parameterType="IndexPage" >
+        update index_page
+        <set >
+            <if test="indexPageImageUrl != null" >
+                INDEX_PAGE_IMAGE_URL = #{indexPageImageUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageImageNotes != null" >
+                INDEX_PAGE_IMAGE_NOTES = #{indexPageImageNotes,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageSubContent != null" >
+                INDEX_PAGE_SUB_CONTENT = #{indexPageSubContent,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageToUrl != null" >
+                INDEX_PAGE_TO_URL = #{indexPageToUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageTitleName != null" >
+                INDEX_PAGE_TITLE_NAME = #{indexPageTitleName,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageMainContent != null" >
+                INDEX_PAGE_MAIN_CONTENT = #{indexPageMainContent,jdbcType=VARCHAR},
+            </if>
+            <if test="indexPageType != null and indexPageType != 0 " >
+                INDEX_PAGE_TYPE = #{indexPageType,jdbcType=INTEGER},
+            </if>
+            <if test="indexPageState != null and indexPageState != 0 " >
+                INDEX_PAGE_STATE = #{indexPageState,jdbcType=INTEGER},
+            </if>
+            <if test="indexPageCreateTime != null" >
+                INDEX_PAGE_CREATE_TIME = #{indexPageCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="indexPageUpdateTime != null" >
+                INDEX_PAGE_UPDATE_TIME = #{indexPageUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where INDEX_PAGE_CUID = #{indexPageCuid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="doUpdateByPrimaryKey" parameterType="IndexPage" >
+        update index_page
+        set INDEX_PAGE_IMAGE_URL = #{indexPageImageUrl,jdbcType=VARCHAR},
+        INDEX_PAGE_IMAGE_NOTES = #{indexPageImageNotes,jdbcType=VARCHAR},
+        INDEX_PAGE_SUB_CONTENT = #{indexPageSubContent,jdbcType=VARCHAR},
+        INDEX_PAGE_TO_URL = #{indexPageToUrl,jdbcType=VARCHAR},
+        INDEX_PAGE_TITLE_NAME = #{indexPageTitleName,jdbcType=VARCHAR},
+        INDEX_PAGE_MAIN_CONTENT = #{indexPageMainContent,jdbcType=VARCHAR},
+        INDEX_PAGE_TYPE = #{indexPageType,jdbcType=INTEGER},
+        INDEX_PAGE_STATE = #{indexPageState,jdbcType=INTEGER},
+        INDEX_PAGE_CREATE_TIME = #{indexPageCreateTime,jdbcType=TIMESTAMP},
+        INDEX_PAGE_UPDATE_TIME = #{indexPageUpdateTime,jdbcType=TIMESTAMP}
+        where INDEX_PAGE_CUID = #{indexPageCuid,jdbcType=VARCHAR}
+    </update>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="IndexPage" >
+        select
+        <include refid="Base_Column_List" />
+        from index_page
+        where INDEX_PAGE_CUID = #{indexPageCuid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="IndexPage" >
+        select
+        <include refid="Base_Column_List" />
+        from index_page
+        <where>
+            <if test="indexPageImageUrl != null" >
+                INDEX_PAGE_IMAGE_URL = #{indexPageImageUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="indexPageImageNotes != null" >
+                and INDEX_PAGE_IMAGE_NOTES = #{indexPageImageNotes,jdbcType=VARCHAR}
+            </if>
+            <if test="indexPageSubContent != null" >
+                and INDEX_PAGE_SUB_CONTENT = #{indexPageSubContent,jdbcType=VARCHAR}
+            </if>
+            <if test="indexPageToUrl != null" >
+                and INDEX_PAGE_TO_URL = #{indexPageToUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="indexPageTitleName != null" >
+                and INDEX_PAGE_TITLE_NAME = #{indexPageTitleName,jdbcType=VARCHAR}
+            </if>
+            <if test="indexPageMainContent != null" >
+                and INDEX_PAGE_MAIN_CONTENT = #{indexPageMainContent,jdbcType=VARCHAR}
+            </if>
+            <if test="indexPageType != null and indexPageType != 0 " >
+                and INDEX_PAGE_TYPE = #{indexPageType,jdbcType=INTEGER}
+            </if>
+            <if test="indexPageState != null and indexPageState != 0" >
+                and INDEX_PAGE_STATE = #{indexPageState,jdbcType=INTEGER}
+            </if>
+            <if test="indexPageCreateTime != null" >
+                and INDEX_PAGE_CREATE_TIME = #{indexPageCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="indexPageUpdateTime != null" >
+                and INDEX_PAGE_UPDATE_TIME = #{indexPageUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectechcaheList" resultType="Map" parameterType="IndexPage" >
+        select
+            * from index_page join sys_user
+    </select>
+</mapper>

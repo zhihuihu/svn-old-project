@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.ISysUserDao" >
+	
+	
+	<resultMap id="BaseResultMap" type="SysUser" >
+	    <id column="SYS_USER_CUID" property="sysUserCuid"  />
+	    <result column="MAJOR_CUID" property="majorCuid" />
+	    <result column="SYS_USER_NAME" property="sysUserName" />
+	    <result column="SYS_USER_REAL_NAME" property="sysUserRealName"  />
+	    <result column="SYS_USER_LOGIN_NAME" property="sysUserLoginName"  />
+	    <result column="SYS_USER_PASSWORD" property="sysUserPassword" />
+	    <result column="SYS_USER_TYPE" property="sysUserType"  />
+	    <result column="SYS_USER_EMAIL" property="sysUserEmail"  />
+	    <result column="SYS_USER_SEX" property="sysUserSex"  />
+	    <result column="SYS_USER_AGE" property="sysUserAge"  />
+	    <result column="SYS_USER_TELE" property="sysUserTele"  />
+	    <result column="SYS_USER_VER_CODE" property="sysUserVerCode"  />
+	    <result column="SYS_USER_URL" property="sysUserUrl"  />
+	    <result column="SYS_USER_SIGNATURE" property="sysUserSignature"  />
+	    <result column="SYS_USER_COLLEGE" property="sysUserCollege"  />
+	    <result column="SYS_USER_MAGOR" property="sysUserMagor"  />
+		<result column="SYS_USER_FOR_SCHOOL" property="sysUserForSchool" />
+    	<result column="SYS_USER_FOR_MAGOR" property="sysUserForMagor"  />	    
+	    <result column="SYS_USER_LABEL" property="sysUserLabel"  />
+	    <result column="SYS_USER_ADDRESS" property="sysUserAddress"  />
+	    <result column="SYS_USER_GPS_ADDRESS" property="sysUserGpsAddress" />
+	    <result column="SYS_USER_STATE" property="sysUserState"  />
+	    <result column="SYS_USER_CREATE_TIME" property="sysUserCreateTime"  />
+	    <result column="SYS_USER_UPDATE_TIME" property="sysUserUpdateTime"  />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    SYS_USER_CUID, 
+	    MAJOR_CUID, 
+	    SYS_USER_NAME, 
+	    SYS_USER_REAL_NAME, 
+	    SYS_USER_LOGIN_NAME, 
+	    SYS_USER_PASSWORD, 
+	    SYS_USER_TYPE, 
+	    SYS_USER_EMAIL, 
+	    SYS_USER_SEX, 
+	    SYS_USER_AGE, 
+	    SYS_USER_TELE, 
+	    SYS_USER_VER_CODE, 
+	    SYS_USER_URL, 
+	    SYS_USER_SIGNATURE, 
+	    SYS_USER_COLLEGE, 
+	    SYS_USER_MAGOR, 
+	    SYS_USER_FOR_SCHOOL, 
+	    SYS_USER_FOR_MAGOR,
+	    SYS_USER_LABEL, 
+	    SYS_USER_ADDRESS,
+	     SYS_USER_GPS_ADDRESS, 
+	     SYS_USER_STATE, 
+	     SYS_USER_CREATE_TIME, 
+	    SYS_USER_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="SysUser" >
+	    delete from 
+	    	sys_user
+	    where 
+	    	SYS_USER_CUID = #{sysUserCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="SysUser" >
+	    insert into 
+	    	sys_user 
+		    	(SYS_USER_CUID, 
+		    	MAJOR_CUID, 
+		    	SYS_USER_NAME, 
+		      SYS_USER_REAL_NAME, 
+		      SYS_USER_LOGIN_NAME, 
+		      SYS_USER_PASSWORD, 
+		      SYS_USER_TYPE, 
+		      SYS_USER_EMAIL, 
+		      SYS_USER_SEX, 
+		      SYS_USER_AGE, 
+		      SYS_USER_TELE, 
+		      SYS_USER_VER_CODE, 
+		      SYS_USER_URL, 
+		      SYS_USER_SIGNATURE, 
+		      SYS_USER_COLLEGE, 
+		      SYS_USER_MAGOR, 
+		      SYS_USER_FOR_SCHOOL, 
+		      SYS_USER_FOR_MAGOR,
+		      SYS_USER_LABEL, 
+		      SYS_USER_ADDRESS, 
+		      SYS_USER_GPS_ADDRESS, 
+		      SYS_USER_STATE, 
+		      SYS_USER_CREATE_TIME, 
+		      SYS_USER_UPDATE_TIME)
+	    values 
+		    	(#{sysUserCuid}, 
+		    	#{majorCuid}, 
+		    	#{sysUserName}, 
+		      #{sysUserRealName}, 
+		      #{sysUserLoginName}, 
+		      #{sysUserPassword}, 
+		      #{sysUserType}, 
+		      #{sysUserEmail}, 
+		      #{sysUserSex}, 
+		      #{sysUserAge}, 
+		      #{sysUserTele}, 
+		      #{sysUserVerCode}, 
+		      #{sysUserUrl}, 
+		      #{sysUserSignature}, 
+		      #{sysUserCollege}, 
+		      #{sysUserMagor}, 
+		      #{sysUserForSchool}, 
+		      #{sysUserForMagor}, 
+		      #{sysUserLabel}, 
+		      #{sysUserAddress}, 
+		      #{sysUserGpsAddress}, 
+		      #{sysUserState}, 
+		      #{sysUserCreateTime}, 
+		      #{sysUserUpdateTime})
+  	</insert>
+  	
+  	
+  	<insert id="doInsertSelective" parameterType="SysUser" >
+	    insert into sys_user
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="majorCuid != null" >
+	        MAJOR_CUID,
+	      </if>
+	      <if test="sysUserName != null" >
+	        SYS_USER_NAME,
+	      </if>
+	      <if test="sysUserRealName != null" >
+	        SYS_USER_REAL_NAME,
+	      </if>
+	      <if test="sysUserLoginName != null" >
+	        SYS_USER_LOGIN_NAME,
+	      </if>
+	      <if test="sysUserPassword != null" >
+	        SYS_USER_PASSWORD,
+	      </if>
+	      <if test="sysUserType != null" >
+	        SYS_USER_TYPE,
+	      </if>
+	      <if test="sysUserEmail != null" >
+	        SYS_USER_EMAIL,
+	      </if>
+	      <if test="sysUserSex != null" >
+	        SYS_USER_SEX,
+	      </if>
+	      <if test="sysUserAge != null" >
+	        SYS_USER_AGE,
+	      </if>
+	      <if test="sysUserTele != null" >
+	        SYS_USER_TELE,
+	      </if>
+	      <if test="sysUserVerCode != null" >
+	        SYS_USER_VER_CODE,
+	      </if>
+	      <if test="sysUserUrl != null" >
+	        SYS_USER_URL,
+	      </if>
+	      <if test="sysUserSignature != null" >
+	        SYS_USER_SIGNATURE,
+	      </if>
+	      <if test="sysUserCollege != null" >
+	        SYS_USER_COLLEGE,
+	      </if>
+	      <if test="sysUserMagor != null" >
+	        SYS_USER_MAGOR,
+	      </if>
+	      <if test="sysUserForSchool != null" >
+	        SYS_USER_FOR_SCHOOL,
+	      </if>
+	      <if test="sysUserForMagor != null" >
+	        SYS_USER_FOR_MAGOR,
+	      </if>
+	      <if test="sysUserLabel != null" >
+	        SYS_USER_LABEL,
+	      </if>
+	      <if test="sysUserAddress != null" >
+	        SYS_USER_ADDRESS,
+	      </if>
+	      <if test="sysUserGpsAddress != null" >
+	        SYS_USER_GPS_ADDRESS,
+	      </if>
+	      <if test="sysUserState != null" >
+	        SYS_USER_STATE,
+	      </if>
+	      <if test="sysUserCreateTime != null" >
+	        SYS_USER_CREATE_TIME,
+	      </if>
+	      <if test="sysUserUpdateTime != null" >
+	        SYS_USER_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="majorCuid != null" >
+	        #{majorCuid},
+	      </if>
+	      <if test="sysUserName != null" >
+	        #{sysUserName},
+	      </if>
+	      <if test="sysUserRealName != null" >
+	        #{sysUserRealName},
+	      </if>
+	      <if test="sysUserLoginName != null" >
+	        #{sysUserLoginName},
+	      </if>
+	      <if test="sysUserPassword != null" >
+	        #{sysUserPassword},
+	      </if>
+	      <if test="sysUserType != null" >
+	        #{sysUserType},
+	      </if>
+	      <if test="sysUserEmail != null" >
+	        #{sysUserEmail},
+	      </if>
+	      <if test="sysUserSex != null" >
+	        #{sysUserSex},
+	      </if>
+	      <if test="sysUserAge != null" >
+	        #{sysUserAge},
+	      </if>
+	      <if test="sysUserTele != null" >
+	        #{sysUserTele},
+	      </if>
+	      <if test="sysUserVerCode != null" >
+	        #{sysUserVerCode},
+	      </if>
+	      <if test="sysUserUrl != null" >
+	        #{sysUserUrl},
+	      </if>
+	      <if test="sysUserSignature != null" >
+	        #{sysUserSignature},
+	      </if>
+	      <if test="sysUserCollege != null" >
+	        #{sysUserCollege},
+	      </if>
+	      <if test="sysUserMagor != null" >
+	        #{sysUserMagor},
+	      </if>
+	      <if test="sysUserForSchool != null" >
+	        #{sysUserForSchool},
+	      </if>
+	      <if test="sysUserForMagor != null" >
+	        #{sysUserForMagor},
+	      </if>
+	      <if test="sysUserLabel != null" >
+	        #{sysUserLabel},
+	      </if>
+	      <if test="sysUserAddress != null" >
+	        #{sysUserAddress},
+	      </if>
+	      <if test="sysUserGpsAddress != null" >
+	        #{sysUserGpsAddress},
+	      </if>
+	      <if test="sysUserState != null" >
+	        #{sysUserState},
+	      </if>
+	      <if test="sysUserCreateTime != null" >
+	        #{sysUserCreateTime},
+	      </if>
+	      <if test="sysUserUpdateTime != null" >
+	        #{sysUserUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="SysUser" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	sys_user
+	    where 
+	    	SYS_USER_CUID = #{sysUserCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="SysUser" >
+	    update sys_user
+	    <set >
+	      <if test="majorCuid != null" >
+	        MAJOR_CUID = #{majorCuid},
+	      </if>
+	      <if test="sysUserName != null" >
+	        SYS_USER_NAME = #{sysUserName},
+	      </if>
+	      <if test="sysUserRealName != null" >
+	        SYS_USER_REAL_NAME = #{sysUserRealName},
+	      </if>
+	      <if test="sysUserLoginName != null" >
+	        SYS_USER_LOGIN_NAME = #{sysUserLoginName},
+	      </if>
+	      <if test="sysUserPassword != null" >
+	        SYS_USER_PASSWORD = #{sysUserPassword},
+	      </if>
+	      <if test="sysUserType != null and sysUserType != 0" >
+	        SYS_USER_TYPE = #{sysUserType},
+	      </if>
+	      <if test="sysUserEmail != null" >
+	        SYS_USER_EMAIL = #{sysUserEmail},
+	      </if>
+	      <if test="sysUserSex != null and sysUserSex != 0" >
+	        SYS_USER_SEX = #{sysUserSex},
+	      </if>
+	      <if test="sysUserAge != null and sysUserAge != 0" >
+	        SYS_USER_AGE = #{sysUserAge},
+	      </if>
+	      <if test="sysUserTele != null" >
+	        SYS_USER_TELE = #{sysUserTele},
+	      </if>
+	      <if test="sysUserVerCode != null" >
+	        SYS_USER_VER_CODE = #{sysUserVerCode},
+	      </if>
+	      <if test="sysUserUrl != null" >
+	        SYS_USER_URL = #{sysUserUrl},
+	      </if>
+	      <if test="sysUserSignature != null" >
+	        SYS_USER_SIGNATURE = #{sysUserSignature},
+	      </if>
+	      <if test="sysUserCollege != null" >
+	        SYS_USER_COLLEGE = #{sysUserCollege},
+	      </if>
+	      <if test="sysUserMagor != null" >
+	        SYS_USER_MAGOR = #{sysUserMagor},
+	      </if>
+	      <if test="sysUserForSchool != null" >
+	        SYS_USER_FOR_SCHOOL = #{sysUserForSchool},
+	      </if>
+	      <if test="sysUserForMagor != null" >
+	        SYS_USER_FOR_MAGOR = #{sysUserForMagor},
+	      </if>
+	      <if test="sysUserLabel != null" >
+	        SYS_USER_LABEL = #{sysUserLabel},
+	      </if>
+	      <if test="sysUserAddress != null" >
+	        SYS_USER_ADDRESS = #{sysUserAddress},
+	      </if>
+	      <if test="sysUserGpsAddress != null" >
+	        SYS_USER_GPS_ADDRESS = #{sysUserGpsAddress},
+	      </if>
+	      <if test="sysUserState != null and sysUserState != 0" >
+	        SYS_USER_STATE = #{sysUserState},
+	      </if>
+	      <if test="sysUserCreateTime != null" >
+	        SYS_USER_CREATE_TIME = #{sysUserCreateTime},
+	      </if>
+	      <if test="sysUserUpdateTime != null" >
+	        SYS_USER_UPDATE_TIME = #{sysUserUpdateTime},
+	      </if>
+	    </set>
+	    where SYS_USER_CUID = #{sysUserCuid}
+  	</update>
+  	
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="SysUser" >
+	    update sys_user
+	    set MAJOR_CUID = #{majorCuid},
+	      SYS_USER_NAME = #{sysUserName},
+	      SYS_USER_REAL_NAME = #{sysUserRealName},
+	      SYS_USER_LOGIN_NAME = #{sysUserLoginName},
+	      SYS_USER_PASSWORD = #{sysUserPassword},
+	      SYS_USER_TYPE = #{sysUserType},
+	      SYS_USER_EMAIL = #{sysUserEmail},
+	      SYS_USER_SEX = #{sysUserSex},
+	      SYS_USER_AGE = #{sysUserAge},
+	      SYS_USER_TELE = #{sysUserTele},
+	      SYS_USER_VER_CODE = #{sysUserVerCode},
+	      SYS_USER_URL = #{sysUserUrl},
+	      SYS_USER_SIGNATURE = #{sysUserSignature},
+	      SYS_USER_COLLEGE = #{sysUserCollege},
+	      SYS_USER_MAGOR = #{sysUserMagor},
+	      SYS_USER_FOR_SCHOOL = #{sysUserForSchool},
+      	  SYS_USER_FOR_MAGOR = #{sysUserForMagor},
+	      SYS_USER_LABEL = #{sysUserLabel},
+	      SYS_USER_ADDRESS = #{sysUserAddress},
+	      SYS_USER_GPS_ADDRESS = #{sysUserGpsAddress},
+	      SYS_USER_STATE = #{sysUserState},
+	      SYS_USER_CREATE_TIME = #{sysUserCreateTime},
+	      SYS_USER_UPDATE_TIME = #{sysUserUpdateTime}
+	    where SYS_USER_CUID = #{sysUserCuid}
+  	</update>
+  	
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	sys_user
+	    <where>
+	    	<if test="b.majorCuid != null" >
+	        MAJOR_CUID = #{b.majorCuid}
+	      </if>
+	      <if test="b.sysUserName != null" >
+	        and SYS_USER_NAME = #{b.sysUserName}
+	      </if>
+	      <if test="b.sysUserRealName != null" >
+	        and SYS_USER_REAL_NAME = #{b.sysUserRealName}
+	      </if>
+	      <if test="b.sysUserLoginName != null" >
+	        and SYS_USER_LOGIN_NAME = #{b.sysUserLoginName}
+	      </if>
+	      <if test="b.sysUserPassword != null" >
+	        and SYS_USER_PASSWORD = #{b.sysUserPassword}
+	      </if>
+	      <if test="b.sysUserType != null and b.sysUserType != 0" >
+	        and SYS_USER_TYPE = #{b.sysUserType}
+	      </if>
+	      <if test="b.sysUserEmail != null" >
+	        and SYS_USER_EMAIL = #{b.sysUserEmail}
+	      </if>
+	      <if test="b.sysUserSex != null and b.sysUserSex != 0" >
+	        and SYS_USER_SEX = #{b.sysUserSex}
+	      </if>
+	      <if test="b.sysUserAge != null and b.sysUserAge != 0" >
+	        and SYS_USER_AGE = #{b.sysUserAge}
+	      </if>
+	      <if test="b.sysUserTele != null" >
+	        and SYS_USER_TELE = #{b.sysUserTele}
+	      </if>
+	      <if test="b.sysUserVerCode != null" >
+	        and SYS_USER_VER_CODE = #{b.sysUserVerCode}
+	      </if>
+	      <if test="b.sysUserUrl != null" >
+	        and SYS_USER_URL = #{b.sysUserUrl}
+	      </if>
+	      <if test="b.sysUserSignature != null" >
+	        and SYS_USER_SIGNATURE = #{b.sysUserSignature}
+	      </if>
+	      <if test="b.sysUserCollege != null" >
+	        and SYS_USER_COLLEGE = #{b.sysUserCollege}
+	      </if>
+	      <if test="b.sysUserMagor != null" >
+	        and SYS_USER_MAGOR = #{b.sysUserMagor}
+	      </if>
+	      <if test="b.sysUserForSchool != null" >
+	        and SYS_USER_FOR_SCHOOL = #{b.sysUserForSchool}
+	      </if>
+	      <if test="b.sysUserForMagor != null" >
+	        and SYS_USER_FOR_MAGOR = #{b.sysUserForMagor}
+	      </if>
+	      <if test="b.sysUserLabel != null" >
+	        and SYS_USER_LABEL = #{b.sysUserLabel}
+	      </if>
+	      <if test="b.sysUserAddress != null" >
+	        and SYS_USER_ADDRESS = #{b.sysUserAddress}
+	      </if>
+	      <if test="b.sysUserGpsAddress != null" >
+	        and SYS_USER_GPS_ADDRESS = #{b.sysUserGpsAddress}
+	      </if>
+	      <if test="b.sysUserState != null and b.sysUserState != 0" >
+	        and SYS_USER_STATE = #{b.sysUserState}
+	      </if>
+	      <if test="b.sysUserCreateTime != null" >
+	        and SYS_USER_CREATE_TIME = #{b.sysUserCreateTime}
+	      </if>
+	      <if test="b.sysUserUpdateTime != null" >
+	        and SYS_USER_UPDATE_TIME = #{b.sysUserUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	        and (SYS_USER_NAME like '%' #{searchName} '%'
+	        	or SYS_USER_REAL_NAME like '%' #{searchName} '%'
+	        	or SYS_USER_LOGIN_NAME like '%' #{searchName} '%'
+	        )
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and SYS_USER_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and SYS_USER_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and SYS_USER_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	sys_user
+	    <where>
+	    	<if test="b.majorCuid != null" >
+	        MAJOR_CUID = #{b.majorCuid}
+	      </if>
+	      <if test="b.sysUserName != null" >
+	        and SYS_USER_NAME = #{b.sysUserName}
+	      </if>
+	      <if test="b.sysUserRealName != null" >
+	        and SYS_USER_REAL_NAME = #{b.sysUserRealName}
+	      </if>
+	      <if test="b.sysUserLoginName != null" >
+	        and SYS_USER_LOGIN_NAME = #{b.sysUserLoginName}
+	      </if>
+	      <if test="b.sysUserPassword != null" >
+	        and SYS_USER_PASSWORD = #{b.sysUserPassword}
+	      </if>
+	      <if test="b.sysUserType != null and b.sysUserType != 0" >
+	        and SYS_USER_TYPE = #{b.sysUserType}
+	      </if>
+	      <if test="b.sysUserEmail != null" >
+	        and SYS_USER_EMAIL = #{b.sysUserEmail}
+	      </if>
+	      <if test="b.sysUserSex != null and b.sysUserSex != 0" >
+	        and SYS_USER_SEX = #{b.sysUserSex}
+	      </if>
+	      <if test="b.sysUserAge != null and b.sysUserAge != 0" >
+	        and SYS_USER_AGE = #{b.sysUserAge}
+	      </if>
+	      <if test="b.sysUserTele != null" >
+	        and SYS_USER_TELE = #{b.sysUserTele}
+	      </if>
+	      <if test="b.sysUserVerCode != null" >
+	        and SYS_USER_VER_CODE = #{b.sysUserVerCode}
+	      </if>
+	      <if test="b.sysUserUrl != null" >
+	        and SYS_USER_URL = #{b.sysUserUrl}
+	      </if>
+	      <if test="b.sysUserSignature != null" >
+	        and SYS_USER_SIGNATURE = #{b.sysUserSignature}
+	      </if>
+	      <if test="b.sysUserCollege != null" >
+	        and SYS_USER_COLLEGE = #{b.sysUserCollege}
+	      </if>
+	      <if test="b.sysUserMagor != null" >
+	        and SYS_USER_MAGOR = #{b.sysUserMagor}
+	      </if>
+	      <if test="b.sysUserForSchool != null" >
+	        and SYS_USER_FOR_SCHOOL = #{b.sysUserForSchool}
+	      </if>
+	      <if test="b.sysUserForMagor != null" >
+	        and SYS_USER_FOR_MAGOR = #{b.sysUserForMagor}
+	      </if>
+	      <if test="b.sysUserLabel != null" >
+	        and SYS_USER_LABEL = #{b.sysUserLabel}
+	      </if>
+	      <if test="b.sysUserAddress != null" >
+	        and SYS_USER_ADDRESS = #{b.sysUserAddress}
+	      </if>
+	      <if test="b.sysUserGpsAddress != null" >
+	        and SYS_USER_GPS_ADDRESS = #{b.sysUserGpsAddress}
+	      </if>
+	      <if test="b.sysUserState != null and b.sysUserState != 0" >
+	        and SYS_USER_STATE = #{b.sysUserState}
+	      </if>
+	      <if test="b.sysUserCreateTime != null" >
+	        and SYS_USER_CREATE_TIME = #{b.sysUserCreateTime}
+	      </if>
+	      <if test="b.sysUserUpdateTime != null" >
+	        and SYS_USER_UPDATE_TIME = #{b.sysUserUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	        and (SYS_USER_NAME like '%' #{searchName} '%'
+	        	or SYS_USER_REAL_NAME like '%' #{searchName} '%'
+	        	or SYS_USER_LOGIN_NAME like '%' #{searchName} '%'
+	        )
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and SYS_USER_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and SYS_USER_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and SYS_USER_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	sys_user
+	    <where>
+	    	<choose>
+	    		<when test="b.majorCuid != null" >
+		        MAJOR_CUID = #{b.majorCuid}
+		      </when>
+		      <when test="b.sysUserName != null" >
+		        and SYS_USER_NAME = #{b.sysUserName}
+		      </when>
+		      <when test="b.sysUserRealName != null" >
+		        and SYS_USER_REAL_NAME = #{b.sysUserRealName}
+		      </when>
+		      <when test="b.sysUserLoginName != null" >
+		        and SYS_USER_LOGIN_NAME = #{b.sysUserLoginName}
+		      </when>
+		      <when test="b.sysUserPassword != null" >
+		        and SYS_USER_PASSWORD = #{b.sysUserPassword}
+		      </when>
+		      <when test="b.sysUserType != null and b.sysUserType != 0" >
+		        and SYS_USER_TYPE = #{b.sysUserType}
+		      </when>
+		      <when test="b.sysUserEmail != null" >
+		        and SYS_USER_EMAIL = #{b.sysUserEmail}
+		      </when>
+		      <when test="b.sysUserSex != null and b.sysUserSex != 0" >
+		        and SYS_USER_SEX = #{b.sysUserSex}
+		      </when>
+		      <when test="b.sysUserAge != null and b.sysUserAge != 0" >
+		        and SYS_USER_AGE = #{b.sysUserAge}
+		      </when>
+		      <when test="b.sysUserTele != null" >
+		        and SYS_USER_TELE = #{b.sysUserTele}
+		      </when>
+		      <when test="b.sysUserVerCode != null" >
+		        and SYS_USER_VER_CODE = #{b.sysUserVerCode}
+		      </when>
+		      <when test="b.sysUserUrl != null" >
+		        and SYS_USER_URL = #{b.sysUserUrl}
+		      </when>
+		      <when test="b.sysUserSignature != null" >
+		        and SYS_USER_SIGNATURE = #{b.sysUserSignature}
+		      </when>
+		      <when test="b.sysUserCollege != null" >
+		        and SYS_USER_COLLEGE = #{b.sysUserCollege}
+		      </when>
+		      <when test="b.sysUserMagor != null" >
+		        and SYS_USER_MAGOR = #{b.sysUserMagor}
+		      </when>
+		      <when test="b.sysUserForSchool != null" >
+		        and SYS_USER_FOR_SCHOOL = #{b.sysUserForSchool}
+		      </when>
+		      <when test="b.sysUserForMagor != null" >
+		        and SYS_USER_FOR_MAGOR = #{b.sysUserForMagor}
+		      </when>
+		      <when test="b.sysUserLabel != null" >
+		        and SYS_USER_LABEL = #{b.sysUserLabel}
+		      </when>
+		      <when test="b.sysUserAddress != null" >
+		        and SYS_USER_ADDRESS = #{b.sysUserAddress}
+		      </when>
+		      <when test="b.sysUserGpsAddress != null" >
+		        and SYS_USER_GPS_ADDRESS = #{b.sysUserGpsAddress}
+		      </when>
+		      <when test="b.sysUserState != null and b.sysUserState != 0" >
+		        and SYS_USER_STATE = #{b.sysUserState}
+		      </when>
+		      <when test="b.sysUserCreateTime != null" >
+		        and SYS_USER_CREATE_TIME = #{b.sysUserCreateTime}
+		      </when>
+		      <when test="b.sysUserUpdateTime != null" >
+		        and SYS_USER_UPDATE_TIME = #{b.sysUserUpdateTime}
+		      </when>
+	    	</choose>
+	      and SYS_USER_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	sys_user
+	    <where>
+	    	<choose>
+	    		<when test="b.majorCuid != null" >
+		        MAJOR_CUID = #{b.majorCuid}
+		      </when>
+		      <when test="b.sysUserName != null" >
+		        and SYS_USER_NAME = #{b.sysUserName}
+		      </when>
+		      <when test="b.sysUserRealName != null" >
+		        and SYS_USER_REAL_NAME = #{b.sysUserRealName}
+		      </when>
+		      <when test="b.sysUserLoginName != null" >
+		        and SYS_USER_LOGIN_NAME = #{b.sysUserLoginName}
+		      </when>
+		      <when test="b.sysUserPassword != null" >
+		        and SYS_USER_PASSWORD = #{b.sysUserPassword}
+		      </when>
+		      <when test="b.sysUserType != null and b.sysUserType != 0" >
+		        and SYS_USER_TYPE = #{b.sysUserType}
+		      </when>
+		      <when test="b.sysUserEmail != null" >
+		        and SYS_USER_EMAIL = #{b.sysUserEmail}
+		      </when>
+		      <when test="b.sysUserSex != null and b.sysUserSex != 0" >
+		        and SYS_USER_SEX = #{b.sysUserSex}
+		      </when>
+		      <when test="b.sysUserAge != null and b.sysUserAge != 0" >
+		        and SYS_USER_AGE = #{b.sysUserAge}
+		      </when>
+		      <when test="b.sysUserTele != null" >
+		        and SYS_USER_TELE = #{b.sysUserTele}
+		      </when>
+		      <when test="b.sysUserVerCode != null" >
+		        and SYS_USER_VER_CODE = #{b.sysUserVerCode}
+		      </when>
+		      <when test="b.sysUserUrl != null" >
+		        and SYS_USER_URL = #{b.sysUserUrl}
+		      </when>
+		      <when test="b.sysUserSignature != null" >
+		        and SYS_USER_SIGNATURE = #{b.sysUserSignature}
+		      </when>
+		      <when test="b.sysUserCollege != null" >
+		        and SYS_USER_COLLEGE = #{b.sysUserCollege}
+		      </when>
+		      <when test="b.sysUserMagor != null" >
+		        and SYS_USER_MAGOR = #{b.sysUserMagor}
+		      </when>
+		       <when test="b.sysUserForSchool != null" >
+		        and SYS_USER_FOR_SCHOOL = #{b.sysUserForSchool}
+		      </when>
+		      <when test="b.sysUserForMagor != null" >
+		        and SYS_USER_FOR_MAGOR = #{b.sysUserForMagor}
+		      </when>
+		      <when test="b.sysUserLabel != null" >
+		        and SYS_USER_LABEL = #{b.sysUserLabel}
+		      </when>
+		      <when test="b.sysUserAddress != null" >
+		        and SYS_USER_ADDRESS = #{b.sysUserAddress}
+		      </when>
+		      <when test="b.sysUserGpsAddress != null" >
+		        and SYS_USER_GPS_ADDRESS = #{b.sysUserGpsAddress}
+		      </when>
+		      <when test="b.sysUserState != null and b.sysUserState != 0" >
+		        and SYS_USER_STATE = #{b.sysUserState}
+		      </when>
+		      <when test="b.sysUserCreateTime != null" >
+		        and SYS_USER_CREATE_TIME = #{b.sysUserCreateTime}
+		      </when>
+		      <when test="b.sysUserUpdateTime != null" >
+		        and SYS_USER_UPDATE_TIME = #{b.sysUserUpdateTime}
+		      </when>
+	    	</choose>
+	      and SYS_USER_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectSysUserByAttribute" resultMap="BaseResultMap" parameterType="SysUser" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	sys_user
+	    <where>
+	    	<if test="majorCuid != null" >
+	        MAJOR_CUID = #{majorCuid}
+	      </if>
+	      <if test="sysUserName != null" >
+	        and SYS_USER_NAME = #{sysUserName}
+	      </if>
+	      <if test="sysUserRealName != null" >
+	        and SYS_USER_REAL_NAME = #{sysUserRealName}
+	      </if>
+	      <if test="sysUserLoginName != null" >
+	        and SYS_USER_LOGIN_NAME = #{sysUserLoginName}
+	      </if>
+	      <if test="sysUserPassword != null" >
+	        and SYS_USER_PASSWORD = #{sysUserPassword}
+	      </if>
+	      <if test="sysUserType != null and sysUserType != 0" >
+	        and SYS_USER_TYPE = #{sysUserType}
+	      </if>
+	      <if test="sysUserEmail != null" >
+	        and SYS_USER_EMAIL = #{sysUserEmail}
+	      </if>
+	      <if test="sysUserSex != null and sysUserSex != 0" >
+	        and SYS_USER_SEX = #{sysUserSex}
+	      </if>
+	      <if test="sysUserAge != null and sysUserAge != 0" >
+	        and SYS_USER_AGE = #{sysUserAge}
+	      </if>
+	      <if test="sysUserTele != null" >
+	        and SYS_USER_TELE = #{sysUserTele}
+	      </if>
+	      <if test="sysUserVerCode != null" >
+	        and SYS_USER_VER_CODE = #{sysUserVerCode}
+	      </if>
+	      <if test="sysUserUrl != null" >
+	        and SYS_USER_URL = #{sysUserUrl}
+	      </if>
+	      <if test="sysUserSignature != null" >
+	        and SYS_USER_SIGNATURE = #{sysUserSignature}
+	      </if>
+	      <if test="sysUserCollege != null" >
+	        and SYS_USER_COLLEGE = #{sysUserCollege}
+	      </if>
+	      <if test="sysUserMagor != null" >
+	        and SYS_USER_MAGOR = #{sysUserMagor}
+	      </if>
+	      <if test="sysUserForSchool != null" >
+	        and SYS_USER_FOR_SCHOOL = #{sysUserForSchool}
+	      </if>
+	      <if test="sysUserForMagor != null" >
+	        and SYS_USER_FOR_MAGOR = #{sysUserForMagor}
+	      </if>
+	      <if test="sysUserLabel != null" >
+	        and SYS_USER_LABEL = #{sysUserLabel}
+	      </if>
+	      <if test="sysUserAddress != null" >
+	        and SYS_USER_ADDRESS = #{sysUserAddress}
+	      </if>
+	      <if test="sysUserGpsAddress != null" >
+	        and SYS_USER_GPS_ADDRESS = #{sysUserGpsAddress}
+	      </if>
+	      <if test="sysUserState != null and sysUserState != 0" >
+	        and SYS_USER_STATE = #{sysUserState}
+	      </if>
+	      <if test="sysUserCreateTime != null" >
+	        and SYS_USER_CREATE_TIME = #{sysUserCreateTime}
+	      </if>
+	      <if test="sysUserUpdateTime != null" >
+	        and SYS_USER_UPDATE_TIME = #{sysUserUpdateTime}
+	      </if>
+	    </where>
+  	</select>
+  	
+  	
+	
+</mapper>

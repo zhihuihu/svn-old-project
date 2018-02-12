@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>官网内容管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/cropper/cropper.min.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../assets/css/index-page.css"/>
+</head>
+<body style="overflow-y: auto">
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">首页轮播</strong>
+    </div>
+</div>
+<hr>
+<div>
+    <ul class="am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-margin gallery-list" id="sys-index-list-body">
+        <!--content-->
+    </ul>
+</div>
+<div >
+    <div class="access-image-div" style="display: none;">
+        <img class="final-upload-image" src="../assets/i/head-icon.png" alt="" height="260px;">
+        <div>
+            <button type="button" class="am-btn am-btn-xs am-btn-primary am-fr upload-btn">确定上传</button>
+        </div>
+    </div>
+</div>
+
+<script id="sysIndexListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <li class="">
+        <a href="javaScript:void(0)">
+            <img class="am-img-thumbnail am-img-bdrs" src="{{ d.fileUrlPre + item.sysIndexImageUrl }}" alt=""/>
+
+            <form method="post" class="am-form" id="" style="padding: 2px;">
+                <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                     style="padding-left: 0px;padding-right: 0px;">
+                    <span class="am-input-group-label">URL:</span>
+                    <input id="sysCustomerSearchName" type="text" class="am-form-field sysIndexName-{{item.sysIndexId}}" placeholder="跳转链接" value="{{ item.sysIndexName || ''}}">
+                    <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-primary update-sys-index-url" type="button" sysIndexId="{{item.sysIndexId}}">更改</button>
+                    </span>
+                </div>
+            </form>
+            <div class="oper-div am-cf">
+                <div class="am-form-group am-form-file" style=" display:inline-block;width: 50%;">
+                    <button type="button" class="am-btn am-btn-warning am-btn-xs change-lb-btn" style="width: 100%;">
+                        <i class="am-icon-cloud-upload"></i> 替换</button>
+                    <input type="file" class="hide-change-lb-btn" sysIndexId="{{item.sysIndexId}}">
+                </div>
+                <button class="am-btn am-btn-xs am-btn-primary am-fr show-lb-btn" style="width: 50%;" src="{{ d.fileUrlPre + item.sysIndexImageUrl }}">查看</button>
+            </div>
+        </a>
+    </li>
+    {{#  }); }}
+</script>
+
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/cropper/cropper.min.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/index-page.js"></script>
+
+</body>
+</html>

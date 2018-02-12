@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IReportDao" >
+	<resultMap id="BaseResultMap" type="com.dy.weike.entity.Report" >
+	    <id column="report_id" property="reportId" jdbcType="INTEGER" />
+	    <result column="ask_id" property="askId" jdbcType="INTEGER" />
+	    <result column="reporter_id" property="reporterId" jdbcType="INTEGER" />
+	    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+	    <result column="report_reason" property="reportReason" jdbcType="VARCHAR" />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+    	report_id, ask_id, reporter_id, report_time, report_reason
+  	</sql>
+  	
+  	<delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.Report" >
+    	delete from report
+    	where report_id = #{reportId,jdbcType=INTEGER}
+  	</delete>
+  	
+  	<insert id="insert" parameterType="com.dy.weike.entity.Report" >
+  		<selectKey keyProperty="reportId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+	    insert into report (report_id, ask_id, reporter_id, 
+	      report_time, report_reason)
+	    values (#{reportId,jdbcType=INTEGER}, #{askId,jdbcType=INTEGER}, #{reporterId,jdbcType=INTEGER}, 
+	      #{reportTime,jdbcType=TIMESTAMP}, #{reportReason,jdbcType=VARCHAR})
+  	</insert>
+  	
+  	<insert id="insertSelective" parameterType="com.dy.weike.entity.Report" >
+  		<selectKey keyProperty="reportId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+	    insert into report
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="reportId != null" >
+	        report_id,
+	      </if>
+	      <if test="askId != null" >
+	        ask_id,
+	      </if>
+	      <if test="reporterId != null" >
+	        reporter_id,
+	      </if>
+	      <if test="reportTime != null" >
+	        report_time,
+	      </if>
+	      <if test="reportReason != null" >
+	        report_reason,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="reportId != null" >
+	        #{reportId,jdbcType=INTEGER},
+	      </if>
+	      <if test="askId != null" >
+	        #{askId,jdbcType=INTEGER},
+	      </if>
+	      <if test="reporterId != null" >
+	        #{reporterId,jdbcType=INTEGER},
+	      </if>
+	      <if test="reportTime != null" >
+	        #{reportTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="reportReason != null" >
+	        #{reportReason,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Report" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from report
+	    where report_id = #{reportId,jdbcType=INTEGER}
+  	</select>
+  	
+  	<update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.Report" >
+	    update report
+	    <set >
+	      <if test="askId != null" >
+	        ask_id = #{askId,jdbcType=INTEGER},
+	      </if>
+	      <if test="reporterId != null" >
+	        reporter_id = #{reporterId,jdbcType=INTEGER},
+	      </if>
+	      <if test="reportTime != null" >
+	        report_time = #{reportTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="reportReason != null" >
+	        report_reason = #{reportReason,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where report_id = #{reportId,jdbcType=INTEGER}
+  	</update>
+  	
+  	<update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.Report" >
+	    update report
+	    set ask_id = #{askId,jdbcType=INTEGER},
+	      reporter_id = #{reporterId,jdbcType=INTEGER},
+	      report_time = #{reportTime,jdbcType=TIMESTAMP},
+	      report_reason = #{reportReason,jdbcType=VARCHAR}
+	    where report_id = #{reportId,jdbcType=INTEGER}
+  	</update>
+</mapper>

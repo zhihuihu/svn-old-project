@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.ISchoolInformationDao" >
+	<resultMap id="BaseResultMap" type="SchoolInformation" >
+	    <id column="SCHOOL_INFORMATION_CUID" property="schoolInformationCuid" />
+	    <result column="SCHOOL_PROFILE_CUID" property="schoolProfileCuid" />
+	    <result column="SCHOOL_INFORMATION_TITLE" property="schoolInformationTitle" />
+	    <result column="SCHOOL_INFORMATION_TAG" property="schoolInformationTag" />
+	    <result column="SCHOOL_INFORMATION_TYPE" property="schoolInformationType" />
+	    <result column="SCHOOL_INFORMATION_MAIN_CONTENT" property="schoolInformationMainContent" />
+	    <result column="SCHOOL_INFORMATION_NOTES" property="schoolInformationNotes" />
+	    <result column="SCHOOL_INFORMATION_IS_TOP" property="schoolInformationIsTop" />
+	    <result column="SCHOOL_INFORMATION_STATE" property="schoolInformationState" />
+	    <result column="SCHOOL_INFORMATION_CREATE_TIME" property="schoolInformationCreateTime" />
+	    <result column="SCHOOL_INFORMATION_UPDATE_TIME" property="schoolInformationUpdateTime" />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    SCHOOL_INFORMATION_CUID, SCHOOL_PROFILE_CUID, SCHOOL_INFORMATION_TITLE, SCHOOL_INFORMATION_TAG, 
+	    SCHOOL_INFORMATION_TYPE, SCHOOL_INFORMATION_MAIN_CONTENT, SCHOOL_INFORMATION_NOTES, 
+	    SCHOOL_INFORMATION_IS_TOP, SCHOOL_INFORMATION_STATE, SCHOOL_INFORMATION_CREATE_TIME, 
+	    SCHOOL_INFORMATION_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="SchoolInformation" >
+	    delete from school_information
+	    where SCHOOL_INFORMATION_CUID = #{schoolInformationCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="SchoolInformation" >
+	    insert into school_information (SCHOOL_INFORMATION_CUID, SCHOOL_PROFILE_CUID, 
+	      SCHOOL_INFORMATION_TITLE, SCHOOL_INFORMATION_TAG, 
+	      SCHOOL_INFORMATION_TYPE, SCHOOL_INFORMATION_MAIN_CONTENT, 
+	      SCHOOL_INFORMATION_NOTES, SCHOOL_INFORMATION_IS_TOP, 
+	      SCHOOL_INFORMATION_STATE, SCHOOL_INFORMATION_CREATE_TIME, 
+	      SCHOOL_INFORMATION_UPDATE_TIME)
+	    values (#{schoolInformationCuid}, #{schoolProfileCuid}, 
+	      #{schoolInformationTitle}, #{schoolInformationTag}, 
+	      #{schoolInformationType}, #{schoolInformationMainContent}, 
+	      #{schoolInformationNotes}, #{schoolInformationIsTop}, 
+	      #{schoolInformationState}, #{schoolInformationCreateTime}, 
+	      #{schoolInformationUpdateTime})
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="SchoolInformation" >
+	    insert into school_information
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="schoolInformationCuid != null" >
+	        SCHOOL_INFORMATION_CUID,
+	      </if>
+	      <if test="schoolProfileCuid != null" >
+	        SCHOOL_PROFILE_CUID,
+	      </if>
+	      <if test="schoolInformationTitle != null" >
+	        SCHOOL_INFORMATION_TITLE,
+	      </if>
+	      <if test="schoolInformationTag != null" >
+	        SCHOOL_INFORMATION_TAG,
+	      </if>
+	      <if test="schoolInformationType != null" >
+	        SCHOOL_INFORMATION_TYPE,
+	      </if>
+	      <if test="schoolInformationMainContent != null" >
+	        SCHOOL_INFORMATION_MAIN_CONTENT,
+	      </if>
+	      <if test="schoolInformationNotes != null" >
+	        SCHOOL_INFORMATION_NOTES,
+	      </if>
+	      <if test="schoolInformationIsTop != null" >
+	        SCHOOL_INFORMATION_IS_TOP,
+	      </if>
+	      <if test="schoolInformationState != null" >
+	        SCHOOL_INFORMATION_STATE,
+	      </if>
+	      <if test="schoolInformationCreateTime != null" >
+	        SCHOOL_INFORMATION_CREATE_TIME,
+	      </if>
+	      <if test="schoolInformationUpdateTime != null" >
+	        SCHOOL_INFORMATION_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="schoolInformationCuid != null" >
+	        #{schoolInformationCuid},
+	      </if>
+	      <if test="schoolProfileCuid != null" >
+	        #{schoolProfileCuid},
+	      </if>
+	      <if test="schoolInformationTitle != null" >
+	        #{schoolInformationTitle},
+	      </if>
+	      <if test="schoolInformationTag != null" >
+	        #{schoolInformationTag},
+	      </if>
+	      <if test="schoolInformationType != null" >
+	        #{schoolInformationType},
+	      </if>
+	      <if test="schoolInformationMainContent != null" >
+	        #{schoolInformationMainContent},
+	      </if>
+	      <if test="schoolInformationNotes != null" >
+	        #{schoolInformationNotes},
+	      </if>
+	      <if test="schoolInformationIsTop != null" >
+	        #{schoolInformationIsTop},
+	      </if>
+	      <if test="schoolInformationState != null" >
+	        #{schoolInformationState},
+	      </if>
+	      <if test="schoolInformationCreateTime != null" >
+	        #{schoolInformationCreateTime},
+	      </if>
+	      <if test="schoolInformationUpdateTime != null" >
+	        #{schoolInformationUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="SchoolInformation" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from school_information
+	    where SCHOOL_INFORMATION_CUID = #{schoolInformationCuid}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="SchoolInformation" >
+	    update school_information
+	    <set >
+	      <if test="schoolProfileCuid != null" >
+	        SCHOOL_PROFILE_CUID = #{schoolProfileCuid},
+	      </if>
+	      <if test="schoolInformationTitle != null" >
+	        SCHOOL_INFORMATION_TITLE = #{schoolInformationTitle},
+	      </if>
+	      <if test="schoolInformationTag != null" >
+	        SCHOOL_INFORMATION_TAG = #{schoolInformationTag},
+	      </if>
+	      <if test="schoolInformationType != null and schoolInformationType != 0" >
+	        SCHOOL_INFORMATION_TYPE = #{schoolInformationType},
+	      </if>
+	      <if test="schoolInformationMainContent != null" >
+	        SCHOOL_INFORMATION_MAIN_CONTENT = #{schoolInformationMainContent},
+	      </if>
+	      <if test="schoolInformationNotes != null" >
+	        SCHOOL_INFORMATION_NOTES = #{schoolInformationNotes},
+	      </if>
+	      <if test="schoolInformationIsTop != null and schoolInformationIsTop != 0" >
+	        SCHOOL_INFORMATION_IS_TOP = #{schoolInformationIsTop},
+	      </if>
+	      <if test="schoolInformationState != null and schoolInformationState != 0" >
+	        SCHOOL_INFORMATION_STATE = #{schoolInformationState},
+	      </if>
+	      <if test="schoolInformationCreateTime != null" >
+	        SCHOOL_INFORMATION_CREATE_TIME = #{schoolInformationCreateTime},
+	      </if>
+	      <if test="schoolInformationUpdateTime != null" >
+	        SCHOOL_INFORMATION_UPDATE_TIME = #{schoolInformationUpdateTime},
+	      </if>
+	    </set>
+	    where SCHOOL_INFORMATION_CUID = #{schoolInformationCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="SchoolInformation" >
+	    update school_information
+	    set SCHOOL_PROFILE_CUID = #{schoolProfileCuid},
+	      SCHOOL_INFORMATION_TITLE = #{schoolInformationTitle},
+	      SCHOOL_INFORMATION_TAG = #{schoolInformationTag},
+	      SCHOOL_INFORMATION_TYPE = #{schoolInformationType},
+	      SCHOOL_INFORMATION_MAIN_CONTENT = #{schoolInformationMainContent},
+	      SCHOOL_INFORMATION_NOTES = #{schoolInformationNotes},
+	      SCHOOL_INFORMATION_IS_TOP = #{schoolInformationIsTop},
+	      SCHOOL_INFORMATION_STATE = #{schoolInformationState},
+	      SCHOOL_INFORMATION_CREATE_TIME = #{schoolInformationCreateTime},
+	      SCHOOL_INFORMATION_UPDATE_TIME = #{schoolInformationUpdateTime}
+	    where SCHOOL_INFORMATION_CUID = #{schoolInformationCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from school_information
+	    <where>
+	      <if test="b.schoolProfileCuid != null" >
+	        SCHOOL_PROFILE_CUID = #{b.schoolProfileCuid}
+	      </if>
+	      <if test="b.schoolInformationTitle != null" >
+	        and SCHOOL_INFORMATION_TITLE = #{b.schoolInformationTitle}
+	      </if>
+	      <if test="b.schoolInformationTag != null" >
+	        and SCHOOL_INFORMATION_TAG = #{b.schoolInformationTag}
+	      </if>
+	      <if test="b.schoolInformationType != null and b.schoolInformationType != 0" >
+	        and SCHOOL_INFORMATION_TYPE = #{b.schoolInformationType}
+	      </if>
+	      <if test="b.schoolInformationMainContent != null" >
+	        and SCHOOL_INFORMATION_MAIN_CONTENT = #{b.schoolInformationMainContent}
+	      </if>
+	      <if test="b.schoolInformationNotes != null" >
+	        and SCHOOL_INFORMATION_NOTES = #{b.schoolInformationNotes}
+	      </if>
+	      <if test="b.schoolInformationIsTop != null and b.schoolInformationIsTop != 0" >
+	        and SCHOOL_INFORMATION_IS_TOP = #{b.schoolInformationIsTop}
+	      </if>
+	      <if test="b.schoolInformationState != null and b.schoolInformationState != 0" >
+	        and SCHOOL_INFORMATION_STATE = #{b.schoolInformationState}
+	      </if>
+	      <if test="b.schoolInformationCreateTime != null" >
+	        and SCHOOL_INFORMATION_CREATE_TIME = #{b.schoolInformationCreateTime}
+	      </if>
+	      <if test="b.schoolInformationUpdateTime != null" >
+	        and SCHOOL_INFORMATION_UPDATE_TIME = #{b.schoolInformationUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName !=''" >
+	        and SCHOOL_INFORMATION_TITLE like '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and SCHOOL_INFORMATION_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and SCHOOL_INFORMATION_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and SCHOOL_INFORMATION_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    COUNT(1)
+	    from school_information
+	    <where>
+	      <if test="b.schoolProfileCuid != null" >
+	        SCHOOL_PROFILE_CUID = #{b.schoolProfileCuid}
+	      </if>
+	      <if test="b.schoolInformationTitle != null" >
+	        and SCHOOL_INFORMATION_TITLE = #{b.schoolInformationTitle}
+	      </if>
+	      <if test="b.schoolInformationTag != null" >
+	        and SCHOOL_INFORMATION_TAG = #{b.schoolInformationTag}
+	      </if>
+	      <if test="b.schoolInformationType != null and b.schoolInformationType != 0" >
+	        and SCHOOL_INFORMATION_TYPE = #{b.schoolInformationType}
+	      </if>
+	      <if test="b.schoolInformationMainContent != null" >
+	        and SCHOOL_INFORMATION_MAIN_CONTENT = #{b.schoolInformationMainContent}
+	      </if>
+	      <if test="b.schoolInformationNotes != null" >
+	        and SCHOOL_INFORMATION_NOTES = #{b.schoolInformationNotes}
+	      </if>
+	      <if test="b.schoolInformationIsTop != null and b.schoolInformationIsTop != 0" >
+	        and SCHOOL_INFORMATION_IS_TOP = #{b.schoolInformationIsTop}
+	      </if>
+	      <if test="b.schoolInformationState != null and b.schoolInformationState != 0" >
+	        and SCHOOL_INFORMATION_STATE = #{b.schoolInformationState}
+	      </if>
+	      <if test="b.schoolInformationCreateTime != null" >
+	        and SCHOOL_INFORMATION_CREATE_TIME = #{b.schoolInformationCreateTime}
+	      </if>
+	      <if test="b.schoolInformationUpdateTime != null" >
+	        and SCHOOL_INFORMATION_UPDATE_TIME = #{b.schoolInformationUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName !=''" >
+	        and SCHOOL_INFORMATION_TITLE like '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and SCHOOL_INFORMATION_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and SCHOOL_INFORMATION_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and SCHOOL_INFORMATION_STATE != 4
+	    </where>
+  	</select>
+  	
+</mapper>

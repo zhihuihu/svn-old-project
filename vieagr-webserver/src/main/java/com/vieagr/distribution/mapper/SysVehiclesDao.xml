@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysVehiclesDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysVehicles">
+    <id column="sys_vehicles_id" jdbcType="VARCHAR" property="sysVehiclesId" />
+    <result column="sys_vehicles_plate_number" jdbcType="VARCHAR" property="sysVehiclesPlateNumber" />
+    <result column="sys_vehicles_type" jdbcType="INTEGER" property="sysVehiclesType" />
+    <result column="sys_vehicles_desc" jdbcType="VARCHAR" property="sysVehiclesDesc" />
+    <result column="sys_vehicles_grade" jdbcType="INTEGER" property="sysVehiclesGrade" />
+    <result column="sys_vehicles_register_name" jdbcType="VARCHAR" property="sysVehiclesRegisterName" />
+    <result column="sys_vehicles_register_mobile" jdbcType="VARCHAR" property="sysVehiclesRegisterMobile" />
+    <result column="sys_vehicles_img_url" jdbcType="VARCHAR" property="sysVehiclesImgUrl" />
+    <result column="sys_vehicles_create_time" jdbcType="VARCHAR" property="sysVehiclesCreateTime" />
+    <result column="sys_vehicles_update_time" jdbcType="TIMESTAMP" property="sysVehiclesUpdateTime" />
+    <result column="sys_vehicles_state" jdbcType="INTEGER" property="sysVehiclesState" />
+    <result column="sys_vehicles_del_flag" jdbcType="INTEGER" property="sysVehiclesDelFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_vehicles_id, sys_vehicles_plate_number, sys_vehicles_type, sys_vehicles_desc, 
+    sys_vehicles_grade, sys_vehicles_register_name, sys_vehicles_register_mobile, sys_vehicles_img_url, 
+    sys_vehicles_create_time, sys_vehicles_update_time, sys_vehicles_state, sys_vehicles_del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_vehicles
+    where sys_vehicles_id = #{sysVehiclesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_vehicles
+    where sys_vehicles_id = #{sysVehiclesId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysVehicles">
+    insert into sys_vehicles (sys_vehicles_id, sys_vehicles_plate_number, 
+      sys_vehicles_type, sys_vehicles_desc, sys_vehicles_grade, 
+      sys_vehicles_register_name, sys_vehicles_register_mobile, 
+      sys_vehicles_img_url, sys_vehicles_create_time, 
+      sys_vehicles_update_time, sys_vehicles_state, 
+      sys_vehicles_del_flag)
+    values (#{sysVehiclesId,jdbcType=VARCHAR}, #{sysVehiclesPlateNumber,jdbcType=VARCHAR}, 
+      #{sysVehiclesType,jdbcType=INTEGER}, #{sysVehiclesDesc,jdbcType=VARCHAR}, #{sysVehiclesGrade,jdbcType=INTEGER}, 
+      #{sysVehiclesRegisterName,jdbcType=VARCHAR}, #{sysVehiclesRegisterMobile,jdbcType=VARCHAR}, 
+      #{sysVehiclesImgUrl,jdbcType=VARCHAR}, #{sysVehiclesCreateTime,jdbcType=VARCHAR}, 
+      #{sysVehiclesUpdateTime,jdbcType=TIMESTAMP}, #{sysVehiclesState,jdbcType=INTEGER}, 
+      #{sysVehiclesDelFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysVehicles">
+    insert into sys_vehicles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysVehiclesId != null">
+        sys_vehicles_id,
+      </if>
+      <if test="sysVehiclesPlateNumber != null">
+        sys_vehicles_plate_number,
+      </if>
+      <if test="sysVehiclesType != null">
+        sys_vehicles_type,
+      </if>
+      <if test="sysVehiclesDesc != null">
+        sys_vehicles_desc,
+      </if>
+      <if test="sysVehiclesGrade != null">
+        sys_vehicles_grade,
+      </if>
+      <if test="sysVehiclesRegisterName != null">
+        sys_vehicles_register_name,
+      </if>
+      <if test="sysVehiclesRegisterMobile != null">
+        sys_vehicles_register_mobile,
+      </if>
+      <if test="sysVehiclesImgUrl != null">
+        sys_vehicles_img_url,
+      </if>
+      <if test="sysVehiclesCreateTime != null">
+        sys_vehicles_create_time,
+      </if>
+      <if test="sysVehiclesUpdateTime != null">
+        sys_vehicles_update_time,
+      </if>
+      <if test="sysVehiclesState != null">
+        sys_vehicles_state,
+      </if>
+      <if test="sysVehiclesDelFlag != null">
+        sys_vehicles_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysVehiclesId != null">
+        #{sysVehiclesId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesPlateNumber != null">
+        #{sysVehiclesPlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesType != null">
+        #{sysVehiclesType,jdbcType=INTEGER},
+      </if>
+      <if test="sysVehiclesDesc != null">
+        #{sysVehiclesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesGrade != null">
+        #{sysVehiclesGrade,jdbcType=INTEGER},
+      </if>
+      <if test="sysVehiclesRegisterName != null">
+        #{sysVehiclesRegisterName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesRegisterMobile != null">
+        #{sysVehiclesRegisterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesImgUrl != null">
+        #{sysVehiclesImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesCreateTime != null">
+        #{sysVehiclesCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesUpdateTime != null">
+        #{sysVehiclesUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysVehiclesState != null">
+        #{sysVehiclesState,jdbcType=INTEGER},
+      </if>
+      <if test="sysVehiclesDelFlag != null">
+        #{sysVehiclesDelFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysVehicles">
+    update sys_vehicles
+    <set>
+      <if test="sysVehiclesPlateNumber != null">
+        sys_vehicles_plate_number = #{sysVehiclesPlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesType != null">
+        sys_vehicles_type = #{sysVehiclesType,jdbcType=INTEGER},
+      </if>
+      <if test="sysVehiclesDesc != null">
+        sys_vehicles_desc = #{sysVehiclesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesGrade != null">
+        sys_vehicles_grade = #{sysVehiclesGrade,jdbcType=INTEGER},
+      </if>
+      <if test="sysVehiclesRegisterName != null">
+        sys_vehicles_register_name = #{sysVehiclesRegisterName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesRegisterMobile != null">
+        sys_vehicles_register_mobile = #{sysVehiclesRegisterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesImgUrl != null">
+        sys_vehicles_img_url = #{sysVehiclesImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesCreateTime != null">
+        sys_vehicles_create_time = #{sysVehiclesCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysVehiclesUpdateTime != null">
+        sys_vehicles_update_time = #{sysVehiclesUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysVehiclesState != null">
+        sys_vehicles_state = #{sysVehiclesState,jdbcType=INTEGER},
+      </if>
+      <if test="sysVehiclesDelFlag != null">
+        sys_vehicles_del_flag = #{sysVehiclesDelFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sys_vehicles_id = #{sysVehiclesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysVehicles">
+    update sys_vehicles
+    set sys_vehicles_plate_number = #{sysVehiclesPlateNumber,jdbcType=VARCHAR},
+      sys_vehicles_type = #{sysVehiclesType,jdbcType=INTEGER},
+      sys_vehicles_desc = #{sysVehiclesDesc,jdbcType=VARCHAR},
+      sys_vehicles_grade = #{sysVehiclesGrade,jdbcType=INTEGER},
+      sys_vehicles_register_name = #{sysVehiclesRegisterName,jdbcType=VARCHAR},
+      sys_vehicles_register_mobile = #{sysVehiclesRegisterMobile,jdbcType=VARCHAR},
+      sys_vehicles_img_url = #{sysVehiclesImgUrl,jdbcType=VARCHAR},
+      sys_vehicles_create_time = #{sysVehiclesCreateTime,jdbcType=VARCHAR},
+      sys_vehicles_update_time = #{sysVehiclesUpdateTime,jdbcType=TIMESTAMP},
+      sys_vehicles_state = #{sysVehiclesState,jdbcType=INTEGER},
+      sys_vehicles_del_flag = #{sysVehiclesDelFlag,jdbcType=INTEGER}
+    where sys_vehicles_id = #{sysVehiclesId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysVehicles" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sys_vehicles
+    <where>
+      <if test="sysVehiclesPlateNumber != null">
+        sys_vehicles_plate_number = #{sysVehiclesPlateNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="sysVehiclesType != null">
+        and sys_vehicles_type = #{sysVehiclesType,jdbcType=INTEGER}
+      </if>
+      <if test="sysVehiclesDesc != null">
+        and sys_vehicles_desc = #{sysVehiclesDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="sysVehiclesGrade != null">
+        and sys_vehicles_grade = #{sysVehiclesGrade,jdbcType=INTEGER}
+      </if>
+      <if test="sysVehiclesRegisterName != null">
+        and sys_vehicles_register_name = #{sysVehiclesRegisterName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysVehiclesRegisterMobile != null">
+        and sys_vehicles_register_mobile = #{sysVehiclesRegisterMobile,jdbcType=VARCHAR}
+      </if>
+      <if test="sysVehiclesImgUrl != null">
+        and sys_vehicles_img_url = #{sysVehiclesImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysVehiclesCreateTime != null">
+        and sys_vehicles_create_time = #{sysVehiclesCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysVehiclesUpdateTime != null">
+        and sys_vehicles_update_time = #{sysVehiclesUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sysVehiclesState != null">
+        and sys_vehicles_state = #{sysVehiclesState,jdbcType=INTEGER}
+      </if>
+      <if test="sysVehiclesDelFlag != null">
+        and sys_vehicles_del_flag = #{sysVehiclesDelFlag,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by sys_vehicles_create_time asc
+  </select>
+<!--   <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysVehicles" resultMap="BaseResultMap"> -->
+  	
+<!--   </select> -->
+
+  <select id="selectSysVehiclesList" parameterType="com.vieagr.distribution.entity.SysVehicles" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sys_vehicles
+    <where>
+      <if test="sysVehiclesPlateNumber != null">
+        sys_vehicles_plate_number like '%' #{sysVehiclesPlateNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysVehiclesType != null">
+        and sys_vehicles_type = #{sysVehiclesType,jdbcType=INTEGER}
+      </if>
+      <if test="sysVehiclesGrade != null">
+        and sys_vehicles_grade = #{sysVehiclesGrade,jdbcType=INTEGER}
+      </if>
+      <if test="sysVehiclesRegisterName != null">
+        or sys_vehicles_register_name like '%' #{sysVehiclesRegisterName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysVehiclesRegisterMobile != null">
+        or sys_vehicles_register_mobile like '%' #{sysVehiclesRegisterMobile,jdbcType=VARCHAR} '%'
+      </if>
+    </where>
+    order by sys_vehicles_create_time asc
+  </select>
+  <cache />
+</mapper>

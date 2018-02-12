@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.waychat.dao.IFriendDao" >
+
+  <resultMap id="BaseResultMap" type="com.hxkj.waychat.entity.Friend" >
+    <id column="friend_cuid" property="friendCuid" jdbcType="VARCHAR" />
+    <result column="friend_group_cuid" property="friendGroupCuid" jdbcType="VARCHAR" />
+    <result column="friend_des_sys_user_cuid" property="friendDesSysUserCuid" jdbcType="VARCHAR" />
+    <result column="friend_ori_like_name" property="friendOriLikeName" jdbcType="VARCHAR" />
+    <result column="friend_des_like_name" property="friendDesLikeName" jdbcType="VARCHAR" />
+    <result column="friend_chat_link" property="friendChatLink" jdbcType="VARCHAR" />
+    <result column="friend_state" property="friendState" jdbcType="VARCHAR" />
+    <result column="friend_create_time" property="friendCreateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    friend_cuid, friend_group_cuid, friend_des_sys_user_cuid, friend_ori_like_name, friend_des_like_name, 
+    friend_chat_link, friend_state, friend_create_time
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.hxkj.waychat.entity.Friend" >
+    delete from friend
+    where friend_cuid = #{friendCuid,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hxkj.waychat.entity.Friend" >
+    insert into friend (friend_cuid, friend_group_cuid, friend_des_sys_user_cuid, 
+      friend_ori_like_name, friend_des_like_name, friend_chat_link, 
+      friend_state, friend_create_time)
+    values (#{friendCuid,jdbcType=VARCHAR}, #{friendGroupCuid,jdbcType=VARCHAR}, #{friendDesSysUserCuid,jdbcType=VARCHAR}, 
+      #{friendOriLikeName,jdbcType=VARCHAR}, #{friendDesLikeName,jdbcType=VARCHAR}, #{friendChatLink,jdbcType=VARCHAR}, 
+      #{friendState,jdbcType=VARCHAR}, #{friendCreateTime,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.hxkj.waychat.entity.Friend" >
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="friendCuid != null" >
+        friend_cuid,
+      </if>
+      <if test="friendGroupCuid != null" >
+        friend_group_cuid,
+      </if>
+      <if test="friendDesSysUserCuid != null" >
+        friend_des_sys_user_cuid,
+      </if>
+      <if test="friendOriLikeName != null" >
+        friend_ori_like_name,
+      </if>
+      <if test="friendDesLikeName != null" >
+        friend_des_like_name,
+      </if>
+      <if test="friendChatLink != null" >
+        friend_chat_link,
+      </if>
+      <if test="friendState != null" >
+        friend_state,
+      </if>
+      <if test="friendCreateTime != null" >
+        friend_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="friendCuid != null" >
+        #{friendCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendGroupCuid != null" >
+        #{friendGroupCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendDesSysUserCuid != null" >
+        #{friendDesSysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendOriLikeName != null" >
+        #{friendOriLikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendDesLikeName != null" >
+        #{friendDesLikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendChatLink != null" >
+        #{friendChatLink,jdbcType=VARCHAR},
+      </if>
+      <if test="friendState != null" >
+        #{friendState,jdbcType=VARCHAR},
+      </if>
+      <if test="friendCreateTime != null" >
+        #{friendCreateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.Friend" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend
+    where friend_cuid = #{friendCuid,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.waychat.entity.Friend" >
+    update friend
+    <set >
+      <if test="friendGroupCuid != null" >
+        friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendDesSysUserCuid != null" >
+        friend_des_sys_user_cuid = #{friendDesSysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendOriLikeName != null" >
+        friend_ori_like_name = #{friendOriLikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendDesLikeName != null" >
+        friend_des_like_name = #{friendDesLikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendChatLink != null" >
+        friend_chat_link = #{friendChatLink,jdbcType=VARCHAR},
+      </if>
+      <if test="friendState != null" >
+        friend_state = #{friendState,jdbcType=VARCHAR},
+      </if>
+      <if test="friendCreateTime != null" >
+        friend_create_time = #{friendCreateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where friend_cuid = #{friendCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.waychat.entity.Friend" >
+    update friend
+    set friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR},
+      friend_des_sys_user_cuid = #{friendDesSysUserCuid,jdbcType=VARCHAR},
+      friend_ori_like_name = #{friendOriLikeName,jdbcType=VARCHAR},
+      friend_des_like_name = #{friendDesLikeName,jdbcType=VARCHAR},
+      friend_chat_link = #{friendChatLink,jdbcType=VARCHAR},
+      friend_state = #{friendState,jdbcType=VARCHAR},
+      friend_create_time = #{friendCreateTime,jdbcType=VARCHAR}
+    where friend_cuid = #{friendCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.Friend" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend
+    <where>
+      <if test="friendGroupCuid != null" >
+        friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="friendDesSysUserCuid != null" >
+        and friend_des_sys_user_cuid = #{friendDesSysUserCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="friendOriLikeName != null" >
+        and friend_ori_like_name = #{friendOriLikeName,jdbcType=VARCHAR}
+      </if>
+      <if test="friendDesLikeName != null" >
+        and friend_des_like_name = #{friendDesLikeName,jdbcType=VARCHAR}
+      </if>
+      <if test="friendChatLink != null" >
+        and friend_chat_link = #{friendChatLink,jdbcType=VARCHAR}
+      </if>
+      <if test="friendState != null" >
+        and friend_state = #{friendState,jdbcType=VARCHAR}
+      </if>
+      <if test="friendCreateTime != null" >
+        and friend_create_time = #{friendCreateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+</mapper>

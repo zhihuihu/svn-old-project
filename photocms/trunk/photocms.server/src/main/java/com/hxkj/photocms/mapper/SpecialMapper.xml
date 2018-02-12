@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.ISpecialDao">
+
+	<resultMap id="SpecialResultMap" type="Special">
+		<id property="specialCuid" column="SPECIAL_CUID" />
+		<result property="specialTypeCuid" column="SPECIAL_TYPE_CUID" />
+		<result property="specialName" column="SPECIAL_NAME" />
+		<result property="specialTotalNumber" column="SPECIAL_TOTAL_NUMBER" />
+		<result property="specialShow" column="SPECIAL_SHOW" />
+		<result property="specialMainImgUrl" column="SPECIAL_MAIN_IMG_URL" />
+		<result property="specialLabel" column="SPECIAL_LABEL" />
+		<result property="specialAuthor" column="SPECIAL_AUTHOR" />
+		<result property="specialCreateAddress" column="SPECIAL_CREATE_ADDRESS" />
+		<result property="specialCreateTime" column="SPECIAL_CREATE_TIME" />
+		<result property="specialUpdataTime" column="SPECIAL_UPDATE_TIME" />
+	</resultMap>
+
+	<select id="getAll" resultMap="SpecialResultMap">
+		SELECT
+			special.SPECIAL_CUID,
+			special.SPECIAL_TYPE_CUID,
+			special.SPECIAL_NAME,
+			special.SPECIAL_TOTAL_NUMBER,
+			special.SPECIAL_SHOW,
+			special.SPECIAL_MAIN_IMG_URL,
+			special.SPECIAL_LABEL,
+			special.SPECIAL_AUTHOR,
+			special.SPECIAL_CREATE_ADDRESS,
+			special.SPECIAL_CREATE_TIME,
+			special.SPECIAL_UPDATE_TIME
+		FROM
+			special
+		WHERE
+			special.SPECIAL_SHOW = "1"
+	</select>
+
+	<select id="getById" parameterType="String" resultMap="SpecialResultMap">
+		SELECT
+			special.SPECIAL_CUID,
+			special.SPECIAL_TYPE_CUID,
+			special.SPECIAL_NAME,
+			special.SPECIAL_TOTAL_NUMBER,
+			special.SPECIAL_SHOW,
+			special.SPECIAL_MAIN_IMG_URL,
+			special.SPECIAL_LABEL,
+			special.SPECIAL_AUTHOR,
+			special.SPECIAL_CREATE_ADDRESS,
+			special.SPECIAL_CREATE_TIME,
+			special.SPECIAL_UPDATE_TIME
+		FROM
+			special
+		WHERE
+			special.SPECIAL_CUID = #{specialCuid}
+			AND special.SPECIAL_SHOW = "1"
+	</select>
+
+	<insert id="doInsert" parameterType="Special">
+		INSERT INTO special
+			(SPECIAL_CUID,SPECIAL_TYPE_CUID,SPECIAL_NAME,SPECIAL_TOTAL_NUMBER,SPECIAL_SHOW,SPECIAL_MAIN_IMG_URL,SPECIAL_LABEL,SPECIAL_AUTHOR,SPECIAL_CREATE_ADDRESS,
+			SPECIAL_CREATE_TIME,SPECIAL_UPDATE_TIME)
+		VALUES 
+			(#{specialCuid},#{specialTypeCuid},#{specialName},#{specialTotalNumber},#{specialShow},#{specialMainImgUrl},#{specialLabel},#{specialAuthor},
+			#{specialCreateAddress},#{specialCreateTime},#{specialUpdataTime})
+	</insert>
+
+	<update id="doUpdate" parameterType="Special">
+		UPDATE special
+		<set>
+			<if test="specialTypeCuid != null and specialTypeCuid !=''">
+				SPECIAL_TYPE_CUID = #{specialTypeCuid},
+			</if>
+			<if test="specialName != null and specialName !=''">
+				SPECIAL_NAME = #{specialName},
+			</if>
+			<if test="specialTotalNumber != 0">
+				SPECIAL_TOTAL_NUMBER = #{specialTotalNumber},
+			</if>
+			<if test="specialShow != null and specialShow !=''">
+				SPECIAL_SHOW = #{specialShow},
+			</if>
+			<if test="specialMainImgUrl != null and specialMainImgUrl !=''">
+				SPECIAL_MAIN_IMG_URL = #{specialMainImgUrl},
+			</if>
+			<if test="specialLabel != null and specialLabel !=''">
+				SPECIAL_LABEL = #{specialLabel},
+			</if>
+			<if test="specialAuthor != null and specialAuthor !=''">
+				SPECIAL_AUTHOR = #{specialAuthor},
+			</if>
+			<if test="specialCreateAddress != null and specialCreateAddress !=''">
+				SPECIAL_CREATE_ADDRESS = #{specialCreateAddress},
+			</if>
+			<if test="specialCreateTime != null and specialCreateTime !=''">
+				SPECIAL_CREATE_TIME = #{specialCreateTime},
+			</if>
+			<if test="specialUpdataTime != null and specialUpdataTime !=''">
+				SPECIAL_UPDATE_TIME = #{specialMainImgUrl}
+			</if>
+		</set>
+		WHERE
+			SPECIAL_CUID = #{specialCuid}
+	</update>
+	
+	<update id="doUpdateTotalNumber" parameterType="Special">
+		UPDATE 
+			special
+		<set>
+			<if test="specialTotalNumber != 0">
+				SPECIAL_TOTAL_NUMBER = SPECIAL_TOTAL_NUMBER + #{specialTotalNumber},
+			</if>
+			<if test="specialMainImgUrl != null and specialMainImgUrl !=''">
+				SPECIAL_MAIN_IMG_URL = #{specialMainImgUrl}
+			</if>
+		</set>
+		WHERE
+			SPECIAL_CUID = #{specialCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="SpecialResultMap">
+		SELECT
+			special.SPECIAL_CUID,
+			special.SPECIAL_TYPE_CUID,
+			special.SPECIAL_NAME,
+			special.SPECIAL_TOTAL_NUMBER,
+			special.SPECIAL_SHOW,
+			special.SPECIAL_MAIN_IMG_URL,
+			special.SPECIAL_LABEL,
+			special.SPECIAL_AUTHOR,
+			special.SPECIAL_CREATE_ADDRESS,
+			special.SPECIAL_CREATE_TIME,
+			special.SPECIAL_UPDATE_TIME
+		FROM
+			special
+		WHERE 
+			special.SPECIAL_SHOW = "1"
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+	
+	<select id="getSpecialBySpecialType" parameterType="PageBean"
+		resultMap="SpecialResultMap">
+		SELECT
+			special.SPECIAL_CUID,
+			special.SPECIAL_TYPE_CUID,
+			special.SPECIAL_NAME,
+			special.SPECIAL_TOTAL_NUMBER,
+			special.SPECIAL_SHOW,
+			special.SPECIAL_MAIN_IMG_URL,
+			special.SPECIAL_LABEL,
+			special.SPECIAL_AUTHOR,
+			special.SPECIAL_CREATE_ADDRESS,
+			special.SPECIAL_CREATE_TIME,
+			special.SPECIAL_UPDATE_TIME
+		FROM
+			special
+		WHERE 
+			special.SPECIAL_TYPE_CUID =#{b.specialTypeCuid}
+			AND special.SPECIAL_SHOW = "1"
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			special
+		<where>
+			<if test="b.specialTypeCuid != null and b.specialTypeCuid !=''">
+				SPECIAL_TYPE_CUID = #{b.specialTypeCuid} 
+			</if>
+			<if test="b.specialName != null and b.specialName !=''">
+				AND SPECIAL_NAME = #{b.specialName} 
+			</if>
+			<if test="b.specialTotalNumber != 0">
+				AND SPECIAL_TOTAL_NUMBER = #{b.specialTotalNumber} 
+			</if>
+			<if test="b.specialShow != null and b.specialShow !=''">
+				AND SPECIAL_SHOW = #{b.specialShow} 
+			</if>
+			<if test="b.specialMainImgUrl != null and b.specialMainImgUrl !=''">
+				AND SPECIAL_MAIN_IMG_URL = #{b.specialMainImgUrl} 
+			</if>
+			<if test="b.specialLabel != null and b.specialLabel !=''">
+				AND SPECIAL_LABEL = #{b.specialLabel} 
+			</if>
+			<if test="b.specialAuthor != null and b.specialAuthor !=''">
+				AND SPECIAL_AUTHOR = #{b.specialAuthor} 
+			</if>
+			<if test="b.specialCreateAddress != null and b.specialCreateAddress !=''">
+				AND SPECIAL_CREATE_ADDRESS = #{b.specialCreateAddress} 
+			</if>
+			<if test="b.specialCreateTime != null and b.specialCreateTime !=''">
+				AND SPECIAL_CREATE_TIME = #{b.specialCreateTime} 
+			</if>
+			<if test="b.specialUpdataTime != null and b.specialUpdataTime !=''">
+				AND SPECIAL_UPDATE_TIME = #{b.specialMainImgUrl}
+			</if>
+			AND special.SPECIAL_SHOW = "1"
+		</where>
+	</select>
+	
+	<select id="getSpecialByAttributeAnd" parameterType="PageBean"
+		resultMap="SpecialResultMap">
+		SELECT
+			special.SPECIAL_CUID,
+			special.SPECIAL_TYPE_CUID,
+			special.SPECIAL_NAME,
+			special.SPECIAL_TOTAL_NUMBER,
+			special.SPECIAL_SHOW,
+			special.SPECIAL_MAIN_IMG_URL,
+			special.SPECIAL_LABEL,
+			special.SPECIAL_AUTHOR,
+			special.SPECIAL_CREATE_ADDRESS,
+			special.SPECIAL_CREATE_TIME,
+			special.SPECIAL_UPDATE_TIME
+		FROM
+			special
+		<where>
+			<if test="b.specialTypeCuid != null and b.specialTypeCuid !=''">
+				SPECIAL_TYPE_CUID = #{b.specialTypeCuid} 
+			</if>
+			<if test="b.specialName != null and b.specialName !=''">
+				AND SPECIAL_NAME = #{b.specialName} 
+			</if>
+			<if test="b.specialTotalNumber != 0">
+				AND SPECIAL_TOTAL_NUMBER = #{b.specialTotalNumber} 
+			</if>
+			<if test="b.specialMainImgUrl != null and b.specialMainImgUrl !=''">
+				AND SPECIAL_MAIN_IMG_URL = #{b.specialMainImgUrl} 
+			</if>
+			<if test="b.specialLabel != null and b.specialLabel !=''">
+				AND SPECIAL_LABEL = #{b.specialLabel} 
+			</if>
+			<if test="b.specialAuthor != null and b.specialAuthor !=''">
+				AND SPECIAL_AUTHOR = #{b.specialAuthor} 
+			</if>
+			<if test="b.specialCreateAddress != null and b.specialCreateAddress !=''">
+				AND SPECIAL_CREATE_ADDRESS = #{b.specialCreateAddress} 
+			</if>
+			<if test="b.specialCreateTime != null and b.specialCreateTime !=''">
+				AND SPECIAL_CREATE_TIME = #{b.specialCreateTime} 
+			</if>
+			<if test="b.specialUpdataTime != null and b.specialUpdataTime !=''">
+				AND SPECIAL_UPDATE_TIME = #{b.specialMainImgUrl}
+			</if>
+			AND special.SPECIAL_SHOW = "1"
+		</where>
+	</select>
+	
+	<select id="getAllByPageCountOr" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			special
+		<where>
+			<choose>
+				<when test="b.specialTypeCuid != null and b.specialTypeCuid !=''">
+					SPECIAL_TYPE_CUID = #{b.specialTypeCuid} 
+				</when>
+				<when test="b.specialName != null and b.specialName !=''">
+					AND SPECIAL_NAME = #{b.specialName} 
+				</when>
+				<when test="b.specialTotalNumber != 0">
+					AND SPECIAL_TOTAL_NUMBER = #{b.specialTotalNumber} 
+				</when>
+				<when test="b.specialMainImgUrl != null and b.specialMainImgUrl !=''">
+					AND SPECIAL_MAIN_IMG_URL = #{b.specialMainImgUrl} 
+				</when>
+				<when test="b.specialLabel != null and b.specialLabel !=''">
+					AND SPECIAL_LABEL = #{b.specialLabel} 
+				</when>
+				<when test="b.specialAuthor != null and b.specialAuthor !=''">
+					AND SPECIAL_AUTHOR = #{b.specialAuthor} 
+				</when>
+				<when test="b.specialCreateAddress != null and b.specialCreateAddress !=''">
+					AND SPECIAL_CREATE_ADDRESS = #{b.specialCreateAddress} 
+				</when>
+				<when test="b.specialCreateTime != null and b.specialCreateTime !=''">
+					AND SPECIAL_CREATE_TIME = #{b.specialCreateTime} 
+				</when>
+				<when test="b.specialUpdataTime != null and b.specialUpdataTime !=''">
+					AND SPECIAL_UPDATE_TIME = #{b.specialMainImgUrl}
+				</when>
+			</choose>
+			AND special.SPECIAL_SHOW = "1"
+		</where>
+	</select>
+	
+	<select id="getSpecialByAttributeOr" parameterType="PageBean"
+		resultMap="SpecialResultMap">
+		SELECT
+			special.SPECIAL_CUID,
+			special.SPECIAL_TYPE_CUID,
+			special.SPECIAL_NAME,
+			special.SPECIAL_TOTAL_NUMBER,
+			special.SPECIAL_SHOW,
+			special.SPECIAL_MAIN_IMG_URL,
+			special.SPECIAL_LABEL,
+			special.SPECIAL_AUTHOR,
+			special.SPECIAL_CREATE_ADDRESS,
+			special.SPECIAL_CREATE_TIME,
+			special.SPECIAL_UPDATE_TIME
+		FROM
+			special
+		<where>
+			<choose>
+				<when test="b.specialTypeCuid != null and b.specialTypeCuid !=''">
+					SPECIAL_TYPE_CUID = #{b.specialTypeCuid} 
+				</when>
+				<when test="b.specialName != null and b.specialName !=''">
+					AND SPECIAL_NAME = #{b.specialName} 
+				</when>
+				<when test="b.specialTotalNumber != 0">
+					AND SPECIAL_TOTAL_NUMBER = #{b.specialTotalNumber} 
+				</when>
+				<when test="b.specialMainImgUrl != null and b.specialMainImgUrl !=''">
+					AND SPECIAL_MAIN_IMG_URL = #{b.specialMainImgUrl} 
+				</when>
+				<when test="b.specialLabel != null and b.specialLabel !=''">
+					AND SPECIAL_LABEL = #{b.specialLabel} 
+				</when>
+				<when test="b.specialAuthor != null and b.specialAuthor !=''">
+					AND SPECIAL_AUTHOR = #{b.specialAuthor} 
+				</when>
+				<when test="b.specialCreateAddress != null and b.specialCreateAddress !=''">
+					AND SPECIAL_CREATE_ADDRESS = #{b.specialCreateAddress} 
+				</when>
+				<when test="b.specialCreateTime != null and b.specialCreateTime !=''">
+					AND SPECIAL_CREATE_TIME = #{b.specialCreateTime} 
+				</when>
+				<when test="b.specialUpdataTime != null and b.specialUpdataTime !=''">
+					AND SPECIAL_UPDATE_TIME = #{b.specialMainImgUrl}
+				</when>
+			</choose>
+			AND special.SPECIAL_SHOW = "1"
+		</where>
+	</select>
+</mapper>

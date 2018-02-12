@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统商品管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/cropper/cropper.min.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <style>
+        .am-edit-width-min {
+            min-width: 160px;
+            width: 160px;
+            max-width: 160px;
+        }
+
+        .am-tab-width-min {
+            min-width: 80px;
+            /* width: 120px;
+            max-width: 80px; */
+        }
+
+        h4 {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="overflow-y: auto">
+
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统商品管理</strong>
+    </div>
+</div>
+
+<div class="am-panel am-panel-secondary">
+    <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+            增加商品<span class="am-icon-chevron-down am-fr"></span>
+        </h4>
+    </div>
+    <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+            <form class="am-form" id="sys-product-form-add" data-am-validator>
+                <fieldset>
+                    <div class="am-form-group">
+                        <label for="sysProductProductTypeId">商品类型</label>
+                        <select id="sysProductProductTypeId">
+                            <!--<option value="1">普通客车</option>
+                            <option value="2">24234</option>-->
+                        </select>
+                        <span class="am-form-caret"></span>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="sysProductName">商品名称</label>
+                        <input class="" type="text" class="" id="sysProductName" placeholder="请输入商品名称..."
+                               required="required">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="sysProductStaffBidPrice">员工餐进价</label>
+                        <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                               id="sysProductStaffBidPrice" placeholder="请输入员工餐进价..." required="required">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="sysProductOrdinaryBidPrice">普通进价</label>
+                        <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                               id="sysProductOrdinaryBidPrice" placeholder="请输入普通进价..." required="required">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="sysProductPrice">商品单价</label>
+                        <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                               id="sysProductPrice" placeholder="请输入商品单价..." required="required">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="sysProductUnitName">计量单位</label>
+                        <input class="" type="text" class="" id="sysProductUnitName" placeholder="请输入计量单位..."
+                               required="required">
+                        <span class="am-form-caret"></span>
+                    </div>
+
+                    <div class="am-form-group am-form-file">
+                        <label for="sysProductImgUrl">商品照片</label>
+                        <div style="height: 100px; line-height: 100px;">
+                            <img id="sysProductImgUrl" class="" src="../assets/i/product-icon.png" width="100"/>
+                            <button type="button" class="am-btn am-btn-danger am-btn-sm" id="sysProductImgUrlChoose">
+                                <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+                            </button>
+                        </div>
+                    </div>
+
+                    <p>
+                        <button type="submit" class="am-btn am-btn-primary">提交</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="am-panel am-panel-success">
+    <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#sys-goods-list'}">
+            商品列表<span class="am-icon-chevron-down am-fr"></span>
+        </h4>
+    </div>
+    <div id="sys-goods-list" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+            <div class="am-g">
+                <div class="am-u-sm-12 am-scrollable-horizontal">
+                    <form method="post" class="am-form" id="sys-product-form-list-search">
+                        <div class="am-u-sm-6 am-u-md-6 am-input-group am-input-group-sm"
+                             style="padding-left: 0px;padding-right: 0px;">
+                            <span class="am-input-group-label" class="">商品类型</span>
+                            <select id="sysProductTypeSearchId" class="am-form-field">
+                                <!--<option value="1">普通客车</option>
+                                <option value="2">24234</option>-->
+                            </select>
+                        </div>
+                        <div class="am-u-sm-6 am-u-md-6 am-input-group am-input-group-sm"
+                             style="padding-left: 0px;padding-right: 0px;">
+                            <span class="am-input-group-label">搜索:</span>
+                            <input id="sysProductSearchName" type="text" class="am-form-field"
+                                   placeholder="请输入商品名称/商品编码">
+                            <span class="am-input-group-btn">
+                                <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                            </span>
+                        </div>
+                    </form>
+                    <table class="am-table am-table-striped am-table-hover am-text-sm">
+                        <thead>
+                        <tr class="am-table">
+                            <th class="am-text-truncate">商品名称</th>
+                            <th class="am-text-truncate">商品类型</th>
+                            <th class="am-text-truncate">员工餐进价</th>
+                            <th class="am-text-truncate">普通进价</th>
+                            <th class="am-text-truncate">商品单价</th>
+                            <th class="am-text-truncate">计量单位</th>
+                            <th class="am-text-truncate">加入时间</th>
+                            <th class="am-text-truncate">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sys-product-list-body">
+                        <!-- <tr>
+                            <td class="am-text-truncate">Amaze UI</td>
+                            <td class="am-text-truncate">http://amazeui.org</td>
+                            <td class="am-text-truncate">2012-10-01</td>
+                            <td class="am-text-truncate">2012-10-01</td>
+                            <td class="am-text-truncate">2012-10-01</td>
+                            <td class="am-text-truncate am-text-nowrap am-width-min">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" class="am-btn am-btn-primary">修改</button>
+                                    <button type="button" class="am-btn am-btn-warning">禁用</button>
+                                </div>
+                            </td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                    <div id="sys-product-list-body-page" class="am-fr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改模态窗口 -->
+<div class="am-modal-dialog" id="sys-product-update-model" style="display: none;">
+    <div class="am-u-sm-12">
+        <form class="am-form" id="sys-product-form-update" data-am-validator>
+            <fieldset>
+                <div class="am-form-group">
+                    <label for="sysProductProductTypeIdUpdate">商品类型</label>
+                    <select id="sysProductProductTypeIdUpdate">
+                        <!--<option value="1">普通客车</option>
+                        <option value="2">24234</option>-->
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>
+                <div class="am-form-group">
+                    <label for="sysProductNameUpdate">商品名称</label>
+                    <input class="" type="text" class="" id="sysProductNameUpdate" placeholder="请输入商品名称..."
+                           required="required">
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysProductStaffBidPriceUpdate">员工餐进价</label>
+                    <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                           id="sysProductStaffBidPriceUpdate" placeholder="请输入员工餐进价..." required="required">
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysProductOrdinaryBidPriceUpdate">普通进价</label>
+                    <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                           id="sysProductOrdinaryBidPriceUpdate" placeholder="请输入普通进价..." required="required">
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysProductPriceUpdate">商品单价</label>
+                    <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                           id="sysProductPriceUpdate" placeholder="请输入商品单价..." required="required">
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysProductUnitNameUpdate">计量单位</label>
+                    <input class="" type="text" class="" id="sysProductUnitNameUpdate" placeholder="请输入计量单位..."
+                           required="required">
+                    <span class="am-form-caret"></span>
+                </div>
+
+                <div class="am-form-group am-form-file">
+                    <label for="sysProductImgUrlUpdate">商品照片</label>
+                    <div style="height: 100px; line-height: 100px;">
+                        <img id="sysProductImgUrlUpdate" class="" src="../assets/i/product-icon.png" width="100"/>
+                    </div>
+                </div>
+
+                <!-- <p>
+                    <button type="submit" class="am-btn am-btn-primary">提交</button>
+                </p> -->
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<script id="sysProductListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <tr>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductName }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductTypeName }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductStaffBidPrice }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductOrdinaryBidPrice }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductPrice }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductUnitName }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductCreateTime }}</td>
+        <td class="am-text-truncate am-edit-width-min">
+            <div class="am-btn-group am-btn-group-xs">
+                <input type="button" class="am-btn am-btn-primary btn-sys-product-update"
+                       sysProductId="{{ item.sysProductId }}" value="详情查看">
+                {{# if(item.sysProductState === 1){ }}
+                <input type="button" class="am-btn am-btn-warning btn-sys-product-states"
+                       sysProductId="{{ item.sysProductId }}" value="启用中">
+                {{# } }}
+                {{# if(item.sysProductState === 2){ }}
+                <input type="button" class="am-btn am-btn-success btn-sys-product-states"
+                       sysProductId="{{ item.sysProductId }}" value="禁用中">
+                {{# } }}
+            </div>
+        </td>
+    </tr>
+    {{#  }); }}
+</script>
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/cropper/cropper.min.js"></script>
+<script src="../assets/js/sys-product-add-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.IDataTypeDao">
+
+	<resultMap id="DataTypeResultMap" type="DataType">
+		<id property="dataTypeCuid" column="DATA_TYPE_CUID" />
+		<result property="dataTypeName" column="DATA_TYPE_NAME" />
+		<result property="dataTypeCode" column="DATA_TYPE_CODE" />
+		<result property="dataTypeCreateTime" column="DATA_TYPE_CREATE_TIME" />
+		<result property="dataTypeTotalNumber" column="DATA_TYPE_TOTAL_NUMBER" />
+	</resultMap>
+
+	<select id="getAll" resultMap="DataTypeResultMap">
+		SELECT
+			data_type.DATA_TYPE_CUID,
+			data_type.DATA_TYPE_NAME,
+			data_type.DATA_TYPE_CODE,
+			data_type.DATA_TYPE_CREATE_TIME,
+			data_type.DATA_TYPE_TOTAL_NUMBER
+		FROM
+			data_type
+	</select>
+
+	<select id="getById" parameterType="String" resultMap="DataTypeResultMap">
+		SELECT
+			data_type.DATA_TYPE_CUID,
+			data_type.DATA_TYPE_NAME,
+			data_type.DATA_TYPE_CODE,
+			data_type.DATA_TYPE_CREATE_TIME,
+			data_type.DATA_TYPE_TOTAL_NUMBER
+		FROM
+			data_type
+		WHERE
+			data_type.DATA_TYPE_CUID = #{dataTypeCuid}
+	</select>
+	
+	<select id="findByDataType" parameterType="DataType" resultMap="DataTypeResultMap">
+		SELECT
+			data_type.DATA_TYPE_CUID,
+			data_type.DATA_TYPE_NAME,
+			data_type.DATA_TYPE_CODE,
+			data_type.DATA_TYPE_CREATE_TIME,
+			data_type.DATA_TYPE_TOTAL_NUMBER
+		FROM
+			data_type
+		WHERE
+			data_type.DATA_TYPE_NAME = #{dataTypeName}
+	</select>
+
+	<insert id="doInsert" parameterType="DataType">
+		INSERT INTO data_type
+			(DATA_TYPE_CUID,DATA_TYPE_NAME,DATA_TYPE_CODE,DATA_TYPE_CREATE_TIME,DATA_TYPE_TOTAL_NUMBER)
+		VALUES 
+			(#{dataTypeCuid},#{dataTypeName},#{dataTypeCode},#{dataTypeCreateTime},#{dataTypeTotalNumber})
+	</insert>
+
+	<update id="doUpdate" parameterType="DataType">
+		UPDATE data_type
+		<set>
+			<if test="dataTypeName != null and dataTypeName !=''">
+				DATA_TYPE_NAME = #{dataTypeName},
+			</if>
+			<if test="dataTypeCode != null and dataTypeCode !=''">
+				DATA_TYPE_CODE = #{dataTypeCode},
+			</if>
+			<if test="dataTypeCreateTime != null and dataTypeCreateTime !=''">
+				DATA_TYPE_CREATE_TIME = #{dataTypeCreateTime},
+			</if>
+			<if test="dataTypeTotalNumber != 0">
+				DATA_TYPE_TOTAL_NUMBER = #{dataTypeTotalNumber}
+			</if>
+		</set>
+		WHERE
+			DATA_TYPE_CUID = #{dataTypeCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="DataTypeResultMap">
+		SELECT
+			data_type.DATA_TYPE_CUID,
+			data_type.DATA_TYPE_NAME,
+			data_type.DATA_TYPE_CODE,
+			data_type.DATA_TYPE_CREATE_TIME,
+			data_type.DATA_TYPE_TOTAL_NUMBER
+		FROM
+			data_type
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			data_type
+	</select>
+
+</mapper>

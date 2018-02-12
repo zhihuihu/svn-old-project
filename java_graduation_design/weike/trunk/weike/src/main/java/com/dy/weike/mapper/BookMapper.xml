@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IBookDao" >
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.Book" >
+    <id column="book_id" property="bookId" jdbcType="INTEGER" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="Attribute_35" property="attribute35" jdbcType="VARCHAR" />
+    <result column="book_reason" property="bookReason" jdbcType="VARCHAR" />
+    <result column="book_url" property="bookUrl" jdbcType="VARCHAR" />
+    <result column="book_data" property="bookData" jdbcType="TIMESTAMP" />
+    <result column="book_author" property="bookAuthor" jdbcType="VARCHAR" />
+    <result column="book_publish" property="bookPublish" jdbcType="VARCHAR" />
+    <result column="book_image" property="bookImage" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    book_id, book_name, Attribute_35, book_reason, book_url, book_data, book_author, 
+    book_publish, book_image
+  </sql> 
+
+  <delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.Book" >
+    delete from book
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.Book" >
+	<selectKey keyProperty="bookId" order="AFTER" resultType="int">
+		SELECT LAST_INSERT_ID();
+	</selectKey>
+    insert into book (book_id, book_name, Attribute_35, 
+      book_reason, book_url, book_data, 
+      book_author, book_publish, book_image)
+    values (#{bookId,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, #{attribute35,jdbcType=VARCHAR}, 
+      #{bookReason,jdbcType=VARCHAR}, #{bookUrl,jdbcType=VARCHAR}, #{bookData,jdbcType=TIMESTAMP}, 
+      #{bookAuthor,jdbcType=VARCHAR}, #{bookPublish,jdbcType=VARCHAR}, #{bookImage,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.dy.weike.entity.Book" >
+	<selectKey keyProperty="bookId" order="AFTER" resultType="int">
+		SELECT LAST_INSERT_ID();
+	</selectKey>
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="attribute35 != null" >
+        Attribute_35,
+      </if>
+      <if test="bookReason != null" >
+        book_reason,
+      </if>
+      <if test="bookUrl != null" >
+        book_url,
+      </if>
+      <if test="bookData != null" >
+        book_data,
+      </if>
+      <if test="bookAuthor != null" >
+        book_author,
+      </if>
+      <if test="bookPublish != null" >
+        book_publish,
+      </if>
+      <if test="bookImage != null" >
+        book_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute35 != null" >
+        #{attribute35,jdbcType=VARCHAR},
+      </if>
+      <if test="bookReason != null" >
+        #{bookReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bookUrl != null" >
+        #{bookUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bookData != null" >
+        #{bookData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookAuthor != null" >
+        #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+        #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookImage != null" >
+        #{bookImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Book" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="selectByKeyword" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Book" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where Attribute_35 like "%" #{attribute35,jdbcType=VARCHAR} "%"
+  </select> 
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.Book" >
+    update book
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute35 != null" >
+        Attribute_35 = #{attribute35,jdbcType=VARCHAR},
+      </if>
+      <if test="bookReason != null" >
+        book_reason = #{bookReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bookUrl != null" >
+        book_url = #{bookUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bookData != null" >
+        book_data = #{bookData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+        book_publish = #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookImage != null" >
+        book_image = #{bookImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update> 
+  
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.Book" >    
+    update book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      Attribute_35 = #{attribute35,jdbcType=VARCHAR},
+      book_reason = #{bookReason,jdbcType=VARCHAR},
+      book_url = #{bookUrl,jdbcType=VARCHAR},
+      book_data = #{bookData,jdbcType=TIMESTAMP},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_publish = #{bookPublish,jdbcType=VARCHAR},
+      book_image = #{bookImage,jdbcType=VARCHAR}
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysSenderDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysSender">
+    <id column="sys_sender_id" jdbcType="VARCHAR" property="sysSenderId" />
+    <result column="sys_sender_name" jdbcType="VARCHAR" property="sysSenderName" />
+    <result column="sys_sender_mobile_number" jdbcType="VARCHAR" property="sysSenderMobileNumber" />
+    <result column="sys_sender_state" jdbcType="INTEGER" property="sysSenderState" />
+    <result column="sys_sender_img_url" jdbcType="VARCHAR" property="sysSenderImgUrl" />
+    <result column="sys_sender_create_time" jdbcType="VARCHAR" property="sysSenderCreateTime" />
+    <result column="sys_sender_update_time" jdbcType="TIMESTAMP" property="sysSenderUpdateTime" />
+    <result column="sys_sender_del_flag" jdbcType="INTEGER" property="sysSenderDelFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_sender_id, sys_sender_name, sys_sender_mobile_number, sys_sender_state, sys_sender_img_url, 
+    sys_sender_create_time, sys_sender_update_time, sys_sender_del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sender
+    where sys_sender_id = #{sysSenderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_sender
+    where sys_sender_id = #{sysSenderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysSender">
+    insert into sys_sender (sys_sender_id, sys_sender_name, sys_sender_mobile_number, 
+      sys_sender_state, sys_sender_img_url, sys_sender_create_time, 
+      sys_sender_update_time, sys_sender_del_flag
+      )
+    values (#{sysSenderId,jdbcType=VARCHAR}, #{sysSenderName,jdbcType=VARCHAR}, #{sysSenderMobileNumber,jdbcType=VARCHAR}, 
+      #{sysSenderState,jdbcType=INTEGER}, #{sysSenderImgUrl,jdbcType=VARCHAR}, #{sysSenderCreateTime,jdbcType=VARCHAR}, 
+      #{sysSenderUpdateTime,jdbcType=TIMESTAMP}, #{sysSenderDelFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysSender">
+    insert into sys_sender
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysSenderId != null">
+        sys_sender_id,
+      </if>
+      <if test="sysSenderName != null">
+        sys_sender_name,
+      </if>
+      <if test="sysSenderMobileNumber != null">
+        sys_sender_mobile_number,
+      </if>
+      <if test="sysSenderState != null">
+        sys_sender_state,
+      </if>
+      <if test="sysSenderImgUrl != null">
+        sys_sender_img_url,
+      </if>
+      <if test="sysSenderCreateTime != null">
+        sys_sender_create_time,
+      </if>
+      <if test="sysSenderUpdateTime != null">
+        sys_sender_update_time,
+      </if>
+      <if test="sysSenderDelFlag != null">
+        sys_sender_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysSenderId != null">
+        #{sysSenderId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderName != null">
+        #{sysSenderName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderMobileNumber != null">
+        #{sysSenderMobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderState != null">
+        #{sysSenderState,jdbcType=INTEGER},
+      </if>
+      <if test="sysSenderImgUrl != null">
+        #{sysSenderImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderCreateTime != null">
+        #{sysSenderCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderUpdateTime != null">
+        #{sysSenderUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysSenderDelFlag != null">
+        #{sysSenderDelFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysSender">
+    update sys_sender
+    <set>
+      <if test="sysSenderName != null">
+        sys_sender_name = #{sysSenderName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderMobileNumber != null">
+        sys_sender_mobile_number = #{sysSenderMobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderState != null">
+        sys_sender_state = #{sysSenderState,jdbcType=INTEGER},
+      </if>
+      <if test="sysSenderImgUrl != null">
+        sys_sender_img_url = #{sysSenderImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderCreateTime != null">
+        sys_sender_create_time = #{sysSenderCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSenderUpdateTime != null">
+        sys_sender_update_time = #{sysSenderUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysSenderDelFlag != null">
+        sys_sender_del_flag = #{sysSenderDelFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sys_sender_id = #{sysSenderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysSender">
+    update sys_sender
+    set sys_sender_name = #{sysSenderName,jdbcType=VARCHAR},
+      sys_sender_mobile_number = #{sysSenderMobileNumber,jdbcType=VARCHAR},
+      sys_sender_state = #{sysSenderState,jdbcType=INTEGER},
+      sys_sender_img_url = #{sysSenderImgUrl,jdbcType=VARCHAR},
+      sys_sender_create_time = #{sysSenderCreateTime,jdbcType=VARCHAR},
+      sys_sender_update_time = #{sysSenderUpdateTime,jdbcType=TIMESTAMP},
+      sys_sender_del_flag = #{sysSenderDelFlag,jdbcType=INTEGER}
+    where sys_sender_id = #{sysSenderId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysSender" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_sender
+  </select>
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysSender" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_sender
+  </select>
+  <select id="selectSysSenderList" parameterType="com.vieagr.distribution.entity.SysSender" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_sender
+  	<where>
+  	  <if test="sysSenderName != null">
+        sys_sender_name like '%' #{sysSenderName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysSenderMobileNumber != null">
+        or sys_sender_mobile_number like '%' #{sysSenderMobileNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysSenderState != null">
+        and sys_sender_state = #{sysSenderState,jdbcType=INTEGER}
+      </if>
+      <if test="sysSenderImgUrl != null">
+        and sys_sender_img_url = #{sysSenderImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysSenderCreateTime != null">
+        and sys_sender_create_time = #{sysSenderCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysSenderUpdateTime != null">
+        and sys_sender_update_time = #{sysSenderUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sysSenderDelFlag != null">
+        and sys_sender_del_flag = #{sysSenderDelFlag,jdbcType=INTEGER}
+      </if>
+  	</where>
+  	order by sys_sender_create_time asc
+  </select>
+  <cache />
+</mapper>

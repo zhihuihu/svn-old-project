@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考研信息推送管理</title>
+    <link href="css/informationPushManager.css"  rel="stylesheet">
+</head>
+<body>
+<div style="width: 100%;font-weight: bold;margin-top: 5px;">
+	<center>
+	<p>信息推送管理</p>
+	</center>
+	<hr style="margin-top: 5px;">
+</div>
+<div class="header-search">
+    <div class="header-one">
+        <div class="header-name">
+            开始时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="startTime"
+                   placeholder="请输入开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+    <div class="header-one">
+        <div class="header-name">
+            结束时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="endTime"
+                   placeholder="请输入结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+
+    <div class="header-right">
+        <button class="btn btn-success" style="margin-left: 5px" id="searchBtn">搜索</button>
+        <button class="btn btn-primary btn-addOne" data-toggle="modal" data-target="#addInformationPush">添加推送</button>
+    </div>
+    <div class="header-right">
+        <div class="header-name">
+            搜索框:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="searchName"
+                   placeholder="请输入搜索内容">
+        </div>
+    </div>
+    <div style="clear: both">
+
+    </div>
+</div>
+<div class="content-body">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>推送内容</th>
+            <th>推送信息创建人</th>
+            <th>推送信息URL</th>
+            <th>推送信息创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="appendBody">
+        <tr>
+            <td>TanmaeBangalore</td>
+            <td>Bangalangalorev</td>
+            <td>560lore</td>
+            <td>Tanmay</td>
+            <td>560001</td>
+            <td><button class="btn btn-success" style="margin-left: 5px">删除</button></td>
+        </tr>
+        <tr>
+            <td>Sachin</td>
+            <td>Mumbai</td>
+            <td>400003</td>
+            <td>Tanmay</td>
+            <td>560001</td>
+            <td><button class="btn btn-success" style="margin-left: 5px">删除</button></td>
+        </tr>
+        <tr>
+            <td>Uma</td>
+            <td>Pune</td>
+            <td>411027</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td><button class="btn btn-success" style="margin-left: 5px">删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="jqueryPage" class="tcdPageCode">
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="addInformationPush" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+                    推送信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标题:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="informationPushTitle" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">
+                            类型:
+                        </label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="informationPushState">
+                                <option value="1">考研新闻</option>
+                                <option value="2">考研常见事项</option>
+                                <option value="3">考研推送</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">信息URL:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"  type="text" value="" id="informationPushUrl">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">创建人:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="informationPushPeople"
+                                   value="Admin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">主要内容:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="informationPushContent"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="addInformationPushBtn">
+                    确定创建
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--模版引入-->
+<script id="informationPush-template" type="text/html">
+    {{each msg as informationPush i}}
+    <tr>
+        <td style="max-width: 200px;min-width: 50px;">{{informationPush.informationPushTitle}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{informationPush.informationPushContent}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{informationPush.informationPushPeople}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{informationPush.informationPushUrl}}</td>
+        <td style="max-width: 200px;min-width: 50px;">{{informationPush.informationPushCreateTime}}</td>
+        <td style="max-width: 200px;min-width: 50px;"><button data-target="#addInformationPush" informationPushCuid = "{{informationPush.informationPushCuid}}" class="btn btn-success informationPushManager-btn-details" style="margin-left: 5px">查看详情</button><button informationPushCuid = "{{informationPush.informationPushCuid}}" class="btn btn-danger informationPushManager-btn-delete" style="margin-left: 5px">删除</button></td>
+    </tr>
+    {{/each}}
+</script>
+
+<script type="text/javascript" src="js/informationPushManager.js"></script>
+</body>
+
+</html>

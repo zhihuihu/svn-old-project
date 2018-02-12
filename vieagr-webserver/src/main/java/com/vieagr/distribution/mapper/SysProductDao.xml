@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysProductDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysProduct">
+    <id column="sys_product_id" jdbcType="VARCHAR" property="sysProductId" />
+    <result column="sys_product_name" jdbcType="VARCHAR" property="sysProductName" />
+    <result column="sys_product_py_code" jdbcType="VARCHAR" property="sysProductPyCode" />
+    <result column="sys_product_py_name" jdbcType="VARCHAR" property="sysProductPyName" />
+    <result column="sys_product_state" jdbcType="INTEGER" property="sysProductState" />
+    <result column="sys_product_unit_name" jdbcType="VARCHAR" property="sysProductUnitName" />
+    <result column="sys_product_price" jdbcType="DECIMAL" property="sysProductPrice" />
+    <result column="sys_product_staff_bid_price" jdbcType="DECIMAL" property="sysProductStaffBidPrice" />
+    <result column="sys_product_ordinary_bid_price" jdbcType="DECIMAL" property="sysProductOrdinaryBidPrice" />
+    <result column="sys_product_product_type_id" jdbcType="VARCHAR" property="sysProductProductTypeId" />
+    <result column="sys_product_type_name" jdbcType="VARCHAR" property="sysProductTypeName" />
+    <result column="sys_product_img_url" jdbcType="VARCHAR" property="sysProductImgUrl" />
+    <result column="sys_product_create_time" jdbcType="VARCHAR" property="sysProductCreateTime" />
+    <result column="sys_product_update_time" jdbcType="TIMESTAMP" property="sysProductUpdateTime" />
+    <result column="sys_prodcut_choose_time" jdbcType="VARCHAR" property="sysProdcutChooseTime" />
+    <result column="sys_product_del_flag" jdbcType="INTEGER" property="sysProductDelFlag" />
+    <result column="bet_order_product_product_count" jdbcType="INTEGER" property="sysProductCount" />
+    <result column="bet_order_product_product_sale_price" jdbcType="INTEGER" property="sysProductSalePrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_product_id, sys_product_name, sys_product_py_code, sys_product_py_name, sys_product_state, sys_product_staff_bid_price, 
+    sys_product_unit_name, sys_product_price, sys_product_product_type_id, sys_product_type_name, sys_product_img_url, 
+    sys_product_create_time, sys_product_update_time, sys_prodcut_choose_time, sys_product_del_flag, sys_product_ordinary_bid_price
+  </sql>
+  <sql id="Strengthen_Column_List">
+    sys_product_id, sys_product_name, sys_product_py_code, sys_product_py_name, sys_product_state, sys_product_staff_bid_price, 
+    sys_product_unit_name, sys_product_price, sys_product_product_type_id, sys_product_type_name, sys_product_img_url, sys_product_create_time, 
+    sys_product_update_time, sys_prodcut_choose_time, sys_product_del_flag, bet_order_product_product_count, 
+    bet_order_product_product_sale_price, sys_product_ordinary_bid_price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_product
+    	left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+    where sys_product_id = #{sysProductId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_product
+    where sys_product_id = #{sysProductId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysProduct">
+    insert into sys_product (sys_product_id, sys_product_name, sys_product_py_code, 
+      sys_product_py_name, sys_product_state, sys_product_unit_name, 
+      sys_product_price, sys_product_product_type_id, sys_product_img_url, sys_product_create_time, 
+      sys_product_update_time, sys_prodcut_choose_time, 
+      sys_product_del_flag,sys_product_staff_bid_price, sys_product_ordinary_bid_price)
+    values (#{sysProductId,jdbcType=VARCHAR}, #{sysProductName,jdbcType=VARCHAR}, #{sysProductPyCode,jdbcType=VARCHAR}, 
+      #{sysProductPyName,jdbcType=VARCHAR}, #{sysProductState,jdbcType=INTEGER}, #{sysProductUnitName,jdbcType=VARCHAR}, 
+      #{sysProductPrice,jdbcType=DECIMAL}, #{sysProductProductTypeId,jdbcType=VARCHAR}, #{sysProductImgUrl,jdbcType=VARCHAR}, #{sysProductCreateTime,jdbcType=VARCHAR}, 
+      #{sysProductUpdateTime,jdbcType=TIMESTAMP}, #{sysProdcutChooseTime,jdbcType=VARCHAR}, 
+      #{sysProductDelFlag,jdbcType=INTEGER}, #{sysProductStaffBidPrice,jdbcType=DECIMAL}, #{sysProductOrdinaryBidPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysProduct" keyProperty="sysProductId" 
+  		keyColumn="sys_product_id">
+    insert into sys_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysProductId != null">
+        sys_product_id,
+      </if>
+      <if test="sysProductName != null">
+        sys_product_name,
+      </if>
+      <if test="sysProductPyCode != null">
+        sys_product_py_code,
+      </if>
+      <if test="sysProductPyName != null">
+        sys_product_py_name,
+      </if>
+      <if test="sysProductState != null">
+        sys_product_state,
+      </if>
+      <if test="sysProductUnitName != null">
+        sys_product_unit_name,
+      </if>
+      <if test="sysProductPrice != null">
+        sys_product_price,
+      </if>
+      <if test="sysProductProductTypeId != null">
+        sys_product_product_type_id,
+      </if>
+      <if test="sysProductImgUrl != null">
+        sys_product_img_url,
+      </if>
+      <if test="sysProductCreateTime != null">
+        sys_product_create_time,
+      </if>
+      <if test="sysProductUpdateTime != null">
+        sys_product_update_time,
+      </if>
+      <if test="sysProdcutChooseTime != null">
+        sys_prodcut_choose_time,
+      </if>
+      <if test="sysProductDelFlag != null">
+        sys_product_del_flag,
+      </if>
+      <if test="sysProductStaffBidPrice != null">
+        sys_product_staff_bid_price,
+      </if>
+      <if test="sysProductOrdinaryBidPrice != null">
+        sys_product_ordinary_bid_price,
+      </if>      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysProductId != null">
+        #{sysProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductName != null">
+        #{sysProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductPyCode != null">
+        #{sysProductPyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductPyName != null">
+        #{sysProductPyName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductState != null">
+        #{sysProductState,jdbcType=INTEGER},
+      </if>
+      <if test="sysProductUnitName != null">
+        #{sysProductUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductPrice != null">
+        #{sysProductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysProductProductTypeId != null">
+        #{sysProductProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductImgUrl != null">
+        #{sysProductImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductCreateTime != null">
+        #{sysProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductUpdateTime != null">
+        #{sysProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysProdcutChooseTime != null">
+        #{sysProdcutChooseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductDelFlag != null">
+        #{sysProductDelFlag,jdbcType=INTEGER},
+      </if>
+       <if test="sysProductStaffBidPrice != null">
+       #{sysProductStaffBidPrice,jdbcType=DECIMAL},
+      </if>
+       <if test="sysProductOrdinaryBidPrice != null">
+       #{sysProductOrdinaryBidPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysProduct">
+    update sys_product
+    <set>
+      <if test="sysProductName != null">
+        sys_product_name = #{sysProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductPyCode != null">
+        sys_product_py_code = #{sysProductPyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductPyName != null">
+        sys_product_py_name = #{sysProductPyName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductState != null">
+        sys_product_state = #{sysProductState,jdbcType=INTEGER},
+      </if>
+      <if test="sysProductUnitName != null">
+        sys_product_unit_name = #{sysProductUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductPrice != null">
+        sys_product_price = #{sysProductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysProductProductTypeId != null">
+        sys_product_product_type_id = #{sysProductProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductImgUrl != null">
+        sys_product_img_url = #{sysProductImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductCreateTime != null">
+        sys_product_create_time = #{sysProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductUpdateTime != null">
+        sys_product_update_time = #{sysProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysProdcutChooseTime != null">
+        sys_prodcut_choose_time = #{sysProdcutChooseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductDelFlag != null">
+        sys_product_del_flag = #{sysProductDelFlag,jdbcType=INTEGER},
+      </if>
+       <if test="sysProductStaffBidPrice != null">
+        sys_product_staff_bid_price = #{sysProductStaffBidPrice,jdbcType=DECIMAL},
+      </if>
+       <if test="sysProductOrdinaryBidPrice != null">
+        sys_product_ordinary_bid_price = #{sysProductOrdinaryBidPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where sys_product_id = #{sysProductId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysProduct">
+    update sys_product
+    set sys_product_name = #{sysProductName,jdbcType=VARCHAR},
+      sys_product_py_code = #{sysProductPyCode,jdbcType=VARCHAR},
+      sys_product_py_name = #{sysProductPyName,jdbcType=VARCHAR},
+      sys_product_state = #{sysProductState,jdbcType=INTEGER},
+      sys_product_unit_name = #{sysProductUnitName,jdbcType=VARCHAR},
+      sys_product_price = #{sysProductPrice,jdbcType=DECIMAL},
+      sys_product_product_type_id = #{sysProductProductTypeId,jdbcType=VARCHAR},
+      sys_product_img_url = #{sysProductImgUrl,jdbcType=VARCHAR},
+      sys_product_create_time = #{sysProductCreateTime,jdbcType=VARCHAR},
+      sys_product_update_time = #{sysProductUpdateTime,jdbcType=TIMESTAMP},
+      sys_prodcut_choose_time = #{sysProdcutChooseTime,jdbcType=VARCHAR},
+      sys_product_del_flag = #{sysProductDelFlag,jdbcType=INTEGER},
+      sys_product_staff_bid_price = #{sysProductStaffBidPrice,jdbcType=DECIMAL},
+      sys_product_ordinary_bid_price = #{sysProductOrdinaryBidPrice,jdbcType=DECIMAL}
+    where sys_product_id = #{sysProductId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysProduct" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_product
+  		left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+  	<where>
+<!--   	  <if test="sysProductName != null"> -->
+<!--         sys_product_name = #{sysProductName,jdbcType=VARCHAR} -->
+<!--       </if> -->
+<!--       <if test="sysProductPyCode != null"> -->
+<!--         and sys_product_py_code = #{sysProductPyCode,jdbcType=VARCHAR} -->
+<!--       </if> -->
+<!--       <if test="sysProductPyName != null"> -->
+<!--         and sys_product_py_name = #{sysProductPyName,jdbcType=VARCHAR} -->
+<!--       </if> -->
+		<if test="searchName != null">
+				and
+				(
+	       		  sys_product_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_code like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+				)
+		    </if>
+      <if test="sysProductState != null">
+        and sys_product_state = #{sysProductState,jdbcType=INTEGER}
+      </if>
+      <if test="sysProductUnitName != null">
+        and sys_product_unit_name = #{sysProductUnitName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductPrice != null">
+        and sys_product_price = #{sysProductPrice,jdbcType=DECIMAL}
+      </if>
+      <if test="sysProductProductTypeId != null">
+        and sys_product_product_type_id = #{sysProductProductTypeId,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductImgUrl != null">
+        and sys_product_img_url = #{sysProductImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductCreateTime != null">
+        and sys_product_create_time = #{sysProductCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductUpdateTime != null">
+        and sys_product_update_time = #{sysProductUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sysProdcutChooseTime != null">
+        sys_prodcut_choose_time = #{sysProdcutChooseTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductDelFlag != null">
+        and sys_product_del_flag = #{sysProductDelFlag,jdbcType=INTEGER}
+      </if>
+  	</where>
+  	order by sys_product_create_time asc
+  </select>
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysProduct" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_product
+  		join sys_product_type on sys_product_product_type_id = sys_product_type_id
+  </select>
+  
+  <select id="selectSysProductDetailList" parameterType="com.vieagr.distribution.entity.SysProduct" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_product
+  		,sys_product_type
+  	<where>
+  	  (
+  	  <if test="sysProductName != null">
+        sys_product_name like '%' #{sysProductName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysProductPyCode != null">
+        or sys_product_py_code like '%' #{sysProductPyCode,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysProductPyName != null">
+        or sys_product_py_name like '%' #{sysProductPyName,jdbcType=VARCHAR} '%'
+      </if>
+      )
+      <if test="sysProductState != null">
+        and sys_product_state = #{sysProductState,jdbcType=INTEGER}
+      </if>
+      <if test="sysProductUnitName != null">
+        and sys_product_unit_name = #{sysProductUnitName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductPrice != null">
+        and sys_product_price = #{sysProductPrice,jdbcType=DECIMAL}
+      </if>
+      <if test="sysProductProductTypeId != null">
+        and sys_product_product_type_id = #{sysProductProductTypeId,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductImgUrl != null">
+        and sys_product_img_url = #{sysProductImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductCreateTime != null">
+        and sys_product_create_time = #{sysProductCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductUpdateTime != null">
+        and sys_product_update_time = #{sysProductUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sysProdcutChooseTime != null">
+        sys_prodcut_choose_time = #{sysProdcutChooseTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysProductDelFlag != null">
+        and sys_product_del_flag = #{sysProductDelFlag,jdbcType=INTEGER}
+      </if>
+      and sys_product_product_type_id = sys_product_type_id
+  	</where>
+  	order by sys_product_create_time asc
+  </select>
+  <select id="selectProductConsultOrder" parameterType="com.vieagr.distribution.entity.SysProduct" resultMap="BaseResultMap">
+  	(
+	  	select 
+		  	<include refid="Strengthen_Column_List" />
+		from sys_product 
+			left join bet_order_product on bet_order_product_product_id = sys_product_id
+			left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+		where bet_order_product_order_number = #{sysProductOrderNumber,jdbcType=VARCHAR}
+			and bet_order_product_del_flag = 1
+			<if test="searchName != null">
+				and
+				(
+	       		  sys_product_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_code like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+				)
+		    </if>
+		order by sys_product_product_type_id, sys_product_create_time
+	)
+	union all
+	(
+		select distinct
+			sys_product_id, sys_product_name, sys_product_py_code, sys_product_py_name, sys_product_state, sys_product_staff_bid_price,
+		    sys_product_unit_name, sys_product_price, sys_product_product_type_id, sys_product_type_name, 
+		    sys_product_img_url, sys_product_create_time, sys_product_update_time, sys_prodcut_choose_time, 
+		    sys_product_del_flag, 1 as bet_order_product_product_count, sys_product_price as bet_order_product_product_sale_price, 
+		    sys_product_ordinary_bid_price
+		from sys_product 
+			left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+		where sys_product_state = 1 and sys_product_id not in(
+				select sys_product_id from sys_product
+				left join bet_order_product  on bet_order_product_product_id = sys_product_id
+				where bet_order_product_order_number = #{sysProductOrderNumber,jdbcType=VARCHAR}
+			) 
+		  <if test="searchName != null">
+				and
+				(
+	       		  sys_product_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_code like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+				)
+		    </if>
+			order by sys_product_product_type_id, sys_product_create_time
+	)
+  </select>
+  <select id="selectProductCount" resultType="int">
+  	select 
+  		count(sys_product_id)
+  	from sys_product
+  </select>
+   <select id="productsListForOrderDetails" parameterType="com.vieagr.distribution.query.SysProductQuery" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List" />
+  	from sys_product
+  		left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+  	where sys_product_id not in 
+  		(
+  			select bet_order_product_product_id 
+  			from bet_order_product 
+  			where bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+  		)
+  		<if test="searchName != null">
+				and
+				(
+	       		  sys_product_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_code like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+				)
+		    </if>
+		order by sys_product_create_time
+  </select>
+  <select id="selectSysProductByProductName" parameterType="com.vieagr.distribution.entity.SysProduct" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_product
+  		left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+  	<where>
+  		<if test="sysProductName != null">
+        	sys_product_name = #{sysProductName,jdbcType=VARCHAR}
+     	</if>
+  	</where>
+  </select>
+  
+  <select id="selectAllEffectiveSysProduct" resultMap="BaseResultMap">
+	select sys_product_id, sys_product_name, 	sys_product_staff_bid_price, sys_product_ordinary_bid_price,
+		sys_product_price
+	from sys_product 
+	where sys_product_state = 1 and sys_product_del_flag = 1  
+  </select>
+  
+</mapper>

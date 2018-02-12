@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>系统客户管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../assets/css/order-list.css"/>
+    <link rel="stylesheet" href="../base-component/datetimepicker/css/amazeui.datetimepicker.css"/>
+	<style type="text/css" id="print-css">
+        #print-parent{
+            width: 210mm;
+            height: auto;
+        }
+        .print-div{
+            width: 100%;
+            height: auto;
+			position: relative;
+        }
+        .print-div-header{
+            height: 8mm;
+            line-height: 8mm;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+		.print-div-tele{
+			height: 6mm;
+			line-height: 6mm;
+			text-align: center;
+			font-weight: bold;
+			font-size: 16px;
+		}
+        .print-div-title{
+            width: 100%;
+            height: 6mm;
+            line-height: 6mm;
+        }
+        .print-div-title-left{
+            float: left;
+        }
+        .print-div-title-right{
+            float: right;
+        }
+        .print-div-table{
+            width: 100%;
+            height: auto;
+            padding-top: 2mm;
+        }
+        .print-table{
+            width: 100%;
+            font-size:12px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #000;
+            border-collapse: collapse;
+        }
+        .print-table tr{
+            height: 4mm;
+            line-height: 4mm;
+        }
+        .print-table th{
+            border: 1px solid #000;
+            padding: 3px;
+        }
+        .print-table td{
+			font-weight: bold;
+            padding: 2px;
+            border: 1px solid #000;
+        }
+        .print-table-xh{
+            width: 10%;
+        }
+        .print-table-product-name{
+            width: 20%;
+        }
+        .print-table-product-number{
+            width: 20%;
+        }
+        .print-table-product-price{
+            width: 15%;
+        }
+        .print-table-product-total{
+            width: 15%;
+        }
+        .print-div-footer{
+			bottom: 0mm;
+			position: absolute;
+            height: 8mm;
+			width: 100%;
+        }
+        .print-div-footer div{
+            height: 8mm;
+            line-height: 8mm;
+            width: 20%;
+            float: left;
+        }
+		.print-div-footer-money{
+			width: 30% !important;
+		}
+    </style>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding am-padding-bottom">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单列表</strong>
+    </div>
+</div>
+
+<!-- 列表数据显示 -->
+<div class="am-g" style="padding-bottom: 40px;">
+	<div class="am-u-sm-12">
+        <form method="post" class="am-form" id="sys-order-list-search-form">
+			<table class="am-table">
+				<tbody>
+				<tr>
+					<td class="am-u-sm-3">
+						<div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+							<span class="am-input-group-label">车牌号：</span>
+							<select id="sysVehiclesId" class="am-form-field">
+								<option value="-1">全部车辆</option>
+							</select>
+							<span class="am-form-caret"></span>
+						</div>
+					</td>
+					<td class="am-u-sm-3">
+						<div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+							<span class="am-input-group-label">订单类型</span>
+							<select id="serOrderType" class="am-form-field">
+								<!--<option value="1">普通订单</option>
+								<option value="2">员工餐订单</option>-->
+							</select>
+							<span class="am-form-caret"></span>
+						</div>
+					</td>
+					<td class="am-u-sm-3">
+						<div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+							<span class="am-input-group-label">订单状态</span>
+							<select id="orderState" class="am-form-field">
+								<!--<option value="1">普通客车</option>
+								<option value="2">24234</option>-->
+							</select>
+							<span class="am-form-caret"></span>
+						</div>
+					</td>
+					<td class="am-u-sm-3">
+						<div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+							<span class="am-input-group-label">送货时间</span>
+							<input id="serOrderSendTime" type="text" class="am-form-field" placeholder="">
+						</div>
+					</td>
+					<td class="am-u-sm-3">
+						<div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+							<span class="am-input-group-label">搜索:</span>
+							<input id="sysOrderListSearchName" type="text" class="am-form-field" placeholder="请输入顾客名称/门店名称">
+							<span class="am-input-group-btn">
+								<button class="am-btn am-btn-primary" type="submit">搜索</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+        </form>
+        <div class="am-scrollable-horizontal">
+	        <table class="am-table am-table-striped am-table-hover am-text-sm ">
+	            <thead>
+	            <tr class="">
+	            	<th class="am-text-truncate am-tab-width-head" id="choose-all-check">选择</th>
+	                <th class="am-text-truncate am-tab-width-min">顾客名称</th>
+	                <th class="am-text-truncate am-tab-width-min">门店名称</th>
+	                <th class="am-text-truncate am-tab-width-min">订单类型</th>
+	                <th class="am-text-truncate am-tab-width-min">门店地址</th>
+	                <th class="am-text-truncate am-tab-width-min">商品总价</th>
+	                <th class="am-text-truncate am-tab-width-min">送货时间</th>
+					<th class="am-text-truncate am-tab-width-min">订单状态</th>
+	                <th class="am-text-truncate am-edit-width-min">操作<button class="am-btn am-btn-danger am-fr am-btn-xs" id="order-print-all">全部打印</button></th>
+	            </tr>
+	            </thead>
+				<!-- 订单列表显示 -->
+	            <tbody id="sys-order-list-body">
+	            </tbody>
+	        </table>
+        </div>
+        
+        <div id="sys-order-list-body-page" class="am-fr"></div>
+    </div>
+</div>
+
+
+<!-- 无预览打印 -->
+<div style="display: none;">
+	<div id="print-parent">
+
+    </div>
+</div>
+
+<!-- 打印框 -->
+<!--am-print-block display: none;-->
+<div id="print-parent1" style="display: none;">
+	<div id="order-print" class="">
+		<div class="order-print">
+            <div class="order-print-header">
+                <p>四川万象农业有限公司</p>
+                <p>送货单</p>
+            </div>
+            <div class="order-print-title">
+                <div class="am-fl">
+                    <p>客户名称：</p>
+                </div>
+                <div class="am-fr">
+                    <p>送货日期：</p>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            <div class="order-print-table">
+                <table class="am-order-print-table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>商品名</th>
+                        <th>数量</th>
+                        <th>单价（元）</th>
+                        <th>总价（元）</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody class="order-print-table-body">
+                    <!--<tr>
+                        <td>1</td>
+                        <td>土豆</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>20</td>
+                        <td></td>
+                    </tr>-->
+                    </tbody>
+                    <!--修改的商品的列表显示-->
+                </table>
+            </div>
+            <div class="order-print-footer am-g">
+                <div class="order-print-footer-div">送货人：</div>
+                <div class="order-print-footer-div">财务部：</div>
+                <div class="order-print-footer-div">收货人：</div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+<!-- 多订单修改商品价格  -->
+<div id="total-price-update">
+	<span class="am-badge am-badge-success" style="margin-top: 8px;">
+		<span>已选择:</span>
+		<span id="total-price-update-number">0</span>
+		<span>个</span>
+	</span>
+	<button class="am-btn am-btn-danger am-btn-sm am-fr" id="total-price-update-btn">统一价格修改</button>
+</div>
+
+
+<!-- 修改模态窗口   -->
+<div class="am-modal-dialog" id="order-model-update" style="display: none;">
+	<div class="am-u-sm-12 am-u-md-12 am-modal-content" style="max-height: 400px;overflow: auto">
+		<table class="am-table am-table-striped am-table-hover am-table-compact">
+			<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>商品数量</th>
+				<th>商品价格</th>
+				<th>单位</th>
+				<th>备注</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<!--修改的商品的列表显示-->
+			<tbody id="update-product-list-body">
+
+			</tbody>
+		</table>
+	</div>
+	<div class="am-u-sm-12 am-u-md-12" style="width: 100%;height: 40px;"></div>
+	<div class="am-u-sm-12 am-u-md-12 am-modal-bottom">
+		<div class="am-btn-group am-btn-group-xs" style="margin-top: 6px; float: right">
+			<input style="margin-right: 4px;" type="button" class="am-btn am-btn-warning btn-order-list-detail" id="order-update-one" value="修改订单">
+			<input type="button" class="am-btn am-btn-primary btn-order-list-detail" id="order-add-product" value="添加商品">
+		</div>
+	</div>
+</div>
+
+<!-- 多订单价格修改模态窗口   -->
+<div class="am-modal-dialog" id="all-order-model-update" style="display: none;">
+	<div class="am-u-sm-12 am-u-md-12 am-modal-content" style="max-height: 400px;overflow: auto">
+		<table class="am-table am-table-striped am-table-hover am-table-compact">
+			<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>商品原价</th>
+				<th>商品卖价</th>
+				<th>单位</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<!--修改的商品的列表显示-->
+			<tbody id="all-update-product-list-body">
+
+			</tbody>
+		</table>
+	</div>
+	<div class="am-u-sm-12 am-u-md-12" style="width: 100%;height: 40px;"></div>
+	<div class="am-u-sm-12 am-u-md-12 am-modal-bottom">
+		<div class="am-btn-group am-btn-group-xs" style="margin-top: 6px; float: right">
+			<input type="button" class="am-btn am-btn-warning btn-order-list-detail" id="order-update-many" value="修改价格">
+		</div>
+	</div>
+</div>
+
+<!-- 多订单价格修改模态窗口   -->
+<div class="am-modal-dialog" id="order-add-product-model" style="display: none;">
+	<div class="am-u-sm-12 am-u-md-12 am-modal-content" style="max-height: 400px;overflow: auto">
+		<form method="post" class="am-form" id="order-add-product-search">
+			<div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+				 style="padding-left: 0px;padding-right: 0px;">
+				<span class="am-input-group-label">搜索:</span>
+				<input id="orderAddSearchName" type="text" class="am-form-field" placeholder="请输入商品名称/编码">
+				<span class="am-input-group-btn">
+					<button class="am-btn am-btn-primary" type="submit">搜索</button>
+				</span>
+			</div>
+		</form>
+		<table class="am-table am-table-striped am-table-hover am-table-compact">
+			<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>商品价格</th>
+				<th>购买数量</th>
+				<th>单位</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<!--修改的商品的列表显示-->
+			<tbody id="order-add-product-list-body">
+
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<!-- 引入打印控件对象 -->
+<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width="0" height="0">
+	<embed id="LODOP_EM" type="application/x-print-lodop" width="0" height="0"></embed>
+</object>
+
+<!-- 订单列表tpl -->
+<script id="sysOrderListTpl" type="text/html">
+	{{#  layui.each(d.msg, function(index, item){ }}
+	<tr>
+		<th class="am-text-truncate am-tab-width-head"><input class="order-checkbox-flg" type="checkbox" serOrderNumber="{{ item.serOrderNumber }}"></th>
+		<td class="am-text-truncate am-tab-width-min">{{ item.sysCustomerName }}</td>
+		<td class="am-text-truncate am-tab-width-min">{{ item.sysCustomerStoreName }}</td>
+		<td class="am-text-truncate am-tab-width-min">{{ item.serOrderTypeName }}</td>
+		<td class="am-text-truncate am-tab-width-min">{{ item.sysCustomerStoreAddress }}</td>
+		<td class="am-text-truncate am-tab-width-min">{{ item.serOrderAmount }}</td>
+		<td class="am-text-truncate am-tab-width-min">{{ item.serOrderSendTime }}</td>
+		<td class="am-text-truncate am-tab-width-min">{{ item.serOrderStateName }}</td>
+		<td class="am-text-truncate am-edit-width-min">
+			<div class="am-btn-group am-btn-group-xs">
+				<input type="button" class="am-btn am-btn-success btn-order-list-detail" serOrderNumber="{{ item.serOrderNumber }}" value="详情">
+				{{# if(item.serOrderState==6){ }}
+				<input type="button" class="am-btn am-btn-default" disabled="disabled" serOrderNumber="{{ item.serOrderNumber }}" value="取消">
+				{{# }else{ }}
+				<input type="button" class="am-btn am-btn-warning btn-order-list-cancel" serOrderNumber="{{ item.serOrderNumber }}" value="取消">
+				{{# } }}
+				{{# if(item.serOrderState==4){ }}
+				<a class="am-btn am-btn-danger" serOrderNumber="{{ item.serOrderNumber }}">导出</a>
+				{{# }else{ }}
+				<input type="button" class="am-btn am-btn-primary btn-order-list-complete" serOrderNumber="{{ item.serOrderNumber }}" value="完成">
+				{{# } }}
+				<button class="am-btn am-btn-default btn-order-list-print" serOrderNumber="{{ item.serOrderNumber }}">
+					<i class="am-icon-print"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<!-- 订单详情列表tpl -->
+<script id="sysOrderDetailListTpl" type="text/html">
+	{{#  layui.each(d.msg.products, function(index, item){ }}
+	<tr class="order-detail-tr order-detail-tr-{{ item.betOrderProductId }}" betOrderProductId="{{ item.betOrderProductId }}">
+		<td>{{ item.betOrderProductProductName }}</td>
+		<td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="am-form-field am-table-input-sm update-order-product-number-{{ item.betOrderProductId }}" value="{{ item.betOrderProductProductCount }}"></td>
+		<td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="am-form-field am-table-input-sm update-order-product-price-{{ item.betOrderProductId }}" value="{{ item.betOrderProductProductSalePrice }}"></td>
+		<td>元/{{ item.betOrderProductProductUnitName }}</td>
+		<td><input type="text" class="am-form-field am-table-input-sm update-order-product-bz-{{ item.betOrderProductId }}" value="{{ item.betOrderProductUnivalentRemark }}"></td>
+		<td class="am-text-truncate">
+			<div class="am-btn-group am-btn-group-xs">
+				<button class="am-btn am-btn-danger btn-order-list-delete" serOrderNumber="{{ d.msg.serOrder.serOrderNumber }}" betOrderProductId="{{ item.betOrderProductId }}">
+					<i class="am-icon-close"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<!-- 多订单详情列表tpl -->
+<script id="sysAllOrderDetailListTpl" type="text/html">
+	{{#  layui.each(d.msg, function(index, item){ }}
+	<tr class="many-order-list-tr" betOrderProductProductId="{{ item.betOrderProductProductId }}">
+		<td>{{ item.betOrderProductProductName }}</td>
+		<td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="am-form-field am-table-input-sm all-update-order-product-number-{{ item.betOrderProductProductId }}" disabled="disabled" value="{{ item.betOrderProductProductFormerPrice }}"></td>
+		<td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="am-form-field am-table-input-sm all-update-order-product-price-{{ item.betOrderProductProductId }}" value="{{ item.betOrderProductProductFormerPrice }}"></td>
+		<td>元/{{ item.betOrderProductProductUnitName }}</td>
+		<td class="am-text-truncate">
+			<div class="am-btn-group am-btn-group-xs">
+				<input type="button" class="am-btn am-btn-success all-btn-order-list-update" betOrderProductProductId="{{ item.betOrderProductProductId }}" value="更新">
+			</div>
+		</td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<!-- 订单中--添加商品时商品查询列表tpl -->
+<script id="orderAddProductListTpl" type="text/html">
+	{{#  layui.each(d.msg, function(index, item){ }}
+	<tr class="order-add-list-tr-{{ item.sysProductId }}">
+		<td>{{ item.sysProductName }}</td>
+		<td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="am-form-field am-table-input-sm order-add-product-price-{{ item.sysProductId }}" value="{{ item.sysProductPrice }}"></td>
+		<td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="am-form-field am-table-input-sm order-add-product-number-{{ item.sysProductId }}" value="1"></td>
+		<td>元/{{ item.sysProductUnitName }}</td>
+		<td class="am-text-truncate">
+			<div class="am-btn-group am-btn-group-xs">
+				<input type="button" class="am-btn am-btn-success order-add-product-add-btn" sysProductId="{{ item.sysProductId }}" value="新增">
+			</div>
+		</td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+<script src="../base-component/jqprint/jQuery.print.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../base-component/lodopjs/LodopFuncs.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/order-list.js"></script>
+<script type="text/javascript">
+        //打印
+        function printTable(printName,height) {
+            var LODOP = getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));
+            //初始化打印任务
+            LODOP.PRINT_INITA('8mm', '8mm', '194mm', height, printName);
+            //设置页面尺寸
+            LODOP.SET_PRINT_PAGESIZE(1, '210mm', height, "");
+
+            LODOP.SET_PRINT_STYLE('ItemType', 1);
+            //LODOP.ADD_PRINT_HTM(1,5,400,100,"总页号：<font color='#000000'><span tdata='pageNO'>第##页</span>/<span tdata='pageCount'>共##页</span></font>");
+
+            LODOP.SET_PRINT_STYLE('ItemType', 0);
+            var strBodyStyle="<style>"+document.getElementById("print-css").innerHTML+"</style>";
+            LODOP.ADD_PRINT_HTM(0, 0, "190mm", parseInt(height.substring(0,3)) - 4 + 'mm', strBodyStyle + document.getElementById("print-parent").innerHTML);
+            //LODOP.PREVIEW();
+            LODOP.PRINT();
+        }
+
+    </script>
+    <form method="post" id = "down-send-order-excel">
+    	<input type="hidden" name = "orderNumber" id="send-order-number">
+    </form>
+</body>
+</html>

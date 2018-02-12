@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysProductTypeDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysProductType">
+    <id column="sys_product_type_id" jdbcType="VARCHAR" property="sysProductTypeId" />
+    <result column="sys_product_type_name" jdbcType="VARCHAR" property="sysProductTypeName" />
+    <result column="sys_product_type_create_time" jdbcType="VARCHAR" property="sysProductTypeCreateTime" />
+    <result column="sys_product_type_update_time" jdbcType="TIMESTAMP" property="sysProductTypeUpdateTime" />
+    <result column="sys_product_type_del_flag" jdbcType="INTEGER" property="sysProductTypeDelFlag" />
+    <result column="sys_product_type_state" jdbcType="INTEGER" property="sysProductTypeState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_product_type_id, sys_product_type_name, sys_product_type_create_time, sys_product_type_update_time, 
+    sys_product_type_del_flag, sys_product_type_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_product_type
+    where sys_product_type_id = #{sysProductTypeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_product_type
+    where sys_product_type_id = #{sysProductTypeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysProductType">
+    insert into sys_product_type (sys_product_type_id, sys_product_type_name, 
+      sys_product_type_create_time, sys_product_type_update_time, 
+      sys_product_type_del_flag, sys_product_type_state
+      )
+    values (#{sysProductTypeId,jdbcType=VARCHAR}, #{sysProductTypeName,jdbcType=VARCHAR}, 
+      #{sysProductTypeCreateTime,jdbcType=VARCHAR}, #{sysProductTypeUpdateTime,jdbcType=TIMESTAMP}, 
+      #{sysProductTypeDelFlag,jdbcType=INTEGER}, #{sysProductTypeState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysProductType">
+    insert into sys_product_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysProductTypeId != null">
+        sys_product_type_id,
+      </if>
+      <if test="sysProductTypeName != null">
+        sys_product_type_name,
+      </if>
+      <if test="sysProductTypeCreateTime != null">
+        sys_product_type_create_time,
+      </if>
+      <if test="sysProductTypeUpdateTime != null">
+        sys_product_type_update_time,
+      </if>
+      <if test="sysProductTypeDelFlag != null">
+        sys_product_type_del_flag,
+      </if>
+      <if test="sysProductTypeState != null">
+        sys_product_type_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysProductTypeId != null">
+        #{sysProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductTypeName != null">
+        #{sysProductTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductTypeCreateTime != null">
+        #{sysProductTypeCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductTypeUpdateTime != null">
+        #{sysProductTypeUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysProductTypeDelFlag != null">
+        #{sysProductTypeDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sysProductTypeState != null">
+        #{sysProductTypeState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysProductType">
+    update sys_product_type
+    <set>
+      <if test="sysProductTypeName != null">
+        sys_product_type_name = #{sysProductTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductTypeCreateTime != null">
+        sys_product_type_create_time = #{sysProductTypeCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysProductTypeUpdateTime != null">
+        sys_product_type_update_time = #{sysProductTypeUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysProductTypeDelFlag != null">
+        sys_product_type_del_flag = #{sysProductTypeDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sysProductTypeState != null">
+        sys_product_type_state = #{sysProductTypeState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sys_product_type_id = #{sysProductTypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysProductType">
+    update sys_product_type
+    set sys_product_type_name = #{sysProductTypeName,jdbcType=VARCHAR},
+      sys_product_type_create_time = #{sysProductTypeCreateTime,jdbcType=VARCHAR},
+      sys_product_type_update_time = #{sysProductTypeUpdateTime,jdbcType=TIMESTAMP},
+      sys_product_type_del_flag = #{sysProductTypeDelFlag,jdbcType=INTEGER},
+      sys_product_type_state = #{sysProductTypeState,jdbcType=INTEGER}
+    where sys_product_type_id = #{sysProductTypeId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysProductType" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_product_type
+  	<where>
+  	  <if test="sysProductTypeName != null">
+        sys_product_type_name like '%' #{sysProductTypeName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysProductTypeDelFlag != null">
+        and sys_product_type_del_flag = #{sysProductTypeDelFlag,jdbcType=INTEGER}
+      </if>
+      <if test="sysProductTypeState != null">
+        and sys_product_type_state = #{sysProductTypeState,jdbcType=INTEGER}
+      </if>
+  	</where>
+  </select>
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysProductType" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_product_type
+  </select>
+  <cache />
+</mapper>

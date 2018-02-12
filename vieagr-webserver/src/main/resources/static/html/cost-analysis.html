@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成本分析</title>
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../base-component/datetimepicker/css/amazeui.datetimepicker.css"/>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">成本分析</strong></div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-md-6">
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-hd">
+                <h3 class="am-panel-title">成本导出</h3>
+            </div>
+            <div class="am-tabs" id="cost-export-tab">
+                <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+                    <li class="am-active"><a href="">按天导出</a></li>
+                    <li><a href="">按月导出</a></li>
+                </ul>
+                <div class="am-tabs-bd">
+                    <div class="am-tab-panel am-active">
+                    	<form method="post">
+	                        <table class="am-table am-table-compact" style="margin-bottom: 0px;">
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <span class="am-input-group-label">车&nbsp;牌&nbsp;&nbsp;号：</span>
+	                                        <select id="dayCostSysVehiclesId" class="am-form-field" name="vehiclesId">
+	                                        </select>
+	                                        <span class="am-form-caret"></span>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <span class="am-input-group-label">订单类型：</span>
+	                                        <select id="dayCostOrderType" class="am-form-field" name="orderType">
+	                                            <option value="1">普通订单</option>
+	                                            <option value="2">员工餐订单</option>
+	                                        </select>
+	                                        <span class="am-form-caret"></span>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <span class="am-input-group-label">选择日期：</span>
+	                                        <input id="dayCostTime" class="am-form-field" type="text" name = "chooseTime">
+	                                        <input type="hidden" name = "bidType" value="1">
+	                                        <span class="am-form-caret"></span>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <input type="button" class="am-btn am-btn-primary am-btn-sm"
+	                                               excel-type="dayCost" value="成本详情导出"/>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                        </table>
+                        </form>
+                    </div>
+                    <div class="am-tab-panel">
+                    	<form method="post">
+	                        <table class="am-table am-table-compact" style="margin-bottom: 0px;">
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <span class="am-input-group-label">车&nbsp;牌&nbsp;&nbsp;号：</span>
+	                                        <select id="monthCostSysVehiclesId" class="am-form-field" name="vehiclesId">
+	                                            <!--<option value="1">普通订单</option>
+	                                            <option value="2">员工餐订单</option>-->
+	                                        </select>
+	                                        <span class="am-form-caret"></span>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <span class="am-input-group-label">订单类型：</span>
+	                                        <select id="monthCostOrderType" class="am-form-field" name="orderType">
+	                                            <option value="1">普通订单</option>
+	                                            <option value="2">员工餐订单</option>
+	                                        </select>
+	                                        <span class="am-form-caret"></span>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <span class="am-input-group-label">选择日期：</span>
+	                                        <input id="monthCostTime" class="am-form-field" type="text" name = "chooseTime">
+	                                        <input type="hidden" name = "bidType" value="2">
+	                                        <span class="am-form-caret"></span>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="am-u-sm-12">
+	                                    <div class="am-input-group am-input-group-sm"
+	                                         style="padding-left: 0px;padding-right: 0px;">
+	                                        <input type="button" class="am-btn am-btn-primary am-btn-sm"
+	                                               excel-type="dayCost" value="成本详情导出"/>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                        </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="am-u-md-6">
+        <div class="am-panel am-panel-default" style="height: 248px;">
+            <div class="am-panel-hd">
+                <h3 class="am-panel-title">亲，等待开发新功能哦！</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/cost-analysis.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	// 	导出按钮点击事件
+	$(".am-btn-sm").on("click", function(){
+		var subForm = $(this).closest("form");
+		var vehiclesId = subForm.find("select[name=vehiclesId]").val();
+		var chooseTime = subForm.find("input[name=chooseTime]").val();
+		var bidType = subForm.find("input[name=bidType]").val();
+		if(vehiclesId == "-1"){
+			layer.alert("请选择车牌号");
+			return;
+		}
+		if(chooseTime.length == 0){
+			layer.alert("请选择日期");
+			return;
+		}
+		if(bidType == "1"){
+			if(chooseTime < '2017-09-06'){
+				layer.alert("2017-09-06之前没有数据");
+				return;
+			}
+		}else{
+			if(chooseTime < '2017-09'){
+				layer.alert("2017-09之前没有数据");
+				return;
+			}
+		}
+		$.AMUI.progress.configure({ ease: 'ease', speed: 1000});
+		var progress = $.AMUI.progress;
+		progress.start();
+		subForm.attr("action",$api.index.downLoadVehiclesBidAmountTotalExcel);
+		subForm.submit();
+		progress.done();
+	});
+	
+});
+
+</script>
+</body>
+</html>

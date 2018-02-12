@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IClassDao" >
+
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.Class" >
+    <id column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="class_keyword" property="classKeyword" jdbcType="VARCHAR" />
+    <result column="class_tag" property="classTag" jdbcType="VARCHAR" />
+    <result column="class_start" property="classStart" jdbcType="TIMESTAMP" />
+    <result column="class_end" property="classEnd" jdbcType="TIMESTAMP" />
+    <result column="class_description" property="classDescription" jdbcType="VARCHAR" />
+    <result column="class_count" property="classCount" jdbcType="INTEGER" />
+    <result column="class_star" property="classStar" jdbcType="INTEGER" />
+    <result column="class_person" property="classPerson" jdbcType="INTEGER" />
+    <result column="class_liveness" property="classLiveness" jdbcType="INTEGER" />
+    <result column="class_state" property="classState" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="class_imageUrl" property="classImageUrl" jdbcType="VARCHAR" />
+    <result column="class_imageVerUrl" property="classImageVerUrl" jdbcType="VARCHAR" />
+  </resultMap>  
+
+  <sql id="Base_Column_List" >
+    class_id, class_name, class_keyword, class_tag, class_start, class_end, class_description, 
+    class_count, class_star, class_person, class_liveness, class_state, user_id, 
+    class_imageUrl, class_imageVerUrl
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.Class" >
+    delete from class
+    where class_id = #{classId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.Class" >  
+  		<selectKey keyProperty="classId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+    insert into class (class_id, class_name, class_keyword, 
+      class_tag, class_start, class_end, 
+      class_description, class_count, class_star, 
+      class_person, class_liveness, class_state, user_id,
+      class_imageVerUrl, class_imageUrl
+      )
+    values (#{classId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{classKeyword,jdbcType=VARCHAR}, 
+      #{classTag,jdbcType=VARCHAR}, #{classStart,jdbcType=TIMESTAMP}, #{classEnd,jdbcType=TIMESTAMP}, 
+      #{classDescription,jdbcType=VARCHAR}, #{classCount,jdbcType=INTEGER}, #{classStar,jdbcType=INTEGER}, 
+      #{classPerson,jdbcType=INTEGER}, #{classLiveness,jdbcType=INTEGER}, #{classState,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{classImageUrl,jdbcType=VARCHAR}, #{classImageVerUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.dy.weike.entity.Class" >
+  		<selectKey keyProperty="classId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+    insert into class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="className != null" >
+        class_name,
+      </if>
+      <if test="classKeyword != null" >
+        class_keyword,
+      </if>
+      <if test="classTag != null" >
+        class_tag,
+      </if>
+      <if test="classStart != null" >
+        class_start,
+      </if>
+      <if test="classEnd != null" >
+        class_end,
+      </if>
+      <if test="classDescription != null" >
+        class_description,
+      </if>
+      <if test="classCount != null" >
+        class_count,
+      </if>
+      <if test="classStar != null" >
+        class_star,
+      </if>
+      <if test="classPerson != null" >
+        class_person,
+      </if>
+      <if test="classLiveness != null" >
+        class_liveness,
+      </if>
+      <if test="classState != null" >
+        class_state,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="classImageUrl != null" >
+        class_imageUrl,
+      </if>
+      <if test="classImageVerUrl != null" >
+        class_imageVerUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="classKeyword != null" >
+        #{classKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="classTag != null" >
+        #{classTag,jdbcType=VARCHAR},
+      </if>
+      <if test="classStart != null" >
+        #{classStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classEnd != null" >
+        #{classEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classDescription != null" >
+        #{classDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="classCount != null" >
+        #{classCount,jdbcType=INTEGER},
+      </if>
+      <if test="classStar != null" >
+        #{classStar,jdbcType=INTEGER},
+      </if>
+      <if test="classPerson != null" >
+        #{classPerson,jdbcType=INTEGER},
+      </if>
+      <if test="classLiveness != null" >
+        #{classLiveness,jdbcType=INTEGER},
+      </if>
+      <if test="classState != null" >
+        #{classState,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classImageUrl != null" >
+        #{classImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="classImageVerUrl != null" >
+        #{classImageVerUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    where class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.Class" >
+    update class
+    <set >
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="classKeyword != null" >
+        class_keyword = #{classKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="classTag != null" >
+        class_tag = #{classTag,jdbcType=VARCHAR},
+      </if>
+      <if test="classStart != null" >
+        class_start = #{classStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classEnd != null" >
+        class_end = #{classEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classDescription != null" >
+        class_description = #{classDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="classCount != null and classCount != 0" >
+        class_count = #{classCount,jdbcType=INTEGER},
+      </if>
+      <if test="classStar != null and classStar != 0" >
+        class_star = #{classStar,jdbcType=INTEGER},
+      </if>
+      <if test="classPerson != null and classPerson != 0" >
+        class_person = #{classPerson,jdbcType=INTEGER},
+      </if>
+      <if test="classLiveness != null" >
+        class_liveness = #{classLiveness,jdbcType=INTEGER},
+      </if>
+      <if test="classState != null and classState != 0" >
+        class_state = #{classState,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null and userId != 0" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="classImageUrl != null" >
+        class_imageUrl = #{classImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="classImageVerUrl != null" >
+        class_imageVerUrl = #{classImageVerUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.Class" >
+    update class
+    set class_name = #{className,jdbcType=VARCHAR},
+      class_keyword = #{classKeyword,jdbcType=VARCHAR},
+      class_tag = #{classTag,jdbcType=VARCHAR},
+      class_start = #{classStart,jdbcType=TIMESTAMP},
+      class_end = #{classEnd,jdbcType=TIMESTAMP},
+      class_description = #{classDescription,jdbcType=VARCHAR},
+      class_count = #{classCount,jdbcType=INTEGER},
+      class_star = #{classStar,jdbcType=INTEGER},
+      class_person = #{classPerson,jdbcType=INTEGER},
+      class_liveness = #{classLiveness,jdbcType=INTEGER},
+      class_state = #{classState,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      class_imageUrl = #{classImageUrl,jdbcType=VARCHAR},
+      class_imageVerUrl = #{classImageVerUrl,jdbcType=VARCHAR}
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    <where>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR}
+      </if>
+      <if test="classKeyword != null" >
+        and class_keyword = #{classKeyword,jdbcType=VARCHAR}
+      </if>
+      <if test="classTag != null" >
+        and class_tag = #{classTag,jdbcType=VARCHAR}
+      </if>
+      <if test="classStart != null" >
+        and class_start = #{classStart,jdbcType=TIMESTAMP}
+      </if>
+      <if test="classEnd != null " >
+        and class_end = #{classEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="classDescription != null" >
+        and class_description = #{classDescription,jdbcType=VARCHAR}
+      </if>
+      <if test="classCount != null and classCount != 0" >
+        and class_count = #{classCount,jdbcType=INTEGER}
+      </if>
+      <if test="classStar != null and  classStar !=0" >
+        and class_star = #{classStar,jdbcType=INTEGER}
+      </if>
+      <if test="classPerson != null and classPerson !=0" >
+        and class_person = #{classPerson,jdbcType=INTEGER}
+      </if>
+      <if test="classLiveness != null" >
+        and class_liveness = #{classLiveness,jdbcType=INTEGER}
+      </if>
+      <if test="classState != null and classState !=0" >
+        and class_state = #{classState,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId !=0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="classImageUrl != null">
+        and class_imageUrl = #{classImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="classImageVerUrl != null">
+        and class_imageVerUrl = #{classImageVerUrl,jdbcType=VARCHAR}
+      </if>
+    </where>  
+    ORDER BY class_start DESC
+  </select>
+  
+  
+  <select id="selectByAttributeLimit" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    <where>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR}
+      </if>
+      <if test="classKeyword != null" >
+        and class_keyword = #{classKeyword,jdbcType=VARCHAR}
+      </if>
+      <if test="classTag != null" >
+        and class_tag = #{classTag,jdbcType=VARCHAR}
+      </if>
+      <if test="classStart != null" >
+        and class_start = #{classStart,jdbcType=TIMESTAMP}
+      </if>
+      <if test="classEnd != null " >
+        and class_end = #{classEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="classDescription != null" >
+        and class_description = #{classDescription,jdbcType=VARCHAR}
+      </if>
+      <if test="classCount != null and classCount != 0" >
+        and class_count = #{classCount,jdbcType=INTEGER}
+      </if>
+      <if test="classStar != null and  classStar !=0" >
+        and class_star = #{classStar,jdbcType=INTEGER}
+      </if>
+      <if test="classPerson != null and classPerson !=0" >
+        and class_person = #{classPerson,jdbcType=INTEGER}
+      </if>
+      <if test="classLiveness != null" >
+        and class_liveness = #{classLiveness,jdbcType=INTEGER}
+      </if>
+      <if test="classState != null and classState !=0" >
+        and class_state = #{classState,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId !=0" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="classImageUrl != null" >
+        and class_imageUrl = #{classImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="classImageVerUrl != null" >
+        and class_imageVerUrl = #{classImageVerUrl,jdbcType=VARCHAR}
+      </if>
+    </where>  
+    ORDER BY class_id DESC LIMIT 4
+  </select>
+  
+  
+  <select id="selectByType" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    <where>
+      <if test="classTag != null" >
+        and class_tag = #{classTag,jdbcType=VARCHAR}
+      </if>
+    </where>  
+    ORDER BY class_person DESC 
+  </select>
+  
+  <select id="selectByHobby" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    where INSTR(#{classTag,jdbcType=VARCHAR},class_tag) > 0      
+    ORDER BY class_id DESC    
+  </select>
+  
+  <select id="selectWord" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    where (INSTR(class_name,#{className,jdbcType=VARCHAR}) > 0 ) 
+    OR (INSTR(class_description,#{classDescription,jdbcType=VARCHAR}) > 0) 
+    OR (INSTR(class_keyword,#{classKeyword,jdbcType=VARCHAR}) > 0)  
+    ORDER BY class_id DESC    
+  </select>  
+  
+</mapper>

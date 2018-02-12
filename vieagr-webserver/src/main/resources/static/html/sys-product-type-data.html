@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品类型管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/cropper/cropper.min.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <style>
+        .am-edit-width-min {
+            min-width: 120px;
+            width: 180px;
+            max-width: 120px;
+        }
+        .am-tab-width-min {
+            min-width: 80px;
+            /* width: 80px; */
+            max-width: 80px;
+        }
+    </style>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品类型管理</strong>
+    </div>
+</div>
+
+<hr/>
+
+<div class="am-g">
+
+    <!-- 左侧数据 -->
+    <div class="am-u-sm-12 am-u-md-6">
+        <form class="am-form" id="sys-product-type-add-form" data-am-validator>
+            <fieldset>
+                <legend>添加商品类型</legend>
+
+                <div class="am-form-group">
+                    <label for="sysProductTypeName">类型名称</label>
+                    <input class="" type="text" class="" id="sysProductTypeName" placeholder="请输入类型名称..." required>
+                </div>
+
+                <p>
+                    <button type="submit" class="am-btn am-btn-primary">提交</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="am-u-sm-12 am-u-md-6">
+        <legend>商品类型列表</legend>
+        <form method="post" class="am-form" id="sys-product-type-search-form">
+            <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">搜索:</span>
+                <input id="sysProductTypeSearchName" type="text" class="am-form-field" placeholder="请输入商品类型名称">
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                </span>
+            </div>
+        </form>
+        <div class="am-scrollable-horizontal">
+            <table class="am-table am-table-striped am-table-hover am-text-sm">
+                <thead>
+                <tr class="am-table">
+                    <th class="am-text-truncate am-tab-width-min">类型名称</th>
+                    <th class="am-text-truncate am-tab-width-min">创建时间</th>
+                    <th class="am-text-truncate am-edit-width-min">操作</th>
+                </tr>
+                </thead>
+                <tbody id="sys-product-type-list-body">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="sys-product-type-list-body-page" class="am-fr"></div>
+    </div>
+
+</div>
+
+<!-- 修改模态窗口 -->
+<div class="am-modal-dialog" id="sys-product-type-update-model" style="display: none;">
+    <div class="am-u-sm-12">
+        <form class="am-form" id="sys-product-type-update-form" data-am-validator>
+            <fieldset>
+                <input type="hidden" id="sysProductTypeIdUpdate">
+                <div class="am-form-group">
+                    <label for="sysProductTypeNameUpdate">类型名称</label>
+                    <input class="" type="text" class="" id="sysProductTypeNameUpdate" placeholder="请输入类型名称..." required>
+                </div>
+
+                <p>
+                    <button type="submit" class="am-btn am-btn-primary">保存</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script id="sysProductTypeListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <tr>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductTypeName }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductTypeCreateTime }}</td>
+        <td class="am-text-truncate am-edit-width-min">
+            <div class="am-btn-group am-btn-group-xs">
+                <input type="button" class="am-btn am-btn-primary btn-sys-product-type-update" sysProductTypeId="{{ item.sysProductTypeId }}" value="修改">
+                {{# if(item.sysProductTypeState === 1){ }}
+                <input type="button" class="am-btn am-btn-warning btn-sys-product-type-states" sysProductTypeId="{{ item.sysProductTypeId }}" value="禁用">
+                {{# } }}
+                {{# if(item.sysProductTypeState === 2){ }}
+                <input type="button" class="am-btn am-btn-success btn-sys-product-type-states" sysProductTypeId="{{ item.sysProductTypeId }}" value="启用">
+                {{# } }}
+            </div>
+        </td>
+    </tr>
+    {{#  }); }}
+</script>
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/cropper/cropper.min.js"></script>
+<script src="../assets/js/sys-product-type-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="overview & stats"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="base_component/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="base_component/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="base_component/jquery-page/jquery.page.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="base_component/jquery-2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="base_component/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="base_component/angular/angular.min.js"></script>
+    <script type="text/javascript" src="base_component/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="base_component/metisMenu/dist/metisMenu.min.js"></script>
+    <script type="text/javascript" src="base_component/layer-v2.2/layer/layer.js"></script>
+    <script type="text/javascript" src="base_component/template/template.js"></script>
+    <script type="text/javascript" src="base_component/jquery-page/jquery.page.js"></script>
+    <script type="text/javascript" src="base_component/laydate-v1.1/laydate/laydate.js"></script>
+    <script type="text/javascript" src="js/API.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <title>后台管理主界面</title>
+</head>
+<body data-ng-app="myApp">
+<div class="index-header">
+    <div class="header-web-name like-a">
+        <span>西华考研助手后台管理系统</span>
+    </div>
+    <div class="header-user">
+        <span>当前管理员账号:</span>
+        <span class="like-a" id="admin-name">胡志辉</span>
+        <span class="header-time"></span>
+        <span class="icon-signout like-a" id="login-out">退出</span>
+    </div>
+</div>
+<div class="left-menu">
+    <div class="left-top"></div>
+    <div class="left-content">
+        <ul class="nav in" id="menu-list">
+            <li onclick="show_head(1)">
+                <a href="index.html" class="left-list-a"><i class="icon-dashboard"></i> 系统运行状况</a>
+            </li>
+            <li>
+                <a href="#" class="left-list-a"><i class="icon-bar-chart"></i> 平台信息管理<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <!--<li>
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="dataContent"><i class="icon-cogs"></i> 平台数据基本查看</a>
+                    </li>-->
+                    <li  onclick="show_head(2)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="informationPushManager"><i class="icon-android"></i> 考研信息推送管理</a>
+                    </li>
+                    <li onclick="show_head(3)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="userFeedback"><i class="icon-question-sign"></i>
+                            用户反馈查看</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#" class="left-list-a"><i class="icon-book"></i> 用户发布信息管理<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <li  onclick="show_head(4)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="postManager"><i class="icon-tag"></i> 发布帖子管理</a>
+                    </li>
+                    <li onclick="show_head(5)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="replyManager"><i class="icon-comments"></i>
+                            帖子回复管理</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <!--<li>
+                <a href="#" class="left-list-a"><i class="icon-picture"></i> 系统图片管理<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="javascript:void(0)" class="left-list-a double-a"><i class="icon-user-md"></i>
+                            用户头像管理</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="left-list-a double-a"><i class="icon-laptop"></i> 帖子图片管理</a>
+                    </li>
+                </ul>
+                &lt;!&ndash; /.nav-second-level &ndash;&gt;
+            </li>-->
+            <li>
+                <a href="#" class="left-list-a"><i class="icon-user"></i> 用户管理<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <li onclick="show_head(6)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="sysUserManager"><i class="icon-meh"></i> 普通用户管理</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#" class="left-list-a"><i class="icon-anchor"></i> 管理员管理<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <li onclick="show_head(7)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="editSelf"><i class="icon-sun"></i> 个人基本信息维护</a>
+                    </li>
+                    <li onclick="show_head(8)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="adminManager"><i class="icon-krw"></i> 系统管理员信息管理</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#" class="left-list-a"><i class="icon-anchor"></i> 共享信息管理<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <li onclick="show_head(9)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="dataSharingSearch"><i class="icon-sun"></i>共享信息查看</a>
+                    </li>
+                    <li onclick="show_head(10)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="dataSharingAdd"><i class="icon-krw"></i>管理员发布共享信息</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#" class="left-list-a"><i class="icon-anchor"></i> 考研学校维护<span
+                        class="arrow icon-angle-down"></span></a>
+                <ul class="nav nav-second-level">
+                    <li onclick="show_head(11)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="schoolProfileManager"><i class="icon-sun"></i>学校管理</a>
+                    </li>
+                    <li onclick="show_head(12)">
+                        <a href="javascript:void(0)" class="left-list-a double-a" ui-sref="schoolInformationManager"><i class="icon-krw"></i>学校详情属性管理</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="index-content">
+    <div class="content-left">
+        <div style="width: 220px;background-color: #0f0f0f;height: 10px;"></div>
+    </div>
+    <div class="content-right">
+        <!-- <div class="content-head">
+            <span id="show-page-head">显示区域</span>
+        </div> -->
+        <div class="content-content" data-ui-view="">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IImagesDao" >
+
+	<resultMap id="BaseResultMap" type="Images" >
+	    <id column="IMAGES_CUID" property="imagesCuid" />
+	    <result column="REPLIES_CUID" property="repliesCuid" />
+	    <result column="IMAGES_NAME" property="imagesName"  />
+	    <result column="IMAGES_URL" property="imagesUrl"  />
+	    <result column="IMAGES_THUMB_URL" property="imagesThumbUrl"  />
+	    <result column="IMAGES_EXPLIAN" property="imagesExplian"  />
+	    <result column="IMAGES_STATE" property="imagesState"  />
+	    <result column="IMAGES_CREATE_TIME" property="imagesCreateTime" />
+	    <result column="IMAGES_UPDATE_TIME" property="imagesUpdateTime" />
+  	</resultMap>
+	
+	
+	<sql id="Base_Column_List" >
+	    IMAGES_CUID, 
+	    REPLIES_CUID, 
+	    IMAGES_NAME, 
+	    IMAGES_URL, 
+	    IMAGES_THUMB_URL, 
+	    IMAGES_EXPLIAN, 
+	    IMAGES_STATE, 
+	    IMAGES_CREATE_TIME, 
+	    IMAGES_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Images" >
+	    delete 
+	    from 
+	    	images
+	    where 
+	    	IMAGES_CUID = #{imagesCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Images" >
+	    insert into 
+	    	images 
+	    	(IMAGES_CUID, 
+	    	REPLIES_CUID, 
+	    	IMAGES_NAME, 
+		      IMAGES_URL, 
+		      IMAGES_THUMB_URL, 
+		      IMAGES_EXPLIAN, 
+		      IMAGES_STATE, 
+		      IMAGES_CREATE_TIME, 
+		      IMAGES_UPDATE_TIME
+		      )
+	    values 
+		    (#{imagesCuid}, 
+		    #{repliesCuid}, 
+		    #{imagesName}, 
+		      #{imagesUrl}, 
+		      #{imagesThumbUrl}, 
+		      #{imagesExplian}, 
+		      #{imagesState}, 
+		      #{imagesCreateTime}, 
+		      #{imagesUpdateTime}
+      		)
+  	</insert>
+  	
+  	
+  	<insert id="doInsertSelective" parameterType="Images" >
+	    insert into images
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="imagesCuid != null" >
+	        IMAGES_CUID,
+	      </if>
+	      <if test="repliesCuid != null" >
+	        REPLIES_CUID,
+	      </if>
+	      <if test="imagesName != null" >
+	        IMAGES_NAME,
+	      </if>
+	      <if test="imagesUrl != null" >
+	        IMAGES_URL,
+	      </if>
+	      <if test="imagesThumbUrl != null" >
+	        IMAGES_THUMB_URL,
+	      </if>
+	      <if test="imagesExplian != null" >
+	        IMAGES_EXPLIAN,
+	      </if>
+	      <if test="imagesState != null" >
+	        IMAGES_STATE,
+	      </if>
+	      <if test="imagesCreateTime != null" >
+	        IMAGES_CREATE_TIME,
+	      </if>
+	      <if test="imagesUpdateTime != null" >
+	        IMAGES_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="imagesCuid != null" >
+	        #{imagesCuid},
+	      </if>
+	      <if test="repliesCuid != null" >
+	        #{repliesCuid},
+	      </if>
+	      <if test="imagesName != null" >
+	        #{imagesName},
+	      </if>
+	      <if test="imagesUrl != null" >
+	        #{imagesUrl},
+	      </if>
+	      <if test="imagesThumbUrl != null" >
+	        #{imagesThumbUrl},
+	      </if>
+	      <if test="imagesExplian != null" >
+	        #{imagesExplian},
+	      </if>
+	      <if test="imagesState != null" >
+	        #{imagesState},
+	      </if>
+	      <if test="imagesCreateTime != null" >
+	        #{imagesCreateTime},
+	      </if>
+	      <if test="imagesUpdateTime != null" >
+	        #{imagesUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Images" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	images
+	    where 
+	    	IMAGES_CUID = #{imagesCuid}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Images" >
+	    update images
+	    <set >
+	      <if test="repliesCuid != null" >
+	        REPLIES_CUID = #{repliesCuid},
+	      </if>
+	      <if test="imagesName != null" >
+	        IMAGES_NAME = #{imagesName},
+	      </if>
+	      <if test="imagesUrl != null" >
+	        IMAGES_URL = #{imagesUrl},
+	      </if>
+	      <if test="imagesThumbUrl != null" >
+	        IMAGES_THUMB_URL = #{imagesThumbUrl},
+	      </if>
+	      <if test="imagesExplian != null" >
+	        IMAGES_EXPLIAN = #{imagesExplian},
+	      </if>
+	      <if test="imagesState != null and imagesState != 0" >
+	        IMAGES_STATE = #{imagesState},
+	      </if>
+	      <if test="imagesCreateTime != null" >
+	        IMAGES_CREATE_TIME = #{imagesCreateTime},
+	      </if>
+	      <if test="imagesUpdateTime != null" >
+	        IMAGES_UPDATE_TIME = #{imagesUpdateTime},
+	      </if>
+	    </set>
+	    where IMAGES_CUID = #{imagesCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Images" >
+	    update images
+	    set REPLIES_CUID = #{repliesCuid},
+	      IMAGES_NAME = #{imagesName},
+	      IMAGES_URL = #{imagesUrl},
+	      IMAGES_THUMB_URL = #{imagesThumbUrl},
+	      IMAGES_EXPLIAN = #{imagesExplian},
+	      IMAGES_STATE = #{imagesState},
+	      IMAGES_CREATE_TIME = #{imagesCreateTime},
+	      IMAGES_UPDATE_TIME = #{imagesUpdateTime}
+	    where IMAGES_CUID = #{imagesCuid}
+  	</update>
+	
+	
+	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	images
+	    <where>
+	    	<if test="b.repliesCuid != null" >
+	        REPLIES_CUID = #{b.repliesCuid},
+	      </if>
+	      <if test="b.imagesName != null" >
+	        IMAGES_NAME = #{b.imagesName},
+	      </if>
+	      <if test="b.imagesUrl != null" >
+	        IMAGES_URL = #{b.imagesUrl},
+	      </if>
+	      <if test="b.imagesThumbUrl != null" >
+	        IMAGES_THUMB_URL = #{b.imagesThumbUrl},
+	      </if>
+	      <if test="b.imagesExplian != null" >
+	        IMAGES_EXPLIAN = #{b.imagesExplian},
+	      </if>
+	      <if test="b.imagesState != null and b.imagesState != 0" >
+	        IMAGES_STATE = #{b.imagesState},
+	      </if>
+	      <if test="b.imagesCreateTime != null" >
+	        IMAGES_CREATE_TIME = #{b.imagesCreateTime},
+	      </if>
+	      <if test="b.imagesUpdateTime != null" >
+	        IMAGES_UPDATE_TIME = #{b.imagesUpdateTime},
+	      </if>
+	      and IMAGES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	images
+	    <where>
+	    	<if test="b.repliesCuid != null" >
+	        REPLIES_CUID = #{b.repliesCuid},
+	      </if>
+	      <if test="b.imagesName != null" >
+	        IMAGES_NAME = #{b.imagesName},
+	      </if>
+	      <if test="b.imagesUrl != null" >
+	        IMAGES_URL = #{b.imagesUrl},
+	      </if>
+	      <if test="b.imagesThumbUrl != null" >
+	        IMAGES_THUMB_URL = #{b.imagesThumbUrl},
+	      </if>
+	      <if test="b.imagesExplian != null" >
+	        IMAGES_EXPLIAN = #{b.imagesExplian},
+	      </if>
+	      <if test="b.imagesState != null and b.imagesState != 0" >
+	        IMAGES_STATE = #{b.imagesState},
+	      </if>
+	      <if test="b.imagesCreateTime != null" >
+	        IMAGES_CREATE_TIME = #{b.imagesCreateTime},
+	      </if>
+	      <if test="b.imagesUpdateTime != null" >
+	        IMAGES_UPDATE_TIME = #{b.imagesUpdateTime},
+	      </if>
+	      and IMAGES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+	
+	
+	
+	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	images
+	    <where>
+	    	<choose>
+	    		<when test="b.repliesCuid != null" >
+		        REPLIES_CUID = #{b.repliesCuid}
+		      </when>
+		      <when test="b.imagesName != null" >
+		        and IMAGES_NAME = #{b.imagesName}
+		      </when>
+		      <when test="b.imagesUrl != null" >
+		        and IMAGES_URL = #{b.imagesUrl}
+		      </when>
+		      <when test="b.imagesThumbUrl != null" >
+		        and IMAGES_THUMB_URL = #{b.imagesThumbUrl}
+		      </when>
+		      <when test="b.imagesExplian != null" >
+		        and IMAGES_EXPLIAN = #{b.imagesExplian}
+		      </when>
+		      <when test="b.imagesState != null and b.imagesState != 0" >
+		        and IMAGES_STATE = #{b.imagesState}
+		      </when>
+		      <when test="b.imagesCreateTime != null" >
+		        and IMAGES_CREATE_TIME = #{b.imagesCreateTime}
+		      </when>
+		      <when test="b.imagesUpdateTime != null" >
+		        and IMAGES_UPDATE_TIME = #{b.imagesUpdateTime}
+		      </when>
+	    	</choose>
+	    	and IMAGES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+	
+	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	images
+	    <where>
+	    	<choose>
+	    		<when test="b.repliesCuid != null" >
+		        REPLIES_CUID = #{b.repliesCuid}
+		      </when>
+		      <when test="b.imagesName != null" >
+		        and IMAGES_NAME = #{b.imagesName}
+		      </when>
+		      <when test="b.imagesUrl != null" >
+		        and IMAGES_URL = #{b.imagesUrl}
+		      </when>
+		      <when test="b.imagesThumbUrl != null" >
+		        and IMAGES_THUMB_URL = #{b.imagesThumbUrl}
+		      </when>
+		      <when test="b.imagesExplian != null" >
+		        and IMAGES_EXPLIAN = #{b.imagesExplian}
+		      </when>
+		      <when test="b.imagesState != null and b.imagesState != 0" >
+		        and IMAGES_STATE = #{b.imagesState}
+		      </when>
+		      <when test="b.imagesCreateTime != null" >
+		        and IMAGES_CREATE_TIME = #{b.imagesCreateTime}
+		      </when>
+		      <when test="b.imagesUpdateTime != null" >
+		        and IMAGES_UPDATE_TIME = #{b.imagesUpdateTime}
+		      </when>
+	    	</choose>
+	    	and IMAGES_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+	
+	
+</mapper>

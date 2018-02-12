@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vieagr.distribution.dao.SysUserDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysUser">
+    <id column="sys_user_id" jdbcType="VARCHAR" property="sysUserId" />
+    <result column="sys_user_name" jdbcType="VARCHAR" property="sysUserName" />
+    <result column="sys_user_password" jdbcType="VARCHAR" property="sysUserPassword" />
+    <result column="sys_user_sex" jdbcType="INTEGER" property="sysUserSex" />
+    <result column="sys_user_age" jdbcType="INTEGER" property="sysUserAge" />
+    <result column="sys_user_real_name" jdbcType="VARCHAR" property="sysUserRealName" />
+    <result column="sys_user_mobile_number" jdbcType="VARCHAR" property="sysUserMobileNumber" />
+    <result column="sys_user_type" jdbcType="INTEGER" property="sysUserType" />
+    <result column="sys_user_state" jdbcType="INTEGER" property="sysUserState" />
+    <result column="sys_user_img_url" jdbcType="VARCHAR" property="sysUserImgUrl" />
+    <result column="sys_user_create_time" jdbcType="VARCHAR" property="sysUserCreateTime" />
+    <result column="sys_user_update_time" jdbcType="TIMESTAMP" property="sysUserUpdateTime" />
+    <result column="sys_user_del_flag" jdbcType="INTEGER" property="sysUserDelFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_user_id, sys_user_name, sys_user_password, sys_user_sex, sys_user_age, sys_user_real_name, 
+    sys_user_mobile_number, sys_user_type, sys_user_state, sys_user_img_url, sys_user_create_time, 
+    sys_user_update_time, sys_user_del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where sys_user_id = #{sysUserId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where sys_user_id = #{sysUserId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysUser">
+    insert into sys_user (sys_user_id, sys_user_name, sys_user_password, 
+      sys_user_sex, sys_user_age, sys_user_real_name, 
+      sys_user_mobile_number, sys_user_type, sys_user_state, 
+      sys_user_img_url, sys_user_create_time, sys_user_update_time, 
+      sys_user_del_flag)
+    values (#{sysUserId,jdbcType=VARCHAR}, #{sysUserName,jdbcType=VARCHAR}, #{sysUserPassword,jdbcType=VARCHAR}, 
+      #{sysUserSex,jdbcType=INTEGER}, #{sysUserAge,jdbcType=INTEGER}, #{sysUserRealName,jdbcType=VARCHAR}, 
+      #{sysUserMobileNumber,jdbcType=VARCHAR}, #{sysUserType,jdbcType=INTEGER}, #{sysUserState,jdbcType=INTEGER}, 
+      #{sysUserImgUrl,jdbcType=VARCHAR}, #{sysUserCreateTime,jdbcType=VARCHAR}, #{sysUserUpdateTime,jdbcType=TIMESTAMP}, 
+      #{sysUserDelFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysUserId != null">
+        sys_user_id,
+      </if>
+      <if test="sysUserName != null">
+        sys_user_name,
+      </if>
+      <if test="sysUserPassword != null">
+        sys_user_password,
+      </if>
+      <if test="sysUserSex != null">
+        sys_user_sex,
+      </if>
+      <if test="sysUserAge != null">
+        sys_user_age,
+      </if>
+      <if test="sysUserRealName != null">
+        sys_user_real_name,
+      </if>
+      <if test="sysUserMobileNumber != null">
+        sys_user_mobile_number,
+      </if>
+      <if test="sysUserType != null">
+        sys_user_type,
+      </if>
+      <if test="sysUserState != null">
+        sys_user_state,
+      </if>
+      <if test="sysUserImgUrl != null">
+        sys_user_img_url,
+      </if>
+      <if test="sysUserCreateTime != null">
+        sys_user_create_time,
+      </if>
+      <if test="sysUserUpdateTime != null">
+        sys_user_update_time,
+      </if>
+      <if test="sysUserDelFlag != null">
+        sys_user_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysUserId != null">
+        #{sysUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserName != null">
+        #{sysUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserPassword != null">
+        #{sysUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserSex != null">
+        #{sysUserSex,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserAge != null">
+        #{sysUserAge,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserRealName != null">
+        #{sysUserRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserMobileNumber != null">
+        #{sysUserMobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserType != null">
+        #{sysUserType,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserState != null">
+        #{sysUserState,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserImgUrl != null">
+        #{sysUserImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCreateTime != null">
+        #{sysUserCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserUpdateTime != null">
+        #{sysUserUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysUserDelFlag != null">
+        #{sysUserDelFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysUser">
+    update sys_user
+    <set>
+      <if test="sysUserName != null">
+        sys_user_name = #{sysUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserPassword != null">
+        sys_user_password = #{sysUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserSex != null">
+        sys_user_sex = #{sysUserSex,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserAge != null">
+        sys_user_age = #{sysUserAge,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserRealName != null">
+        sys_user_real_name = #{sysUserRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserMobileNumber != null">
+        sys_user_mobile_number = #{sysUserMobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserType != null">
+        sys_user_type = #{sysUserType,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserState != null">
+        sys_user_state = #{sysUserState,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserImgUrl != null">
+        sys_user_img_url = #{sysUserImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCreateTime != null">
+        sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserUpdateTime != null">
+        sys_user_update_time = #{sysUserUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysUserDelFlag != null">
+        sys_user_del_flag = #{sysUserDelFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sys_user_id = #{sysUserId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysUser">
+    update sys_user
+    set sys_user_name = #{sysUserName,jdbcType=VARCHAR},
+      sys_user_password = #{sysUserPassword,jdbcType=VARCHAR},
+      sys_user_sex = #{sysUserSex,jdbcType=INTEGER},
+      sys_user_age = #{sysUserAge,jdbcType=INTEGER},
+      sys_user_real_name = #{sysUserRealName,jdbcType=VARCHAR},
+      sys_user_mobile_number = #{sysUserMobileNumber,jdbcType=VARCHAR},
+      sys_user_type = #{sysUserType,jdbcType=INTEGER},
+      sys_user_state = #{sysUserState,jdbcType=INTEGER},
+      sys_user_img_url = #{sysUserImgUrl,jdbcType=VARCHAR},
+      sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR},
+      sys_user_update_time = #{sysUserUpdateTime,jdbcType=TIMESTAMP},
+      sys_user_del_flag = #{sysUserDelFlag,jdbcType=INTEGER}
+    where sys_user_id = #{sysUserId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectUserByUserName" parameterType="string" resultMap="BaseResultMap" >
+  	select 
+  		<include refid="Base_Column_List" />
+  	from sys_user 
+  		where sys_user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectSysUserList" parameterType="com.vieagr.distribution.entity.SysUser" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="sysUserName != null">
+         sys_user_name like '%' #{sysUserName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysUserPassword != null">
+        and sys_user_password = #{sysUserPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserSex != null">
+        and sys_user_sex = #{sysUserSex,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserAge != null">
+        and sys_user_age = #{sysUserAge,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserRealName != null">
+        or sys_user_real_name like '%' #{sysUserRealName,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysUserMobileNumber != null">
+        or sys_user_mobile_number like '%' #{sysUserMobileNumber,jdbcType=VARCHAR} '%'
+      </if>
+      <if test="sysUserType != null">
+        and sys_user_type = #{sysUserType,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserState != null">
+        and sys_user_state = #{sysUserState,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserImgUrl != null">
+        and sys_user_img_url = #{sysUserImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserCreateTime != null">
+        and sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserUpdateTime != null">
+        and sys_user_update_time = #{sysUserUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sysUserDelFlag != null">
+        and sys_user_del_flag = #{sysUserDelFlag,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by sys_user_create_time asc
+  </select>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.SysUser" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="sysUserName != null">
+        and sys_user_name like = #{sysUserName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserPassword != null">
+        and sys_user_password = #{sysUserPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserSex != null">
+        and sys_user_sex = #{sysUserSex,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserAge != null">
+        and sys_user_age = #{sysUserAge,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserRealName != null">
+        and sys_user_real_name like = #{sysUserRealName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserMobileNumber != null">
+        and sys_user_mobile_number like = #{sysUserMobileNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserType != null">
+        and sys_user_type = #{sysUserType,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserState != null">
+        and sys_user_state = #{sysUserState,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserImgUrl != null">
+        and sys_user_img_url = #{sysUserImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserCreateTime != null">
+        and sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserUpdateTime != null">
+        and sys_user_update_time = #{sysUserUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sysUserDelFlag != null">
+        and sys_user_del_flag = #{sysUserDelFlag,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <select id="selectByAttributeOr" parameterType="com.vieagr.distribution.entity.SysUser" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from sys_user
+  </select>
+  <cache />
+</mapper>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.BetOrderProductDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.BetOrderProduct">
+    <id column="bet_order_product_id" jdbcType="VARCHAR" property="betOrderProductId" />
+    <result column="bet_order_product_order_id" jdbcType="VARCHAR" property="betOrderProductOrderId" />
+    <result column="bet_order_product_order_number" jdbcType="VARCHAR" property="betOrderProductOrderNumber" />
+    <result column="bet_order_product_product_id" jdbcType="VARCHAR" property="betOrderProductProductId" />
+    <result column="bet_order_product_product_name" jdbcType="VARCHAR" property="betOrderProductProductName" />
+    <result column="bet_order_product_product_type_id" jdbcType="VARCHAR" property="betOrderProductProductTypeId" />
+    <result column="bet_order_product_product_count" jdbcType="VARCHAR" property="betOrderProductProductCount" />
+    <result column="bet_order_product_product_unit_name" jdbcType="INTEGER" property="betOrderProductProductUnitName" />
+    <result column="bet_order_product_create_time" jdbcType="VARCHAR" property="betOrderProductCreateTime" />
+    <result column="bet_order_product_update_time" jdbcType="TIMESTAMP" property="betOrderProductUpdateTime" />
+    <result column="bet_order_product_product_former_price" jdbcType="DECIMAL" property="betOrderProductProductFormerPrice" />
+    <result column="bet_order_product_product_sale_price" jdbcType="DECIMAL" property="betOrderProductProductSalePrice" />
+    <result column="bet_order_product_product_bid_price" jdbcType="DECIMAL" property="betOrderProductProductBidPrice" />
+    <result column="bet_order_product_product_total" jdbcType="DECIMAL" property="betOrderProductProductTotal" />
+    <result column="bet_order_product_univalent_remark" jdbcType="VARCHAR" property="betOrderProductUnivalentRemark" />
+    <result column="bet_order_product_del_flag" jdbcType="INTEGER" property="betOrderProductDelFlag" />
+    <result column="sys_customer_store_name" jdbcType="VARCHAR" property="sysCustomerStoreName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bet_order_product_id, bet_order_product_order_id, bet_order_product_order_number, bet_order_product_product_type_id,
+    bet_order_product_product_id, bet_order_product_product_name, bet_order_product_product_count, bet_order_product_product_unit_name,
+    bet_order_product_create_time, bet_order_product_update_time, bet_order_product_product_former_price, 
+    bet_order_product_product_sale_price, bet_order_product_product_total, bet_order_product_univalent_remark, 
+    bet_order_product_del_flag, bet_order_product_product_bid_price
+  </sql>
+  <sql id="Correlation_Column_List">
+    bet_order_product_id, bet_order_product_order_id, bet_order_product_order_number, bet_order_product_product_type_id
+    bet_order_product_product_id, bet_order_product_product_name, bet_order_product_product_count, bet_order_product_product_unit_name,
+    bet_order_product_create_time, bet_order_product_update_time, bet_order_product_product_former_price, 
+    bet_order_product_product_sale_price, bet_order_product_product_total, bet_order_product_univalent_remark, 
+    bet_order_product_del_flag, sys_customer_store_name, bet_order_product_product_bid_price
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bet_order_product
+    where bet_order_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bet_order_product
+    where bet_order_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.BetOrderProduct">
+    insert into bet_order_product (bet_order_product_id, bet_order_product_order_id, 
+      bet_order_product_order_number, bet_order_product_product_id, bet_order_product_product_type_id,
+      bet_order_product_product_name, bet_order_product_product_count, bet_order_product_product_unit_name,
+      bet_order_product_create_time, bet_order_product_update_time, 
+      bet_order_product_product_former_price, bet_order_product_product_sale_price, 
+      bet_order_product_product_total, bet_order_product_univalent_remark, 
+      bet_order_product_del_flag, bet_order_product_product_bid_price)
+    values (#{betOrderProductId,jdbcType=VARCHAR}, #{betOrderProductOrderId,jdbcType=VARCHAR}, 
+      #{betOrderProductOrderNumber,jdbcType=VARCHAR}, #{betOrderProductProductId,jdbcType=VARCHAR}, 
+      #{betOrderProductProductTypeId,jdbcType=VARCHAR}, 
+      #{betOrderProductProductName,jdbcType=VARCHAR}, #{betOrderProductProductCount,jdbcType=VARCHAR}, 
+      #{betOrderProductProductUnitName,jdbcType=VARCHAR}, 
+      #{betOrderProductCreateTime,jdbcType=VARCHAR}, #{betOrderProductUpdateTime,jdbcType=TIMESTAMP}, 
+      #{betOrderProductProductFormerPrice,jdbcType=DECIMAL}, #{betOrderProductProductSalePrice,jdbcType=DECIMAL}, 
+      #{betOrderProductProductTotal,jdbcType=DECIMAL}, #{betOrderProductUnivalentRemark,jdbcType=VARCHAR}, 
+      #{betOrderProductDelFlag,jdbcType=INTEGER}, #{betOrderProductProductBidPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.BetOrderProduct">
+    insert into bet_order_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="betOrderProductId != null">
+        bet_order_product_id,
+      </if>
+      <if test="betOrderProductOrderId != null">
+        bet_order_product_order_id,
+      </if>
+      <if test="betOrderProductOrderNumber != null">
+        bet_order_product_order_number,
+      </if>
+      <if test="betOrderProductProductId != null">
+        bet_order_product_product_id,
+      </if>
+      <if test="betOrderProductProductName != null">
+        bet_order_product_product_name,
+      </if>
+      <if test="betOrderProductProductTypeId != null">
+        bet_order_product_product_type_id,
+      </if>
+      <if test="betOrderProductProductCount != null">
+        bet_order_product_product_count,
+      </if>
+      <if test="betOrderProductProductUnitName != null">
+        bet_order_product_product_unit_name,
+      </if>
+      <if test="betOrderProductCreateTime != null">
+        bet_order_product_create_time,
+      </if>
+      <if test="betOrderProductUpdateTime != null">
+        bet_order_product_update_time,
+      </if>
+      <if test="betOrderProductProductFormerPrice != null">
+        bet_order_product_product_former_price,
+      </if>
+      <if test="betOrderProductProductSalePrice != null">
+        bet_order_product_product_sale_price,
+      </if>
+      <if test="betOrderProductProductTotal != null">
+        bet_order_product_product_total,
+      </if>
+      <if test="betOrderProductUnivalentRemark != null">
+        bet_order_product_univalent_remark,
+      </if>
+      <if test="betOrderProductDelFlag != null">
+        bet_order_product_del_flag,
+      </if>
+      <if test="betOrderProductProductBidPrice != null">
+        bet_order_product_product_bid_price,
+      </if>      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="betOrderProductId != null">
+        #{betOrderProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductOrderId != null">
+        #{betOrderProductOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductOrderNumber != null">
+        #{betOrderProductOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductId != null">
+        #{betOrderProductProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductName != null">
+        #{betOrderProductProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductTypeId != null">
+        #{betOrderProductProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductCount != null">
+        #{betOrderProductProductCount,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductUnitName != null">
+        #{betOrderProductProductUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductCreateTime != null">
+        #{betOrderProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductUpdateTime != null">
+        #{betOrderProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betOrderProductProductFormerPrice != null">
+        #{betOrderProductProductFormerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductSalePrice != null">
+        #{betOrderProductProductSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductTotal != null">
+        #{betOrderProductProductTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductUnivalentRemark != null">
+        #{betOrderProductUnivalentRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductDelFlag != null">
+        #{betOrderProductDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="betOrderProductProductBidPrice != null">
+        #{betOrderProductProductBidPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.BetOrderProduct">
+    update bet_order_product
+    <set>
+      <if test="betOrderProductOrderId != null">
+        bet_order_product_order_id = #{betOrderProductOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductOrderNumber != null">
+        bet_order_product_order_number = #{betOrderProductOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductId != null">
+        bet_order_product_product_id = #{betOrderProductProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductName != null">
+        bet_order_product_product_name = #{betOrderProductProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductTypeId != null">
+        bet_order_product_product_type_id = #{betOrderProductProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductCount != null">
+        bet_order_product_product_count = #{betOrderProductProductCount,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductUnitName != null">
+        bet_order_product_product_unit_name = #{betOrderProductProductUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductCreateTime != null">
+        bet_order_product_create_time = #{betOrderProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductUpdateTime != null">
+        bet_order_product_update_time = #{betOrderProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betOrderProductProductFormerPrice != null">
+        bet_order_product_product_former_price = #{betOrderProductProductFormerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductSalePrice != null">
+        bet_order_product_product_sale_price = #{betOrderProductProductSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductTotal != null">
+        bet_order_product_product_total = #{betOrderProductProductTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductUnivalentRemark != null">
+        bet_order_product_univalent_remark = #{betOrderProductUnivalentRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductDelFlag != null">
+        bet_order_product_del_flag = #{betOrderProductDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="betOrderProductProductBidPrice != null">
+        bet_order_product_product_bid_price = #{betOrderProductProductBidPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where bet_order_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByOrderNumberAndBetOrderProductIdSelective" parameterType="com.vieagr.distribution.entity.BetOrderProduct">
+    update bet_order_product
+    <set>
+      <if test="betOrderProductOrderId != null">
+        bet_order_product_order_id = #{betOrderProductOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductOrderNumber != null">
+        bet_order_product_order_number = #{betOrderProductOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductId != null">
+        bet_order_product_product_id = #{betOrderProductProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductName != null">
+        bet_order_product_product_name = #{betOrderProductProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductTypeId != null">
+        bet_order_product_product_type_id = #{betOrderProductProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductCount != null">
+        bet_order_product_product_count = #{betOrderProductProductCount,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductUnitName != null">
+        bet_order_product_product_unit_name = #{betOrderProductProductUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductCreateTime != null">
+        bet_order_product_create_time = #{betOrderProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductUpdateTime != null">
+        bet_order_product_update_time = #{betOrderProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betOrderProductProductFormerPrice != null">
+        bet_order_product_product_former_price = #{betOrderProductProductFormerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductSalePrice != null">
+        bet_order_product_product_sale_price = #{betOrderProductProductSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductTotal != null">
+        bet_order_product_product_total = #{betOrderProductProductTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductUnivalentRemark != null">
+        bet_order_product_univalent_remark = #{betOrderProductUnivalentRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductDelFlag != null">
+        bet_order_product_del_flag = #{betOrderProductDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="betOrderProductProductBidPrice != null">
+        bet_order_product_product_bid_price = #{betOrderProductProductBidPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where bet_order_product_order_number = #{betOrderProductOrderNumber,jdbcType=VARCHAR}
+    	and bet_order_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByOrderNumberAndBetOrderProductProductIdSelective" parameterType="com.vieagr.distribution.entity.BetOrderProduct">
+    update bet_order_product
+    <set>
+      <if test="betOrderProductOrderId != null">
+        bet_order_product_order_id = #{betOrderProductOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductOrderNumber != null">
+        bet_order_product_order_number = #{betOrderProductOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductId != null">
+        bet_order_product_product_id = #{betOrderProductProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductName != null">
+        bet_order_product_product_name = #{betOrderProductProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductTypeId != null">
+        bet_order_product_product_type_id = #{betOrderProductProductTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductCount != null">
+        bet_order_product_product_count = #{betOrderProductProductCount,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductProductUnitName != null">
+        bet_order_product_product_unit_name = #{betOrderProductProductUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductCreateTime != null">
+        bet_order_product_create_time = #{betOrderProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductUpdateTime != null">
+        bet_order_product_update_time = #{betOrderProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betOrderProductProductFormerPrice != null">
+        bet_order_product_product_former_price = #{betOrderProductProductFormerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductSalePrice != null">
+        bet_order_product_product_sale_price = #{betOrderProductProductSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductProductTotal != null">
+        bet_order_product_product_total = #{betOrderProductProductTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="betOrderProductUnivalentRemark != null">
+        bet_order_product_univalent_remark = #{betOrderProductUnivalentRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="betOrderProductDelFlag != null">
+        bet_order_product_del_flag = #{betOrderProductDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="betOrderProductProductBidPrice != null">
+        bet_order_product_product_bid_price = #{betOrderProductProductBidPrice,jdbcType=DECIMAL},
+      </if>      
+    </set>
+    where bet_order_product_order_number = #{betOrderProductOrderNumber,jdbcType=VARCHAR}
+    	and bet_order_product_product_id = #{betOrderProductProductId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.BetOrderProduct">
+    update bet_order_product
+    set bet_order_product_order_id = #{betOrderProductOrderId,jdbcType=VARCHAR},
+      bet_order_product_order_number = #{betOrderProductOrderNumber,jdbcType=VARCHAR},
+      bet_order_product_product_id = #{betOrderProductProductId,jdbcType=VARCHAR},
+      bet_order_product_product_name = #{betOrderProductProductName,jdbcType=VARCHAR},
+      bet_order_product_product_type_id = #{betOrderProductProductTypeId,jdbcType=VARCHAR},
+      bet_order_product_product_count = #{betOrderProductProductCount,jdbcType=VARCHAR},
+      bet_order_product_product_unit_name = #{betOrderProductProductUnitName,jdbcType=VARCHAR},
+      bet_order_product_create_time = #{betOrderProductCreateTime,jdbcType=VARCHAR},
+      bet_order_product_update_time = #{betOrderProductUpdateTime,jdbcType=TIMESTAMP},
+      bet_order_product_product_former_price = #{betOrderProductProductFormerPrice,jdbcType=DECIMAL},
+      bet_order_product_product_sale_price = #{betOrderProductProductSalePrice,jdbcType=DECIMAL},
+      bet_order_product_product_total = #{betOrderProductProductTotal,jdbcType=DECIMAL},
+      bet_order_product_univalent_remark = #{betOrderProductUnivalentRemark,jdbcType=VARCHAR},
+      bet_order_product_del_flag = #{betOrderProductDelFlag,jdbcType=INTEGER},
+      bet_order_product_product_bid_price = #{betOrderProductProductBidPrice,jdbcType=DECIMAL}
+    where bet_order_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectBetOrderProductsAndCustomerInfo" parameterType="com.vieagr.distribution.query.SerOrderQuery" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Correlation_Column_List"/>
+  	from bet_order_product 
+  		left join ser_order on bet_order_product.bet_order_product_order_id = ser_order.ser_order_id
+  		left join sys_customer on ser_order.ser_order_customer_id = sys_customer_id
+  		left join bet_vehicles_customer on sys_customer_id = bet_vehicles_customer_customer_id
+	<where>
+		<if test="orderSendTime != null">
+			and ser_order.ser_order_send_time like '%' #{orderSendTime,jdbcType=VARCHAR} '%'
+		</if>
+		<if test="orderNumber != null">
+			and bet_order_product.bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+		</if>
+		<if test="serOrderType != null">
+			and ser_order.ser_order_type = #{serOrderType,jdbcType=INTEGER}
+		</if>
+		<if test="sysVehiclesId != null">
+			and bet_vehicles_customer_vehicles_id = #{sysVehiclesId,jdbcType=VARCHAR}
+		</if>
+			and bet_order_product_del_flag = 1
+		<if test="orderNumber == null and serOrderState != null">
+			and ser_order_state = #{serOrderState,jdbcType=INTEGER}
+		</if>
+	</where>
+		order by bet_order_product_product_type_id, bet_order_product_product_name
+  </select>
+  <select id="selectBetOrderProductsByBetOrderProductIdAndOrderNumber" parameterType="com.vieagr.distribution.query.SerOrderQuery" 
+  	resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from bet_order_product 
+  	where bet_order_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  		and bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+  		and bet_order_product_del_flag = 1
+  </select>
+  
+   <select id="selectBetOrderProductsByBetOrderProductProductIdAndOrderNumber" parameterType="com.vieagr.distribution.query.SerOrderQuery" 
+  	resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from bet_order_product 
+  	where bet_order_product_product_id = #{betOrderProductId,jdbcType=VARCHAR}
+  		and bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+  		and bet_order_product_del_flag = 1
+  </select>
+  
+  <select id="selectProductsForUnifyUpdateOrder" parameterType="string" resultMap="BaseResultMap">
+  	select
+		bet_order_product_order_number,bet_order_product_product_id, bet_order_product_product_former_price,
+		bet_order_product_product_name, bet_order_product_product_unit_name
+ 	from bet_order_product
+	where bet_order_product_order_number in ${orderNumberArrays}
+	and bet_order_product_del_flag = 1
+	group by bet_order_product_product_id
+  </select>
+  <update id="updateProductSalePrice" parameterType="com.vieagr.distribution.param.SerOrderParam" >
+  	update bet_order_product 
+  	set bet_order_product_product_sale_price = #{updatePrice,jdbcType=DECIMAL}
+  	where bet_order_product_product_id = #{sysProductId,jdbcType=VARCHAR}
+  		and bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+  </update>
+  <select id="selectBetOrderProductByProductIdAndOrderNumber" parameterType="com.vieagr.distribution.query.SerOrderQuery"
+  	resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from bet_order_product 
+  	where bet_order_product_product_id = #{sysProductId,jdbcType=VARCHAR}
+  		and bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+  		and bet_order_product_del_flag = 1
+  </select>
+  <delete id="deleteProductForOrderDetails" parameterType="com.vieagr.distribution.param.SerOrderParam" >
+	update bet_order_product set bet_order_product_del_flag = 2 
+	where bet_order_product_order_number = #{orderNumber,jdbcType=VARCHAR}
+		and bet_order_product_product_id = 	#{sysProductId,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectBetOrderProductBySerOrderId" parameterType="string" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from bet_order_product
+  	where bet_order_product_order_id = #{serOrderId,jdbcType=VARCHAR}
+  	order by bet_order_product_product_type_id, bet_order_product_product_name
+  </select>
+  
+    <select id="selectBetOrderProductByOrderId" parameterType="string" resultMap="BaseResultMap">
+	  	select 
+	  		<include refid="Base_Column_List"/>
+	  	from bet_order_product
+	  	where bet_order_product_order_id = #{serOrderId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectBetOrderProductByVehiclesId" parameterType="com.vieagr.distribution.query.SerOrderQuery" 
+  		 resultMap="BaseResultMap">
+	select 
+		<include refid="Base_Column_List"/>
+	from bet_vehicles_customer 
+		left join sys_customer on bet_vehicles_customer_customer_id = sys_customer_id
+		left join ser_order on ser_order_customer_id = sys_customer_id
+		left join bet_order_product on bet_order_product_order_id = ser_order_id
+	where bet_vehicles_customer_vehicles_id = #{sysVehiclesId,jdbcType=VARCHAR}
+		and ser_order_send_time like #{orderSendTime,jdbcType=VARCHAR} '%'
+		and ser_order_type = #{serOrderType,jdbcType=INTEGER}
+		and bet_order_product_del_flag = 1
+		and ser_order_state = 4
+	order by bet_order_product_product_type_id, bet_order_product_product_name
+  </select>
+  
+</mapper>

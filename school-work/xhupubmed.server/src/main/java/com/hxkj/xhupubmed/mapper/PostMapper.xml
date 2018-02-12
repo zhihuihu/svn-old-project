@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IPostDao" >
+	
+	<resultMap id="BaseResultMap" type="Post" >
+	    <id column="POST_CUID" property="postCuid" />
+	    <result column="SYS_USER_CUID" property="sysUserCuid" />
+	    <result column="POST_NAME" property="postName" />
+	    <result column="POST_URL" property="postUrl" />
+	    <result column="POST_TITLE" property="postTitle" />
+	    <result column="POST_CONTENT" property="postContent" />
+	    <result column="POST_TYPE" property="postType" />
+	    <result column="POST_REPLIES_NUMBER" property="postRepliesNumber" />
+	    <result column="POST_FOLLOW_PEOPLE_NUMBER" property="postFollowPeopleNumber" />
+	    <result column="POST_CREATE_ADDRESS" property="postCreateAddress" />
+	    <result column="POST_STATE" property="postState" />
+	    <result column="POST_CREATE_TIME" property="postCreateTime" />
+	    <result column="POST_UPDATE_TIME" property="postUpdateTime" />
+  	</resultMap>
+  	
+  	
+  	<sql id="Base_Column_List" >
+	    POST_CUID, 
+	    SYS_USER_CUID, 
+	    POST_NAME, 
+	    POST_URL, 
+	    POST_TITLE, 
+	    POST_CONTENT, 
+	    POST_TYPE, 
+	    POST_REPLIES_NUMBER, 
+	    POST_FOLLOW_PEOPLE_NUMBER, 
+	    POST_CREATE_ADDRESS, 
+	    POST_STATE, 
+	    POST_CREATE_TIME, 
+	    POST_UPDATE_TIME
+  	</sql>
+  	
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Post" >
+	    delete 
+	    from 
+	    	post
+	    where 
+	    	POST_CUID = #{postCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Post" >
+	    insert into 
+	    	post 
+		    	(POST_CUID, 
+		    	SYS_USER_CUID, 
+		    	POST_NAME, 
+		      POST_URL, 
+		      POST_TITLE, 
+		      POST_CONTENT, 
+		      POST_TYPE, 
+		      POST_REPLIES_NUMBER, 
+		      POST_FOLLOW_PEOPLE_NUMBER, 
+		      POST_CREATE_ADDRESS, 
+		      POST_STATE, 
+		      POST_CREATE_TIME, 
+		      POST_UPDATE_TIME)
+	    values 
+		    (#{postCuid}, 
+		    #{sysUserCuid}, 
+		    #{postName}, 
+		      #{postUrl}, 
+		      #{postTitle}, 
+		      #{postContent}, 
+		      #{postType}, 
+		      #{postRepliesNumber},
+		      #{postFollowPeopleNumber}, 
+		      #{postCreateAddress}, 
+		      #{postState}, 
+		      #{postCreateTime}, 
+		      #{postUpdateTime})
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="Post" >
+	    insert into post
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="postCuid != null" >
+	        POST_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="postName != null" >
+	        POST_NAME,
+	      </if>
+	      <if test="postUrl != null" >
+	        POST_URL,
+	      </if>
+	      <if test="postTitle != null" >
+	        POST_TITLE,
+	      </if>
+	      <if test="postContent != null" >
+	        POST_CONTENT,
+	      </if>
+	      <if test="postType != null" >
+	        POST_TYPE,
+	      </if>
+	      <if test="postRepliesNumber != null" >
+	        POST_REPLIES_NUMBER,
+	      </if>
+	      <if test="postFollowPeopleNumber != null" >
+	        POST_FOLLOW_PEOPLE_NUMBER,
+	      </if>
+	      <if test="postCreateAddress != null" >
+	        POST_CREATE_ADDRESS,
+	      </if>
+	      <if test="postState != null" >
+	        POST_STATE,
+	      </if>
+	      <if test="postCreateTime != null" >
+	        POST_CREATE_TIME,
+	      </if>
+	      <if test="postUpdateTime != null" >
+	        POST_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="postCuid != null" >
+	        #{postCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="postName != null" >
+	        #{postName},
+	      </if>
+	      <if test="postUrl != null" >
+	        #{postUrl},
+	      </if>
+	      <if test="postTitle != null" >
+	        #{postTitle},
+	      </if>
+	      <if test="postContent != null" >
+	        #{postContent},
+	      </if>
+	      <if test="postType != null" >
+	        #{postType},
+	      </if>
+	      <if test="postRepliesNumber != null" >
+	        #{postRepliesNumber},
+	      </if>
+	      <if test="postFollowPeopleNumber != null" >
+	        #{postFollowPeopleNumber},
+	      </if>
+	      <if test="postCreateAddress != null" >
+	        #{postCreateAddress},
+	      </if>
+	      <if test="postState != null" >
+	        #{postState},
+	      </if>
+	      <if test="postCreateTime != null" >
+	        #{postCreateTime},
+	      </if>
+	      <if test="postUpdateTime != null" >
+	        #{postUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Post" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	post
+	    where 
+	    	POST_CUID = #{postCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Post" >
+	    update post
+	    <set >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="postName != null" >
+	        POST_NAME = #{postName},
+	      </if>
+	      <if test="postUrl != null" >
+	        POST_URL = #{postUrl},
+	      </if>
+	      <if test="postTitle != null" >
+	        POST_TITLE = #{postTitle},
+	      </if>
+	      <if test="postContent != null" >
+	        POST_CONTENT = #{postContent},
+	      </if>
+	      <if test="postType != null and postType != 0" >
+	        POST_TYPE = #{postType},
+	      </if>
+	      <if test="postRepliesNumber != null and postRepliesNumber != 0" >
+	        POST_REPLIES_NUMBER = #{postRepliesNumber},
+	      </if>
+	      <if test="postFollowPeopleNumber != null and postFollowPeopleNumber != 0" >
+	        POST_FOLLOW_PEOPLE_NUMBER = #{postFollowPeopleNumber},
+	      </if>
+	      <if test="postCreateAddress != null" >
+	        POST_CREATE_ADDRESS = #{postCreateAddress},
+	      </if>
+	      <if test="postState != null and postState != 0" >
+	        POST_STATE = #{postState},
+	      </if>
+	      <if test="postCreateTime != null" >
+	        POST_CREATE_TIME = #{postCreateTime},
+	      </if>
+	      <if test="postUpdateTime != null" >
+	        POST_UPDATE_TIME = #{postUpdateTime},
+	      </if>
+	    </set>
+	    where POST_CUID = #{postCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Post" >
+	    update post
+	    set SYS_USER_CUID = #{sysUserCuid},
+	      POST_NAME = #{postName},
+	      POST_URL = #{postUrl},
+	      POST_TITLE = #{postTitle},
+	      POST_CONTENT = #{postContent},
+	      POST_TYPE = #{postType},
+	      POST_REPLIES_NUMBER = #{postRepliesNumber},
+	      POST_FOLLOW_PEOPLE_NUMBER = #{postFollowPeopleNumber},
+	      POST_CREATE_ADDRESS = #{postCreateAddress},
+	      POST_STATE = #{postState},
+	      POST_CREATE_TIME = #{postCreateTime},
+	      POST_UPDATE_TIME = #{postUpdateTime}
+	    where POST_CUID = #{postCuid}
+  	</update>
+  	
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	post
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.postName != null" >
+	        and POST_NAME LIKE '%' #{b.postName} '%'
+	      </if>
+	      <if test="b.postUrl != null" >
+	        and POST_URL = #{b.postUrl}
+	      </if>
+	      <if test="b.postTitle != null" >
+	        and POST_TITLE LIKE '%' #{b.postTitle} '%'
+	      </if>
+	      <if test="b.postContent != null" >
+	        and POST_CONTENT = #{b.postContent}
+	      </if>
+	      <if test="b.postType != null and b.postType != 0" >
+	        and POST_TYPE = #{b.postType}
+	      </if>
+	      <if test="b.postRepliesNumber != null and b.postRepliesNumber != 0" >
+	        and POST_REPLIES_NUMBER = #{b.postRepliesNumber}
+	      </if>
+	      <if test="b.postFollowPeopleNumber != null and b.postFollowPeopleNumber != 0" >
+	        and POST_FOLLOW_PEOPLE_NUMBER = #{b.postFollowPeopleNumber}
+	      </if>
+	      <if test="b.postCreateAddress != null" >
+	        and POST_CREATE_ADDRESS = #{b.postCreateAddress}
+	      </if>
+	      <if test="b.postState != null and b.postState != 0" >
+	        and POST_STATE = #{b.postState}
+	      </if>
+	      <if test="b.postCreateTime != null" >
+	        and POST_CREATE_TIME LIKE '%' #{b.postCreateTime} '%'
+	      </if>
+	      <if test="b.postUpdateTime != null" >
+	        and POST_UPDATE_TIME = #{b.postUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	         and POST_TITLE LIKE '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and POST_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and POST_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and POST_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	post
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.postName != null" >
+	        and POST_NAME LIKE '%' #{b.postName} '%'
+	      </if>
+	      <if test="b.postUrl != null" >
+	        and POST_URL = #{b.postUrl}
+	      </if>
+	      <if test="b.postTitle != null" >
+	        and POST_TITLE LIKE '%' #{b.postTitle} '%'
+	      </if>
+	      <if test="b.postContent != null" >
+	        and POST_CONTENT = #{b.postContent}
+	      </if>
+	      <if test="b.postType != null and b.postType != 0" >
+	        and POST_TYPE = #{b.postType}
+	      </if>
+	      <if test="b.postRepliesNumber != null and b.postRepliesNumber != 0" >
+	        and POST_REPLIES_NUMBER = #{b.postRepliesNumber}
+	      </if>
+	      <if test="b.postFollowPeopleNumber != null and b.postFollowPeopleNumber != 0" >
+	        and POST_FOLLOW_PEOPLE_NUMBER = #{b.postFollowPeopleNumber}
+	      </if>
+	      <if test="b.postCreateAddress != null" >
+	        and POST_CREATE_ADDRESS = #{b.postCreateAddress}
+	      </if>
+	      <if test="b.postState != null and b.postState != 0" >
+	        and POST_STATE = #{b.postState}
+	      </if>
+	      <if test="b.postCreateTime != null" >
+	        and POST_CREATE_TIME LIKE '%' #{b.postCreateTime} '%'
+	      </if>
+	      <if test="b.postUpdateTime != null" >
+	        and POST_UPDATE_TIME = #{b.postUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	         and POST_TITLE LIKE '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and POST_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and POST_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and POST_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	post
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.postName != null" >
+		        and POST_NAME = #{b.postName}
+		      </when>
+		      <when test="b.postUrl != null" >
+		        and POST_URL = #{b.postUrl}
+		      </when>
+		      <when test="b.postTitle != null" >
+		        and POST_TITLE = #{b.postTitle}
+		      </when>
+		      <when test="b.postContent != null" >
+		        and POST_CONTENT = #{b.postContent}
+		      </when>
+		      <when test="b.postType != null and b.postType != 0" >
+		        and POST_TYPE = #{b.postType}
+		      </when>
+		      <when test="b.postRepliesNumber != null and b.postRepliesNumber != 0" >
+		        and POST_REPLIES_NUMBER = #{b.postRepliesNumber}
+		      </when>
+		      <when test="b.postFollowPeopleNumber != null and b.postFollowPeopleNumber != 0" >
+		        and POST_FOLLOW_PEOPLE_NUMBER = #{b.postFollowPeopleNumber}
+		      </when>
+		      <when test="b.postCreateAddress != null" >
+		        and POST_CREATE_ADDRESS = #{b.postCreateAddress}
+		      </when>
+		      <when test="b.postState != null and b.postState != 0" >
+		        and POST_STATE = #{b.postState}
+		      </when>
+		      <when test="b.postCreateTime != null" >
+		        and POST_CREATE_TIME = #{b.postCreateTime}
+		      </when>
+		      <when test="b.postUpdateTime != null" >
+		        and POST_UPDATE_TIME = #{b.postUpdateTime}
+		      </when>
+	    	</choose>
+	      and POST_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	post
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.postName != null" >
+		        and POST_NAME = #{b.postName}
+		      </when>
+		      <when test="b.postUrl != null" >
+		        and POST_URL = #{b.postUrl}
+		      </when>
+		      <when test="b.postTitle != null" >
+		        and POST_TITLE = #{b.postTitle}
+		      </when>
+		      <when test="b.postContent != null" >
+		        and POST_CONTENT = #{b.postContent}
+		      </when>
+		      <when test="b.postType != null and b.postType != 0" >
+		        and POST_TYPE = #{b.postType}
+		      </when>
+		      <when test="b.postRepliesNumber != null and b.postRepliesNumber != 0" >
+		        and POST_REPLIES_NUMBER = #{b.postRepliesNumber}
+		      </when>
+		      <when test="b.postFollowPeopleNumber != null and b.postFollowPeopleNumber != 0" >
+		        and POST_FOLLOW_PEOPLE_NUMBER = #{b.postFollowPeopleNumber}
+		      </when>
+		      <when test="b.postCreateAddress != null" >
+		        and POST_CREATE_ADDRESS = #{b.postCreateAddress}
+		      </when>
+		      <when test="b.postState != null and b.postState != 0" >
+		        and POST_STATE = #{b.postState}
+		      </when>
+		      <when test="b.postCreateTime != null" >
+		        and POST_CREATE_TIME = #{b.postCreateTime}
+		      </when>
+		      <when test="b.postUpdateTime != null" >
+		        and POST_UPDATE_TIME = #{b.postUpdateTime}
+		      </when>
+	    	</choose>
+	      and POST_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<update id="doUpdateImage" parameterType="Post" >
+	    update post
+	    set 
+	      POST_URL = CONCAT(POST_URL,#{postUrl},';')
+	    where POST_CUID = #{postCuid}
+  	</update>
+  	
+  	
+	
+</mapper>

@@ -1,0 +1,35 @@
+body {
+	margin: 0;
+	background: #fff;
+	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial,
+		"Microsoft YaHei", FreeSans, Arimo, "Droid Sans",
+		"wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3",
+		FontAwesome, sans-serif;
+	font-weight: 400;
+	color: #333;
+}
+.friend-center{
+	cursor: pointer;
+	height: 50px;
+	width: 200px;
+	background-color:#ddd;
+}
+.friend-center:HOVER{
+	background-color:#c7c8d6;
+}
+.user-image{
+	width: 40px;
+	height: 40px;
+	margin: 5px 10px;
+	border: 1px solid #666666;
+}
+.friend-center p{
+	line-height: 50px;
+	font-size: 20px;
+	padding: 0px 5px;
+}
+.frient-body{
+	width: 260px;
+	height: 520px;
+	background-color: #333;
+}

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IDataSharingDao" >
+	<resultMap id="BaseResultMap" type="DataSharing" >
+	    <id column="DATA_SHARING_CUID" property="dataSharingCuid" />
+	    <result column="DATA_SHARING_SYS_USER_CUID" property="dataSharingSysUserCuid" />
+	    <result column="DATA_SHARING_TITLE" property="dataSharingTitle" />
+	    <result column="DATA_SHARING_TYPE" property="dataSharingType" />
+	    <result column="DATA_SHARING_TAG" property="dataSharingTag" />
+	    <result column="DATA_SHARING_STATE" property="dataSharingState" />
+	    <result column="DATA_SHARING_SH_CREATE_TIME" property="dataSharingShCreateTime" />
+	    <result column="DATA_SHARING_MAIN_CONTENT" property="dataSharingMainContent" />
+	    <result column="DATA_SHARING_URL" property="dataSharingUrl" />
+	    <result column="DATA_SHARING_FILE_URL1" property="dataSharingFileUrl1" />
+	    <result column="DATA_SHARING_FILE_URL2" property="dataSharingFileUrl2" />
+	    <result column="DATA_SHARING_FILE_URL3" property="dataSharingFileUrl3" />
+	    <result column="DATA_SHARING_FILE_URL4" property="dataSharingFileUrl4" />
+	    <result column="DATA_SHARING_CREATE_TIME" property="dataSharingCreateTime" />
+	    <result column="DATA_SHARING_UPDATE_TIME" property="dataSharingUpdateTime" />
+  	</resultMap>
+  	
+  	
+  	<sql id="Base_Column_List" >
+	    DATA_SHARING_CUID, DATA_SHARING_SYS_USER_CUID, DATA_SHARING_TITLE, DATA_SHARING_TYPE, 
+	    DATA_SHARING_TAG, DATA_SHARING_STATE, DATA_SHARING_SH_CREATE_TIME, DATA_SHARING_MAIN_CONTENT, 
+	    DATA_SHARING_URL, DATA_SHARING_FILE_URL1, DATA_SHARING_FILE_URL2, DATA_SHARING_FILE_URL3, 
+	    DATA_SHARING_FILE_URL4, DATA_SHARING_CREATE_TIME, DATA_SHARING_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="DataSharing" >
+	    delete from data_sharing
+	    where DATA_SHARING_CUID = #{dataSharingCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="DataSharing" >
+	    insert into data_sharing (DATA_SHARING_CUID, DATA_SHARING_SYS_USER_CUID, 
+	      DATA_SHARING_TITLE, DATA_SHARING_TYPE, DATA_SHARING_TAG, 
+	      DATA_SHARING_STATE, DATA_SHARING_SH_CREATE_TIME, 
+	      DATA_SHARING_MAIN_CONTENT, DATA_SHARING_URL, 
+	      DATA_SHARING_FILE_URL1, DATA_SHARING_FILE_URL2, 
+	      DATA_SHARING_FILE_URL3, DATA_SHARING_FILE_URL4, 
+	      DATA_SHARING_CREATE_TIME, DATA_SHARING_UPDATE_TIME
+	      )
+	    values (#{dataSharingCuid}, #{dataSharingSysUserCuid}, 
+	      #{dataSharingTitle}, #{dataSharingType}, #{dataSharingTag}, 
+	      #{dataSharingState}, #{dataSharingShCreateTime}, 
+	      #{dataSharingMainContent}, #{dataSharingUrl}, 
+	      #{dataSharingFileUrl1}, #{dataSharingFileUrl2}, 
+	      #{dataSharingFileUrl3}, #{dataSharingFileUrl4}, 
+	      #{dataSharingCreateTime}, #{dataSharingUpdateTime}
+      )
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="DataSharing" >
+	    insert into data_sharing
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="dataSharingCuid != null" >
+	        DATA_SHARING_CUID,
+	      </if>
+	      <if test="dataSharingSysUserCuid != null" >
+	        DATA_SHARING_SYS_USER_CUID,
+	      </if>
+	      <if test="dataSharingTitle != null" >
+	        DATA_SHARING_TITLE,
+	      </if>
+	      <if test="dataSharingType != null" >
+	        DATA_SHARING_TYPE,
+	      </if>
+	      <if test="dataSharingTag != null" >
+	        DATA_SHARING_TAG,
+	      </if>
+	      <if test="dataSharingState != null" >
+	        DATA_SHARING_STATE,
+	      </if>
+	      <if test="dataSharingShCreateTime != null" >
+	        DATA_SHARING_SH_CREATE_TIME,
+	      </if>
+	      <if test="dataSharingMainContent != null" >
+	        DATA_SHARING_MAIN_CONTENT,
+	      </if>
+	      <if test="dataSharingUrl != null" >
+	        DATA_SHARING_URL,
+	      </if>
+	      <if test="dataSharingFileUrl1 != null" >
+	        DATA_SHARING_FILE_URL1,
+	      </if>
+	      <if test="dataSharingFileUrl2 != null" >
+	        DATA_SHARING_FILE_URL2,
+	      </if>
+	      <if test="dataSharingFileUrl3 != null" >
+	        DATA_SHARING_FILE_URL3,
+	      </if>
+	      <if test="dataSharingFileUrl4 != null" >
+	        DATA_SHARING_FILE_URL4,
+	      </if>
+	      <if test="dataSharingCreateTime != null" >
+	        DATA_SHARING_CREATE_TIME,
+	      </if>
+	      <if test="dataSharingUpdateTime != null" >
+	        DATA_SHARING_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="dataSharingCuid != null" >
+	        #{dataSharingCuid},
+	      </if>
+	      <if test="dataSharingSysUserCuid != null" >
+	        #{dataSharingSysUserCuid},
+	      </if>
+	      <if test="dataSharingTitle != null" >
+	        #{dataSharingTitle},
+	      </if>
+	      <if test="dataSharingType != null" >
+	        #{dataSharingType},
+	      </if>
+	      <if test="dataSharingTag != null" >
+	        #{dataSharingTag},
+	      </if>
+	      <if test="dataSharingState != null" >
+	        #{dataSharingState},
+	      </if>
+	      <if test="dataSharingShCreateTime != null" >
+	        #{dataSharingShCreateTime},
+	      </if>
+	      <if test="dataSharingMainContent != null" >
+	        #{dataSharingMainContent},
+	      </if>
+	      <if test="dataSharingUrl != null" >
+	        #{dataSharingUrl},
+	      </if>
+	      <if test="dataSharingFileUrl1 != null" >
+	        #{dataSharingFileUrl1},
+	      </if>
+	      <if test="dataSharingFileUrl2 != null" >
+	        #{dataSharingFileUrl2},
+	      </if>
+	      <if test="dataSharingFileUrl3 != null" >
+	        #{dataSharingFileUrl3},
+	      </if>
+	      <if test="dataSharingFileUrl4 != null" >
+	        #{dataSharingFileUrl4},
+	      </if>
+	      <if test="dataSharingCreateTime != null" >
+	        #{dataSharingCreateTime},
+	      </if>
+	      <if test="dataSharingUpdateTime != null" >
+	        #{dataSharingUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="DataSharing" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from data_sharing
+	    where DATA_SHARING_CUID = #{dataSharingCuid}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="DataSharing" >
+	    update data_sharing
+	    <set >
+	      <if test="dataSharingSysUserCuid != null" >
+	        DATA_SHARING_SYS_USER_CUID = #{dataSharingSysUserCuid},
+	      </if>
+	      <if test="dataSharingTitle != null" >
+	        DATA_SHARING_TITLE = #{dataSharingTitle},
+	      </if>
+	      <if test="dataSharingType != null and dataSharingType != 0" >
+	        DATA_SHARING_TYPE = #{dataSharingType},
+	      </if>
+	      <if test="dataSharingTag != null" >
+	        DATA_SHARING_TAG = #{dataSharingTag},
+	      </if>
+	      <if test="dataSharingState != null and dataSharingState != 0" >
+	        DATA_SHARING_STATE = #{dataSharingState},
+	      </if>
+	      <if test="dataSharingShCreateTime != null" >
+	        DATA_SHARING_SH_CREATE_TIME = #{dataSharingShCreateTime},
+	      </if>
+	      <if test="dataSharingMainContent != null" >
+	        DATA_SHARING_MAIN_CONTENT = #{dataSharingMainContent},
+	      </if>
+	      <if test="dataSharingUrl != null" >
+	        DATA_SHARING_URL = #{dataSharingUrl},
+	      </if>
+	      <if test="dataSharingFileUrl1 != null" >
+	        DATA_SHARING_FILE_URL1 = #{dataSharingFileUrl1},
+	      </if>
+	      <if test="dataSharingFileUrl2 != null" >
+	        DATA_SHARING_FILE_URL2 = #{dataSharingFileUrl2},
+	      </if>
+	      <if test="dataSharingFileUrl3 != null" >
+	        DATA_SHARING_FILE_URL3 = #{dataSharingFileUrl3},
+	      </if>
+	      <if test="dataSharingFileUrl4 != null" >
+	        DATA_SHARING_FILE_URL4 = #{dataSharingFileUrl4},
+	      </if>
+	      <if test="dataSharingCreateTime != null" >
+	        DATA_SHARING_CREATE_TIME = #{dataSharingCreateTime},
+	      </if>
+	      <if test="dataSharingUpdateTime != null" >
+	        DATA_SHARING_UPDATE_TIME = #{dataSharingUpdateTime},
+	      </if>
+	    </set>
+	    where DATA_SHARING_CUID = #{dataSharingCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="DataSharing" >
+	    update data_sharing
+	    set DATA_SHARING_SYS_USER_CUID = #{dataSharingSysUserCuid},
+	      DATA_SHARING_TITLE = #{dataSharingTitle},
+	      DATA_SHARING_TYPE = #{dataSharingType},
+	      DATA_SHARING_TAG = #{dataSharingTag},
+	      DATA_SHARING_STATE = #{dataSharingState},
+	      DATA_SHARING_SH_CREATE_TIME = #{dataSharingShCreateTime},
+	      DATA_SHARING_MAIN_CONTENT = #{dataSharingMainContent},
+	      DATA_SHARING_URL = #{dataSharingUrl},
+	      DATA_SHARING_FILE_URL1 = #{dataSharingFileUrl1},
+	      DATA_SHARING_FILE_URL2 = #{dataSharingFileUrl2},
+	      DATA_SHARING_FILE_URL3 = #{dataSharingFileUrl3},
+	      DATA_SHARING_FILE_URL4 = #{dataSharingFileUrl4},
+	      DATA_SHARING_CREATE_TIME = #{dataSharingCreateTime},
+	      DATA_SHARING_UPDATE_TIME = #{dataSharingUpdateTime}
+	    where DATA_SHARING_CUID = #{dataSharingCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from data_sharing
+	    <where>
+	      <if test="b.dataSharingSysUserCuid != null" >
+	        DATA_SHARING_SYS_USER_CUID = #{b.dataSharingSysUserCuid}
+	      </if>
+	      <if test="b.dataSharingTitle != null" >
+	        and DATA_SHARING_TITLE = #{b.dataSharingTitle}
+	      </if>
+	      <if test="b.dataSharingType != null and b.dataSharingType != 0" >
+	        and DATA_SHARING_TYPE = #{b.dataSharingType}
+	      </if>
+	      <if test="b.dataSharingTag != null" >
+	        and DATA_SHARING_TAG = #{b.dataSharingTag}
+	      </if>
+	      <if test="b.dataSharingState != null and b.dataSharingState != 0" >
+	        and DATA_SHARING_STATE = #{b.dataSharingState}
+	      </if>
+	      <if test="b.dataSharingShCreateTime != null" >
+	        and DATA_SHARING_SH_CREATE_TIME = #{b.dataSharingShCreateTime}
+	      </if>
+	      <if test="b.dataSharingMainContent != null" >
+	        and DATA_SHARING_MAIN_CONTENT = #{b.dataSharingMainContent}
+	      </if>
+	      <if test="b.dataSharingUrl != null" >
+	        and DATA_SHARING_URL = #{b.dataSharingUrl}
+	      </if>
+	      <if test="b.dataSharingFileUrl1 != null" >
+	        and DATA_SHARING_FILE_URL1 = #{b.dataSharingFileUrl1}
+	      </if>
+	      <if test="b.dataSharingFileUrl2 != null" >
+	        and DATA_SHARING_FILE_URL2 = #{b.dataSharingFileUrl2}
+	      </if>
+	      <if test="b.dataSharingFileUrl3 != null" >
+	        and DATA_SHARING_FILE_URL3 = #{b.dataSharingFileUrl3}
+	      </if>
+	      <if test="b.dataSharingFileUrl4 != null" >
+	        and DATA_SHARING_FILE_URL4 = #{b.dataSharingFileUrl4}
+	      </if>
+	      <if test="b.dataSharingCreateTime != null" >
+	        and DATA_SHARING_CREATE_TIME = #{b.dataSharingCreateTime}
+	      </if>
+	      <if test="b.dataSharingUpdateTime != null" >
+	        and DATA_SHARING_UPDATE_TIME = #{b.dataSharingUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	        and DATA_SHARING_TITLE like '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and DATA_SHARING_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and DATA_SHARING_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and DATA_SHARING_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    COUNT(1)
+	    from data_sharing
+	    <where>
+	      <if test="b.dataSharingSysUserCuid != null" >
+	        DATA_SHARING_SYS_USER_CUID = #{b.dataSharingSysUserCuid}
+	      </if>
+	      <if test="b.dataSharingTitle != null" >
+	        and DATA_SHARING_TITLE = #{b.dataSharingTitle}
+	      </if>
+	      <if test="b.dataSharingType != null and b.dataSharingType != 0" >
+	        and DATA_SHARING_TYPE = #{b.dataSharingType}
+	      </if>
+	      <if test="b.dataSharingTag != null" >
+	        and DATA_SHARING_TAG = #{b.dataSharingTag}
+	      </if>
+	      <if test="b.dataSharingState != null and b.dataSharingState != 0" >
+	        and DATA_SHARING_STATE = #{b.dataSharingState}
+	      </if>
+	      <if test="b.dataSharingShCreateTime != null" >
+	        DATA_SHARING_SH_CREATE_TIME = #{b.dataSharingShCreateTime}
+	      </if>
+	      <if test="b.dataSharingMainContent != null" >
+	        and DATA_SHARING_MAIN_CONTENT = #{b.dataSharingMainContent}
+	      </if>
+	      <if test="b.dataSharingUrl != null" >
+	        and DATA_SHARING_URL = #{b.dataSharingUrl}
+	      </if>
+	      <if test="b.dataSharingFileUrl1 != null" >
+	        and DATA_SHARING_FILE_URL1 = #{b.dataSharingFileUrl1}
+	      </if>
+	      <if test="b.dataSharingFileUrl2 != null" >
+	        and DATA_SHARING_FILE_URL2 = #{b.dataSharingFileUrl2}
+	      </if>
+	      <if test="b.dataSharingFileUrl3 != null" >
+	        and DATA_SHARING_FILE_URL3 = #{b.dataSharingFileUrl3}
+	      </if>
+	      <if test="b.dataSharingFileUrl4 != null" >
+	        and DATA_SHARING_FILE_URL4 = #{b.dataSharingFileUrl4}
+	      </if>
+	      <if test="b.dataSharingCreateTime != null" >
+	        and DATA_SHARING_CREATE_TIME = #{b.dataSharingCreateTime}
+	      </if>
+	      <if test="b.dataSharingUpdateTime != null" >
+	        and DATA_SHARING_UPDATE_TIME = #{b.dataSharingUpdateTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	        and DATA_SHARING_TITLE like '%' #{searchName} '%'
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and DATA_SHARING_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and DATA_SHARING_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and DATA_SHARING_STATE != 4
+	    </where>
+  	</select>
+</mapper>

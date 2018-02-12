@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.waychat.dao.IChatHistoryDao" >
+
+  <resultMap id="BaseResultMap" type="com.hxkj.waychat.entity.ChatHistory" >
+    <id column="chat_history_cuid" property="chatHistoryCuid" jdbcType="VARCHAR" />
+    <result column="room_or_user_cuid" property="roomOrUserCuid" jdbcType="VARCHAR" />
+    <result column="sys_user_cuid" property="sysUserCuid" jdbcType="VARCHAR" />
+    <result column="chat_history_content" property="chatHistoryContent" jdbcType="VARCHAR" />
+    <result column="chat_history_file" property="chatHistoryFile" jdbcType="VARCHAR" />
+    <result column="chat_history_state" property="chatHistoryState" jdbcType="INTEGER" />
+    <result column="chat_history_create_time" property="chatHistoryCreateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    chat_history_cuid, room_or_user_cuid, sys_user_cuid, chat_history_content, chat_history_file, 
+    chat_history_state, chat_history_create_time
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    delete from chat_history
+    where chat_history_cuid = #{chatHistoryCuid,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    insert into chat_history (chat_history_cuid, room_or_user_cuid, 
+      sys_user_cuid, chat_history_content, chat_history_file, 
+      chat_history_state, chat_history_create_time
+      )
+    values (#{chatHistoryCuid,jdbcType=VARCHAR}, #{roomOrUserCuid,jdbcType=VARCHAR}, 
+      #{sysUserCuid,jdbcType=VARCHAR}, #{chatHistoryContent,jdbcType=VARCHAR}, #{chatHistoryFile,jdbcType=VARCHAR}, 
+      #{chatHistoryState,jdbcType=INTEGER}, #{chatHistoryCreateTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    insert into chat_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chatHistoryCuid != null" >
+        chat_history_cuid,
+      </if>
+      <if test="roomOrUserCuid != null" >
+        room_or_user_cuid,
+      </if>
+      <if test="sysUserCuid != null" >
+        sys_user_cuid,
+      </if>
+      <if test="chatHistoryContent != null" >
+        chat_history_content,
+      </if>
+      <if test="chatHistoryFile != null" >
+        chat_history_file,
+      </if>
+      <if test="chatHistoryState != null" >
+        chat_history_state,
+      </if>
+      <if test="chatHistoryCreateTime != null" >
+        chat_history_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chatHistoryCuid != null" >
+        #{chatHistoryCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="roomOrUserCuid != null" >
+        #{roomOrUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCuid != null" >
+        #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="chatHistoryContent != null" >
+        #{chatHistoryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="chatHistoryFile != null" >
+        #{chatHistoryFile,jdbcType=VARCHAR},
+      </if>
+      <if test="chatHistoryState != null" >
+        #{chatHistoryState,jdbcType=INTEGER},
+      </if>
+      <if test="chatHistoryCreateTime != null" >
+        #{chatHistoryCreateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    select 
+    <include refid="Base_Column_List" />
+    from chat_history
+    where chat_history_cuid = #{chatHistoryCuid,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    update chat_history
+    <set >
+      <if test="roomOrUserCuid != null" >
+        room_or_user_cuid = #{roomOrUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCuid != null" >
+        sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="chatHistoryContent != null" >
+        chat_history_content = #{chatHistoryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="chatHistoryFile != null" >
+        chat_history_file = #{chatHistoryFile,jdbcType=VARCHAR},
+      </if>
+      <if test="chatHistoryState != null" >
+        chat_history_state = #{chatHistoryState,jdbcType=INTEGER},
+      </if>
+      <if test="chatHistoryCreateTime != null" >
+        chat_history_create_time = #{chatHistoryCreateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where chat_history_cuid = #{chatHistoryCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    update chat_history
+    set room_or_user_cuid = #{roomOrUserCuid,jdbcType=VARCHAR},
+      sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR},
+      chat_history_content = #{chatHistoryContent,jdbcType=VARCHAR},
+      chat_history_file = #{chatHistoryFile,jdbcType=VARCHAR},
+      chat_history_state = #{chatHistoryState,jdbcType=INTEGER},
+      chat_history_create_time = #{chatHistoryCreateTime,jdbcType=VARCHAR}
+    where chat_history_cuid = #{chatHistoryCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.ChatHistory" >
+    select 
+    <include refid="Base_Column_List" />
+    from chat_history
+    <where>
+      <if test="roomOrUserCuid != null" >
+        room_or_user_cuid = #{roomOrUserCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserCuid != null" >
+        and sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="chatHistoryContent != null" >
+        and chat_history_content = #{chatHistoryContent,jdbcType=VARCHAR}
+      </if>
+      <if test="chatHistoryFile != null" >
+        and chat_history_file = #{chatHistoryFile,jdbcType=VARCHAR}
+      </if>
+      <if test="chatHistoryState != null" >
+        and chat_history_state = #{chatHistoryState,jdbcType=INTEGER}
+      </if>
+      <if test="chatHistoryCreateTime != null" >
+        and chat_history_create_time = #{chatHistoryCreateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

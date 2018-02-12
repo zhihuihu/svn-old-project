@@ -1,0 +1,148 @@
+.am-table th,.am-table td{
+	/* width: 100%; */
+}
+.am-tab-width-head{
+	width: 30px !important;
+	cursor: pointer;
+}
+.am-edit-width-min {
+    min-width: 205px !important;
+    width: 205px !important;
+    max-width: 205px !important;
+}
+.am-tab-width-min {
+	min-width: 80px !important;
+	/* width: 120px !important;
+	max-width: 80px !important; */
+}
+.am-tab-width-min-max{
+	min-width: 180px !important;
+    /* width: 280px !important; */
+    max-width: 280px !important;
+}
+#total-price-update{
+	box-sizing:border-box;
+	position: fixed;
+	bottom: -41px;
+	/* bottom: -1px; */
+	right: 0px;
+	width: 210px;
+	height: 40px;
+	border: 1px solid #ccc;
+	background-color: rgb(248, 248, 248);
+	padding-top: 3px;
+	transition: all .5s;
+	-moz-transition: all .5s; /* Firefox 4 */
+	-webkit-transition: all .5s; /* Safari 和 Chrome */
+	-o-transition: all .5s; /* Opera */
+}
+.am-modal-bottom{
+	position: absolute;
+	bottom: 0px;
+	height: 40px;
+	width: 100%;
+	border-top: 1px solid #ccc;
+}
+.am-modal-content{
+}
+.am-table-input-sm{
+	height: 25px;
+	line-height: 25px;
+	width: 100px;
+	text-align: center;
+}
+/*.order-print{
+	box-sizing: border-box;
+	width: 241mm;
+	height: 140mm;
+	!* width:794px; *!
+	!* height:1123px; *!
+	padding: 0mm 0mm 0mm 0mm;
+	position: relative;
+}*/
+.order-print-header{
+	font-size: 16px;
+	text-align: center;
+	padding: 17px 160px 0px 40px;
+}
+.order-print-header p{
+	padding: 1px;
+}
+.order-print-title{
+	padding-left: 40px;
+	padding-right: 160px;
+	font-size: 14px;
+}
+.order-print-title p{
+	padding: 1px;
+}
+.order-print-table{
+	padding-left: 40px;
+	padding-right: 160px;
+	/*height: 100px;*/
+}
+.order-print-footer{
+	padding-left: 40px;
+	padding-right: 160px;
+	font-size: 14px;
+	position: absolute;
+	bottom: 4mm;
+}
+.order-print-footer-div-money{
+	float: left;
+	width: 40%;
+}
+.order-print-footer-div{
+	float: left;
+	width: 20%;
+}
+.order-print-table-body tr{
+}
+.order-print-footer-total{
+	font-size: 14px;
+	padding: 5px 0px 7px 0px;
+	font-weight: 600;
+}
+.am-order-print-table{
+	width: 100%;
+	font-size:12px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+.am-order-print-table th{
+	border: 1px solid #999999;
+	padding: 3px;
+}
+.am-order-print-table td{
+	padding: 2px;
+	border: 1px solid #999999;
+}
+.am-table-xh{
+	width: 10%;
+}
+.am-table-product-name{
+	width: 20%;
+}
+.am-table-product-number{
+	width: 20%;
+}
+.am-table-product-price{
+	width: 15%;
+}
+.am-table-product-total{
+	width: 15%;
+}
+.am-table-product-hz{
+	width: 20%;
+}
+.order-print-center-pre{
+	padding-top: 5mm;
+}
+.print-boss{
+	position: absolute;
+	left: 340px;
+	bottom: 0px;
+	z-index: -1;
+}

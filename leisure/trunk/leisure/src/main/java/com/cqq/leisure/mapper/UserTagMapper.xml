@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IUserTagDao" >
+	<resultMap id="BaseResultMap" type="UserTag" >
+	
+    <id column="TAG_ID" property="tagId" />
+    <id column="USER_ID" property="userId" />
+    <result column="USER_TAG_PRESS_NUMBER" property="userTagPressNumber" />
+    <result column="USER_TAG_STATE" property="userTagState"  />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TAG_ID, USER_ID, USER_TAG_PRESS_NUMBER, USER_TAG_STATE
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="UserTag" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_tag
+    where TAG_ID = #{tagId}
+      and USER_ID = #{userId}
+  </select>
+    <delete id="doDeleteByPrimaryKey" parameterType="UserTag" >
+    delete from user_tag
+    where TAG_ID = #{tagId}
+      and USER_ID = #{userId}
+  </delete>
+    <insert id="doInsert" parameterType="UserTag" >
+    insert into user_tag (TAG_ID, USER_ID, USER_TAG_PRESS_NUMBER, 
+      USER_TAG_STATE)
+    values (#{tagId}, #{userId}, #{userTagPressNumber}, 
+      #{userTagState})
+  </insert>
+  <insert id="doInsertSelective" parameterType="UserTag" >
+    insert into user_tag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        TAG_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userTagPressNumber != null" >
+        USER_TAG_PRESS_NUMBER,
+      </if>
+      <if test="userTagState != null" >
+        USER_TAG_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        #{tagId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="userTagPressNumber != null" >
+        #{userTagPressNumber},
+      </if>
+      <if test="userTagState != null" >
+        #{userTagState},
+      </if>
+    </trim>
+  </insert>
+  <update id="doUpdateByPrimaryKeySelective" parameterType="UserTag" >
+
+    update user_tag
+    <set >
+      <if test="userTagPressNumber != null" >
+        USER_TAG_PRESS_NUMBER = #{userTagPressNumber},
+      </if>
+      <if test="userTagState != null" >
+        USER_TAG_STATE = #{userTagState},
+      </if>
+    </set>
+    where TAG_ID = #{tagId}
+      and USER_ID = #{userId}
+  </update>
+  <update id="doUpdateByPrimaryKey" parameterType="UserTag" >
+    update user_tag
+    set USER_TAG_PRESS_NUMBER = #{userTagPressNumber},
+      USER_TAG_STATE = #{userTagState}
+    where TAG_ID = #{tagId}
+      and USER_ID = #{userId}
+  </update>
+  <select id="selectByAttributeList" parameterType="UserTag" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from user_tag
+    <where>
+    	<if test="userTagPressNumber != null" >
+	    	USER_TAG_PRESS_NUMBER = #{userTagPressNumber}
+	  	</if>
+	 	<if test="userTagState != null" >
+		    and USER_TAG_STATE = #{userTagState}
+	  	</if>
+	  	and USER_ID = #{userId}
+    </where>
+  </select>
+</mapper>

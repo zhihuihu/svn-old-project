@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.totops.dao.IIndexPageDao">
+  <resultMap id="BaseResultMap" type="com.hxkj.totops.entity.IndexPage">
+    <id column="index_page_cuid" jdbcType="VARCHAR" property="indexPageCuid" />
+    <result column="index_page_main_image" jdbcType="VARCHAR" property="indexPageMainImage" />
+    <result column="index_page_main_image_url" jdbcType="VARCHAR" property="indexPageMainImageUrl" />
+    <result column="index_page_content" jdbcType="VARCHAR" property="indexPageContent" />
+    <result column="index_page_center_title" jdbcType="VARCHAR" property="indexPageCenterTitle" />
+    <result column="index_page_center_title_url" jdbcType="VARCHAR" property="indexPageCenterTitleUrl" />
+    <result column="index_page_center_content" jdbcType="VARCHAR" property="indexPageCenterContent" />
+    <result column="index_page_center_icon" jdbcType="VARCHAR" property="indexPageCenterIcon" />
+    <result column="index_page_center_icon_url" jdbcType="VARCHAR" property="indexPageCenterIconUrl" />
+    <result column="index_page_bottom_icon" jdbcType="VARCHAR" property="indexPageBottomIcon" />
+    <result column="index_page_bottom_title" jdbcType="VARCHAR" property="indexPageBottomTitle" />
+    <result column="index_page_bottom_title_url" jdbcType="VARCHAR" property="indexPageBottomTitleUrl" />
+    <result column="index_page_operate_id" jdbcType="VARCHAR" property="indexPageOperateId" />
+    <result column="index_page_type" jdbcType="INTEGER" property="indexPageType" />
+    <result column="index_page_state" jdbcType="INTEGER" property="indexPageState" />
+    <result column="index_page_create_time" jdbcType="VARCHAR" property="indexPageCreateTime" />
+    <result column="index_page_update_time" jdbcType="VARCHAR" property="indexPageUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    index_page_cuid, index_page_main_image, index_page_main_image_url, index_page_content, 
+    index_page_center_title, index_page_center_title_url, index_page_center_content, 
+    index_page_center_icon, index_page_center_icon_url, index_page_bottom_icon, index_page_bottom_title, 
+    index_page_bottom_title_url, index_page_operate_id, index_page_type, index_page_state, 
+    index_page_create_time, index_page_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from index_page
+    where index_page_cuid = #{indexPageCuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from index_page
+    where index_page_cuid = #{indexPageCuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxkj.totops.entity.IndexPage">
+    insert into index_page (index_page_cuid, index_page_main_image, 
+      index_page_main_image_url, index_page_content, 
+      index_page_center_title, index_page_center_title_url, 
+      index_page_center_content, index_page_center_icon, 
+      index_page_center_icon_url, index_page_bottom_icon, 
+      index_page_bottom_title, index_page_bottom_title_url, 
+      index_page_operate_id, index_page_type, index_page_state, 
+      index_page_create_time, index_page_update_time
+      )
+    values (#{indexPageCuid,jdbcType=VARCHAR}, #{indexPageMainImage,jdbcType=VARCHAR}, 
+      #{indexPageMainImageUrl,jdbcType=VARCHAR}, #{indexPageContent,jdbcType=VARCHAR}, 
+      #{indexPageCenterTitle,jdbcType=VARCHAR}, #{indexPageCenterTitleUrl,jdbcType=VARCHAR}, 
+      #{indexPageCenterContent,jdbcType=VARCHAR}, #{indexPageCenterIcon,jdbcType=VARCHAR}, 
+      #{indexPageCenterIconUrl,jdbcType=VARCHAR}, #{indexPageBottomIcon,jdbcType=VARCHAR}, 
+      #{indexPageBottomTitle,jdbcType=VARCHAR}, #{indexPageBottomTitleUrl,jdbcType=VARCHAR}, 
+      #{indexPageOperateId,jdbcType=VARCHAR}, #{indexPageType,jdbcType=INTEGER}, #{indexPageState,jdbcType=INTEGER}, 
+      #{indexPageCreateTime,jdbcType=VARCHAR}, #{indexPageUpdateTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxkj.totops.entity.IndexPage">
+    insert into index_page
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indexPageCuid != null">
+        index_page_cuid,
+      </if>
+      <if test="indexPageMainImage != null">
+        index_page_main_image,
+      </if>
+      <if test="indexPageMainImageUrl != null">
+        index_page_main_image_url,
+      </if>
+      <if test="indexPageContent != null">
+        index_page_content,
+      </if>
+      <if test="indexPageCenterTitle != null">
+        index_page_center_title,
+      </if>
+      <if test="indexPageCenterTitleUrl != null">
+        index_page_center_title_url,
+      </if>
+      <if test="indexPageCenterContent != null">
+        index_page_center_content,
+      </if>
+      <if test="indexPageCenterIcon != null">
+        index_page_center_icon,
+      </if>
+      <if test="indexPageCenterIconUrl != null">
+        index_page_center_icon_url,
+      </if>
+      <if test="indexPageBottomIcon != null">
+        index_page_bottom_icon,
+      </if>
+      <if test="indexPageBottomTitle != null">
+        index_page_bottom_title,
+      </if>
+      <if test="indexPageBottomTitleUrl != null">
+        index_page_bottom_title_url,
+      </if>
+      <if test="indexPageOperateId != null">
+        index_page_operate_id,
+      </if>
+      <if test="indexPageType != null">
+        index_page_type,
+      </if>
+      <if test="indexPageState != null">
+        index_page_state,
+      </if>
+      <if test="indexPageCreateTime != null">
+        index_page_create_time,
+      </if>
+      <if test="indexPageUpdateTime != null">
+        index_page_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indexPageCuid != null">
+        #{indexPageCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageMainImage != null">
+        #{indexPageMainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageMainImageUrl != null">
+        #{indexPageMainImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageContent != null">
+        #{indexPageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterTitle != null">
+        #{indexPageCenterTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterTitleUrl != null">
+        #{indexPageCenterTitleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterContent != null">
+        #{indexPageCenterContent,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterIcon != null">
+        #{indexPageCenterIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterIconUrl != null">
+        #{indexPageCenterIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageBottomIcon != null">
+        #{indexPageBottomIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageBottomTitle != null">
+        #{indexPageBottomTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageBottomTitleUrl != null">
+        #{indexPageBottomTitleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageOperateId != null">
+        #{indexPageOperateId,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageType != null">
+        #{indexPageType,jdbcType=INTEGER},
+      </if>
+      <if test="indexPageState != null">
+        #{indexPageState,jdbcType=INTEGER},
+      </if>
+      <if test="indexPageCreateTime != null">
+        #{indexPageCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageUpdateTime != null">
+        #{indexPageUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.totops.entity.IndexPage">
+    update index_page
+    <set>
+      <if test="indexPageMainImage != null">
+        index_page_main_image = #{indexPageMainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageMainImageUrl != null">
+        index_page_main_image_url = #{indexPageMainImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageContent != null">
+        index_page_content = #{indexPageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterTitle != null">
+        index_page_center_title = #{indexPageCenterTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterTitleUrl != null">
+        index_page_center_title_url = #{indexPageCenterTitleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterContent != null">
+        index_page_center_content = #{indexPageCenterContent,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterIcon != null">
+        index_page_center_icon = #{indexPageCenterIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageCenterIconUrl != null">
+        index_page_center_icon_url = #{indexPageCenterIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageBottomIcon != null">
+        index_page_bottom_icon = #{indexPageBottomIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageBottomTitle != null">
+        index_page_bottom_title = #{indexPageBottomTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageBottomTitleUrl != null">
+        index_page_bottom_title_url = #{indexPageBottomTitleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageOperateId != null">
+        index_page_operate_id = #{indexPageOperateId,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageType != null">
+        index_page_type = #{indexPageType,jdbcType=INTEGER},
+      </if>
+      <if test="indexPageState != null">
+        index_page_state = #{indexPageState,jdbcType=INTEGER},
+      </if>
+      <if test="indexPageCreateTime != null">
+        index_page_create_time = #{indexPageCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPageUpdateTime != null">
+        index_page_update_time = #{indexPageUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where index_page_cuid = #{indexPageCuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.totops.entity.IndexPage">
+    update index_page
+    set index_page_main_image = #{indexPageMainImage,jdbcType=VARCHAR},
+      index_page_main_image_url = #{indexPageMainImageUrl,jdbcType=VARCHAR},
+      index_page_content = #{indexPageContent,jdbcType=VARCHAR},
+      index_page_center_title = #{indexPageCenterTitle,jdbcType=VARCHAR},
+      index_page_center_title_url = #{indexPageCenterTitleUrl,jdbcType=VARCHAR},
+      index_page_center_content = #{indexPageCenterContent,jdbcType=VARCHAR},
+      index_page_center_icon = #{indexPageCenterIcon,jdbcType=VARCHAR},
+      index_page_center_icon_url = #{indexPageCenterIconUrl,jdbcType=VARCHAR},
+      index_page_bottom_icon = #{indexPageBottomIcon,jdbcType=VARCHAR},
+      index_page_bottom_title = #{indexPageBottomTitle,jdbcType=VARCHAR},
+      index_page_bottom_title_url = #{indexPageBottomTitleUrl,jdbcType=VARCHAR},
+      index_page_operate_id = #{indexPageOperateId,jdbcType=VARCHAR},
+      index_page_type = #{indexPageType,jdbcType=INTEGER},
+      index_page_state = #{indexPageState,jdbcType=INTEGER},
+      index_page_create_time = #{indexPageCreateTime,jdbcType=VARCHAR},
+      index_page_update_time = #{indexPageUpdateTime,jdbcType=VARCHAR}
+    where index_page_cuid = #{indexPageCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" parameterType="com.hxkj.totops.entity.IndexPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from index_page
+    <where>
+      <if test="indexPageMainImage != null">
+        and index_page_main_image = #{indexPageMainImage,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageMainImageUrl != null">
+        and index_page_main_image_url = #{indexPageMainImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageContent != null">
+        and index_page_content = #{indexPageContent,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageCenterTitle != null">
+        and index_page_center_title = #{indexPageCenterTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageCenterTitleUrl != null">
+        and index_page_center_title_url = #{indexPageCenterTitleUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageCenterContent != null">
+        and index_page_center_content = #{indexPageCenterContent,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageCenterIcon != null">
+        and index_page_center_icon = #{indexPageCenterIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageCenterIconUrl != null">
+        and index_page_center_icon_url = #{indexPageCenterIconUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageBottomIcon != null">
+        and index_page_bottom_icon = #{indexPageBottomIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageBottomTitle != null">
+        and index_page_bottom_title = #{indexPageBottomTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageBottomTitleUrl != null">
+        and index_page_bottom_title_url = #{indexPageBottomTitleUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageOperateId != null">
+        and index_page_operate_id = #{indexPageOperateId,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageType != null">
+        and index_page_type = #{indexPageType,jdbcType=INTEGER}
+      </if>
+      <if test="indexPageState != null">
+        and index_page_state = #{indexPageState,jdbcType=INTEGER}
+      </if>
+      <if test="indexPageCreateTime != null">
+        and index_page_create_time = #{indexPageCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="indexPageUpdateTime != null">
+        and index_page_update_time = #{indexPageUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by index_page_create_time desc
+  </select>
+  
+  <select id="selectByPageAnd" parameterType="com.hxkj.totops.entity.query.PageBean" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from index_page
+    <where>
+      <if test="b.indexPageMainImage != null">
+        and index_page_main_image = #{b.indexPageMainImage,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageMainImageUrl != null">
+        and index_page_main_image_url = #{b.indexPageMainImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageContent != null">
+        and index_page_content = #{b.indexPageContent,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterTitle != null">
+        and index_page_center_title = #{b.indexPageCenterTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterTitleUrl != null">
+        and index_page_center_title_url = #{b.indexPageCenterTitleUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterContent != null">
+        and index_page_center_content = #{b.indexPageCenterContent,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterIcon != null">
+        and index_page_center_icon = #{b.indexPageCenterIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterIconUrl != null">
+        and index_page_center_icon_url = #{b.indexPageCenterIconUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageBottomIcon != null">
+        and index_page_bottom_icon = #{b.indexPageBottomIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageBottomTitle != null">
+        and index_page_bottom_title = #{b.indexPageBottomTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageBottomTitleUrl != null">
+        and index_page_bottom_title_url = #{b.indexPageBottomTitleUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageOperateId != null">
+        and index_page_operate_id = #{b.indexPageOperateId,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageType != null">
+        and index_page_type = #{b.indexPageType,jdbcType=INTEGER}
+      </if>
+      <if test="b.indexPageState != null">
+        and index_page_state = #{b.indexPageState,jdbcType=INTEGER}
+      </if>
+      <if test="b.indexPageCreateTime != null">
+        and index_page_create_time = #{b.indexPageCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageUpdateTime != null">
+        and index_page_update_time = #{b.indexPageUpdateTime,jdbcType=VARCHAR}
+      </if>
+      order by index_page_create_time desc
+      limit #{startLine},#{pageSize}
+    </where>
+  </select>
+  
+  <select id="selectByPageAndCount" parameterType="com.hxkj.totops.entity.query.PageBean" resultType="int">
+    select 
+    count(1)
+    from index_page
+    <where>
+      <if test="b.indexPageMainImage != null">
+        and index_page_main_image = #{b.indexPageMainImage,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageMainImageUrl != null">
+        and index_page_main_image_url = #{b.indexPageMainImageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageContent != null">
+        and index_page_content = #{b.indexPageContent,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterTitle != null">
+        and index_page_center_title = #{b.indexPageCenterTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterTitleUrl != null">
+        and index_page_center_title_url = #{b.indexPageCenterTitleUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterContent != null">
+        and index_page_center_content = #{b.indexPageCenterContent,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterIcon != null">
+        and index_page_center_icon = #{b.indexPageCenterIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageCenterIconUrl != null">
+        and index_page_center_icon_url = #{b.indexPageCenterIconUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageBottomIcon != null">
+        and index_page_bottom_icon = #{b.indexPageBottomIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageBottomTitle != null">
+        and index_page_bottom_title = #{b.indexPageBottomTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageBottomTitleUrl != null">
+        and index_page_bottom_title_url = #{b.indexPageBottomTitleUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageOperateId != null">
+        and index_page_operate_id = #{b.indexPageOperateId,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageType != null">
+        and index_page_type = #{b.indexPageType,jdbcType=INTEGER}
+      </if>
+      <if test="b.indexPageState != null">
+        and index_page_state = #{b.indexPageState,jdbcType=INTEGER}
+      </if>
+      <if test="b.indexPageCreateTime != null">
+        and index_page_create_time = #{b.indexPageCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="b.indexPageUpdateTime != null">
+        and index_page_update_time = #{b.indexPageUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

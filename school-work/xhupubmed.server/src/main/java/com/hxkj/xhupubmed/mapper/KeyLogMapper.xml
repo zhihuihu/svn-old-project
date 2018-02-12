@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IKeyLogDao" >
+	
+	<resultMap id="BaseResultMap" type="KeyLog" >
+	    <id column="KEY_LOG_CUID" property="keyLogCuid" />
+	    <result column="KEY_LOG_NAME" property="keyLogName" />
+	    <result column="KEY_LOG_CONTENT" property="keyLogContent" />
+	    <result column="KEY_LOG_PEOPLE" property="keyLogPeople"  />
+	    <result column="KEY_LOG_STATE" property="keyLogState" />
+	    <result column="KEY_LOG_CREATE_TIME" property="keyLogCreateTime" />
+  	</resultMap>
+	
+	
+	<sql id="Base_Column_List" >
+    	KEY_LOG_CUID, 
+    	KEY_LOG_NAME, 
+    	KEY_LOG_CONTENT, 
+    	KEY_LOG_PEOPLE, 
+    	KEY_LOG_STATE, 
+    	KEY_LOG_CREATE_TIME
+  	</sql>
+  	
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="KeyLog" >
+	    delete 
+	    from 
+	    	key_log
+	    where 
+	    	KEY_LOG_CUID = #{keyLogCuid}
+  	</delete>
+  	
+	
+	<insert id="doInsert" parameterType="KeyLog" >
+	    insert into 
+	    	key_log 
+		    	(KEY_LOG_CUID, 
+		    	KEY_LOG_NAME, 
+		    	KEY_LOG_CONTENT, 
+		      KEY_LOG_PEOPLE, 
+		      KEY_LOG_STATE, 
+		      KEY_LOG_CREATE_TIME
+		      )
+	    values 
+	    	(#{keyLogCuid}, 
+	    	#{keyLogName}, 
+	    	#{keyLogContent}, 
+	      	#{keyLogPeople}, 
+	      	#{keyLogState}, 
+	      	#{keyLogCreateTime}
+	      )
+  	</insert>
+	
+	
+	<insert id="doInsertSelective" parameterType="KeyLog" >
+	    insert into key_log
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="keyLogCuid != null" >
+	        KEY_LOG_CUID,
+	      </if>
+	      <if test="keyLogName != null" >
+	        KEY_LOG_NAME,
+	      </if>
+	      <if test="keyLogContent != null" >
+	        KEY_LOG_CONTENT,
+	      </if>
+	      <if test="keyLogPeople != null" >
+	        KEY_LOG_PEOPLE,
+	      </if>
+	      <if test="keyLogState != null" >
+	        KEY_LOG_STATE,
+	      </if>
+	      <if test="keyLogCreateTime != null" >
+	        KEY_LOG_CREATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="keyLogCuid != null" >
+	        #{keyLogCuid},
+	      </if>
+	      <if test="keyLogName != null" >
+	        #{keyLogName},
+	      </if>
+	      <if test="keyLogContent != null" >
+	        #{keyLogContent},
+	      </if>
+	      <if test="keyLogPeople != null" >
+	        #{keyLogPeople},
+	      </if>
+	      <if test="keyLogState != null" >
+	        #{keyLogState},
+	      </if>
+	      <if test="keyLogCreateTime != null" >
+	        #{keyLogCreateTime},
+	      </if>
+	    </trim>
+  	</insert>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="KeyLog" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	key_log
+	    where 
+	    	KEY_LOG_CUID = #{keyLogCuid}
+  	</select>
+	
+	
+	<update id="doUpdateByPrimaryKeySelective" parameterType="KeyLog" >
+	    update key_log
+	    <set >
+	      <if test="keyLogName != null" >
+	        KEY_LOG_NAME = #{keyLogName},
+	      </if>
+	      <if test="keyLogContent != null" >
+	        KEY_LOG_CONTENT = #{keyLogContent},
+	      </if>
+	      <if test="keyLogPeople != null" >
+	        KEY_LOG_PEOPLE = #{keyLogPeople},
+	      </if>
+	      <if test="keyLogState != null and keyLogState != 0" >
+	        KEY_LOG_STATE = #{keyLogState},
+	      </if>
+	      <if test="keyLogCreateTime != null" >
+	        KEY_LOG_CREATE_TIME = #{keyLogCreateTime},
+	      </if>
+	    </set>
+	    where KEY_LOG_CUID = #{keyLogCuid}
+  	</update>
+	
+	<update id="doUpdateByPrimaryKey" parameterType="KeyLog" >
+	    update key_log
+	    set KEY_LOG_NAME = #{keyLogName},
+	      KEY_LOG_CONTENT = #{keyLogContent},
+	      KEY_LOG_PEOPLE = #{keyLogPeople},
+	      KEY_LOG_STATE = #{keyLogState},
+	      KEY_LOG_CREATE_TIME = #{keyLogCreateTime}
+	    where KEY_LOG_CUID = #{keyLogCuid}
+  	</update>
+	
+	
+	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	key_log
+	    <where>
+	    	<if test="b.keyLogName != null" >
+	        KEY_LOG_NAME = #{b.keyLogName}
+	      </if>
+	      <if test="b.keyLogContent != null" >
+	        and KEY_LOG_CONTENT = #{b.keyLogContent}
+	      </if>
+	      <if test="b.keyLogPeople != null" >
+	        and KEY_LOG_PEOPLE = #{b.keyLogPeople}
+	      </if>
+	      <if test="b.keyLogState != null and b.keyLogState != 0" >
+	        and KEY_LOG_STATE = #{b.keyLogState}
+	      </if>
+	      <if test="b.keyLogCreateTime != null" >
+	        and KEY_LOG_CREATE_TIME = #{b.keyLogCreateTime}
+	      </if>
+	      <if test="searchName != null and searchName !='' " >
+	        and (
+	        	KEY_LOG_CONTENT like '%' #{searchName} '%'
+	        	or KEY_LOG_NAME like '%' #{searchName} '%'
+	        	)
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and KEY_LOG_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and KEY_LOG_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and KEY_LOG_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	key_log
+	    <where>
+	    	<if test="b.keyLogName != null" >
+	        KEY_LOG_NAME = #{b.keyLogName}
+	      </if>
+	      <if test="b.keyLogContent != null" >
+	        and KEY_LOG_CONTENT = #{b.keyLogContent}
+	      </if>
+	      <if test="b.keyLogPeople != null" >
+	        and KEY_LOG_PEOPLE = #{b.keyLogPeople}
+	      </if>
+	      <if test="b.keyLogState != null and b.keyLogState != 0" >
+	        and KEY_LOG_STATE = #{b.keyLogState}
+	      </if>
+	      <if test="b.keyLogCreateTime != null" >
+	        and KEY_LOG_CREATE_TIME = #{b.keyLogCreateTime}
+	      </if>
+	      <if test="searchName != null and searchName !='' " >
+	        and (
+	        	KEY_LOG_CONTENT like '%' #{searchName} '%'
+	        	or KEY_LOG_NAME like '%' #{searchName} '%'
+	        	)
+	      </if>
+	      <if test="startTime != null and startTime != '' " >
+	        and KEY_LOG_CREATE_TIME >= #{startTime}
+	      </if>
+	      <if test="endTime != null and endTime != '' " >
+	        and KEY_LOG_CREATE_TIME &lt;= #{endTime}
+	      </if>
+	      and KEY_LOG_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	key_log
+	    <where>
+	    	<choose>
+	    		<when test="b.keyLogName != null" >
+		        KEY_LOG_NAME = #{b.keyLogName},
+		      </when>
+		      <when test="b.keyLogContent != null" >
+		        and KEY_LOG_CONTENT = #{b.keyLogContent},
+		      </when>
+		      <when test="b.keyLogPeople != null" >
+		        and KEY_LOG_PEOPLE = #{b.keyLogPeople},
+		      </when>
+		      <when test="b.keyLogState != null and b.keyLogState != 0" >
+		        and KEY_LOG_STATE = #{b.keyLogState},
+		      </when>
+		      <when test="b.keyLogCreateTime != null" >
+		        and KEY_LOG_CREATE_TIME = #{b.keyLogCreateTime},
+		      </when>
+	    	</choose>
+	      and KEY_LOG_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	key_log
+	    <where>
+	    	<choose>
+	    		<when test="b.keyLogName != null" >
+		        KEY_LOG_NAME = #{b.keyLogName},
+		      </when>
+		      <when test="b.keyLogContent != null" >
+		        and KEY_LOG_CONTENT = #{b.keyLogContent},
+		      </when>
+		      <when test="b.keyLogPeople != null" >
+		        and KEY_LOG_PEOPLE = #{b.keyLogPeople},
+		      </when>
+		      <when test="b.keyLogState != null and b.keyLogState != 0" >
+		        and KEY_LOG_STATE = #{b.keyLogState},
+		      </when>
+		      <when test="b.keyLogCreateTime != null" >
+		        and KEY_LOG_CREATE_TIME = #{b.keyLogCreateTime},
+		      </when>
+	    	</choose>
+	      and KEY_LOG_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+	
+	
+</mapper>

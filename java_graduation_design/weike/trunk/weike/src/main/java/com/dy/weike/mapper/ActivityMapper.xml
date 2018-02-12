@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IActivityDao" >
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.Activity" >
+    <id column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="activity_user" property="activityUser" jdbcType="INTEGER" />
+    <result column="activity_data" property="activityData" jdbcType="TIMESTAMP" />
+    <result column="activity_place" property="activityPlace" jdbcType="VARCHAR" />
+    <result column="activity_theme" property="activityTheme" jdbcType="VARCHAR" />
+    <result column="activity_watch" property="activityWatch" jdbcType="VARCHAR" />
+    <result column="activity_state" property="activityState" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    activity_id, class_id, activity_user, activity_data, activity_place, activity_theme, 
+    activity_watch, activity_state
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.Activity" >
+    delete from activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.Activity" >
+  		<selectKey keyProperty="activityId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+    insert into activity (activity_id, class_id, activity_user, 
+      activity_data, activity_place, activity_theme, 
+      activity_watch, activity_state)
+    values (#{activityId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{activityUser,jdbcType=INTEGER}, 
+      #{activityData,jdbcType=TIMESTAMP}, #{activityPlace,jdbcType=VARCHAR}, #{activityTheme,jdbcType=VARCHAR}, 
+      #{activityWatch,jdbcType=VARCHAR}, #{activityState,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.dy.weike.entity.Activity" >
+  		<selectKey keyProperty="activityId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="activityUser != null" >
+        activity_user,
+      </if>
+      <if test="activityData != null" >
+        activity_data,
+      </if>
+      <if test="activityPlace != null" >
+        activity_place,
+      </if>
+      <if test="activityTheme != null" >
+        activity_theme,
+      </if>
+      <if test="activityWatch != null" >
+        activity_watch,
+      </if>
+      <if test="activityState != null" >
+        activity_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="activityUser != null" >
+        #{activityUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityData != null" >
+        #{activityData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activityPlace != null" >
+        #{activityPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTheme != null" >
+        #{activityTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="activityWatch != null" >
+        #{activityWatch,jdbcType=VARCHAR},
+      </if>
+      <if test="activityState != null" >
+        #{activityState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Activity" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Activity" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    <where>
+      <if test="classId != null and classId != 0" >
+        class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="activityUser != null and activityUser != 0" >
+        and activity_user = #{activityUser,jdbcType=INTEGER}
+      </if>
+      <if test="activityData != null" >
+        and activity_data = #{activityData,jdbcType=TIMESTAMP}
+      </if>
+      <if test="activityPlace != null" >
+        and activity_place = #{activityPlace,jdbcType=VARCHAR}
+      </if>
+      <if test="activityTheme != null" >
+        and activity_theme = #{activityTheme,jdbcType=VARCHAR}
+      </if>
+      <if test="activityWatch != null" >
+        and activity_watch = #{activityWatch,jdbcType=VARCHAR}
+      </if>
+      <if test="activityState != null and activityState != 0" >
+        and activity_state = #{activityState,jdbcType=INTEGER}
+      </if>
+    </where>  
+       ORDER BY activity_id DESC
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.Activity" >
+    update activity
+    <set >
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="activityUser != null" >
+        activity_user = #{activityUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityData != null" >
+        activity_data = #{activityData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activityPlace != null" >
+        activity_place = #{activityPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTheme != null" >
+        activity_theme = #{activityTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="activityWatch != null" >
+        activity_watch = #{activityWatch,jdbcType=VARCHAR},
+      </if>
+      <if test="activityState != null" >
+        activity_state = #{activityState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.Activity" >
+    update activity
+    set class_id = #{classId,jdbcType=INTEGER},
+      activity_user = #{activityUser,jdbcType=INTEGER},
+      activity_data = #{activityData,jdbcType=TIMESTAMP},
+      activity_place = #{activityPlace,jdbcType=VARCHAR},
+      activity_theme = #{activityTheme,jdbcType=VARCHAR},
+      activity_watch = #{activityWatch,jdbcType=VARCHAR},
+      activity_state = #{activityState,jdbcType=INTEGER}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+</mapper>

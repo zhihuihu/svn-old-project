@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IExamDao" >
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.Exam" >
+    <id column="exam_id" property="examId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="exam_name" property="examName" jdbcType="VARCHAR" />
+    <result column="exam_ans" property="examAns" jdbcType="VARCHAR" />
+    <result column="exam_value" property="examValue" jdbcType="INTEGER" />
+    <result column="exam_state" property="examState" jdbcType="INTEGER" />
+    <result column="exam_createTime" property="examCreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    exam_id, class_id, exam_name, exam_ans, exam_value, exam_state, exam_createTime
+  </sql>  
+
+  <delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.Exam" >
+    delete from exam
+    where exam_id = #{examId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.Exam" >
+  		<selectKey keyProperty="examId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+    insert into exam (exam_id, class_id, exam_name, 
+      exam_ans, exam_value, exam_state, 
+      exam_createTime)
+    values (#{examId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{examName,jdbcType=VARCHAR}, 
+      #{examAns,jdbcType=VARCHAR}, #{examValue,jdbcType=INTEGER}, #{examState,jdbcType=INTEGER}, 
+      #{examCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.dy.weike.entity.Exam" >
+  		<selectKey keyProperty="examId" order="AFTER" resultType="int">
+  			SELECT LAST_INSERT_ID();
+  		</selectKey>
+    insert into exam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examId != null" >
+        exam_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="examName != null" >
+        exam_name,
+      </if>
+      <if test="examAns != null" >
+        exam_ans,
+      </if>
+      <if test="examValue != null" >
+        exam_value,
+      </if>
+      <if test="examState != null" >
+        exam_state,
+      </if>
+      <if test="examCreatetime != null" >
+        exam_createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examId != null" >
+        #{examId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="examName != null" >
+        #{examName,jdbcType=VARCHAR},
+      </if>
+      <if test="examAns != null" >
+        #{examAns,jdbcType=VARCHAR},
+      </if>
+      <if test="examValue != null" >
+        #{examValue,jdbcType=INTEGER},
+      </if>
+      <if test="examState != null" >
+        #{examState,jdbcType=INTEGER},
+      </if>
+      <if test="examCreatetime != null" >
+        #{examCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Exam" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam
+    where exam_id = #{examId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.dy.weike.entity.Exam" >
+    update exam
+    <set >
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="examName != null" >
+        exam_name = #{examName,jdbcType=VARCHAR},
+      </if>
+      <if test="examAns != null" >
+        exam_ans = #{examAns,jdbcType=VARCHAR},
+      </if>
+      <if test="examValue != null" >
+        exam_value = #{examValue,jdbcType=INTEGER},
+      </if>
+      <if test="examState != null" >
+        exam_state = #{examState,jdbcType=INTEGER},
+      </if>
+      <if test="examCreatetime != null" >
+        exam_createTime = #{examCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where exam_id = #{examId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.Exam" >
+    update exam
+    set class_id = #{classId,jdbcType=INTEGER},
+      exam_name = #{examName,jdbcType=VARCHAR},
+      exam_ans = #{examAns,jdbcType=VARCHAR},
+      exam_value = #{examValue,jdbcType=INTEGER},
+      exam_state = #{examState,jdbcType=INTEGER},
+      exam_createTime = #{examCreatetime,jdbcType=TIMESTAMP}
+    where exam_id = #{examId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.Exam" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam
+    where class_id = #{classId,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

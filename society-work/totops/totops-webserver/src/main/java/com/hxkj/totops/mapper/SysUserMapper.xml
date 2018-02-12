@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.totops.dao.ISysUserDao">
+  <resultMap id="BaseResultMap" type="com.hxkj.totops.entity.SysUser">
+    <id column="sys_user_cuid" jdbcType="VARCHAR" property="sysUserCuid" />
+    <result column="sys_user_image" jdbcType="VARCHAR" property="sysUserImage" />
+    <result column="sys_user_login_name" jdbcType="VARCHAR" property="sysUserLoginName" />
+    <result column="sys_user_password" jdbcType="VARCHAR" property="sysUserPassword" />
+    <result column="sys_user_like_name" jdbcType="VARCHAR" property="sysUserLikeName" />
+    <result column="sys_user_rel_name" jdbcType="VARCHAR" property="sysUserRelName" />
+    <result column="sys_user_type" jdbcType="INTEGER" property="sysUserType" />
+    <result column="sys_user_state" jdbcType="INTEGER" property="sysUserState" />
+    <result column="sys_user_create_time" jdbcType="VARCHAR" property="sysUserCreateTime" />
+    <result column="sys_user_update_time" jdbcType="VARCHAR" property="sysUserUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_user_cuid, sys_user_image, sys_user_login_name, sys_user_password, sys_user_like_name, 
+    sys_user_rel_name, sys_user_type, sys_user_state, sys_user_create_time, sys_user_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxkj.totops.entity.SysUser">
+    insert into sys_user (sys_user_cuid, sys_user_image, sys_user_login_name, 
+      sys_user_password, sys_user_like_name, sys_user_rel_name, 
+      sys_user_type, sys_user_state, sys_user_create_time, 
+      sys_user_update_time)
+    values (#{sysUserCuid,jdbcType=VARCHAR}, #{sysUserImage,jdbcType=VARCHAR}, #{sysUserLoginName,jdbcType=VARCHAR}, 
+      #{sysUserPassword,jdbcType=VARCHAR}, #{sysUserLikeName,jdbcType=VARCHAR}, #{sysUserRelName,jdbcType=VARCHAR}, 
+      #{sysUserType,jdbcType=INTEGER}, #{sysUserState,jdbcType=INTEGER}, #{sysUserCreateTime,jdbcType=VARCHAR}, 
+      #{sysUserUpdateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxkj.totops.entity.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysUserCuid != null">
+        sys_user_cuid,
+      </if>
+      <if test="sysUserImage != null">
+        sys_user_image,
+      </if>
+      <if test="sysUserLoginName != null">
+        sys_user_login_name,
+      </if>
+      <if test="sysUserPassword != null">
+        sys_user_password,
+      </if>
+      <if test="sysUserLikeName != null">
+        sys_user_like_name,
+      </if>
+      <if test="sysUserRelName != null">
+        sys_user_rel_name,
+      </if>
+      <if test="sysUserType != null">
+        sys_user_type,
+      </if>
+      <if test="sysUserState != null">
+        sys_user_state,
+      </if>
+      <if test="sysUserCreateTime != null">
+        sys_user_create_time,
+      </if>
+      <if test="sysUserUpdateTime != null">
+        sys_user_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysUserCuid != null">
+        #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserImage != null">
+        #{sysUserImage,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserLoginName != null">
+        #{sysUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserPassword != null">
+        #{sysUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserLikeName != null">
+        #{sysUserLikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserRelName != null">
+        #{sysUserRelName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserType != null">
+        #{sysUserType,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserState != null">
+        #{sysUserState,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserCreateTime != null">
+        #{sysUserCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserUpdateTime != null">
+        #{sysUserUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.totops.entity.SysUser">
+    update sys_user
+    <set>
+      <if test="sysUserImage != null">
+        sys_user_image = #{sysUserImage,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserLoginName != null">
+        sys_user_login_name = #{sysUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserPassword != null">
+        sys_user_password = #{sysUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserLikeName != null">
+        sys_user_like_name = #{sysUserLikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserRelName != null">
+        sys_user_rel_name = #{sysUserRelName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserType != null">
+        sys_user_type = #{sysUserType,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserState != null">
+        sys_user_state = #{sysUserState,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserCreateTime != null">
+        sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserUpdateTime != null">
+        sys_user_update_time = #{sysUserUpdateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.totops.entity.SysUser">
+    update sys_user
+    set sys_user_image = #{sysUserImage,jdbcType=VARCHAR},
+      sys_user_login_name = #{sysUserLoginName,jdbcType=VARCHAR},
+      sys_user_password = #{sysUserPassword,jdbcType=VARCHAR},
+      sys_user_like_name = #{sysUserLikeName,jdbcType=VARCHAR},
+      sys_user_rel_name = #{sysUserRelName,jdbcType=VARCHAR},
+      sys_user_type = #{sysUserType,jdbcType=INTEGER},
+      sys_user_state = #{sysUserState,jdbcType=INTEGER},
+      sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR},
+      sys_user_update_time = #{sysUserUpdateTime,jdbcType=VARCHAR}
+    where sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" parameterType="com.hxkj.totops.entity.SysUser" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="sysUserImage != null">
+        and sys_user_image = #{sysUserImage,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserLoginName != null">
+        and sys_user_login_name = #{sysUserLoginName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserPassword != null">
+        and sys_user_password = #{sysUserPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserLikeName != null">
+        and sys_user_like_name = #{sysUserLikeName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserRelName != null">
+        and sys_user_rel_name = #{sysUserRelName,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserType != null">
+        and sys_user_type = #{sysUserType,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserState != null">
+        and sys_user_state = #{sysUserState,jdbcType=INTEGER}
+      </if>
+      <if test="sysUserCreateTime != null">
+        and sys_user_create_time = #{sysUserCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserUpdateTime != null">
+        and sys_user_update_time = #{sysUserUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectByPageAnd" parameterType="com.hxkj.totops.entity.query.PageBean" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="b.sysUserImage != null">
+        and sys_user_image = #{b.sysUserImage,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserLoginName != null">
+        and sys_user_login_name = #{b.sysUserLoginName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserPassword != null">
+        and sys_user_password = #{b.sysUserPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserLikeName != null">
+        and sys_user_like_name = #{b.sysUserLikeName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserRelName != null">
+        and sys_user_rel_name = #{b.sysUserRelName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserType != null">
+        and sys_user_type = #{b.sysUserType,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysUserState != null">
+        and sys_user_state = #{b.sysUserState,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysUserCreateTime != null">
+        and sys_user_create_time = #{b.sysUserCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserUpdateTime != null">
+        and sys_user_update_time = #{b.sysUserUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    limit #{startLine},#{pageSize}
+  </select>
+  
+  <select id="selectByPageAndCount" parameterType="com.hxkj.totops.entity.query.PageBean" resultType="int">
+    select 
+    count(1)
+    from sys_user
+    <where>
+      <if test="b.sysUserImage != null">
+        and sys_user_image = #{b.sysUserImage,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserLoginName != null">
+        and sys_user_login_name = #{b.sysUserLoginName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserPassword != null">
+        and sys_user_password = #{b.sysUserPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserLikeName != null">
+        and sys_user_like_name = #{b.sysUserLikeName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserRelName != null">
+        and sys_user_rel_name = #{b.sysUserRelName,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserType != null">
+        and sys_user_type = #{b.sysUserType,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysUserState != null">
+        and sys_user_state = #{b.sysUserState,jdbcType=INTEGER}
+      </if>
+      <if test="b.sysUserCreateTime != null">
+        and sys_user_create_time = #{b.sysUserCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="b.sysUserUpdateTime != null">
+        and sys_user_update_time = #{b.sysUserUpdateTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

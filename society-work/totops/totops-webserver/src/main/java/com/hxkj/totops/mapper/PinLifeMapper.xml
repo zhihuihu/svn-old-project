@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.totops.dao.IPinLifeDao">
+  <resultMap id="BaseResultMap" type="com.hxkj.totops.entity.PinLife">
+    <id column="pin_life_cuid" property="pinLifeCuid" />
+    <result column="pin_life_left_type_name" property="pinLifeLeftTypeName" />
+    <result column="pin_life_left_type_icon" property="pinLifeLeftTypeIcon" />
+    <result column="pin_life_right_image" property="pinLifeRightImage" />
+    <result column="pin_life_right_image_icon" property="pinLifeRightImageIcon" />
+    <result column="pin_life_right_image_url" property="pinLifeRightImageUrl" />
+    <result column="pin_life_small_list_parent_id" property="pinLifeSmallListParentId" />
+    <result column="pin_life_small_list_parent_name" property="pinLifeSmallListParentName" />
+    <result column="pin_life_small_list_title" property="pinLifeSmallListTitle" />
+    <result column="pin_life_small_list_image" property="pinLifeSmallListImage" />
+    <result column="pin_life_small_list_content" property="pinLifeSmallListContent" />
+    <result column="pin_life_operate_id" property="pinLifeOperateId" />
+    <result column="pin_life_type" property="pinLifeType" />
+    <result column="pin_life_state" property="pinLifeState" />
+    <result column="pin_life_create_time" property="pinLifeCreateTime" />
+    <result column="pin_life_update_time" property="pinLifeUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pin_life_cuid, pin_life_left_type_name, pin_life_left_type_icon, pin_life_right_image, 
+    pin_life_right_image_icon, pin_life_right_image_url, pin_life_small_list_parent_id, 
+    pin_life_small_list_parent_name, pin_life_small_list_title, pin_life_small_list_image, 
+    pin_life_small_list_content, pin_life_operate_id, pin_life_type, pin_life_state, 
+    pin_life_create_time, pin_life_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pin_life
+    where pin_life_cuid = #{pinLifeCuid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from pin_life
+    where pin_life_cuid = #{pinLifeCuid}
+  </delete>
+  <insert id="insert" parameterType="com.hxkj.totops.entity.PinLife">
+    insert into pin_life (pin_life_cuid, pin_life_left_type_name, 
+      pin_life_left_type_icon, pin_life_right_image, 
+      pin_life_right_image_icon, pin_life_right_image_url, 
+      pin_life_small_list_parent_id, pin_life_small_list_parent_name, 
+      pin_life_small_list_title, pin_life_small_list_image, 
+      pin_life_small_list_content, pin_life_operate_id, 
+      pin_life_type, pin_life_state, pin_life_create_time, 
+      pin_life_update_time)
+    values (#{pinLifeCuid}, #{pinLifeLeftTypeName}, 
+      #{pinLifeLeftTypeIcon}, #{pinLifeRightImage}, 
+      #{pinLifeRightImageIcon}, #{pinLifeRightImageUrl}, 
+      #{pinLifeSmallListParentId}, #{pinLifeSmallListParentName}, 
+      #{pinLifeSmallListTitle}, #{pinLifeSmallListImage}, 
+      #{pinLifeSmallListContent}, #{pinLifeOperateId}, 
+      #{pinLifeType}, #{pinLifeState}, #{pinLifeCreateTime}, 
+      #{pinLifeUpdateTime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxkj.totops.entity.PinLife">
+    insert into pin_life
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pinLifeCuid != null">
+        pin_life_cuid,
+      </if>
+      <if test="pinLifeLeftTypeName != null">
+        pin_life_left_type_name,
+      </if>
+      <if test="pinLifeLeftTypeIcon != null">
+        pin_life_left_type_icon,
+      </if>
+      <if test="pinLifeRightImage != null">
+        pin_life_right_image,
+      </if>
+      <if test="pinLifeRightImageIcon != null">
+        pin_life_right_image_icon,
+      </if>
+      <if test="pinLifeRightImageUrl != null">
+        pin_life_right_image_url,
+      </if>
+      <if test="pinLifeSmallListParentId != null">
+        pin_life_small_list_parent_id,
+      </if>
+      <if test="pinLifeSmallListParentName != null">
+        pin_life_small_list_parent_name,
+      </if>
+      <if test="pinLifeSmallListTitle != null">
+        pin_life_small_list_title,
+      </if>
+      <if test="pinLifeSmallListImage != null">
+        pin_life_small_list_image,
+      </if>
+      <if test="pinLifeSmallListContent != null">
+        pin_life_small_list_content,
+      </if>
+      <if test="pinLifeOperateId != null">
+        pin_life_operate_id,
+      </if>
+      <if test="pinLifeType != null">
+        pin_life_type,
+      </if>
+      <if test="pinLifeState != null">
+        pin_life_state,
+      </if>
+      <if test="pinLifeCreateTime != null">
+        pin_life_create_time,
+      </if>
+      <if test="pinLifeUpdateTime != null">
+        pin_life_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pinLifeCuid != null">
+        #{pinLifeCuid},
+      </if>
+      <if test="pinLifeLeftTypeName != null">
+        #{pinLifeLeftTypeName},
+      </if>
+      <if test="pinLifeLeftTypeIcon != null">
+        #{pinLifeLeftTypeIcon},
+      </if>
+      <if test="pinLifeRightImage != null">
+        #{pinLifeRightImage},
+      </if>
+      <if test="pinLifeRightImageIcon != null">
+        #{pinLifeRightImageIcon},
+      </if>
+      <if test="pinLifeRightImageUrl != null">
+        #{pinLifeRightImageUrl},
+      </if>
+      <if test="pinLifeSmallListParentId != null">
+        #{pinLifeSmallListParentId},
+      </if>
+      <if test="pinLifeSmallListParentName != null">
+        #{pinLifeSmallListParentName},
+      </if>
+      <if test="pinLifeSmallListTitle != null">
+        #{pinLifeSmallListTitle},
+      </if>
+      <if test="pinLifeSmallListImage != null">
+        #{pinLifeSmallListImage},
+      </if>
+      <if test="pinLifeSmallListContent != null">
+        #{pinLifeSmallListContent},
+      </if>
+      <if test="pinLifeOperateId != null">
+        #{pinLifeOperateId},
+      </if>
+      <if test="pinLifeType != null">
+        #{pinLifeType},
+      </if>
+      <if test="pinLifeState != null">
+        #{pinLifeState},
+      </if>
+      <if test="pinLifeCreateTime != null">
+        #{pinLifeCreateTime},
+      </if>
+      <if test="pinLifeUpdateTime != null">
+        #{pinLifeUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.totops.entity.PinLife">
+    update pin_life
+    <set>
+      <if test="pinLifeLeftTypeName != null">
+        pin_life_left_type_name = #{pinLifeLeftTypeName},
+      </if>
+      <if test="pinLifeLeftTypeIcon != null">
+        pin_life_left_type_icon = #{pinLifeLeftTypeIcon},
+      </if>
+      <if test="pinLifeRightImage != null">
+        pin_life_right_image = #{pinLifeRightImage},
+      </if>
+      <if test="pinLifeRightImageIcon != null">
+        pin_life_right_image_icon = #{pinLifeRightImageIcon},
+      </if>
+      <if test="pinLifeRightImageUrl != null">
+        pin_life_right_image_url = #{pinLifeRightImageUrl},
+      </if>
+      <if test="pinLifeSmallListParentId != null">
+        pin_life_small_list_parent_id = #{pinLifeSmallListParentId},
+      </if>
+      <if test="pinLifeSmallListParentName != null">
+        pin_life_small_list_parent_name = #{pinLifeSmallListParentName},
+      </if>
+      <if test="pinLifeSmallListTitle != null">
+        pin_life_small_list_title = #{pinLifeSmallListTitle},
+      </if>
+      <if test="pinLifeSmallListImage != null">
+        pin_life_small_list_image = #{pinLifeSmallListImage},
+      </if>
+      <if test="pinLifeSmallListContent != null">
+        pin_life_small_list_content = #{pinLifeSmallListContent},
+      </if>
+      <if test="pinLifeOperateId != null">
+        pin_life_operate_id = #{pinLifeOperateId},
+      </if>
+      <if test="pinLifeType != null">
+        pin_life_type = #{pinLifeType},
+      </if>
+      <if test="pinLifeState != null">
+        pin_life_state = #{pinLifeState},
+      </if>
+      <if test="pinLifeCreateTime != null">
+        pin_life_create_time = #{pinLifeCreateTime},
+      </if>
+      <if test="pinLifeUpdateTime != null">
+        pin_life_update_time = #{pinLifeUpdateTime},
+      </if>
+    </set>
+    where pin_life_cuid = #{pinLifeCuid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.totops.entity.PinLife">
+    update pin_life
+    set pin_life_left_type_name = #{pinLifeLeftTypeName},
+      pin_life_left_type_icon = #{pinLifeLeftTypeIcon},
+      pin_life_right_image = #{pinLifeRightImage},
+      pin_life_right_image_icon = #{pinLifeRightImageIcon},
+      pin_life_right_image_url = #{pinLifeRightImageUrl},
+      pin_life_small_list_parent_id = #{pinLifeSmallListParentId},
+      pin_life_small_list_parent_name = #{pinLifeSmallListParentName},
+      pin_life_small_list_title = #{pinLifeSmallListTitle},
+      pin_life_small_list_image = #{pinLifeSmallListImage},
+      pin_life_small_list_content = #{pinLifeSmallListContent},
+      pin_life_operate_id = #{pinLifeOperateId},
+      pin_life_type = #{pinLifeType},
+      pin_life_state = #{pinLifeState},
+      pin_life_create_time = #{pinLifeCreateTime},
+      pin_life_update_time = #{pinLifeUpdateTime}
+    where pin_life_cuid = #{pinLifeCuid}
+  </update>
+  
+  <select id="selectByAttribute" parameterType="com.hxkj.totops.entity.PinLife" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pin_life
+    <where>
+      <if test="pinLifeLeftTypeName != null">
+        and pin_life_left_type_name = #{pinLifeLeftTypeName}
+      </if>
+      <if test="pinLifeLeftTypeIcon != null">
+        and pin_life_left_type_icon = #{pinLifeLeftTypeIcon}
+      </if>
+      <if test="pinLifeRightImage != null">
+        and pin_life_right_image = #{pinLifeRightImage}
+      </if>
+      <if test="pinLifeRightImageIcon != null">
+        and pin_life_right_image_icon = #{pinLifeRightImageIcon}
+      </if>
+      <if test="pinLifeRightImageUrl != null">
+        and pin_life_right_image_url = #{pinLifeRightImageUrl}
+      </if>
+      <if test="pinLifeSmallListParentId != null">
+        and pin_life_small_list_parent_id = #{pinLifeSmallListParentId}
+      </if>
+      <if test="pinLifeSmallListParentName != null">
+        and pin_life_small_list_parent_name = #{pinLifeSmallListParentName}
+      </if>
+      <if test="pinLifeSmallListTitle != null">
+        and pin_life_small_list_title = #{pinLifeSmallListTitle}
+      </if>
+      <if test="pinLifeSmallListImage != null">
+        and pin_life_small_list_image = #{pinLifeSmallListImage}
+      </if>
+      <if test="pinLifeSmallListContent != null">
+        and pin_life_small_list_content = #{pinLifeSmallListContent}
+      </if>
+      <if test="pinLifeOperateId != null">
+        and pin_life_operate_id = #{pinLifeOperateId}
+      </if>
+      <if test="pinLifeType != null">
+        and pin_life_type = #{pinLifeType}
+      </if>
+      <if test="pinLifeState != null">
+        and pin_life_state = #{pinLifeState}
+      </if>
+      <if test="pinLifeCreateTime != null">
+        and pin_life_create_time = #{pinLifeCreateTime}
+      </if>
+      <if test="pinLifeUpdateTime != null">
+        and pin_life_update_time = #{pinLifeUpdateTime}
+      </if>
+    </where>
+    order by pin_life_create_time desc
+  </select>
+  
+  <select id="selectByPageAnd" parameterType="com.hxkj.totops.entity.query.PageBean" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pin_life
+    <where>
+      <if test="b.pinLifeLeftTypeName != null">
+        and pin_life_left_type_name = #{b.pinLifeLeftTypeName}
+      </if>
+      <if test="b.pinLifeLeftTypeIcon != null">
+        and pin_life_left_type_icon = #{b.pinLifeLeftTypeIcon}
+      </if>
+      <if test="b.pinLifeRightImage != null">
+        and pin_life_right_image = #{b.pinLifeRightImage}
+      </if>
+      <if test="b.pinLifeRightImageIcon != null">
+        and pin_life_right_image_icon = #{b.pinLifeRightImageIcon}
+      </if>
+      <if test="b.pinLifeRightImageUrl != null">
+        and pin_life_right_image_url = #{b.pinLifeRightImageUrl}
+      </if>
+      <if test="b.pinLifeSmallListParentId != null">
+        and pin_life_small_list_parent_id = #{b.pinLifeSmallListParentId}
+      </if>
+      <if test="b.pinLifeSmallListParentName != null">
+        and pin_life_small_list_parent_name = #{b.pinLifeSmallListParentName}
+      </if>
+      <if test="b.pinLifeSmallListTitle != null">
+        and pin_life_small_list_title = #{b.pinLifeSmallListTitle}
+      </if>
+      <if test="b.pinLifeSmallListImage != null">
+        and pin_life_small_list_image = #{b.pinLifeSmallListImage}
+      </if>
+      <if test="b.pinLifeSmallListContent != null">
+        and pin_life_small_list_content = #{b.pinLifeSmallListContent}
+      </if>
+      <if test="b.pinLifeOperateId != null">
+        and pin_life_operate_id = #{b.pinLifeOperateId}
+      </if>
+      <if test="b.pinLifeType != null">
+        and pin_life_type = #{b.pinLifeType}
+      </if>
+      <if test="b.pinLifeState != null">
+        and pin_life_state = #{b.pinLifeState}
+      </if>
+      <if test="b.pinLifeCreateTime != null">
+        and pin_life_create_time = #{b.pinLifeCreateTime}
+      </if>
+      <if test="b.pinLifeUpdateTime != null">
+        and pin_life_update_time = #{b.pinLifeUpdateTime}
+      </if>
+    </where>
+    order by pin_life_create_time desc
+    limit #{startLine},#{pageSize}
+  </select>
+  
+  <select id="selectByPageAndCount" parameterType="com.hxkj.totops.entity.query.PageBean" resultType="int">
+    select 
+    count(1)
+    from pin_life
+    <where>
+      <if test="b.pinLifeLeftTypeName != null">
+        and pin_life_left_type_name = #{b.pinLifeLeftTypeName}
+      </if>
+      <if test="b.pinLifeLeftTypeIcon != null">
+        and pin_life_left_type_icon = #{b.pinLifeLeftTypeIcon}
+      </if>
+      <if test="b.pinLifeRightImage != null">
+        and pin_life_right_image = #{b.pinLifeRightImage}
+      </if>
+      <if test="b.pinLifeRightImageIcon != null">
+        and pin_life_right_image_icon = #{b.pinLifeRightImageIcon}
+      </if>
+      <if test="b.pinLifeRightImageUrl != null">
+        and pin_life_right_image_url = #{b.pinLifeRightImageUrl}
+      </if>
+      <if test="b.pinLifeSmallListParentId != null">
+        and pin_life_small_list_parent_id = #{b.pinLifeSmallListParentId}
+      </if>
+      <if test="b.pinLifeSmallListParentName != null">
+        and pin_life_small_list_parent_name = #{b.pinLifeSmallListParentName}
+      </if>
+      <if test="b.pinLifeSmallListTitle != null">
+        and pin_life_small_list_title = #{b.pinLifeSmallListTitle}
+      </if>
+      <if test="b.pinLifeSmallListImage != null">
+        and pin_life_small_list_image = #{b.pinLifeSmallListImage}
+      </if>
+      <if test="b.pinLifeSmallListContent != null">
+        and pin_life_small_list_content = #{b.pinLifeSmallListContent}
+      </if>
+      <if test="b.pinLifeOperateId != null">
+        and pin_life_operate_id = #{b.pinLifeOperateId}
+      </if>
+      <if test="b.pinLifeType != null">
+        and pin_life_type = #{b.pinLifeType}
+      </if>
+      <if test="b.pinLifeState != null">
+        and pin_life_state = #{b.pinLifeState}
+      </if>
+      <if test="b.pinLifeCreateTime != null">
+        and pin_life_create_time = #{b.pinLifeCreateTime}
+      </if>
+      <if test="b.pinLifeUpdateTime != null">
+        and pin_life_update_time = #{b.pinLifeUpdateTime}
+      </if>
+    </where>
+  </select>
+</mapper>

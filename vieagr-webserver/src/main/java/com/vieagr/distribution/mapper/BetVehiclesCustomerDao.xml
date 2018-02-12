@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.BetVehiclesCustomerDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.BetVehiclesCustomer">
+    <id column="bet_vehicles_customer_id" jdbcType="VARCHAR" property="betVehiclesCustomerId" />
+    <result column="bet_vehicles_customer_vehicles_id" jdbcType="VARCHAR" property="betVehiclesCustomerVehiclesId" />
+    <result column="bet_vehicles_customer_customer_id" jdbcType="VARCHAR" property="betVehiclesCustomerCustomerId" />
+    <result column="bet_vehicles_customer_create_time" jdbcType="VARCHAR" property="betVehiclesCustomerCreateTime" />
+    <result column="bet_vehicles_customer_update_time" jdbcType="TIMESTAMP" property="betVehiclesCustomerUpdateTime" />
+    <result column="bet_vehicles_customer_del_flag" jdbcType="INTEGER" property="betVehiclesCustomerDelFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bet_vehicles_customer_id, bet_vehicles_customer_vehicles_id, bet_vehicles_customer_customer_id, 
+    bet_vehicles_customer_create_time, bet_vehicles_customer_update_time, bet_vehicles_customer_del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bet_vehicles_customer
+    where bet_vehicles_customer_id = #{betVehiclesCustomerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bet_vehicles_customer
+    where bet_vehicles_customer_id = #{betVehiclesCustomerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.BetVehiclesCustomer">
+    insert into bet_vehicles_customer (bet_vehicles_customer_id, bet_vehicles_customer_vehicles_id, 
+      bet_vehicles_customer_customer_id, bet_vehicles_customer_create_time, 
+      bet_vehicles_customer_update_time, bet_vehicles_customer_del_flag
+      )
+    values (#{betVehiclesCustomerId,jdbcType=VARCHAR}, #{betVehiclesCustomerVehiclesId,jdbcType=VARCHAR}, 
+      #{betVehiclesCustomerCustomerId,jdbcType=VARCHAR}, #{betVehiclesCustomerCreateTime,jdbcType=VARCHAR}, 
+      #{betVehiclesCustomerUpdateTime,jdbcType=TIMESTAMP}, #{betVehiclesCustomerDelFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.BetVehiclesCustomer">
+    insert into bet_vehicles_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="betVehiclesCustomerId != null">
+        bet_vehicles_customer_id,
+      </if>
+      <if test="betVehiclesCustomerVehiclesId != null">
+        bet_vehicles_customer_vehicles_id,
+      </if>
+      <if test="betVehiclesCustomerCustomerId != null">
+        bet_vehicles_customer_customer_id,
+      </if>
+      <if test="betVehiclesCustomerCreateTime != null">
+        bet_vehicles_customer_create_time,
+      </if>
+      <if test="betVehiclesCustomerUpdateTime != null">
+        bet_vehicles_customer_update_time,
+      </if>
+      <if test="betVehiclesCustomerDelFlag != null">
+        bet_vehicles_customer_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="betVehiclesCustomerId != null">
+        #{betVehiclesCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerVehiclesId != null">
+        #{betVehiclesCustomerVehiclesId,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerCustomerId != null">
+        #{betVehiclesCustomerCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerCreateTime != null">
+        #{betVehiclesCustomerCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerUpdateTime != null">
+        #{betVehiclesCustomerUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betVehiclesCustomerDelFlag != null">
+        #{betVehiclesCustomerDelFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.BetVehiclesCustomer">
+    update bet_vehicles_customer
+    <set>
+      <if test="betVehiclesCustomerVehiclesId != null">
+        bet_vehicles_customer_vehicles_id = #{betVehiclesCustomerVehiclesId,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerCustomerId != null">
+        bet_vehicles_customer_customer_id = #{betVehiclesCustomerCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerCreateTime != null">
+        bet_vehicles_customer_create_time = #{betVehiclesCustomerCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="betVehiclesCustomerUpdateTime != null">
+        bet_vehicles_customer_update_time = #{betVehiclesCustomerUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betVehiclesCustomerDelFlag != null">
+        bet_vehicles_customer_del_flag = #{betVehiclesCustomerDelFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bet_vehicles_customer_id = #{betVehiclesCustomerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.BetVehiclesCustomer">
+    update bet_vehicles_customer
+    set bet_vehicles_customer_vehicles_id = #{betVehiclesCustomerVehiclesId,jdbcType=VARCHAR},
+      bet_vehicles_customer_customer_id = #{betVehiclesCustomerCustomerId,jdbcType=VARCHAR},
+      bet_vehicles_customer_create_time = #{betVehiclesCustomerCreateTime,jdbcType=VARCHAR},
+      bet_vehicles_customer_update_time = #{betVehiclesCustomerUpdateTime,jdbcType=TIMESTAMP},
+      bet_vehicles_customer_del_flag = #{betVehiclesCustomerDelFlag,jdbcType=INTEGER}
+    where bet_vehicles_customer_id = #{betVehiclesCustomerId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByAttributeAnd" parameterType="com.vieagr.distribution.entity.BetVehiclesCustomer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bet_vehicles_customer
+    <where>
+      <if test="betVehiclesCustomerVehiclesId != null">
+        bet_vehicles_customer_vehicles_id = #{betVehiclesCustomerVehiclesId,jdbcType=VARCHAR}
+      </if>
+      <if test="betVehiclesCustomerCustomerId != null">
+        and bet_vehicles_customer_customer_id = #{betVehiclesCustomerCustomerId,jdbcType=VARCHAR}
+      </if>
+      <if test="betVehiclesCustomerCreateTime != null">
+        and bet_vehicles_customer_create_time = #{betVehiclesCustomerCreateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="betVehiclesCustomerUpdateTime != null">
+        and bet_vehicles_customer_update_time = #{betVehiclesCustomerUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="betVehiclesCustomerDelFlag != null">
+        and bet_vehicles_customer_del_flag = #{betVehiclesCustomerDelFlag,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <cache />
+</mapper>

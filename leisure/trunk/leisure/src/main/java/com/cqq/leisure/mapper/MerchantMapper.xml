@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IMerchantDao" >
+	<resultMap id="BaseResultMap" type="Merchant" >
+    <id column="MERCHANT_ID" property="merchantId"/>
+    <result column="TAG_ID" property="tagId"  />
+    <result column="MERCHANT_ICON_URL" property="merchantIconUrl"/>
+    <result column="MERCHANT_LINKMAN" property="merchantLinkman"/>
+    <result column="MERCHANT_PHONE" property="merchantPhone"/>
+    <result column="MERCHANT_ADDRESS" property="merchantAddress"/>
+    <result column="MERCHANT_AD" property="merchantAd"/>
+    <result column="MERCHANT_NAME" property="merchantName"/>
+    <result column="MERCHANT_TYPE" property="merchantType"/>
+    <result column="MERCHANT_GPS_ADDRESS" property="merchantGpsAddress"/>
+    <result column="MERCHANT_LOG" property="merchantLog"/>
+    <result column="MERCHANT_LAT" property="merchantLat"/>
+    <result column="MERCHANT_INTRO" property="merchantIntro"/>
+    <result column="MERCHANT_STATE" property="merchantState"  />
+    <result column="MERCHANT_CREATE_TIME" property="merchantCreateTime" />
+    <result column="MERCHANT_UPDATE_TIME" property="merchantUpdateTime" />
+    <result column="MERCHANT_TAG" property="merchantTag"/>
+    <result column="MERCHANT_SORT" property="merchantSort"  />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    MERCHANT_ID, 
+    TAG_ID,
+    MERCHANT_ICON_URL, 
+    MERCHANT_LINKMAN, 
+    MERCHANT_PHONE, 
+    MERCHANT_ADDRESS, 
+    MERCHANT_AD, 
+    MERCHANT_NAME, 
+    MERCHANT_TYPE, MERCHANT_GPS_ADDRESS, 
+    MERCHANT_LOG, MERCHANT_LAT, 
+    MERCHANT_INTRO, 
+    MERCHANT_STATE, MERCHANT_CREATE_TIME, 
+    MERCHANT_UPDATE_TIME, MERCHANT_TAG, 
+    MERCHANT_SORT
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Merchant" >
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where MERCHANT_ID = #{merchantId}
+  </select>
+  
+  <delete id="doDeleteByPrimaryKey" parameterType="Merchant" >
+    delete from merchant
+    where MERCHANT_ID = #{merchantId}
+  </delete>
+  
+  <insert id="doInsert" parameterType="Merchant" >
+  	<selectKey keyProperty="merchantId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    insert into merchant (MERCHANT_ID, TAG_ID, MERCHANT_ICON_URL, 
+      MERCHANT_LINKMAN, MERCHANT_PHONE, MERCHANT_ADDRESS, 
+      MERCHANT_AD, MERCHANT_NAME, MERCHANT_TYPE, 
+      MERCHANT_GPS_ADDRESS, MERCHANT_LOG, MERCHANT_LAT, 
+      MERCHANT_INTRO, MERCHANT_STATE, MERCHANT_CREATE_TIME, 
+      MERCHANT_UPDATE_TIME, MERCHANT_TAG, MERCHANT_SORT
+      )
+    values (#{merchantId}, #{tagId}, #{merchantIconUrl}, 
+      #{merchantLinkman}, #{merchantPhone}, #{merchantAddress}, 
+      #{merchantAd}, #{merchantName}, #{merchantType}, 
+      #{merchantGpsAddress}, #{merchantLog}, #{merchantLat}, 
+      #{merchantIntro}, #{merchantState}, #{merchantCreateTime}, 
+      #{merchantUpdateTime}, #{merchantTag}, #{merchantSort}
+      )
+  </insert>
+  
+  <insert id="doInsertSelective" parameterType="Merchant" >
+  	<selectKey keyProperty="merchantId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="tagId != null" >
+        TAG_ID,
+      </if>
+      <if test="merchantIconUrl != null" >
+        MERCHANT_ICON_URL,
+      </if>
+      <if test="merchantLinkman != null" >
+        MERCHANT_LINKMAN,
+      </if>
+      <if test="merchantPhone != null" >
+        MERCHANT_PHONE,
+      </if>
+      <if test="merchantAddress != null" >
+        MERCHANT_ADDRESS,
+      </if>
+      <if test="merchantAd != null" >
+        MERCHANT_AD,
+      </if>
+      <if test="merchantName != null" >
+        MERCHANT_NAME,
+      </if>
+      <if test="merchantType != null" >
+        MERCHANT_TYPE,
+      </if>
+      <if test="merchantGpsAddress != null" >
+        MERCHANT_GPS_ADDRESS,
+      </if>
+      <if test="merchantLog != null" >
+        MERCHANT_LOG,
+      </if>
+      <if test="merchantLat != null" >
+        MERCHANT_LAT,
+      </if>
+      <if test="merchantIntro != null" >
+        MERCHANT_INTRO,
+      </if>
+      <if test="merchantState != null" >
+        MERCHANT_STATE,
+      </if>
+      <if test="merchantCreateTime != null" >
+        MERCHANT_CREATE_TIME,
+      </if>
+      <if test="merchantUpdateTime != null" >
+        MERCHANT_UPDATE_TIME,
+      </if>
+      <if test="merchantTag != null" >
+        MERCHANT_TAG,
+      </if>
+      <if test="merchantSort != null" >
+        MERCHANT_SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        #{merchantId},
+      </if>
+      <if test="tagId != null" >
+        #{tagId},
+      </if>
+      <if test="merchantIconUrl != null" >
+        #{merchantIconUrl},
+      </if>
+      <if test="merchantLinkman != null" >
+        #{merchantLinkman},
+      </if>
+      <if test="merchantPhone != null" >
+        #{merchantPhone},
+      </if>
+      <if test="merchantAddress != null" >
+        #{merchantAddress},
+      </if>
+      <if test="merchantAd != null" >
+        #{merchantAd},
+      </if>
+      <if test="merchantName != null" >
+        #{merchantName},
+      </if>
+      <if test="merchantType != null" >
+        #{merchantType},
+      </if>
+      <if test="merchantGpsAddress != null" >
+        #{merchantGpsAddress},
+      </if>
+      <if test="merchantLog != null" >
+        #{merchantLog},
+      </if>
+      <if test="merchantLat != null" >
+        #{merchantLat},
+      </if>
+      <if test="merchantIntro != null" >
+        #{merchantIntro},
+      </if>
+      <if test="merchantState != null" >
+        #{merchantState},
+      </if>
+      <if test="merchantCreateTime != null" >
+        #{merchantCreateTime},
+      </if>
+      <if test="merchantUpdateTime != null" >
+        #{merchantUpdateTime},
+      </if>
+      <if test="merchantTag != null" >
+        #{merchantTag},
+      </if>
+      <if test="merchantSort != null" >
+        #{merchantSort},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="doUpdateByPrimaryKeySelective" parameterType="Merchant" >
+    update merchant
+    <set >
+      <if test="tagId != null" >
+        TAG_ID = #{tagId},
+      </if>
+      <if test="merchantIconUrl != null" >
+        MERCHANT_ICON_URL = #{merchantIconUrl},
+      </if>
+      <if test="merchantLinkman != null" >
+        MERCHANT_LINKMAN = #{merchantLinkman},
+      </if>
+      <if test="merchantPhone != null" >
+        MERCHANT_PHONE = #{merchantPhone},
+      </if>
+      <if test="merchantAddress != null" >
+        MERCHANT_ADDRESS = #{merchantAddress},
+      </if>
+      <if test="merchantAd != null" >
+        MERCHANT_AD = #{merchantAd},
+      </if>
+      <if test="merchantName != null" >
+        MERCHANT_NAME = #{merchantName},
+      </if>
+      <if test="merchantType != null" >
+        MERCHANT_TYPE = #{merchantType},
+      </if>
+      <if test="merchantGpsAddress != null" >
+        MERCHANT_GPS_ADDRESS = #{merchantGpsAddress},
+      </if>
+      <if test="merchantLog != null" >
+        MERCHANT_LOG = #{merchantLog},
+      </if>
+      <if test="merchantLat != null" >
+        MERCHANT_LAT = #{merchantLat},
+      </if>
+      <if test="merchantIntro != null" >
+        MERCHANT_INTRO = #{merchantIntro},
+      </if>
+      <if test="merchantState != null" >
+        MERCHANT_STATE = #{merchantState},
+      </if>
+      <if test="merchantCreateTime != null" >
+        MERCHANT_CREATE_TIME = #{merchantCreateTime},
+      </if>
+      <if test="merchantUpdateTime != null" >
+        MERCHANT_UPDATE_TIME = #{merchantUpdateTime},
+      </if>
+      <if test="merchantTag != null" >
+        MERCHANT_TAG = #{merchantTag},
+      </if>
+      <if test="merchantSort != null" >
+        MERCHANT_SORT = #{merchantSort},
+      </if>
+    </set>
+    where MERCHANT_ID = #{merchantId}
+  </update>
+  
+  
+  <update id="doUpdateByPrimaryKey" parameterType="Merchant" >
+    update merchant
+    set TAG_ID = #{tagId},
+      MERCHANT_ICON_URL = #{merchantIconUrl},
+      MERCHANT_LINKMAN = #{merchantLinkman},
+      MERCHANT_PHONE = #{merchantPhone},
+      MERCHANT_ADDRESS = #{merchantAddress},
+      MERCHANT_AD = #{merchantAd},
+      MERCHANT_NAME = #{merchantName},
+      MERCHANT_TYPE = #{merchantType},
+      MERCHANT_GPS_ADDRESS = #{merchantGpsAddress},
+      MERCHANT_LOG = #{merchantLog},
+      MERCHANT_LAT = #{merchantLat},
+      MERCHANT_INTRO = #{merchantIntro},
+      MERCHANT_STATE = #{merchantState},
+      MERCHANT_CREATE_TIME = #{merchantCreateTime},
+      MERCHANT_UPDATE_TIME = #{merchantUpdateTime},
+      MERCHANT_TAG = #{merchantTag},
+      MERCHANT_SORT = #{merchantSort}
+    where MERCHANT_ID = #{merchantId}
+  </update>
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    <where>
+	    <if test="b.tagId != null and b.tagId != 0" >
+	        TAG_ID = #{b.tagId}
+      </if>
+      <if test="b.merchantIconUrl != null" >
+        and MERCHANT_ICON_URL = #{b.merchantIconUrl}
+      </if>
+      <if test="b.merchantLinkman != null" >
+        and MERCHANT_LINKMAN = #{b.merchantLinkman}
+      </if>
+      <if test="b.merchantPhone != null" >
+        and MERCHANT_PHONE = #{b.merchantPhone}
+      </if>
+      <if test="b.merchantAddress != null" >
+        and MERCHANT_ADDRESS = #{b.merchantAddress}
+      </if>
+      <if test="b.merchantAd != null" >
+        and MERCHANT_AD = #{b.merchantAd}
+      </if>
+      <if test="b.merchantName != null" >
+        and MERCHANT_NAME = #{b.merchantName}
+      </if>
+      <if test="b.merchantType != null" >
+        and MERCHANT_TYPE = #{b.merchantType}
+      </if>
+      <if test="b.merchantGpsAddress != null" >
+        and MERCHANT_GPS_ADDRESS like '%' #{b.merchantGpsAddress} '%'
+      </if>
+      <if test="b.merchantLog != null" >
+        and MERCHANT_LOG = #{b.merchantLog}
+      </if>
+      <if test="b.merchantLat != null" >
+        and MERCHANT_LAT = #{b.merchantLat}
+      </if>
+      <if test="b.merchantIntro != null" >
+        and MERCHANT_INTRO = #{b.merchantIntro}
+      </if>
+      <if test="b.merchantState != null and b.merchantState !=0 " >
+        and MERCHANT_STATE = #{b.merchantState}
+      </if>
+      <if test="b.merchantCreateTime != null" >
+        and MERCHANT_CREATE_TIME = #{b.merchantCreateTime}
+      </if>
+      <if test="b.merchantUpdateTime != null" >
+        and MERCHANT_UPDATE_TIME = #{b.merchantUpdateTime}
+      </if>
+      <if test="b.merchantTag != null" >
+        and MERCHANT_TAG = #{b.merchantTag}
+      </if>
+      <if test="b.merchantSort != null and b.merchantSort != 0" >
+        and MERCHANT_SORT = #{b.merchantSort}
+      </if>
+    </where>
+    ORDER BY MERCHANT_SORT DESC
+	    LIMIT
+	    	#{startLine},#{lineSize}
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+    COUNT(1)
+    from merchant
+    <where>
+	    <if test="b.tagId != null and b.tagId != 0" >
+	        TAG_ID = #{b.tagId},
+      </if>
+      <if test="b.merchantIconUrl != null" >
+        and MERCHANT_ICON_URL = #{b.merchantIconUrl}
+      </if>
+      <if test="b.merchantLinkman != null" >
+        and MERCHANT_LINKMAN = #{b.merchantLinkman}
+      </if>
+      <if test="b.merchantPhone != null" >
+        and MERCHANT_PHONE = #{b.merchantPhone}
+      </if>
+      <if test="b.merchantAddress != null" >
+        and MERCHANT_ADDRESS = #{b.merchantAddress}
+      </if>
+      <if test="b.merchantAd != null" >
+        and MERCHANT_AD = #{b.merchantAd}
+      </if>
+      <if test="b.merchantName != null" >
+        and MERCHANT_NAME = #{b.merchantName}
+      </if>
+      <if test="b.merchantType != null" >
+        and MERCHANT_TYPE = #{b.merchantType}
+      </if>
+      <if test="b.merchantGpsAddress != null" >
+         and MERCHANT_GPS_ADDRESS like '%' #{b.merchantGpsAddress} '%'
+      </if>
+      <if test="b.merchantLog != null" >
+        and MERCHANT_LOG = #{b.merchantLog}
+      </if>
+      <if test="b.merchantLat != null" >
+        and MERCHANT_LAT = #{b.merchantLat}
+      </if>
+      <if test="b.merchantIntro != null" >
+        and MERCHANT_INTRO = #{b.merchantIntro}
+      </if>
+      <if test="b.merchantState != null and b.merchantState != 0" >
+        and MERCHANT_STATE = #{b.merchantState}
+      </if>
+      <if test="b.merchantCreateTime != null" >
+        and MERCHANT_CREATE_TIME = #{b.merchantCreateTime}
+      </if>
+      <if test="b.merchantUpdateTime != null" >
+        and MERCHANT_UPDATE_TIME = #{b.merchantUpdateTime}
+      </if>
+      <if test="b.merchantTag != null" >
+        and MERCHANT_TAG = #{b.merchantTag}
+      </if>
+      <if test="b.merchantSort != null and b.merchantSort != 0" >
+        and MERCHANT_SORT = #{b.merchantSort}
+      </if>
+    </where>
+    
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="Merchant" >
+  		select 
+  		 <include refid="Base_Column_List" />
+  		from merchant
+  	</select>
+  	<select id="selectByKeyWord"  resultMap="BaseResultMap" parameterType="Merchant" >
+  		 select 
+    <include refid="Base_Column_List" />
+    from merchant
+    <where>
+      <if test="b.merchantAddress != null" >
+         MERCHANT_ADDRESS like '%' #{b.merchantAddress} '%'
+      </if>
+      <if test="b.merchantName != null" >
+        or MERCHANT_NAME like '%' #{b.merchantName} '%'
+      </if>
+      <if test="b.merchantIntro != null" >
+        or MERCHANT_INTRO like '%' #{b.merchantIntro} '%'
+      </if>
+    </where>
+  	</select>
+  	
+</mapper>

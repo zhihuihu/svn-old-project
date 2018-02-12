@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+     <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+     <link rel="stylesheet" href="../base-component/datetimepicker/css/amazeui.datetimepicker.css"/>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong></div>
+</div>
+
+<ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+    <li><span  class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>订单总数<br/><span id="order-count">0</span></span></li>
+    <li><span  class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>今日待配送<br/><span id="today-order-count">0</span></span></li>
+    <li><span  class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>顾客<br/><span id="customer-count">0</span></span></li>
+    <li><span  class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>商品<br/><span id="product-count">0</span></span></li>
+</ul>
+
+<div class="am-g">
+    <div class="am-u-md-6">
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">
+            	单据操作<span class="am-icon-chevron-down am-fr" ></span></div>
+            <div class="am-panel-bd am-collapse am-in" id="collapse-panel-1" >
+                <ul class="am-list admin-content-file">
+                    <li>
+                    	<div>
+                    		<form action="" method="post" id="download-excel-form" class = "">
+						  		<input name="orderSendTime" id="order-send-time" type="text" class="am-form-field"  placeholder="请选择送货日期" style="width: 360px">
+						  		<select id="order-state-for-download-excel" class="am-form-field" style="width: 360px; margin-top: 5px" name="orderState">
+									<option value="2">待配送</option>
+									<option value="3">配送中</option> 
+									<option value="4">已完成配送</option> 
+									<option value="5">配送遇到问题</option> 
+							</select>
+					  			<input name="excelType" type="hidden" class="am-form-field" id="excel-type">
+					  			<input name="sysVehiclesId" type="hidden" class="am-form-field" id="sys-vehicles-id">
+						  	</form>
+						</div>
+						<p></p>
+						<p></p>
+                    </li>
+                    <li>
+						<div class="am-dropdown" style="width: 100%; height: 40px" data-am-dropdown>
+                            <table class="am-table">
+                                <tr>
+                                    <td class="am-u-sm-6">
+                                        <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                            <span class="am-input-group-label">车牌号：</span>
+                                            <select id="summarySysVehiclesId" class="am-form-field">
+                                                <!--<option value="1">普通订单</option>
+                                                <option value="2">员工餐订单</option>-->
+                                            </select>
+                                            <span class="am-form-caret"></span>
+                                        </div>
+                                    </td>
+                                    <td class="am-u-sm-6">
+                                        <input type="button" class="layui-btn layui-btn-normal" excel-type = "summaryOrder" value="汇总单导出" id="summary-order-download" />
+                                    </td>
+                                </tr>
+                            </table>
+						</div>
+                    </li>
+                    <li>
+                    	<p></p>
+						<p></p>
+						<div class="am-dropdown" style="width: 100%; height: 40px" data-am-dropdown>
+                            <table class="am-table">
+                                <tr>
+                                    <td class="am-u-sm-6">
+                                        <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                            <span class="am-input-group-label">车牌号：</span>
+                                            <select id="sortingSysVehiclesId" class="am-form-field">
+                                                <!--<option value="1">普通订单</option>
+                                                <option value="2">员工餐订单</option>-->
+                                            </select>
+                                            <span class="am-form-caret"></span>
+                                        </div>
+                                    </td>
+                                    <td class="am-u-sm-6">
+                                        <input type="button" class="layui-btn layui-btn-normal" excel-type = "sortingOrder" value="分拣单导出" id="sorting-order-download"/>
+                                    </td>
+                                </tr>
+                            </table>
+						</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--按照顾客购买导入导出-->
+    <div class="am-u-md-6">
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-customer-expost'}">
+                用户购买数据导出<span class="am-icon-chevron-down am-fr" ></span></div>
+            <div id="collapse-panel-customer-expost" class="am-in" style="width: 100%;">
+                <p></p>
+                <div id="customer-expost-container" style="width: 100%; margin: 0 auto">
+                    <div class="am-tabs" id="customer-export-tab">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+                            <li class="am-active"><a href="">按照月份导出</a></li>
+                            <li><a href="">按照时间段导出</a></li>
+                        </ul>
+                        <div class="am-tabs-bd" style="height: 210px;">
+                            <!--按照月份导出-->
+                            <div class="am-tab-panel am-active">
+                            	<form action="" method="post" id = "customer-export-month-form">
+                                <table class="am-table">
+                                    <tr>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                <span class="am-input-group-label">月份选择：</span>
+                                                <input name="monthDate" id="customer-expost-month" type="text" 
+                                                class="am-form-field"  placeholder="请选择导出月份">
+                                            </div>
+                                        </td>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                <span class="am-input-group-label">顾客选择：</span>
+                                                <select id="customer-choose-month" class="am-form-field" name="customerId">
+                                                    <!--<option value="1">普通订单</option>
+                                                    <option value="2">员工餐订单</option>-->
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                <span class="am-input-group-label">订单类型：</span>
+                                                <select id="customer-choose-month-order-type" class="am-form-field" name = "orderType">
+                                                    <option value="1">普通订单</option>
+                                                    <option value="2">员工餐订单</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                <input type="button" class="layui-btn layui-btn-normal" excel-type = "sortingOrder" value="顾客购买详情导出" id="customerExportMonth"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </form>
+                            </div>
+                            <!--按照时间段导出-->
+                            <div class="am-tab-panel">
+                            <form action="" method="post" id = "customer-export-date-form">
+                                <table class="am-table">
+                                    <tr>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-u-sm-6" style="padding: 0px;">
+                                                <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                    <span class="am-input-group-label">开始时间：</span>
+                                                    <input id="customer-expost-date-start" 
+                                                    	type="text" class="am-form-field"  placeholder="请选择导出月份" name = "startDate">
+                                                </div>
+                                            </div>
+                                            <div class="am-u-sm-6" style="padding: 0px;">
+                                                <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                    <span class="am-input-group-label">结束时间：</span>
+                                                    <input id="customer-expost-date-end" type="text" 
+                                                    	class="am-form-field"  placeholder="请选择导出月份" name = "endDate">
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                <span class="am-input-group-label">顾客选择：</span>
+                                                <select id="customer-choose-date" class="am-form-field" name = "customerId">
+                                                    <!--<option value="1">普通订单</option>
+                                                    <option value="2">员工餐订单</option>-->
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="am-u-sm-12">
+                                            <div class="am-input-group am-input-group-sm" style="padding-left: 0px;padding-right: 0px;">
+                                                <span class="am-input-group-label">订单类型：</span>
+                                                <select id="customer-choose-date-order-type" class="am-form-field" name = "orderType">
+                                                    <option value="1">普通订单</option>
+                                                    <option value="2">员工餐订单</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="am-u-sm-12">
+                                            <input type="button" class="layui-btn layui-btn-normal" excel-type = "sortingOrder" 
+                                            value="顾客购买详情导出" id="customerExportDate"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--按照顾客购买导入导出-->
+</div>
+
+<!--今日订单信息-->
+<div class="am-u-md-12">
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-4'}"><span id="tomorrow-wait-send"></span>待配送<span class="am-icon-chevron-down am-fr" ></span></div>
+        <div id="collapse-panel-4" class="am-panel-bd am-collapse am-in">
+            <table class="am-table am-table-bordered am-table-radius am-table-striped am-table-centered">
+                <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>客户名</th>
+                    <th>订单类型</th>
+                    <th>送货车辆</th>
+                </tr>
+                </thead>
+                <tbody id="today-order-list">
+                </tbody>
+                <div id="index-order-info-page" class="am-fr"></div>
+            </table>
+        </div>
+    </div>
+</div>
+<!--今日订单信息-->
+
+<div class="am-g">
+    <div class="am-u-md-12">
+    	<div class="am-panel am-panel-default">
+            <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">
+            	近期数据统计与分析<span class="am-icon-chevron-down am-fr" ></span></div>
+            <div id="collapse-panel-2" class="am-in" style="width: 100%; height: 320px">
+            <p></p>
+            <div id="highcharts-container" style="width: 100%; height: 280px; margin: 0 auto">
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../base-component/highcharts/highcharts.js"></script>
+<script src="../base-component/highcharts/exporting.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

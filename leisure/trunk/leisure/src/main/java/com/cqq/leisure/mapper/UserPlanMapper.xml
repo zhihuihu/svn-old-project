@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IUserPlanDao" >
+	
+	<resultMap id="BaseResultMap" type="UserPlan" >
+	    <id column="USER_PLAN_ID" property="userPlanId" />
+	    <result column="USER_ID" property="userId" />
+	    <result column="USER_PLAN_NAME" property="userPlanName" />
+	    <result column="USER_PLAN_MAIN_CONTENT" property="userPlanMainContent" />
+	    <result column="USER_PLAN_START_TIME" property="userPlanStartTime" />
+	    <result column="USER_PLAN_END_TIME" property="userPlanEndTime" />
+	    <result column="USER_PLAN_STATE" property="userPlanState" />
+	    <result column="USER_PLAN_CREATE_TIME" property="userPlanCreateTime" />
+	    <result column="USER_PLAN_UPDATE_TIME" property="userPlanUpdateTime" />
+  	</resultMap>
+	
+	
+	<sql id="Base_Column_List" >
+	    USER_PLAN_ID, USER_ID, USER_PLAN_NAME, USER_PLAN_MAIN_CONTENT, USER_PLAN_START_TIME, 
+	    USER_PLAN_END_TIME, USER_PLAN_STATE, USER_PLAN_CREATE_TIME, USER_PLAN_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="UserPlan" >
+	    delete from user_plan
+	    where USER_PLAN_ID = #{userPlanId}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="UserPlan" >
+  		<selectKey keyProperty="userPlanId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into user_plan (USER_PLAN_ID, USER_ID, USER_PLAN_NAME, 
+	      USER_PLAN_MAIN_CONTENT, USER_PLAN_START_TIME, 
+	      USER_PLAN_END_TIME, USER_PLAN_STATE, USER_PLAN_CREATE_TIME, 
+	      USER_PLAN_UPDATE_TIME)
+	    values (#{userPlanId}, #{userId}, #{userPlanName}, 
+	      #{userPlanMainContent}, #{userPlanStartTime}, 
+	      #{userPlanEndTime}, #{userPlanState}, #{userPlanCreateTime}, 
+	      #{userPlanUpdateTime})
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="UserPlan" >
+  		<selectKey keyProperty="userPlanId" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	    insert into user_plan
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="userPlanId != null" >
+	        USER_PLAN_ID,
+	      </if>
+	      <if test="userId != null" >
+	        USER_ID,
+	      </if>
+	      <if test="userPlanName != null" >
+	        USER_PLAN_NAME,
+	      </if>
+	      <if test="userPlanMainContent != null" >
+	        USER_PLAN_MAIN_CONTENT,
+	      </if>
+	      <if test="userPlanStartTime != null" >
+	        USER_PLAN_START_TIME,
+	      </if>
+	      <if test="userPlanEndTime != null" >
+	        USER_PLAN_END_TIME,
+	      </if>
+	      <if test="userPlanState != null" >
+	        USER_PLAN_STATE,
+	      </if>
+	      <if test="userPlanCreateTime != null" >
+	        USER_PLAN_CREATE_TIME,
+	      </if>
+	      <if test="userPlanUpdateTime != null" >
+	        USER_PLAN_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="userPlanId != null" >
+	        #{userPlanId},
+	      </if>
+	      <if test="userId != null" >
+	        #{userId},
+	      </if>
+	      <if test="userPlanName != null" >
+	        #{userPlanName},
+	      </if>
+	      <if test="userPlanMainContent != null" >
+	        #{userPlanMainContent},
+	      </if>
+	      <if test="userPlanStartTime != null" >
+	        #{userPlanStartTime},
+	      </if>
+	      <if test="userPlanEndTime != null" >
+	        #{userPlanEndTime},
+	      </if>
+	      <if test="userPlanState != null" >
+	        #{userPlanState},
+	      </if>
+	      <if test="userPlanCreateTime != null" >
+	        #{userPlanCreateTime},
+	      </if>
+	      <if test="userPlanUpdateTime != null" >
+	        #{userPlanUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="UserPlan" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from user_plan
+	    where USER_PLAN_ID = #{userPlanId}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="UserPlan" >
+	    update user_plan
+	    <set >
+	      <if test="userId != null" >
+	        USER_ID = #{userId},
+	      </if>
+	      <if test="userPlanName != null" >
+	        USER_PLAN_NAME = #{userPlanName},
+	      </if>
+	      <if test="userPlanMainContent != null" >
+	        USER_PLAN_MAIN_CONTENT = #{userPlanMainContent},
+	      </if>
+	      <if test="userPlanStartTime != null" >
+	        USER_PLAN_START_TIME = #{userPlanStartTime},
+	      </if>
+	      <if test="userPlanEndTime != null" >
+	        USER_PLAN_END_TIME = #{userPlanEndTime},
+	      </if>
+	      <if test="userPlanState != null" >
+	        USER_PLAN_STATE = #{userPlanState},
+	      </if>
+	      <if test="userPlanCreateTime != null" >
+	        USER_PLAN_CREATE_TIME = #{userPlanCreateTime},
+	      </if>
+	      <if test="userPlanUpdateTime != null" >
+	        USER_PLAN_UPDATE_TIME = #{userPlanUpdateTime},
+	      </if>
+	    </set>
+	    where USER_PLAN_ID = #{userPlanId}
+  	</update>
+  	
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="UserPlan" >
+	    update user_plan
+	    set USER_ID = #{userId},
+	      USER_PLAN_NAME = #{userPlanName},
+	      USER_PLAN_MAIN_CONTENT = #{userPlanMainContent},
+	      USER_PLAN_START_TIME = #{userPlanStartTime},
+	      USER_PLAN_END_TIME = #{userPlanEndTime},
+	      USER_PLAN_STATE = #{userPlanState},
+	      USER_PLAN_CREATE_TIME = #{userPlanCreateTime},
+	      USER_PLAN_UPDATE_TIME = #{userPlanUpdateTime}
+	    where USER_PLAN_ID = #{userPlanId}
+  	</update>
+  	
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from user_plan
+	    <where>
+	    	<if test="b.userId != null" >
+	        USER_ID = #{b.userId}
+	      </if>
+	      <if test="b.userPlanName != null" >
+	        and USER_PLAN_NAME = #{b.userPlanName}
+	      </if>
+	      <if test="b.userPlanMainContent != null" >
+	        and USER_PLAN_MAIN_CONTENT = #{b.userPlanMainContent}
+	      </if>
+	      <if test="b.userPlanStartTime != null" >
+	        and USER_PLAN_START_TIME = #{b.userPlanStartTime}
+	      </if>
+	      <if test="b.userPlanEndTime != null" >
+	        and USER_PLAN_END_TIME = #{b.userPlanEndTime}
+	      </if>
+	      <if test="b.userPlanState != null and b.userPlanState != 0 " >
+	        and USER_PLAN_STATE = #{b.userPlanState}
+	      </if>
+	      <if test="b.userPlanCreateTime != null" >
+	        and USER_PLAN_CREATE_TIME = #{b.userPlanCreateTime}
+	      </if>
+	      <if test="b.userPlanUpdateTime != null" >
+	        and USER_PLAN_UPDATE_TIME = #{b.userPlanUpdateTime}
+	      </if>
+	      <if test="startTime != null and startTime !=''" >
+	        and USER_PLAN_END_TIME >= #{startTime}
+	      </if>
+	    </where>
+	    ORDER BY USER_PLAN_CREATE_TIME DESC
+	    LIMIT
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    	COUNT(1)
+	    from user_plan
+	    <where>
+	    	<if test="b.userId != null" >
+	        USER_ID = #{b.userId}
+	      </if>
+	      <if test="b.userPlanName != null" >
+	        and USER_PLAN_NAME = #{b.userPlanName}
+	      </if>
+	      <if test="b.userPlanMainContent != null" >
+	        and USER_PLAN_MAIN_CONTENT = #{b.userPlanMainContent}
+	      </if>
+	      <if test="b.userPlanStartTime != null" >
+	        and USER_PLAN_START_TIME = #{b.userPlanStartTime}
+	      </if>
+	      <if test="b.userPlanEndTime != null" >
+	        and USER_PLAN_END_TIME = #{b.userPlanEndTime}
+	      </if>
+	      <if test="b.userPlanState != null and b.userPlanState != 0 " >
+	        and USER_PLAN_STATE = #{b.userPlanState}
+	      </if>
+	      <if test="b.userPlanCreateTime != null" >
+	        and USER_PLAN_CREATE_TIME = #{b.userPlanCreateTime}
+	      </if>
+	      <if test="b.userPlanUpdateTime != null" >
+	        and USER_PLAN_UPDATE_TIME = #{b.userPlanUpdateTime}
+	      </if>
+	      <if test="startTime != null and startTime !=''" >
+	        and USER_PLAN_END_TIME >= #{startTime}
+	      </if>
+	    </where>
+  	</select>
+  	
+	
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.totop.dao.ISysUserDao" >
+
+    <resultMap id="BaseResultMap" type="SysUser" >
+        <id column="SYS_USER_CUID" property="sysUserCuid" jdbcType="VARCHAR" />
+        <result column="SYS_USER_LOGIN_NAME" property="sysUserLoginName" jdbcType="VARCHAR" />
+        <result column="SYS_USER_REL_NAME" property="sysUserRelName" jdbcType="VARCHAR" />
+        <result column="SYS_USER_PASSWORD" property="sysUserPassword" jdbcType="VARCHAR" />
+        <result column="SYS_USER_TELE" property="sysUserTele" jdbcType="VARCHAR" />
+        <result column="SYS_USER_ADDRESS" property="sysUserAddress" jdbcType="VARCHAR" />
+        <result column="SYS_USER_STATE" property="sysUserState" jdbcType="INTEGER" />
+        <result column="SYS_USER_CREATE_TIME" property="sysUserCreateTime" jdbcType="TIMESTAMP" />
+        <result column="SYS_USER_UPDATE_TIME" property="sysUserUpdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        SYS_USER_CUID, SYS_USER_LOGIN_NAME, SYS_USER_REL_NAME, SYS_USER_PASSWORD, SYS_USER_TELE,
+        SYS_USER_ADDRESS, SYS_USER_STATE, SYS_USER_CREATE_TIME, SYS_USER_UPDATE_TIME
+    </sql>
+
+
+    <insert id="doInsert" parameterType="SysUser" >
+        <selectKey keyProperty="sysUserCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_SYS_USER_CUID()
+        </selectKey>
+        insert into sys_user (SYS_USER_CUID, SYS_USER_LOGIN_NAME, SYS_USER_REL_NAME,
+        SYS_USER_PASSWORD, SYS_USER_TELE, SYS_USER_ADDRESS,
+        SYS_USER_STATE, SYS_USER_CREATE_TIME, SYS_USER_UPDATE_TIME
+        )
+        values (#{sysUserCuid,jdbcType=VARCHAR}, #{sysUserLoginName,jdbcType=VARCHAR}, #{sysUserRelName,jdbcType=VARCHAR},
+        #{sysUserPassword,jdbcType=VARCHAR}, #{sysUserTele,jdbcType=VARCHAR}, #{sysUserAddress,jdbcType=VARCHAR},
+        #{sysUserState,jdbcType=INTEGER}, #{sysUserCreateTime,jdbcType=TIMESTAMP}, #{sysUserUpdateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="doInsertSelective" parameterType="SysUser" >
+        <selectKey keyProperty="sysUserCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_SYS_USER_CUID()
+        </selectKey>
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sysUserCuid != null" >
+                SYS_USER_CUID,
+            </if>
+            <if test="sysUserLoginName != null" >
+                SYS_USER_LOGIN_NAME,
+            </if>
+            <if test="sysUserRelName != null" >
+                SYS_USER_REL_NAME,
+            </if>
+            <if test="sysUserPassword != null" >
+                SYS_USER_PASSWORD,
+            </if>
+            <if test="sysUserTele != null" >
+                SYS_USER_TELE,
+            </if>
+            <if test="sysUserAddress != null" >
+                SYS_USER_ADDRESS,
+            </if>
+            <if test="sysUserState != null" >
+                SYS_USER_STATE,
+            </if>
+            <if test="sysUserCreateTime != null" >
+                SYS_USER_CREATE_TIME,
+            </if>
+            <if test="sysUserUpdateTime != null" >
+                SYS_USER_UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sysUserCuid != null" >
+                #{sysUserCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserLoginName != null" >
+                #{sysUserLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserRelName != null" >
+                #{sysUserRelName,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserPassword != null" >
+                #{sysUserPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserTele != null" >
+                #{sysUserTele,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserAddress != null" >
+                #{sysUserAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserState != null" >
+                #{sysUserState,jdbcType=INTEGER},
+            </if>
+            <if test="sysUserCreateTime != null" >
+                #{sysUserCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sysUserUpdateTime != null" >
+                #{sysUserUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="doDeleteByPrimaryKey" parameterType="SysUser" >
+        delete from sys_user
+        where SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR}
+    </delete>
+
+
+    <update id="doUpdateByPrimaryKeySelective" parameterType="SysUser" >
+        update sys_user
+        <set >
+            <if test="sysUserLoginName != null" >
+                SYS_USER_LOGIN_NAME = #{sysUserLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserRelName != null" >
+                SYS_USER_REL_NAME = #{sysUserRelName,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserPassword != null" >
+                SYS_USER_PASSWORD = #{sysUserPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserTele != null" >
+                SYS_USER_TELE = #{sysUserTele,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserAddress != null" >
+                SYS_USER_ADDRESS = #{sysUserAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sysUserState != null" >
+                SYS_USER_STATE = #{sysUserState,jdbcType=INTEGER},
+            </if>
+            <if test="sysUserCreateTime != null" >
+                SYS_USER_CREATE_TIME = #{sysUserCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sysUserUpdateTime != null" >
+                SYS_USER_UPDATE_TIME = #{sysUserUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="doUpdateByPrimaryKey" parameterType="SysUser" >
+        update sys_user
+        set SYS_USER_LOGIN_NAME = #{sysUserLoginName,jdbcType=VARCHAR},
+        SYS_USER_REL_NAME = #{sysUserRelName,jdbcType=VARCHAR},
+        SYS_USER_PASSWORD = #{sysUserPassword,jdbcType=VARCHAR},
+        SYS_USER_TELE = #{sysUserTele,jdbcType=VARCHAR},
+        SYS_USER_ADDRESS = #{sysUserAddress,jdbcType=VARCHAR},
+        SYS_USER_STATE = #{sysUserState,jdbcType=INTEGER},
+        SYS_USER_CREATE_TIME = #{sysUserCreateTime,jdbcType=TIMESTAMP},
+        SYS_USER_UPDATE_TIME = #{sysUserUpdateTime,jdbcType=TIMESTAMP}
+        where SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="SysUser" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_user
+        where SYS_USER_CUID = #{sysUserCuid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="SysUser" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_user
+        <where>
+            <if test="sysUserLoginName != null" >
+                SYS_USER_LOGIN_NAME = #{sysUserLoginName,jdbcType=VARCHAR}
+            </if>
+            <if test="sysUserRelName != null" >
+                and SYS_USER_REL_NAME = #{sysUserRelName,jdbcType=VARCHAR}
+            </if>
+            <if test="sysUserPassword != null" >
+                and SYS_USER_PASSWORD = #{sysUserPassword,jdbcType=VARCHAR}
+            </if>
+            <if test="sysUserTele != null" >
+                and SYS_USER_TELE = #{sysUserTele,jdbcType=VARCHAR}
+            </if>
+            <if test="sysUserAddress != null" >
+                and SYS_USER_ADDRESS = #{sysUserAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="sysUserState != null and sysUserState != 0" >
+                and SYS_USER_STATE = #{sysUserState,jdbcType=INTEGER}
+            </if>
+            <if test="sysUserCreateTime != null" >
+                and SYS_USER_CREATE_TIME = #{sysUserCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="sysUserUpdateTime != null" >
+                and SYS_USER_UPDATE_TIME = #{sysUserUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+</mapper>

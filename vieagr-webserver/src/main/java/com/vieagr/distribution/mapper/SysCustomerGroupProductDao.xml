@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vieagr.distribution.dao.SysCustomerGroupProductDao">
+  <resultMap id="BaseResultMap" type="com.vieagr.distribution.entity.SysCustomerGroupProduct">
+    <id column="sys_customer_group_product_id" jdbcType="VARCHAR" property="sysCustomerGroupProductId" />
+    <result column="sys_customer_group_product_group_id" jdbcType="VARCHAR" property="sysCustomerGroupProductGroupId" />
+    <result column="sys_customer_group_product_product_id" jdbcType="VARCHAR" property="sysCustomerGroupProductProductId" />
+    <result column="sys_customer_group_product_product_staff_price" jdbcType="DECIMAL" property="sysCustomerGroupProductProductStaffPrice" />
+    <result column="sys_customer_group_product_product_ordinary_price" jdbcType="DECIMAL" property="sysCustomerGroupProductProductOrdinaryPrice" />
+    <result column="sys_customer_group_product_product_name" jdbcType="VARCHAR" property="sysCustomerGroupProductProductName" />
+    <result column="sys_customer_group_product_create_time" jdbcType="VARCHAR" property="sysCustomerGroupProductCreateTime" />
+    <result column="sys_customer_group_product_update_time" jdbcType="TIMESTAMP" property="sysCustomerGroupProductUpdateTime" />
+    <result column="sys_customer_group_product_state" jdbcType="INTEGER" property="sysCustomerGroupProductState" />
+    <result column="sys_customer_group_product_del_flag" jdbcType="INTEGER" property="sysCustomerGroupProductDelFlag" />
+    <result column="sys_customer_group_product_staff_bid_price" jdbcType="DECIMAL" property="sysCustomerGroupProductStaffBidPrice" />
+    <result column="sys_customer_group_product_ordinary_bid_price" jdbcType="DECIMAL" property="sysCustomerGroupProductOrdinaryBidPrice" />
+  </resultMap>
+  
+    <resultMap id="CorrelationResultMap" type="com.vieagr.distribution.entity.SysCustomerGroupProduct">
+    <id column="sys_customer_group_product_id" jdbcType="VARCHAR" property="sysCustomerGroupProductId" />
+    <result column="sys_customer_group_product_group_id" jdbcType="VARCHAR" property="sysCustomerGroupProductGroupId" />
+    <result column="sys_customer_group_product_product_id" jdbcType="VARCHAR" property="sysCustomerGroupProductProductId" />
+    <result column="sys_customer_group_product_product_staff_price" jdbcType="DECIMAL" property="sysCustomerGroupProductProductStaffPrice" />
+    <result column="sys_customer_group_product_product_ordinary_price" jdbcType="DECIMAL" property="sysCustomerGroupProductProductOrdinaryPrice" />
+    <result column="sys_customer_group_product_product_name" jdbcType="VARCHAR" property="sysCustomerGroupProductProductName" />
+    <result column="sys_customer_group_product_create_time" jdbcType="VARCHAR" property="sysCustomerGroupProductCreateTime" />
+    <result column="sys_customer_group_product_update_time" jdbcType="TIMESTAMP" property="sysCustomerGroupProductUpdateTime" />
+    <result column="sys_customer_group_product_state" jdbcType="INTEGER" property="sysCustomerGroupProductState" />
+    <result column="sys_customer_group_product_del_flag" jdbcType="INTEGER" property="sysCustomerGroupProductDelFlag" />
+    <result column="sys_customer_group_product_staff_bid_price" jdbcType="DECIMAL" property="sysCustomerGroupProductStaffBidPrice" />
+    <result column="sys_customer_group_product_ordinary_bid_price" jdbcType="DECIMAL" property="sysCustomerGroupProductOrdinaryBidPrice" />
+    <result column="sys_product_type_name" jdbcType="VARCHAR" property="sysProductTypeName" />
+    <result column="sys_product_price" jdbcType="DECIMAL" property="sysProductPrice" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    sys_customer_group_product_id, sys_customer_group_product_group_id, sys_customer_group_product_product_id, 
+    sys_customer_group_product_product_staff_price, sys_customer_group_product_product_ordinary_price, 
+    sys_customer_group_product_product_name, sys_customer_group_product_create_time, 
+    sys_customer_group_product_update_time, sys_customer_group_product_state, sys_customer_group_product_del_flag, 
+    sys_customer_group_product_staff_bid_price, sys_customer_group_product_ordinary_bid_price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_customer_group_product
+    where sys_customer_group_product_id = #{sysCustomerGroupProductId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_customer_group_product
+    where sys_customer_group_product_id = #{sysCustomerGroupProductId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vieagr.distribution.entity.SysCustomerGroupProduct">
+    insert into sys_customer_group_product (sys_customer_group_product_id, sys_customer_group_product_group_id, 
+      sys_customer_group_product_product_id, sys_customer_group_product_product_staff_price, 
+      sys_customer_group_product_product_ordinary_price, sys_customer_group_product_product_name, 
+      sys_customer_group_product_create_time, sys_customer_group_product_update_time, 
+      sys_customer_group_product_state, sys_customer_group_product_del_flag, 
+      sys_customer_group_product_staff_bid_price, sys_customer_group_product_ordinary_bid_price
+      )
+    values (#{sysCustomerGroupProductId,jdbcType=VARCHAR}, #{sysCustomerGroupProductGroupId,jdbcType=VARCHAR}, 
+      #{sysCustomerGroupProductProductId,jdbcType=VARCHAR}, #{sysCustomerGroupProductProductStaffPrice,jdbcType=DECIMAL}, 
+      #{sysCustomerGroupProductProductOrdinaryPrice,jdbcType=DECIMAL}, #{sysCustomerGroupProductProductName,jdbcType=VARCHAR}, 
+      #{sysCustomerGroupProductCreateTime,jdbcType=VARCHAR}, #{sysCustomerGroupProductUpdateTime,jdbcType=TIMESTAMP}, 
+      #{sysCustomerGroupProductState,jdbcType=INTEGER}, #{sysCustomerGroupProductDelFlag,jdbcType=INTEGER}, 
+      #{sysCustomerGroupProductStaffBidPrice,jdbcType=DECIMAL}, #{sysCustomerGroupProductOrdinaryBidPrice,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vieagr.distribution.entity.SysCustomerGroupProduct">
+    insert into sys_customer_group_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysCustomerGroupProductId != null">
+        sys_customer_group_product_id,
+      </if>
+      <if test="sysCustomerGroupProductGroupId != null">
+        sys_customer_group_product_group_id,
+      </if>
+      <if test="sysCustomerGroupProductProductId != null">
+        sys_customer_group_product_product_id,
+      </if>
+      <if test="sysCustomerGroupProductProductStaffPrice != null">
+        sys_customer_group_product_product_staff_price,
+      </if>
+      <if test="sysCustomerGroupProductProductOrdinaryPrice != null">
+        sys_customer_group_product_product_ordinary_price,
+      </if>
+      <if test="sysCustomerGroupProductProductName != null">
+        sys_customer_group_product_product_name,
+      </if>
+      <if test="sysCustomerGroupProductCreateTime != null">
+        sys_customer_group_product_create_time,
+      </if>
+      <if test="sysCustomerGroupProductUpdateTime != null">
+        sys_customer_group_product_update_time,
+      </if>
+      <if test="sysCustomerGroupProductState != null">
+        sys_customer_group_product_state,
+      </if>
+      <if test="sysCustomerGroupProductDelFlag != null">
+        sys_customer_group_product_del_flag,
+      </if>
+      <if test="sysCustomerGroupProductStaffBidPrice != null">
+        sys_customer_group_product_staff_bid_price,
+      </if>
+      <if test="sysCustomerGroupProductOrdinaryBidPrice != null">
+        sys_customer_group_product_ordinary_bid_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysCustomerGroupProductId != null">
+        #{sysCustomerGroupProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductGroupId != null">
+        #{sysCustomerGroupProductGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductProductId != null">
+        #{sysCustomerGroupProductProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductProductStaffPrice != null">
+        #{sysCustomerGroupProductProductStaffPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCustomerGroupProductProductOrdinaryPrice != null">
+        #{sysCustomerGroupProductProductOrdinaryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCustomerGroupProductProductName != null">
+        #{sysCustomerGroupProductProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductCreateTime != null">
+        #{sysCustomerGroupProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductUpdateTime != null">
+        #{sysCustomerGroupProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCustomerGroupProductState != null">
+        #{sysCustomerGroupProductState,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerGroupProductDelFlag != null">
+        #{sysCustomerGroupProductDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerGroupProductStaffBidPrice != null">
+        #{sysCustomerGroupProductStaffBidPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCustomerGroupProductOrdinaryBidPrice != null">
+        #{sysCustomerGroupProductOrdinaryBidPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vieagr.distribution.entity.SysCustomerGroupProduct">
+    update sys_customer_group_product
+    <set>
+      <if test="sysCustomerGroupProductGroupId != null">
+        sys_customer_group_product_group_id = #{sysCustomerGroupProductGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductProductId != null">
+        sys_customer_group_product_product_id = #{sysCustomerGroupProductProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductProductStaffPrice != null">
+        sys_customer_group_product_product_staff_price = #{sysCustomerGroupProductProductStaffPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCustomerGroupProductProductOrdinaryPrice != null">
+        sys_customer_group_product_product_ordinary_price = #{sysCustomerGroupProductProductOrdinaryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCustomerGroupProductProductName != null">
+        sys_customer_group_product_product_name = #{sysCustomerGroupProductProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductCreateTime != null">
+        sys_customer_group_product_create_time = #{sysCustomerGroupProductCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustomerGroupProductUpdateTime != null">
+        sys_customer_group_product_update_time = #{sysCustomerGroupProductUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCustomerGroupProductState != null">
+        sys_customer_group_product_state = #{sysCustomerGroupProductState,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerGroupProductDelFlag != null">
+        sys_customer_group_product_del_flag = #{sysCustomerGroupProductDelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustomerGroupProductStaffBidPrice != null">
+        sys_customer_group_product_staff_bid_price = #{sysCustomerGroupProductStaffBidPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCustomerGroupProductOrdinaryBidPrice != null">
+        sys_customer_group_product_ordinary_bid_price = #{sysCustomerGroupProductOrdinaryBidPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where sys_customer_group_product_id = #{sysCustomerGroupProductId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vieagr.distribution.entity.SysCustomerGroupProduct">
+    update sys_customer_group_product
+    set sys_customer_group_product_group_id = #{sysCustomerGroupProductGroupId,jdbcType=VARCHAR},
+      sys_customer_group_product_product_id = #{sysCustomerGroupProductProductId,jdbcType=VARCHAR},
+      sys_customer_group_product_product_staff_price = #{sysCustomerGroupProductProductStaffPrice,jdbcType=DECIMAL},
+      sys_customer_group_product_product_ordinary_price = #{sysCustomerGroupProductProductOrdinaryPrice,jdbcType=DECIMAL},
+      sys_customer_group_product_product_name = #{sysCustomerGroupProductProductName,jdbcType=VARCHAR},
+      sys_customer_group_product_create_time = #{sysCustomerGroupProductCreateTime,jdbcType=VARCHAR},
+      sys_customer_group_product_update_time = #{sysCustomerGroupProductUpdateTime,jdbcType=TIMESTAMP},
+      sys_customer_group_product_state = #{sysCustomerGroupProductState,jdbcType=INTEGER},
+      sys_customer_group_product_del_flag = #{sysCustomerGroupProductDelFlag,jdbcType=INTEGER},
+      sys_customer_group_product_staff_bid_price = #{sysCustomerGroupProductStaffBidPrice,jdbcType=DECIMAL},
+      sys_customer_group_product_ordinary_bid_price = #{sysCustomerGroupProductOrdinaryBidPrice,jdbcType=DECIMAL}
+    where sys_customer_group_product_id = #{sysCustomerGroupProductId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectSysCustomerGroupProductByCustomerGroupIdAndProductId" 
+  		parameterType="com.vieagr.distribution.query.SysCustomerGroupProductQuery" resultMap="BaseResultMap">
+	  select 
+	  	<include refid="Base_Column_List"/>
+	  from sys_customer_group_product
+	  where sys_customer_group_product_group_id = #{sysCustomerGroupId,jdbcType=VARCHAR}
+	  	and sys_customer_group_product_product_id = #{sysProductId,jdbcType=VARCHAR} 
+	  	and sys_customer_group_product_state = 1
+  </select>
+  
+    <select id="selectCustomerGroupProductByCustomerGroupId" parameterType="com.vieagr.distribution.query.SysCustomerGroupProductQuery" 
+  		resultMap="CorrelationResultMap">
+  	(
+  	  select 
+   		  "" as sys_customer_group_product_id,  "" as sys_customer_group_product_group_id, 
+		 sys_product_id as sys_customer_group_product_product_id, 
+		 0 as sys_customer_group_product_product_staff_price, 
+		 0 as sys_customer_group_product_product_ordinary_price, 
+		 sys_product_name as sys_customer_group_product_product_name, 
+		 sys_product_type_name, sys_product_price
+  	from sys_product 
+  		left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+		left join bet_order_product on bet_order_product_product_id = sys_product_id
+  	<where>
+  		<if test="orderNumber!= null">
+  			and bet_order_product_order_number = #{orderNumber, jdbcType=VARCHAR}
+  		</if>
+  		<if test="sysProductTypeId != null">
+  			and sys_product_type_id = #{sysProductTypeId, jdbcType=VARCHAR}
+  		</if>
+  		<if test="searchName != null">
+  				and
+				(
+	       		  sys_product_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_code like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+				)
+  		</if>
+  	</where>)
+  	union all
+  	(
+  		select 
+  		    sys_customer_group_product_id, sys_customer_group_product_group_id, sys_customer_group_product_product_id, 
+		    sys_customer_group_product_product_staff_price, sys_customer_group_product_product_ordinary_price, 
+		    sys_product_name as sys_customer_group_product_product_name, 
+		    sys_product_type_name, sys_product_price
+  	from sys_customer_group_product 
+  		left join sys_product on sys_customer_group_product_product_id = sys_product_id
+  		left join sys_product_type on sys_product_product_type_id = sys_product_type_id
+  	<where>
+  		 <if test="orderNumber!= null">
+  			sys_customer_group_product_product_id not in
+  			(
+				select sys_product_id from sys_product
+				left join bet_order_product  on bet_order_product_product_id = sys_product_id
+				where bet_order_product_order_number = #{orderNumber, jdbcType=VARCHAR}
+			) 
+  		</if>
+  		<if test="sysCustomerGroupId != null">
+  			and sys_customer_group_product_group_id = #{sysCustomerGroupId, jdbcType=VARCHAR}
+  		</if>
+  		<if test="sysProductTypeId != null">
+  			and sys_product_type_id = #{sysProductTypeId, jdbcType=VARCHAR}
+  		</if>
+  		<if test="searchName != null">
+  				and
+				(
+	       		  sys_product_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_code like '%' #{searchName,jdbcType=VARCHAR} '%'
+		          or sys_product_py_name like '%' #{searchName,jdbcType=VARCHAR} '%'
+				)
+  		</if>
+  	</where>
+  	)
+  </select>
+  
+</mapper>

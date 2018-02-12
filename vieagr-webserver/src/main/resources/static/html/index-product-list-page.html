@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页产品展示管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/cropper/cropper.min.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <style>
+        .am-edit-width-min {
+            min-width: 120px;
+            width: 120px;
+            max-width: 120px;
+        }
+        .am-tab-width-min {
+        	min-width: 80px;
+        	max-width: 80px;
+        }
+    </style>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">主页产品展示管理</strong>
+    </div>
+</div>
+
+<hr/>
+
+<div class="am-g">
+
+    <!-- 左侧数据 -->
+    <div class="am-u-sm-12 am-u-md-6">
+        <form class="am-form" id="add-index-product-list" data-am-validator>
+            <fieldset>
+                <legend>添加产品展示</legend>
+
+                <div class="am-form-group">
+                    <label for="sysIndexName">产品名称</label>
+                    <input class="" type="text" class="" id="sysIndexName" placeholder="产品名称..." required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="sysIndexImageContent">产品描述</label>
+                    <input class="" type="text" class="" id="sysIndexImageContent" placeholder="产品描述..." required>
+                </div>
+
+                <div class="am-form-group am-form-file">
+                    <label for="sysIndexImageUrl">产品图片</label>
+                    <div>
+                        <img class="am-radius" src="../assets/i/head-icon.png" id="sysIndexImageUrl" width="100"/>
+                        <div class="am-form-group am-form-file">
+                            <button type="button" class="am-btn am-btn-warning am-btn-xs" style="width: 100%;">
+                                <i class="am-icon-cloud-upload"></i>选择图片</button>
+                            <input type="file" class="sysIndexImageUrl-choose">
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    <button type="submit" class="am-btn am-btn-primary">提交</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="am-u-sm-12 am-u-md-6">
+        <legend>产品展示列表</legend>
+        <!--<form method="post" class="am-form" id="sys-user-search-form">
+            <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">搜索:</span>
+                <input id="sysUserSearchName" type="text" class="am-form-field" placeholder="请输入用户名称/用户手机号码">
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                </span>
+            </div>
+        </form>-->
+        <div class="am-scrollable-horizontal">
+        	<table class="am-table am-table-striped am-table-hover am-text-sm">
+	            <thead>
+	            <tr class="am-table">
+	                <th class="am-text-truncate am-tab-width-min">产品名称</th>
+	                <th class="am-text-truncate am-tab-width-min">产品描述</th>
+	                <th class="am-text-truncate am-tab-width-min">操作</th>
+	            </tr>
+	            </thead>
+	            <tbody id="index-prod-list-body">
+	            <!-- <tr>
+	                <td class="am-text-truncate am-tab-width-min">Amaze UI</td>
+	                <td class="am-text-truncate am-tab-width-min">http://amazeui.org</td>
+	                <td class="am-text-truncate am-tab-width-min">2012-10-01</td>
+	                <td class="am-text-truncate am-tab-width-min">2012-10-01</td>
+	            </tr> -->
+	            </tbody>
+	        </table>
+        </div>
+        <div id="index-prod-list-body-page" class="am-fr"></div>
+    </div>
+
+</div>
+
+<!-- 修改模态窗口   -->
+<div class="am-modal-dialog" id="index-product-list-update-model" style="display: none;">
+    <div class="am-u-sm-12 am-u-md-12">
+      <form class="am-form" id="update-index-product-list">
+          <fieldset>
+          	  <input type="hidden" id="sysIndexIdUpdate">
+              <div class="am-form-group">
+                  <label for="sysIndexName">产品名称</label>
+                  <input class="" type="text" class="" id="sysIndexNameUpdate" placeholder="产品名称..." required>
+              </div>
+
+              <div class="am-form-group">
+                  <label for="sysIndexImageContent">产品描述</label>
+                  <input class="" type="text" class="" id="sysIndexImageContentUpdate" placeholder="产品描述..." required>
+              </div>
+
+              <div class="am-form-group am-form-file">
+                  <label for="sysIndexImageUrl">产品图片</label>
+                  <div>
+                      <img class="am-radius" src="../assets/i/head-icon.png" id="sysIndexImageUrlUpdate" width="100"/>
+                      <div class="am-form-group am-form-file">
+                          <button type="button" class="am-btn am-btn-warning am-btn-xs" style="width: 100%;">
+                              <i class="am-icon-cloud-upload"></i>选择图片</button>
+                          <input type="file" class="sysIndexImageUrl-choose-update" id="">
+                      </div>
+                  </div>
+              </div>
+
+              <p>
+                  <button type="submit" class="am-btn am-btn-primary">提交</button>
+              </p>
+          </fieldset>
+      </form>
+  </div>
+</div>
+<script id="indexProductListTemplate" type="text/html">
+{{#  layui.each(d.msg, function(index, item){ }}
+  <tr>
+     <td class="am-text-truncate am-tab-width-min">{{ item.sysIndexName }}</td>
+     <td class="am-text-truncate am-tab-width-min">{{ item.sysIndexImageContent }}</td>
+     <td class="am-text-truncate am-edit-width-min">
+	 	<div class="am-btn-group am-btn-group-xs">
+            <input type="button" class="am-btn am-btn-primary btn-sys-index-update" sysIndexId="{{ item.sysIndexId }}" value="修改"></input>
+            <input type="button" class="am-btn am-btn-warning btn-sys-index-delete" sysIndexId="{{ item.sysIndexId }}" value="删除"></input>
+        </div>	 
+	 </td>
+ </tr>
+{{#  }); }}
+</script>
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../base-component/cropper/cropper.min.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/index-product-list-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.waychat.dao.IFriendGroupDao" >
+
+  <resultMap id="BaseResultMap" type="com.hxkj.waychat.entity.FriendGroup" >
+    <id column="friend_group_cuid" property="friendGroupCuid" jdbcType="VARCHAR" />
+    <result column="friend_group_icon" property="friendGroupIcon" jdbcType="VARCHAR" />
+    <result column="sys_user_cuid" property="sysUserCuid" jdbcType="VARCHAR" />
+    <result column="friend_group_name" property="friendGroupName" jdbcType="VARCHAR" />
+    <result column="friend_group_online_number" property="friendGroupOnlineNumber" jdbcType="INTEGER" />
+    <result column="friend_group_total_number" property="friendGroupTotalNumber" jdbcType="INTEGER" />
+    <result column="friend_group_state" property="friendGroupState" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    friend_group_cuid, friend_group_icon, sys_user_cuid, friend_group_name, friend_group_online_number, 
+    friend_group_total_number, friend_group_state
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    delete from friend_group
+    where friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    insert into friend_group (friend_group_cuid, friend_group_icon, 
+      sys_user_cuid, friend_group_name, friend_group_online_number, 
+      friend_group_total_number, friend_group_state
+      )
+    values (#{friendGroupCuid,jdbcType=VARCHAR}, #{friendGroupIcon,jdbcType=VARCHAR}, 
+      #{sysUserCuid,jdbcType=VARCHAR}, #{friendGroupName,jdbcType=VARCHAR}, #{friendGroupOnlineNumber,jdbcType=INTEGER}, 
+      #{friendGroupTotalNumber,jdbcType=INTEGER}, #{friendGroupState,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    insert into friend_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="friendGroupCuid != null" >
+        friend_group_cuid,
+      </if>
+      <if test="friendGroupIcon != null" >
+        friend_group_icon,
+      </if>
+      <if test="sysUserCuid != null" >
+        sys_user_cuid,
+      </if>
+      <if test="friendGroupName != null" >
+        friend_group_name,
+      </if>
+      <if test="friendGroupOnlineNumber != null" >
+        friend_group_online_number,
+      </if>
+      <if test="friendGroupTotalNumber != null" >
+        friend_group_total_number,
+      </if>
+      <if test="friendGroupState != null" >
+        friend_group_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="friendGroupCuid != null" >
+        #{friendGroupCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendGroupIcon != null" >
+        #{friendGroupIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCuid != null" >
+        #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendGroupName != null" >
+        #{friendGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendGroupOnlineNumber != null" >
+        #{friendGroupOnlineNumber,jdbcType=INTEGER},
+      </if>
+      <if test="friendGroupTotalNumber != null" >
+        #{friendGroupTotalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="friendGroupState != null" >
+        #{friendGroupState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend_group
+    where friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    update friend_group
+    <set >
+      <if test="friendGroupIcon != null" >
+        friend_group_icon = #{friendGroupIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUserCuid != null" >
+        sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendGroupName != null" >
+        friend_group_name = #{friendGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendGroupOnlineNumber != null" >
+        friend_group_online_number = #{friendGroupOnlineNumber,jdbcType=INTEGER},
+      </if>
+      <if test="friendGroupTotalNumber != null" >
+        friend_group_total_number = #{friendGroupTotalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="friendGroupState != null" >
+        friend_group_state = #{friendGroupState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    update friend_group
+    set friend_group_icon = #{friendGroupIcon,jdbcType=VARCHAR},
+      sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR},
+      friend_group_name = #{friendGroupName,jdbcType=VARCHAR},
+      friend_group_online_number = #{friendGroupOnlineNumber,jdbcType=INTEGER},
+      friend_group_total_number = #{friendGroupTotalNumber,jdbcType=INTEGER},
+      friend_group_state = #{friendGroupState,jdbcType=INTEGER}
+    where friend_group_cuid = #{friendGroupCuid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.hxkj.waychat.entity.FriendGroup" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend_group
+    <where>
+      <if test="friendGroupIcon != null" >
+        friend_group_icon = #{friendGroupIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="sysUserCuid != null" >
+        and sys_user_cuid = #{sysUserCuid,jdbcType=VARCHAR}
+      </if>
+      <if test="friendGroupName != null" >
+        and friend_group_name = #{friendGroupName,jdbcType=VARCHAR}
+      </if>
+      <if test="friendGroupOnlineNumber != null" >
+        and friend_group_online_number = #{friendGroupOnlineNumber,jdbcType=INTEGER}
+      </if>
+      <if test="friendGroupTotalNumber != null" >
+        and friend_group_total_number = #{friendGroupTotalNumber,jdbcType=INTEGER}
+      </if>
+      <if test="friendGroupState != null" >
+        and friend_group_state = #{friendGroupState,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  
+</mapper>

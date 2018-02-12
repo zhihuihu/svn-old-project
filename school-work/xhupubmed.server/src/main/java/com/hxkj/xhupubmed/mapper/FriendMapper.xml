@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IFriendDao" >
+
+	<resultMap id="BaseResultMap" type="Friend" >
+	    <id column="FRIEND_CUID" property="friendCuid" />
+	    <result column="SYS_USER_CUID" property="sysUserCuid"  />
+	    <result column="FRIEND_REAL_CUID" property="friendRealCuid"  />
+	    <result column="FRIEND_FRIEND_NAME" property="friendFriendName"  />
+	    <result column="FRIEND_FRIEND_CUIDS" property="friendFriendCuids"  />
+	    <result column="FRIEND_ADD_TIME" property="friendAddTime"  />
+	    <result column="FRIEND_STATE" property="friendState" />
+	    <result column="FRIEND_CREATE_TIME" property="friendCreateTime" />
+	    <result column="FRIEND_UPDATE_TIME" property="friendUpdateTime" />
+  	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	    FRIEND_CUID, 
+	    SYS_USER_CUID, 
+	    FRIEND_REAL_CUID, 
+	    FRIEND_FRIEND_NAME, 
+	    FRIEND_FRIEND_CUIDS, 
+	    FRIEND_ADD_TIME, 
+	    FRIEND_STATE, 
+	    FRIEND_CREATE_TIME, 
+	    FRIEND_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Friend" >
+	    delete 
+	    from 
+	    	friend
+	    where 
+	    	FRIEND_CUID = #{friendCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Friend" >
+	    insert into 
+	    	friend 
+	    		(FRIEND_CUID, 
+	    		SYS_USER_CUID, 
+	    		FRIEND_REAL_CUID, 
+			      FRIEND_FRIEND_NAME, 
+			      FRIEND_FRIEND_CUIDS, 
+			      FRIEND_ADD_TIME, 
+			      FRIEND_STATE, 
+			      FRIEND_CREATE_TIME, 
+			      FRIEND_UPDATE_TIME
+			      )
+	    values 
+	    	(#{friendCuid}, 
+	    	#{sysUserCuid}, 
+	    	#{friendRealCuid}, 
+	      #{friendFriendName}, 
+	      #{friendFriendCuids}, 
+	      #{friendAddTime}, 
+	      #{friendState}, 
+	      #{friendCreateTime}, 
+	      #{friendUpdateTime}
+	      )
+  	</insert>
+  	
+  	
+  	<insert id="doInsertSelective" parameterType="Friend" >
+	    insert into friend
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="friendCuid != null" >
+	        FRIEND_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="friendRealCuid != null" >
+	        FRIEND_REAL_CUID,
+	      </if>
+	      <if test="friendFriendName != null" >
+	        FRIEND_FRIEND_NAME,
+	      </if>
+	      <if test="friendFriendCuids != null" >
+	        FRIEND_FRIEND_CUIDS,
+	      </if>
+	      <if test="friendAddTime != null" >
+	        FRIEND_ADD_TIME,
+	      </if>
+	      <if test="friendState != null" >
+	        FRIEND_STATE,
+	      </if>
+	      <if test="friendCreateTime != null" >
+	        FRIEND_CREATE_TIME,
+	      </if>
+	      <if test="friendUpdateTime != null" >
+	        FRIEND_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="friendCuid != null" >
+	        #{friendCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="friendRealCuid != null" >
+	        #{friendRealCuid},
+	      </if>
+	      <if test="friendFriendName != null" >
+	        #{friendFriendName},
+	      </if>
+	      <if test="friendFriendCuids != null" >
+	        #{friendFriendCuids},
+	      </if>
+	      <if test="friendAddTime != null" >
+	        #{friendAddTime},
+	      </if>
+	      <if test="friendState != null" >
+	        #{friendState},
+	      </if>
+	      <if test="friendCreateTime != null" >
+	        #{friendCreateTime},
+	      </if>
+	      <if test="friendUpdateTime != null" >
+	        #{friendUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Friend" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	friend
+	    where 
+	    	FRIEND_CUID = #{friendCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Friend" >
+	    update friend
+	    <set >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="friendRealCuid != null" >
+	        FRIEND_REAL_CUID = #{friendRealCuid},
+	      </if>
+	      <if test="friendFriendName != null" >
+	        FRIEND_FRIEND_NAME = #{friendFriendName},
+	      </if>
+	      <if test="friendFriendCuids != null" >
+	        FRIEND_FRIEND_CUIDS = #{friendFriendCuids},
+	      </if>
+	      <if test="friendAddTime != null" >
+	        FRIEND_ADD_TIME = #{friendAddTime},
+	      </if>
+	      <if test="friendState != null and friendState != 0" >
+	        FRIEND_STATE = #{friendState},
+	      </if>
+	      <if test="friendCreateTime != null" >
+	        FRIEND_CREATE_TIME = #{friendCreateTime},
+	      </if>
+	      <if test="friendUpdateTime != null" >
+	        FRIEND_UPDATE_TIME = #{friendUpdateTime},
+	      </if>
+	    </set>
+	    where FRIEND_CUID = #{friendCuid}
+  	</update>
+  	
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Friend" >
+	    update 
+	    	friend
+	    set SYS_USER_CUID = #{sysUserCuid},
+	      FRIEND_REAL_CUID = #{friendRealCuid},
+	      FRIEND_FRIEND_NAME = #{friendFriendName},
+	      FRIEND_FRIEND_CUIDS = #{friendFriendCuids},
+	      FRIEND_ADD_TIME = #{friendAddTime},
+	      FRIEND_STATE = #{friendState},
+	      FRIEND_CREATE_TIME = #{friendCreateTime},
+	      FRIEND_UPDATE_TIME = #{friendUpdateTime}
+	    where FRIEND_CUID = #{friendCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	friend
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.friendRealCuid != null" >
+	        and FRIEND_REAL_CUID = #{b.friendRealCuid}
+	      </if>
+	      <if test="b.friendFriendName != null" >
+	        and FRIEND_FRIEND_NAME = #{b.friendFriendName}
+	      </if>
+	      <if test="b.friendFriendCuids != null" >
+	        and FRIEND_FRIEND_CUIDS = #{b.friendFriendCuids}
+	      </if>
+	      <if test="b.friendAddTime != null" >
+	        and FRIEND_ADD_TIME = #{b.friendAddTime}
+	      </if>
+	      <if test="b.friendState != null and b.friendState != 0" >
+	        and FRIEND_STATE = #{b.friendState}
+	      </if>
+	      <if test="b.friendCreateTime != null" >
+	        and FRIEND_CREATE_TIME = #{b.friendCreateTime}
+	      </if>
+	      <if test="b.friendUpdateTime != null" >
+	        and FRIEND_UPDATE_TIME = #{b.friendUpdateTime}
+	      </if>
+	      and FRIEND_STATE !=4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	friend
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.friendRealCuid != null" >
+	        and FRIEND_REAL_CUID = #{b.friendRealCuid}
+	      </if>
+	      <if test="b.friendFriendName != null" >
+	        and FRIEND_FRIEND_NAME = #{b.friendFriendName}
+	      </if>
+	      <if test="b.friendFriendCuids != null" >
+	        and FRIEND_FRIEND_CUIDS = #{b.friendFriendCuids}
+	      </if>
+	      <if test="b.friendAddTime != null" >
+	        and FRIEND_ADD_TIME = #{b.friendAddTime}
+	      </if>
+	      <if test="b.friendState != null and b.friendState != 0" >
+	        and FRIEND_STATE = #{b.friendState}
+	      </if>
+	      <if test="b.friendCreateTime != null" >
+	        and FRIEND_CREATE_TIME = #{b.friendCreateTime}
+	      </if>
+	      <if test="b.friendUpdateTime != null" >
+	        and FRIEND_UPDATE_TIME = #{b.friendUpdateTime}
+	      </if>
+	      and FRIEND_STATE !=4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	friend
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.friendRealCuid != null" >
+		        and FRIEND_REAL_CUID = #{b.friendRealCuid}
+		      </when>
+		      <when test="b.friendFriendName != null" >
+		        and FRIEND_FRIEND_NAME = #{b.friendFriendName}
+		      </when>
+		      <when test="b.friendFriendCuids != null" >
+		        and FRIEND_FRIEND_CUIDS = #{b.friendFriendCuids}
+		      </when>
+		      <when test="b.friendAddTime != null" >
+		        and FRIEND_ADD_TIME = #{b.friendAddTime}
+		      </when>
+		      <when test="b.friendState != null and b.friendState != 0" >
+		        and FRIEND_STATE = #{b.friendState}
+		      </when>
+		      <when test="b.friendCreateTime != null" >
+		        and FRIEND_CREATE_TIME = #{b.friendCreateTime}
+		      </when>
+		      <when test="b.friendUpdateTime != null" >
+		        and FRIEND_UPDATE_TIME = #{b.friendUpdateTime}
+		      </when>
+	    	</choose>
+	      and FRIEND_STATE !=4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	friend
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.friendRealCuid != null" >
+		        and FRIEND_REAL_CUID = #{b.friendRealCuid}
+		      </when>
+		      <when test="b.friendFriendName != null" >
+		        and FRIEND_FRIEND_NAME = #{b.friendFriendName}
+		      </when>
+		      <when test="b.friendFriendCuids != null" >
+		        and FRIEND_FRIEND_CUIDS = #{b.friendFriendCuids}
+		      </when>
+		      <when test="b.friendAddTime != null" >
+		        and FRIEND_ADD_TIME = #{b.friendAddTime}
+		      </when>
+		      <when test="b.friendState != null and b.friendState != 0" >
+		        and FRIEND_STATE = #{b.friendState}
+		      </when>
+		      <when test="b.friendCreateTime != null" >
+		        and FRIEND_CREATE_TIME = #{b.friendCreateTime}
+		      </when>
+		      <when test="b.friendUpdateTime != null" >
+		        and FRIEND_UPDATE_TIME = #{b.friendUpdateTime}
+		      </when>
+	    	</choose>
+	      and FRIEND_STATE !=4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectByAttribute" resultMap="BaseResultMap" parameterType="Friend" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	friend
+	    <where>
+	    	<if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid}
+	      </if>
+	      <if test="friendRealCuid != null" >
+	        and FRIEND_REAL_CUID = #{friendRealCuid}
+	      </if>
+	      <if test="friendFriendName != null" >
+	        and FRIEND_FRIEND_NAME = #{friendFriendName}
+	      </if>
+	      <if test="friendFriendCuids != null" >
+	        and FRIEND_FRIEND_CUIDS = #{friendFriendCuids}
+	      </if>
+	      <if test="friendAddTime != null" >
+	        and FRIEND_ADD_TIME = #{friendAddTime}
+	      </if>
+	      <if test="friendState != null and friendState != 0" >
+	        and FRIEND_STATE = #{friendState}
+	      </if>
+	      <if test="friendCreateTime != null" >
+	        and FRIEND_CREATE_TIME = #{friendCreateTime}
+	      </if>
+	      <if test="friendUpdateTime != null" >
+	        and FRIEND_UPDATE_TIME = #{friendUpdateTime}
+	      </if>
+	    </where>
+  	</select>
+  	
+	
+	
+</mapper>

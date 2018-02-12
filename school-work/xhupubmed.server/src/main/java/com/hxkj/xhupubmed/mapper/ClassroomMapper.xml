@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IClassroomDao" >
+
+	<resultMap id="BaseResultMap" type="Classroom" >
+	    <id column="CLASSROOM_CUID" property="classroomCuid"  />
+	    <result column="SYS_USER_CUID" property="sysUserCuid"  />
+	    <result column="CLASSROOM_NAME" property="classroomName"  />
+	    <result column="CLASSROOM_NUMBER" property="classroomNumber"  />
+	    <result column="CLASSROOM_ROOM_NUMBER" property="classroomRoomNumber"  />
+	    <result column="CLASSROOM_INTRODUCTION" property="classroomIntroduction"  />
+	    <result column="CLASSROOM_QR_CODE" property="classroomQrCode"  />
+	    <result column="CLASSROOM_STUDENT_NUMBER" property="classroomStudentNumber"  />
+	    <result column="CLASSROOM_STATE" property="classroomState"  />
+	    <result column="CLASSROOM_CREATE_TIME" property="classroomCreateTime"  />
+	    <result column="CLASSROOM_UPDATE_TIME" property="classroomUpdateTime"  />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    CLASSROOM_CUID, 
+	    SYS_USER_CUID, 
+	    CLASSROOM_NAME, 
+	    CLASSROOM_NUMBER, 
+	    CLASSROOM_ROOM_NUMBER, 
+	    CLASSROOM_INTRODUCTION, 
+	    CLASSROOM_QR_CODE, 
+	    CLASSROOM_STUDENT_NUMBER, 
+	    CLASSROOM_STATE, 
+	    CLASSROOM_CREATE_TIME, 
+	    CLASSROOM_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Classroom" >
+	    delete 
+	    from 
+	    	classroom
+	    where 
+	    	CLASSROOM_CUID = #{classroomCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="Classroom" >
+	    insert into 
+	    	classroom 
+	    	(CLASSROOM_CUID, 
+	    	SYS_USER_CUID, 
+	    	CLASSROOM_NAME, 
+		      CLASSROOM_NUMBER, 
+		      CLASSROOM_ROOM_NUMBER, 
+		      CLASSROOM_INTRODUCTION, 
+		      CLASSROOM_QR_CODE, 
+		      CLASSROOM_STUDENT_NUMBER, 
+		      CLASSROOM_STATE, 
+		      CLASSROOM_CREATE_TIME, 
+		      CLASSROOM_UPDATE_TIME)
+	    values 
+	    	(#{classroomCuid}, 
+	    	#{sysUserCuid}, 
+	    	#{classroomName}, 
+		      #{classroomNumber}, 
+		      #{classroomRoomNumber}, 
+		      #{classroomIntroduction}, 
+		      #{classroomQrCode}, 
+		      #{classroomStudentNumber}, 
+		      #{classroomState}, 
+		      #{classroomCreateTime}, 
+		      #{classroomUpdateTime})
+  	</insert>
+  	
+  	<insert id="doInsertSelective" parameterType="Classroom" >
+	    insert into classroom
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="classroomCuid != null" >
+	        CLASSROOM_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="classroomName != null" >
+	        CLASSROOM_NAME,
+	      </if>
+	      <if test="classroomNumber != null" >
+	        CLASSROOM_NUMBER,
+	      </if>
+	      <if test="classroomRoomNumber != null" >
+	        CLASSROOM_ROOM_NUMBER,
+	      </if>
+	      <if test="classroomIntroduction != null" >
+	        CLASSROOM_INTRODUCTION,
+	      </if>
+	      <if test="classroomQrCode != null" >
+	        CLASSROOM_QR_CODE,
+	      </if>
+	      <if test="classroomStudentNumber != null" >
+	        CLASSROOM_STUDENT_NUMBER,
+	      </if>
+	      <if test="classroomState != null" >
+	        CLASSROOM_STATE,
+	      </if>
+	      <if test="classroomCreateTime != null" >
+	        CLASSROOM_CREATE_TIME,
+	      </if>
+	      <if test="classroomUpdateTime != null" >
+	        CLASSROOM_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="classroomCuid != null" >
+	        #{classroomCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="classroomName != null" >
+	        #{classroomName},
+	      </if>
+	      <if test="classroomNumber != null" >
+	        #{classroomNumber},
+	      </if>
+	      <if test="classroomRoomNumber != null" >
+	        #{classroomRoomNumber},
+	      </if>
+	      <if test="classroomIntroduction != null" >
+	        #{classroomIntroduction},
+	      </if>
+	      <if test="classroomQrCode != null" >
+	        #{classroomQrCode},
+	      </if>
+	      <if test="classroomStudentNumber != null" >
+	        #{classroomStudentNumber},
+	      </if>
+	      <if test="classroomState != null" >
+	        #{classroomState},
+	      </if>
+	      <if test="classroomCreateTime != null" >
+	        #{classroomCreateTime},
+	      </if>
+	      <if test="classroomUpdateTime != null" >
+	        #{classroomUpdateTime},
+	      </if>
+    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Classroom" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	    	classroom
+	    where 
+	    	CLASSROOM_CUID = #{classroomCuid}
+	</select>
+	
+	
+	<update id="doUpdateByPrimaryKeySelective" parameterType="Classroom" >
+	    update classroom
+	    <set >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="classroomName != null" >
+	        CLASSROOM_NAME = #{classroomName},
+	      </if>
+	      <if test="classroomNumber != null" >
+	        CLASSROOM_NUMBER = #{classroomNumber},
+	      </if>
+	      <if test="classroomRoomNumber != null" >
+	        CLASSROOM_ROOM_NUMBER = #{classroomRoomNumber},
+	      </if>
+	      <if test="classroomIntroduction != null" >
+	        CLASSROOM_INTRODUCTION = #{classroomIntroduction},
+	      </if>
+	      <if test="classroomQrCode != null" >
+	        CLASSROOM_QR_CODE = #{classroomQrCode},
+	      </if>
+	      <if test="classroomStudentNumber != null and classroomStudentNumber != 0" >
+	        CLASSROOM_STUDENT_NUMBER = #{classroomStudentNumber},
+	      </if>
+	      <if test="classroomState != null" >
+	        CLASSROOM_STATE = #{classroomState},
+	      </if>
+	      <if test="classroomCreateTime != null" >
+	        CLASSROOM_CREATE_TIME = #{classroomCreateTime},
+	      </if>
+	      <if test="classroomUpdateTime != null" >
+	        CLASSROOM_UPDATE_TIME = #{classroomUpdateTime},
+	      </if>
+	    </set>
+	    where CLASSROOM_CUID = #{classroomCuid}
+  	</update>
+  	
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Classroom" >
+	    update 
+	    	classroom
+	    set 
+	    	SYS_USER_CUID = #{sysUserCuid},
+	      CLASSROOM_NAME = #{classroomName},
+	      CLASSROOM_NUMBER = #{classroomNumber},
+	      CLASSROOM_ROOM_NUMBER = #{classroomRoomNumber},
+	      CLASSROOM_INTRODUCTION = #{classroomIntroduction},
+	      CLASSROOM_QR_CODE = #{classroomQrCode},
+	      CLASSROOM_STUDENT_NUMBER = #{classroomStudentNumber},
+	      CLASSROOM_STATE = #{classroomState},
+	      CLASSROOM_CREATE_TIME = #{classroomCreateTime},
+	      CLASSROOM_UPDATE_TIME = #{classroomUpdateTime}
+	    where 
+	    	CLASSROOM_CUID = #{classroomCuid}
+  	</update>
+  	
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	    	classroom
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </if>
+		      <if test="b.classroomName != null" >
+		        and CLASSROOM_NAME = #{b.classroomName}
+		      </if>
+		      <if test="b.classroomNumber != null" >
+		        and CLASSROOM_NUMBER = #{b.classroomNumber}
+		      </if>
+		      <if test="b.classroomRoomNumber != null" >
+		        and CLASSROOM_ROOM_NUMBER = #{b.classroomRoomNumber}
+		      </if>
+		      <if test="b.classroomIntroduction != null" >
+		       and  CLASSROOM_INTRODUCTION = #{b.classroomIntroduction}
+		      </if>
+		      <if test="b.classroomQrCode != null" >
+		       and  CLASSROOM_QR_CODE = #{b.classroomQrCode}
+		      </if>
+		      <if test="b.classroomStudentNumber != null and b.classroomStudentNumber != 0 " >
+		        and CLASSROOM_STUDENT_NUMBER = #{b.classroomStudentNumber}
+		      </if>
+		      <if test="b.classroomCreateTime != null" >
+		        and CLASSROOM_CREATE_TIME = #{b.classroomCreateTime}
+		      </if>
+		      <if test="b.classroomUpdateTime != null" >
+		        and CLASSROOM_UPDATE_TIME = #{b.classroomUpdateTime}
+		      </if>
+		      and CLASSROOM_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+	</select>
+	
+	
+	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	classroom
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </if>
+		      <if test="b.classroomName != null" >
+		        and CLASSROOM_NAME = #{b.classroomName}
+		      </if>
+		      <if test="b.classroomNumber != null" >
+		        and CLASSROOM_NUMBER = #{b.classroomNumber}
+		      </if>
+		      <if test="b.classroomRoomNumber != null" >
+		        and CLASSROOM_ROOM_NUMBER = #{b.classroomRoomNumber}
+		      </if>
+		      <if test="b.classroomIntroduction != null" >
+		       and  CLASSROOM_INTRODUCTION = #{b.classroomIntroduction}
+		      </if>
+		      <if test="b.classroomQrCode != null" >
+		       and  CLASSROOM_QR_CODE = #{b.classroomQrCode}
+		      </if>
+		      <if test="b.classroomStudentNumber != null and  b.classroomStudentNumber != 0" >
+		        and CLASSROOM_STUDENT_NUMBER = #{b.classroomStudentNumber}
+		      </if>
+		      <if test="b.classroomCreateTime != null" >
+		        and CLASSROOM_CREATE_TIME = #{b.classroomCreateTime}
+		      </if>
+		      <if test="b.classroomUpdateTime != null" >
+		        and CLASSROOM_UPDATE_TIME = #{b.classroomUpdateTime}
+		      </if>
+		      and CLASSROOM_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	</select>
+	
+	
+	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	    	classroom
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.classroomName != null" >
+		        and CLASSROOM_NAME = #{b.classroomName}
+		      </when>
+		      <when test="b.classroomNumber != null" >
+		        and CLASSROOM_NUMBER = #{b.classroomNumber}
+		      </when>
+		      <when test="b.classroomRoomNumber != null" >
+		        and CLASSROOM_ROOM_NUMBER = #{b.classroomRoomNumber}
+		      </when>
+		      <when test="b.classroomIntroduction != null" >
+		       and  CLASSROOM_INTRODUCTION = #{b.classroomIntroduction}
+		      </when>
+		      <when test="b.classroomQrCode != null" >
+		       and  CLASSROOM_QR_CODE = #{b.classroomQrCode}
+		      </when>
+		      <when test="b.classroomStudentNumber != null and b.classroomStudentNumber != 0" >
+		        and CLASSROOM_STUDENT_NUMBER = #{b.classroomStudentNumber}
+		      </when>
+		      <when test="b.classroomCreateTime != null" >
+		        and CLASSROOM_CREATE_TIME = #{b.classroomCreateTime}
+		      </when>
+		      <when test="b.classroomUpdateTime != null" >
+		        and CLASSROOM_UPDATE_TIME = #{b.classroomUpdateTime}
+		      </when>
+	    	</choose>
+		      and CLASSROOM_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+	</select>
+	
+	
+	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	classroom
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.classroomName != null" >
+		        and CLASSROOM_NAME = #{b.classroomName}
+		      </when>
+		      <when test="b.classroomNumber != null" >
+		        and CLASSROOM_NUMBER = #{b.classroomNumber}
+		      </when>
+		      <when test="b.classroomRoomNumber != null" >
+		        and CLASSROOM_ROOM_NUMBER = #{b.classroomRoomNumber}
+		      </when>
+		      <when test="b.classroomIntroduction != null" >
+		       and  CLASSROOM_INTRODUCTION = #{b.classroomIntroduction}
+		      </when>
+		      <when test="b.classroomQrCode != null" >
+		       and  CLASSROOM_QR_CODE = #{b.classroomQrCode}
+		      </when>
+		      <when test="b.classroomStudentNumber != null and b.classroomStudentNumber != 0" >
+		        and CLASSROOM_STUDENT_NUMBER = #{b.classroomStudentNumber}
+		      </when>
+		      <when test="b.classroomCreateTime != null" >
+		        and CLASSROOM_CREATE_TIME = #{b.classroomCreateTime}
+		      </when>
+		      <when test="b.classroomUpdateTime != null" >
+		        and CLASSROOM_UPDATE_TIME = #{b.classroomUpdateTime}
+		      </when>
+	    	</choose>
+		      and CLASSROOM_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	</select>
+</mapper>

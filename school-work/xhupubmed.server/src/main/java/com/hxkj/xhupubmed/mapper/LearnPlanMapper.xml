@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.ILearnPlanDao" >
+
+	<resultMap id="BaseResultMap" type="LearnPlan" >
+	    <id column="LEARN_PLAN_CUID" property="learnPlanCuid" />
+	    <result column="SYS_USER_CUID" property="sysUserCuid" />
+	    <result column="LEARN_PLAN_NAME" property="learnPlanName" />
+	    <result column="LEARN_PLAN_URL" property="learnPlanUrl" />
+	    <result column="LEARN_PLAN_CONTENT" property="learnPlanContent" />
+	    <result column="LEARN_PLAN_START_TIME" property="learnPlanStartTime" />
+	    <result column="LEARN_PLAN_END_TIME" property="learnPlanEndTime" />
+	    <result column="LEARN_PLAN_STATE" property="learnPlanState" />
+	    <result column="LEARN_PLAN_CREATE_TIME" property="learnPlanCreateTime" />
+	    <result column="LEARN_PLAN_UPDATE_TIME" property="learnPlanUpdateTime" />
+  	</resultMap>
+  	
+  	
+  	<sql id="Base_Column_List" >
+	    LEARN_PLAN_CUID, 
+	    SYS_USER_CUID, 
+	    LEARN_PLAN_NAME, 
+	    LEARN_PLAN_URL, 
+	    LEARN_PLAN_CONTENT, 
+	    LEARN_PLAN_START_TIME, 
+	    LEARN_PLAN_END_TIME, 
+	    LEARN_PLAN_STATE, 
+	    LEARN_PLAN_CREATE_TIME, 
+	    LEARN_PLAN_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="LearnPlan" >
+	    delete from 
+	    	learn_plan
+	    where 
+	    	LEARN_PLAN_CUID = #{learnPlanCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="LearnPlan" >
+	    insert into 
+	    	learn_plan 
+	    		(LEARN_PLAN_CUID, 
+	    		SYS_USER_CUID, 
+	    		LEARN_PLAN_NAME, 
+		      LEARN_PLAN_URL, 
+		      LEARN_PLAN_CONTENT, 
+		      LEARN_PLAN_START_TIME, 
+		      LEARN_PLAN_END_TIME, 
+		      LEARN_PLAN_STATE, 
+		      LEARN_PLAN_CREATE_TIME, 
+		      LEARN_PLAN_UPDATE_TIME)
+	    values 
+		    (#{learnPlanCuid}, 
+		    #{sysUserCuid}, 
+		    #{learnPlanName}, 
+		      #{learnPlanUrl}, 
+		      #{learnPlanContent}, 
+		      #{learnPlanStartTime}, 
+		      #{learnPlanEndTime}, 
+		      #{learnPlanState}, 
+		      #{learnPlanCreateTime}, 
+		      #{learnPlanUpdateTime})
+  	</insert>
+	
+	
+	<insert id="doInsertSelective" parameterType="LearnPlan" >
+	    insert into learn_plan
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="learnPlanCuid != null" >
+	        LEARN_PLAN_CUID,
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID,
+	      </if>
+	      <if test="learnPlanName != null" >
+	        LEARN_PLAN_NAME,
+	      </if>
+	      <if test="learnPlanUrl != null" >
+	        LEARN_PLAN_URL,
+	      </if>
+	      <if test="learnPlanContent != null" >
+	        LEARN_PLAN_CONTENT,
+	      </if>
+	      <if test="learnPlanStartTime != null" >
+	        LEARN_PLAN_START_TIME,
+	      </if>
+	      <if test="learnPlanEndTime != null" >
+	        LEARN_PLAN_END_TIME,
+	      </if>
+	      <if test="learnPlanState != null" >
+	        LEARN_PLAN_STATE,
+	      </if>
+	      <if test="learnPlanCreateTime != null" >
+	        LEARN_PLAN_CREATE_TIME,
+	      </if>
+	      <if test="learnPlanUpdateTime != null" >
+	        LEARN_PLAN_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="learnPlanCuid != null" >
+	        #{learnPlanCuid},
+	      </if>
+	      <if test="sysUserCuid != null" >
+	        #{sysUserCuid},
+	      </if>
+	      <if test="learnPlanName != null" >
+	        #{learnPlanName},
+	      </if>
+	      <if test="learnPlanUrl != null" >
+	        #{learnPlanUrl},
+	      </if>
+	      <if test="learnPlanContent != null" >
+	        #{learnPlanContent},
+	      </if>
+	      <if test="learnPlanStartTime != null" >
+	        #{learnPlanStartTime},
+	      </if>
+	      <if test="learnPlanEndTime != null" >
+	        #{learnPlanEndTime},
+	      </if>
+	      <if test="learnPlanState != null" >
+	        #{learnPlanState},
+	      </if>
+	      <if test="learnPlanCreateTime != null" >
+	        #{learnPlanCreateTime},
+	      </if>
+	      <if test="learnPlanUpdateTime != null" >
+	        #{learnPlanUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="LearnPlan" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	learn_plan
+	    where 
+	    	LEARN_PLAN_CUID = #{learnPlanCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="LearnPlan" >
+	    update learn_plan
+	    <set >
+	      <if test="sysUserCuid != null" >
+	        SYS_USER_CUID = #{sysUserCuid},
+	      </if>
+	      <if test="learnPlanName != null" >
+	        LEARN_PLAN_NAME = #{learnPlanName},
+	      </if>
+	      <if test="learnPlanUrl != null" >
+	        LEARN_PLAN_URL = #{learnPlanUrl},
+	      </if>
+	      <if test="learnPlanContent != null" >
+	        LEARN_PLAN_CONTENT = #{learnPlanContent},
+	      </if>
+	      <if test="learnPlanStartTime != null" >
+	        LEARN_PLAN_START_TIME = #{learnPlanStartTime},
+	      </if>
+	      <if test="learnPlanEndTime != null" >
+	        LEARN_PLAN_END_TIME = #{learnPlanEndTime},
+	      </if>
+	      <if test="learnPlanState != null and learnPlanState != 0" >
+	        LEARN_PLAN_STATE = #{learnPlanState},
+	      </if>
+	      <if test="learnPlanCreateTime != null" >
+	        LEARN_PLAN_CREATE_TIME = #{learnPlanCreateTime},
+	      </if>
+	      <if test="learnPlanUpdateTime != null" >
+	        LEARN_PLAN_UPDATE_TIME = #{learnPlanUpdateTime},
+	      </if>
+	    </set>
+	    where LEARN_PLAN_CUID = #{learnPlanCuid}
+  	</update>
+	
+	<update id="doUpdateByPrimaryKey" parameterType="LearnPlan" >
+	    update learn_plan
+	    set SYS_USER_CUID = #{sysUserCuid},
+	      LEARN_PLAN_NAME = #{learnPlanName},
+	      LEARN_PLAN_URL = #{learnPlanUrl},
+	      LEARN_PLAN_CONTENT = #{learnPlanContent},
+	      LEARN_PLAN_START_TIME = #{learnPlanStartTime},
+	      LEARN_PLAN_END_TIME = #{learnPlanEndTime},
+	      LEARN_PLAN_STATE = #{learnPlanState},
+	      LEARN_PLAN_CREATE_TIME = #{learnPlanCreateTime},
+	      LEARN_PLAN_UPDATE_TIME = #{learnPlanUpdateTime}
+	    where LEARN_PLAN_CUID = #{learnPlanCuid}
+  	</update>
+	
+	
+	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	learn_plan
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.learnPlanName != null" >
+	        and LEARN_PLAN_NAME = #{b.learnPlanName}
+	      </if>
+	      <if test="b.learnPlanUrl != null" >
+	        and LEARN_PLAN_URL = #{b.learnPlanUrl}
+	      </if>
+	      <if test="b.learnPlanContent != null" >
+	        and LEARN_PLAN_CONTENT = #{b.learnPlanContent}
+	      </if>
+	      <if test="b.learnPlanStartTime != null" >
+	        and LEARN_PLAN_START_TIME = #{b.learnPlanStartTime}
+	      </if>
+	      <if test="b.learnPlanEndTime != null" >
+	        and LEARN_PLAN_END_TIME = #{b.learnPlanEndTime}
+	      </if>
+	      <if test="b.learnPlanState != null and b.learnPlanState != 0" >
+	        and LEARN_PLAN_STATE = #{b.learnPlanState}
+	      </if>
+	      <if test="b.learnPlanCreateTime != null" >
+	        and LEARN_PLAN_CREATE_TIME = #{b.learnPlanCreateTime}
+	      </if>
+	      <if test="b.learnPlanUpdateTime != null" >
+	        and LEARN_PLAN_UPDATE_TIME = #{b.learnPlanUpdateTime}
+	      </if>
+	      <if test="startTime != null and startTime != ''" >
+	        and LEARN_PLAN_START_TIME >= #{startTime}
+	      </if>
+	      <if test="searchName != null and searchName != ''" >
+	        and LEARN_PLAN_START_TIME like '%' #{searchName} '%'
+	      </if>
+	      and LEARN_PLAN_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	learn_plan
+	    <where>
+	    	<if test="b.sysUserCuid != null" >
+	        SYS_USER_CUID = #{b.sysUserCuid}
+	      </if>
+	      <if test="b.learnPlanName != null" >
+	        and LEARN_PLAN_NAME = #{b.learnPlanName}
+	      </if>
+	      <if test="b.learnPlanUrl != null" >
+	        and LEARN_PLAN_URL = #{b.learnPlanUrl}
+	      </if>
+	      <if test="b.learnPlanContent != null" >
+	        and LEARN_PLAN_CONTENT = #{b.learnPlanContent}
+	      </if>
+	      <if test="b.learnPlanStartTime != null" >
+	        and LEARN_PLAN_START_TIME = #{b.learnPlanStartTime}
+	      </if>
+	      <if test="b.learnPlanEndTime != null" >
+	        and LEARN_PLAN_END_TIME = #{b.learnPlanEndTime}
+	      </if>
+	      <if test="b.learnPlanState != null and b.learnPlanState != 0" >
+	        and LEARN_PLAN_STATE = #{b.learnPlanState}
+	      </if>
+	      <if test="b.learnPlanCreateTime != null" >
+	        and LEARN_PLAN_CREATE_TIME = #{b.learnPlanCreateTime}
+	      </if>
+	      <if test="b.learnPlanUpdateTime != null" >
+	        and LEARN_PLAN_UPDATE_TIME = #{b.learnPlanUpdateTime}
+	      </if>
+	      <if test="startTime != null and startTime != ''" >
+	        and LEARN_PLAN_START_TIME >= #{startTime}
+	      </if>
+	      and LEARN_PLAN_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	learn_plan
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.learnPlanName != null" >
+		        and LEARN_PLAN_NAME = #{b.learnPlanName}
+		      </when>
+		      <when test="b.learnPlanUrl != null" >
+		        and LEARN_PLAN_URL = #{b.learnPlanUrl}
+		      </when>
+		      <when test="b.learnPlanContent != null" >
+		        and LEARN_PLAN_CONTENT = #{b.learnPlanContent}
+		      </when>
+		      <when test="b.learnPlanStartTime != null" >
+		        and LEARN_PLAN_START_TIME = #{b.learnPlanStartTime}
+		      </when>
+		      <when test="b.learnPlanEndTime != null" >
+		        and LEARN_PLAN_END_TIME = #{b.learnPlanEndTime}
+		      </when>
+		      <when test="b.learnPlanState != null and b.learnPlanState != 0" >
+		        and LEARN_PLAN_STATE = #{b.learnPlanState}
+		      </when>
+		      <when test="b.learnPlanCreateTime != null" >
+		        and LEARN_PLAN_CREATE_TIME = #{b.learnPlanCreateTime}
+		      </when>
+		      <when test="b.learnPlanUpdateTime != null" >
+		        and LEARN_PLAN_UPDATE_TIME = #{b.learnPlanUpdateTime}
+		      </when>
+	    	</choose>
+	      and LEARN_PLAN_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	learn_plan
+	    <where>
+	    	<choose>
+	    		<when test="b.sysUserCuid != null" >
+		        SYS_USER_CUID = #{b.sysUserCuid}
+		      </when>
+		      <when test="b.learnPlanName != null" >
+		        and LEARN_PLAN_NAME = #{b.learnPlanName}
+		      </when>
+		      <when test="b.learnPlanUrl != null" >
+		        and LEARN_PLAN_URL = #{b.learnPlanUrl}
+		      </when>
+		      <when test="b.learnPlanContent != null" >
+		        and LEARN_PLAN_CONTENT = #{b.learnPlanContent}
+		      </when>
+		      <when test="b.learnPlanStartTime != null" >
+		        and LEARN_PLAN_START_TIME = #{b.learnPlanStartTime}
+		      </when>
+		      <when test="b.learnPlanEndTime != null" >
+		        and LEARN_PLAN_END_TIME = #{b.learnPlanEndTime}
+		      </when>
+		      <when test="b.learnPlanState != null and b.learnPlanState != 0" >
+		        and LEARN_PLAN_STATE = #{b.learnPlanState}
+		      </when>
+		      <when test="b.learnPlanCreateTime != null" >
+		        and LEARN_PLAN_CREATE_TIME = #{b.learnPlanCreateTime}
+		      </when>
+		      <when test="b.learnPlanUpdateTime != null" >
+		        and LEARN_PLAN_UPDATE_TIME = #{b.learnPlanUpdateTime}
+		      </when>
+	    	</choose>
+	      and LEARN_PLAN_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+	
+	
+	
+</mapper>

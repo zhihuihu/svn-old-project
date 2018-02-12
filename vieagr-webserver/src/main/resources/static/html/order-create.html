@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>系统客户管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/datetimepicker/css/amazeui.datetimepicker.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../assets/css/order-create.css"/>
+    <style>
+
+    </style>
+</head>
+<body style="overflow-y: auto">
+
+<!-- 顾客搜索 -->
+<div class="am-panel am-panel-secondary">
+    <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+            选定顾客<span class="am-icon-chevron-down am-fr"></span>
+        </h4>
+    </div>
+    <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <form method="post" class="am-form" id="sys-customer-form-search">
+                        <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                             style="padding-left: 0px;padding-right: 0px;">
+                            <span class="am-input-group-label">搜索:</span>
+                            <input id="sysCustomerSearchName" type="text" class="am-form-field"
+                                   placeholder="请输入用户名称/用户手机号码">
+                            <span class="am-input-group-btn">
+			                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+			                </span>
+                        </div>
+                    </form>
+                    <div class="am-scrollable-horizontal">
+                        <table class="am-table am-table-striped am-table-hover am-text-sm">
+                            <thead>
+                            <tr class="am-table">
+                                <th class="am-text-truncate am-tab-width-min">客户名称</th>
+                                <th class="am-text-truncate am-tab-width-min">手机号</th>
+                                <th class="am-text-truncate am-tab-width-min">门店名称</th>
+                                <th class="am-text-truncate am-tab-width-min">门店地址</th>
+                                <th class="am-text-truncate am-edit-width-min">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="sys-customer-list-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="sys-customer-list-body-page" class="am-fr"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-panel am-panel-success am-hide" id="product-list-tab">
+    <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#product-list-panel'}">
+            商品选择<span class="am-icon-chevron-down am-fr"></span>
+        </h4>
+    </div>
+    <div id="product-list-panel" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+            <div class="am-u-sm-12 am-fr" style="padding: 5px 25px;">
+                <form method="post" class="am-form" id="sys-product-form-search">
+                    <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                         style="padding-left: 0px;padding-right: 0px;">
+                        <span class="am-input-group-label">搜索:</span>
+                        <input id="sysProductSearchName" type="text" class="am-form-field" placeholder="请输入商品名称/商品拼音编码">
+                        <span class="am-input-group-btn">
+		                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+		                </span>
+                    </div>
+                </form>
+            </div>
+            <!-- 分页置顶 -->
+            <div id="sys-product-list-body-page" class="am-fr"></div>
+            <ul id="product-list-body" class="am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-margin gallery-list">
+                <!--<li class="am-padding-sm">
+                	<div>
+                		<img class="am-img-thumbnail am-img-bdrs" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt=""/>
+                        <div class="am-product-list-title">
+                        	<h4 class="am-product-list-title-left">土豆</h4>
+                        	<h4 class="am-product-list-title-right"><span class="am-badge am-badge-success am-text-sm">0.42元/斤</span></h4>
+                        	<div style="clear: both;"></div>
+                        </div>
+                        <div class="am-product-list-buy">
+                        	<table>
+	                        	<tr>
+	                        		<td><div class="am-product-list-buy-name">数量:</div></td>
+	                        		<td><input type="text" class="am-product-list-buy-number am-form-field"></td>
+	                        		<td><input class="am-btn am-btn-primary am-btn-xs " type="button" value="购买"></td>
+	                        	</tr>
+	                        </table>
+                        </div>
+                	</div>
+                </li>-->
+            </ul>
+            <!-- 商品列表 -->
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</div>
+
+<div id="choose-customer" class="choose-customer-normal am-hide" style="">
+    <div id="choose-customer-message">
+        <input id="choose-customer-id" type="hidden" value="">
+        <img id="choose-customer-img" class="am-img-thumbnail am-circle" src="../assets/i/head-icon.png" alt="用户头像"
+             class="am-img-thumbnail am-circle" style="">
+        <div id="choose-customer-name" class="am-text-truncate" style="">张懿火锅</div>
+        <div id="choose-customer-total" class="am-text-truncate" style="">
+            <span class=" am-badge am-badge-warning"><span id="choose-list-total">0</span>种</span>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="choose-product-list">
+        <div class="product-list-head">
+            <table style="width: 100%;color:#333333;border-width: 1px;border-color: #ccc;border-collapse: collapse;">
+                <tr>
+                    <td class="product-list-head-td">标题</td>
+                    <td class="product-list-head-td">数量</td>
+                    <td class="product-list-head-td">价格</td>
+                    <td class="product-list-head-td">单位</td>
+                    <td class="product-list-head-td">备注</td>
+                    <td class="product-list-head-td" style="width: 36px;">
+                        <button class="am-btn am-btn-secondary am-btn-xs"><i class="am-icon-asterisk"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<div class="c-product-msg">
+            <table>
+                <tr>
+                    <td><div class=" c-product-msg-name am-text-truncate">土豆</div></td>
+                    <td><input type="text" class="c-product-msg-number am-form-field"></td>
+                    <td><div class=" c-product-msg-name">2.00元/斤</div></td>
+                    <td><input class="am-btn am-btn-secondary am-btn-xs " type="button" value="删除"></td>
+                </tr>
+            </table>
+        </div>-->
+    </div>
+</div>
+<div id="choose-product-js">
+    <div>
+        <div class="am-u-sm-12" style="padding: 0px;">
+            <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm am-input-group-success"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">订单类型:</span>
+                <select id="orderType" class="am-form-field">
+                    <option value="1">普通订单</option>
+                    <option value="2">员工餐订单</option>
+                </select>
+            </div>
+            <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm am-input-group-success"
+                 style="padding-top: 3px;padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">送货时间:</span>
+                <input id="serOrderSendTime" class="am-form-field" type="text" placeholder="请选择送货时间">
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <input class="am-btn am-btn-danger am-btn-sm am-fr" id="product-list-js" type="button" value="结算">
+</div>
+<script id="sysCustomerListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <tr>
+        <td class="am-text-truncate am-tab-width-min"><acronym title="{{ item.sysCustomerName }}">{{
+            item.sysCustomerName }}</acronym></td>
+        <td class="am-text-truncate am-tab-width-min"><acronym title="{{ item.sysCustomerMobileNumber }}">{{
+            item.sysCustomerMobileNumber }}</acronym></td>
+        <td class="am-text-truncate am-tab-width-min"><acronym title="{{ item.sysCustomerStoreName }}">{{
+            item.sysCustomerStoreName }}</acronym></td>
+        <td class="am-text-truncate am-tab-width-min"><acronym title="{{ item.sysCustomerStoreAddress }}">{{
+            item.sysCustomerStoreAddress }}</acronym></td>
+        <td class="am-text-truncate am-edit-width-min">
+            <div class="am-btn-group am-btn-group-xs">
+                <input type="button" class="am-btn am-btn-primary btn-sys-customer-sure"
+                       sysCustomerImgUrl="{{ d.fileUrlPre + item.sysCustomerImgUrl }}"
+                       sysCustomerId="{{ item.sysCustomerId }}" sysCustomerName="{{ item.sysCustomerName }}"
+                       value="确定选择">
+            </div>
+        </td>
+    </tr>
+    {{#  }); }}
+</script>
+
+<script id="sysProductListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <li class="list-{{ item.sysProductId }}">
+        <div>
+            {{# if(item.sysProductImgUrl){ }}
+            <img class="am-img-thumbnail am-img-bdrs width-100" src="{{ d.fileUrlPre + item.sysProductImgUrl }}"
+                 alt="{{ item.sysProductName }}"/>
+            {{# }else{ }}
+            <img class="am-img-thumbnail am-img-bdrs width-100" src="../assets/i/product-icon.png"
+                 alt="{{ item.sysProductName }}"/>
+            {{# } }}
+            <div class="am-product-list-title">
+                <h2 class="am-product-list-title-left am-text-truncate am-badge list-{{ item.sysProductId }}-name">{{
+                    item.sysProductName }}</h2>
+                <h2 class="am-product-list-title-right am-text-truncate am-badge">
+                    <span class="list-{{ item.sysProductId }}-price">{{ item.sysProductOrdinarySalePrice }}</span>
+                    <span style="display: none" class="list-{{ item.sysProductId }}-sysProductStaffSelfPrice-price">{{ item.sysProductStaffSelfPrice }}</span>
+                    <span class="list-{{ item.sysProductId }}-unitname">元/{{ item.sysProductUnitName }}</span></h2>
+                <div style="clear: both;"></div>
+            </div>
+            <div class="am-product-list-buy">
+                <table class="width-100">
+                    <tr>
+                        <td>
+                            <div class="am-product-list-buy-name width-100">数量:</div>
+                        </td>
+                        {{# if(item.sysProductCount){ }}
+                        <td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                   class="product-list-buy-back am-product-list-buy-number am-form-field list-{{ item.sysProductId }}-number"
+                                   value="{{ item.sysProductCount }}"></td>
+                        {{# }else { }}
+                        <td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                   class="product-list-buy-back am-product-list-buy-number am-form-field list-{{ item.sysProductId }}-number"
+                                   value="1"></td>
+                        {{# } }}
+                        <td><input class="am-btn am-btn-primary am-btn-xs list-product-sure width-100" type="button"
+                                   value="购买" sysProductId="{{ item.sysProductId }}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </li>
+    {{#  }); }}
+</script>
+
+
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/order-create.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqq.leisure.dao.IProgramPlanDao" >
+	
+	<resultMap id="BaseResultMap" type="ProgramPlan" >
+    <id column="PROGRAM_PLAN_ID" property="programPlanId" jdbcType="INTEGER" />
+    <result column="HOLIDAY_PLAN_ID" property="holidayPlanId" jdbcType="INTEGER" />
+    <result column="PROGRAM_PLAN_NAME" property="programPlanName" jdbcType="VARCHAR" />
+    <result column="PROGRAM_PLAN_ICON_URL" property="programPlanIconUrl" jdbcType="VARCHAR" />
+    <result column="PROGRAM_PLAN_TYPE" property="programPlanType" jdbcType="VARCHAR" />
+    <result column="PROGRAM_PLAN_START_TIME" property="programPlanStartTime" jdbcType="TIMESTAMP" />
+    <result column="PROGRAM_PLAN_END_TIME" property="programPlanEndTime" jdbcType="TIMESTAMP" />
+    <result column="PROGRAM_PLAN_ADDRESS" property="programPlanAddress" jdbcType="VARCHAR" />
+    <result column="PROGRAM_PLAN_MAIN_CONTENT" property="programPlanMainContent" jdbcType="VARCHAR" />
+    <result column="PROGRAM_PLAN_SORT" property="programPlanSort" jdbcType="INTEGER" />
+    <result column="PROGRAM_PLAN_STATE" property="programPlanState" jdbcType="INTEGER" />
+    <result column="PROGRAM_PLAN_CREATE_TIME" property="programPlanCreateTime" jdbcType="TIMESTAMP" />
+    <result column="PROGRAM_PLAN_UPDATE_TIME" property="programPlanUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+	
+	
+	<sql id="Base_Column_List" >
+    PROGRAM_PLAN_ID, HOLIDAY_PLAN_ID, PROGRAM_PLAN_NAME, PROGRAM_PLAN_ICON_URL, PROGRAM_PLAN_TYPE, 
+    PROGRAM_PLAN_START_TIME, PROGRAM_PLAN_END_TIME, PROGRAM_PLAN_ADDRESS, PROGRAM_PLAN_MAIN_CONTENT, 
+    PROGRAM_PLAN_SORT, PROGRAM_PLAN_STATE, PROGRAM_PLAN_CREATE_TIME, PROGRAM_PLAN_UPDATE_TIME
+  </sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="ProgramPlan" >
+    delete from program_plan
+    where PROGRAM_PLAN_ID = #{programPlanId}
+  </delete>
+  	
+  	<insert id="doInsert" parameterType="ProgramPlan" >
+    insert into program_plan (PROGRAM_PLAN_ID, HOLIDAY_PLAN_ID, PROGRAM_PLAN_NAME, 
+      PROGRAM_PLAN_ICON_URL, PROGRAM_PLAN_TYPE, PROGRAM_PLAN_START_TIME, 
+      PROGRAM_PLAN_END_TIME, PROGRAM_PLAN_ADDRESS, 
+      PROGRAM_PLAN_MAIN_CONTENT, PROGRAM_PLAN_SORT, 
+      PROGRAM_PLAN_STATE, PROGRAM_PLAN_CREATE_TIME, 
+      PROGRAM_PLAN_UPDATE_TIME)
+    values (#{programPlanId}, #{holidayPlanId}, #{programPlanName}, 
+      #{programPlanIconUrl}, #{programPlanType}, #{programPlanStartTime}, 
+      #{programPlanEndTime}, #{programPlanAddress}, 
+      #{programPlanMainContent}, #{programPlanSort}, 
+      #{programPlanState}, #{programPlanCreateTime}, 
+      #{programPlanUpdateTime})
+  </insert>
+  	
+  	<insert id="doInsertSelective" parameterType="ProgramPlan" >
+    insert into program_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="programPlanId != null" >
+        PROGRAM_PLAN_ID,
+      </if>
+      <if test="holidayPlanId != null" >
+        HOLIDAY_PLAN_ID,
+      </if>
+      <if test="programPlanName != null" >
+        PROGRAM_PLAN_NAME,
+      </if>
+      <if test="programPlanIconUrl != null" >
+        PROGRAM_PLAN_ICON_URL,
+      </if>
+      <if test="programPlanType != null" >
+        PROGRAM_PLAN_TYPE,
+      </if>
+      <if test="programPlanStartTime != null" >
+        PROGRAM_PLAN_START_TIME,
+      </if>
+      <if test="programPlanEndTime != null" >
+        PROGRAM_PLAN_END_TIME,
+      </if>
+      <if test="programPlanAddress != null" >
+        PROGRAM_PLAN_ADDRESS,
+      </if>
+      <if test="programPlanMainContent != null" >
+        PROGRAM_PLAN_MAIN_CONTENT,
+      </if>
+      <if test="programPlanSort != null" >
+        PROGRAM_PLAN_SORT,
+      </if>
+      <if test="programPlanState != null" >
+        PROGRAM_PLAN_STATE,
+      </if>
+      <if test="programPlanCreateTime != null" >
+        PROGRAM_PLAN_CREATE_TIME,
+      </if>
+      <if test="programPlanUpdateTime != null" >
+        PROGRAM_PLAN_UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="programPlanId != null" >
+        #{programPlanId},
+      </if>
+      <if test="holidayPlanId != null" >
+        #{holidayPlanId},
+      </if>
+      <if test="programPlanName != null" >
+        #{programPlanName},
+      </if>
+      <if test="programPlanIconUrl != null" >
+        #{programPlanIconUrl},
+      </if>
+      <if test="programPlanType != null" >
+        #{programPlanType},
+      </if>
+      <if test="programPlanStartTime != null" >
+        #{programPlanStartTime},
+      </if>
+      <if test="programPlanEndTime != null" >
+        #{programPlanEndTime},
+      </if>
+      <if test="programPlanAddress != null" >
+        #{programPlanAddress},
+      </if>
+      <if test="programPlanMainContent != null" >
+        #{programPlanMainContent},
+      </if>
+      <if test="programPlanSort != null" >
+        #{programPlanSort},
+      </if>
+      <if test="programPlanState != null" >
+        #{programPlanState},
+      </if>
+      <if test="programPlanCreateTime != null" >
+        #{programPlanCreateTime},
+      </if>
+      <if test="programPlanUpdateTime != null" >
+        #{programPlanUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="ProgramPlan" >
+    select 
+    <include refid="Base_Column_List" />
+    from program_plan
+    where PROGRAM_PLAN_ID = #{programPlanId}
+  </select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="ProgramPlan" >
+    update program_plan
+    <set >
+      <if test="holidayPlanId != null" >
+        HOLIDAY_PLAN_ID = #{holidayPlanId},
+      </if>
+      <if test="programPlanName != null" >
+        PROGRAM_PLAN_NAME = #{programPlanName},
+      </if>
+      <if test="programPlanIconUrl != null" >
+        PROGRAM_PLAN_ICON_URL = #{programPlanIconUrl},
+      </if>
+      <if test="programPlanType != null" >
+        PROGRAM_PLAN_TYPE = #{programPlanType},
+      </if>
+      <if test="programPlanStartTime != null" >
+        PROGRAM_PLAN_START_TIME = #{programPlanStartTime},
+      </if>
+      <if test="programPlanEndTime != null" >
+        PROGRAM_PLAN_END_TIME = #{programPlanEndTime},
+      </if>
+      <if test="programPlanAddress != null" >
+        PROGRAM_PLAN_ADDRESS = #{programPlanAddress},
+      </if>
+      <if test="programPlanMainContent != null" >
+        PROGRAM_PLAN_MAIN_CONTENT = #{programPlanMainContent},
+      </if>
+      <if test="programPlanSort != null" >
+        PROGRAM_PLAN_SORT = #{programPlanSort},
+      </if>
+      <if test="programPlanState != null" >
+        PROGRAM_PLAN_STATE = #{programPlanState},
+      </if>
+      <if test="programPlanCreateTime != null" >
+        PROGRAM_PLAN_CREATE_TIME = #{programPlanCreateTime},
+      </if>
+      <if test="programPlanUpdateTime != null" >
+        PROGRAM_PLAN_UPDATE_TIME = #{programPlanUpdateTime},
+      </if>
+    </set>
+    where PROGRAM_PLAN_ID = #{programPlanId}
+  </update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="ProgramPlan" >
+    update program_plan
+    set HOLIDAY_PLAN_ID = #{holidayPlanId},
+      PROGRAM_PLAN_NAME = #{programPlanName},
+      PROGRAM_PLAN_ICON_URL = #{programPlanIconUrl},
+      PROGRAM_PLAN_TYPE = #{programPlanType},
+      PROGRAM_PLAN_START_TIME = #{programPlanStartTime},
+      PROGRAM_PLAN_END_TIME = #{programPlanEndTime},
+      PROGRAM_PLAN_ADDRESS = #{programPlanAddress},
+      PROGRAM_PLAN_MAIN_CONTENT = #{programPlanMainContent},
+      PROGRAM_PLAN_SORT = #{programPlanSort},
+      PROGRAM_PLAN_STATE = #{programPlanState},
+      PROGRAM_PLAN_CREATE_TIME = #{programPlanCreateTime},
+      PROGRAM_PLAN_UPDATE_TIME = #{programPlanUpdateTime}
+    where PROGRAM_PLAN_ID = #{programPlanId}
+  </update>
+  <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from program_plan
+    <where>
+   	  <if test="b.holidayPlanId != null " >
+        HOLIDAY_PLAN_ID = #{b.holidayPlanId}
+      </if>
+      <if test="b.programPlanName != null" >
+        and PROGRAM_PLAN_NAME = #{b.programPlanName}
+      </if>
+      <if test="b.programPlanIconUrl != null" >
+        and PROGRAM_PLAN_ICON_URL = #{b.programPlanIconUrl}
+      </if>
+      <if test="b.programPlanType != null" >
+        and PROGRAM_PLAN_TYPE = #{b.programPlanType}
+      </if>
+      <if test="b.programPlanStartTime != null" >
+        and PROGRAM_PLAN_START_TIME = #{b.programPlanStartTime}
+      </if>
+      <if test="b.programPlanEndTime != null" >
+        and PROGRAM_PLAN_END_TIME = #{b.programPlanEndTime}
+      </if>
+      <if test="b.programPlanAddress != null" >
+        and PROGRAM_PLAN_ADDRESS = #{b.programPlanAddress}
+      </if>
+      <if test="b.programPlanMainContent != null" >
+        and PROGRAM_PLAN_MAIN_CONTENT = #{b.programPlanMainContent}
+      </if>
+      <if test="b.programPlanSort != null and b.programPlanSort != 0" >
+        and PROGRAM_PLAN_SORT = #{b.programPlanSort}
+      </if>
+      <if test="b.programPlanState != null and b.programPlanState != 0" >
+        and PROGRAM_PLAN_STATE = #{b.programPlanState}
+      </if>
+      <if test="b.programPlanCreateTime != null" >
+        and PROGRAM_PLAN_CREATE_TIME = #{b.programPlanCreateTime}
+      </if>
+      <if test="b.programPlanUpdateTime != null" >
+        and PROGRAM_PLAN_UPDATE_TIME = #{b.programPlanUpdateTime}
+      </if>
+    </where>
+    	ORDER BY PROGRAM_PLAN_CREATE_TIME DESC
+    LIMIT
+    	#{startLine},#{lineSize}
+  </select>
+  
+  <select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+    select 
+   	COUNT(1)
+    from program_plan
+    <where>
+   	  <if test="b.holidayPlanId != null and b.holidayPlanId != 0" >
+        HOLIDAY_PLAN_ID = #{b.holidayPlanId}
+      </if>
+      <if test="b.programPlanName != null" >
+        and PROGRAM_PLAN_NAME = #{b.programPlanName}
+      </if>
+      <if test="b.programPlanIconUrl != null" >
+        and PROGRAM_PLAN_ICON_URL = #{b.programPlanIconUrl}
+      </if>
+      <if test="b.programPlanType != null" >
+        and PROGRAM_PLAN_TYPE = #{b.programPlanType}
+      </if>
+      <if test="b.programPlanStartTime != null" >
+        and PROGRAM_PLAN_START_TIME = #{b.programPlanStartTime}
+      </if>
+      <if test="b.programPlanEndTime != null" >
+        and PROGRAM_PLAN_END_TIME = #{b.programPlanEndTime}
+      </if>
+      <if test="b.programPlanAddress != null" >
+        and PROGRAM_PLAN_ADDRESS = #{b.programPlanAddress}
+      </if>
+      <if test="b.programPlanMainContent != null" >
+        and PROGRAM_PLAN_MAIN_CONTENT = #{b.programPlanMainContent}
+      </if>
+      <if test="b.programPlanSort != null and b.programPlanSort != 0" >
+        and PROGRAM_PLAN_SORT = #{b.programPlanSort}
+      </if>
+      <if test="b.programPlanState != null and b.programPlanState != 0" >
+        and PROGRAM_PLAN_STATE = #{b.programPlanState}
+      </if>
+      <if test="b.programPlanCreateTime != null" >
+        and PROGRAM_PLAN_CREATE_TIME = #{b.programPlanCreateTime}
+      </if>
+      <if test="b.programPlanUpdateTime != null" >
+        and PROGRAM_PLAN_UPDATE_TIME = #{b.programPlanUpdateTime}
+      </if>
+       </where>
+  </select>
+  	
+</mapper>

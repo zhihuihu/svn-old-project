@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.totops.dao.IMingPinHuiDao">
+  <resultMap id="BaseResultMap" type="com.hxkj.totops.entity.MingPinHui">
+    <id column="ming_pin_hui_cuid"  property="mingPinHuiCuid" />
+    <result column="ming_pin_hui_title"  property="mingPinHuiTitle" />
+    <result column="ming_pin_hui_image"  property="mingPinHuiImage" />
+    <result column="ming_pin_hui_image_icon"  property="mingPinHuiImageIcon" />
+    <result column="ming_pin_hui_image_url"  property="mingPinHuiImageUrl" />
+    <result column="ming_pin_hui_content"  property="mingPinHuiContent" />
+    <result column="ming_pin_hui_operate_id"  property="mingPinHuiOperateId" />
+    <result column="ming_pin_hui_type" property="mingPinHuiType" />
+    <result column="ming_pin_hui_state" property="mingPinHuiState" />
+    <result column="ming_pin_hui_create_time"  property="mingPinHuiCreateTime" />
+    <result column="ming_pin_hui_update_time"  property="mingPinHuiUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ming_pin_hui_cuid, ming_pin_hui_title, ming_pin_hui_image, ming_pin_hui_image_icon, 
+    ming_pin_hui_image_url, ming_pin_hui_content, ming_pin_hui_operate_id, ming_pin_hui_type, 
+    ming_pin_hui_state, ming_pin_hui_create_time, ming_pin_hui_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ming_pin_hui
+    where ming_pin_hui_cuid = #{mingPinHuiCuid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ming_pin_hui
+    where ming_pin_hui_cuid = #{mingPinHuiCuid}
+  </delete>
+  <insert id="insert" parameterType="com.hxkj.totops.entity.MingPinHui">
+    insert into ming_pin_hui (ming_pin_hui_cuid, ming_pin_hui_title, 
+      ming_pin_hui_image, ming_pin_hui_image_icon, ming_pin_hui_image_url, 
+      ming_pin_hui_content, ming_pin_hui_operate_id, 
+      ming_pin_hui_type, ming_pin_hui_state, ming_pin_hui_create_time, 
+      ming_pin_hui_update_time)
+    values (#{mingPinHuiCuid}, #{mingPinHuiTitle}, 
+      #{mingPinHuiImage}, #{mingPinHuiImageIcon}, #{mingPinHuiImageUrl}, 
+      #{mingPinHuiContent}, #{mingPinHuiOperateId}, 
+      #{mingPinHuiType}, #{mingPinHuiState}, #{mingPinHuiCreateTime}, 
+      #{mingPinHuiUpdateTime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxkj.totops.entity.MingPinHui">
+    insert into ming_pin_hui
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mingPinHuiCuid != null">
+        ming_pin_hui_cuid,
+      </if>
+      <if test="mingPinHuiTitle != null">
+        ming_pin_hui_title,
+      </if>
+      <if test="mingPinHuiImage != null">
+        ming_pin_hui_image,
+      </if>
+      <if test="mingPinHuiImageIcon != null">
+        ming_pin_hui_image_icon,
+      </if>
+      <if test="mingPinHuiImageUrl != null">
+        ming_pin_hui_image_url,
+      </if>
+      <if test="mingPinHuiContent != null">
+        ming_pin_hui_content,
+      </if>
+      <if test="mingPinHuiOperateId != null">
+        ming_pin_hui_operate_id,
+      </if>
+      <if test="mingPinHuiType != null">
+        ming_pin_hui_type,
+      </if>
+      <if test="mingPinHuiState != null">
+        ming_pin_hui_state,
+      </if>
+      <if test="mingPinHuiCreateTime != null">
+        ming_pin_hui_create_time,
+      </if>
+      <if test="mingPinHuiUpdateTime != null">
+        ming_pin_hui_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mingPinHuiCuid != null">
+        #{mingPinHuiCuid},
+      </if>
+      <if test="mingPinHuiTitle != null">
+        #{mingPinHuiTitle},
+      </if>
+      <if test="mingPinHuiImage != null">
+        #{mingPinHuiImage},
+      </if>
+      <if test="mingPinHuiImageIcon != null">
+        #{mingPinHuiImageIcon},
+      </if>
+      <if test="mingPinHuiImageUrl != null">
+        #{mingPinHuiImageUrl},
+      </if>
+      <if test="mingPinHuiContent != null">
+        #{mingPinHuiContent},
+      </if>
+      <if test="mingPinHuiOperateId != null">
+        #{mingPinHuiOperateId},
+      </if>
+      <if test="mingPinHuiType != null">
+        #{mingPinHuiType},
+      </if>
+      <if test="mingPinHuiState != null">
+        #{mingPinHuiState},
+      </if>
+      <if test="mingPinHuiCreateTime != null">
+        #{mingPinHuiCreateTime},
+      </if>
+      <if test="mingPinHuiUpdateTime != null">
+        #{mingPinHuiUpdateTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxkj.totops.entity.MingPinHui">
+    update ming_pin_hui
+    <set>
+      <if test="mingPinHuiTitle != null">
+        ming_pin_hui_title = #{mingPinHuiTitle},
+      </if>
+      <if test="mingPinHuiImage != null">
+        ming_pin_hui_image = #{mingPinHuiImage},
+      </if>
+      <if test="mingPinHuiImageIcon != null">
+        ming_pin_hui_image_icon = #{mingPinHuiImageIcon},
+      </if>
+      <if test="mingPinHuiImageUrl != null">
+        ming_pin_hui_image_url = #{mingPinHuiImageUrl},
+      </if>
+      <if test="mingPinHuiContent != null">
+        ming_pin_hui_content = #{mingPinHuiContent},
+      </if>
+      <if test="mingPinHuiOperateId != null">
+        ming_pin_hui_operate_id = #{mingPinHuiOperateId},
+      </if>
+      <if test="mingPinHuiType != null">
+        ming_pin_hui_type = #{mingPinHuiType},
+      </if>
+      <if test="mingPinHuiState != null">
+        ming_pin_hui_state = #{mingPinHuiState},
+      </if>
+      <if test="mingPinHuiCreateTime != null">
+        ming_pin_hui_create_time = #{mingPinHuiCreateTime},
+      </if>
+      <if test="mingPinHuiUpdateTime != null">
+        ming_pin_hui_update_time = #{mingPinHuiUpdateTime},
+      </if>
+    </set>
+    where ming_pin_hui_cuid = #{mingPinHuiCuid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxkj.totops.entity.MingPinHui">
+    update ming_pin_hui
+    set ming_pin_hui_title = #{mingPinHuiTitle},
+      ming_pin_hui_image = #{mingPinHuiImage},
+      ming_pin_hui_image_icon = #{mingPinHuiImageIcon},
+      ming_pin_hui_image_url = #{mingPinHuiImageUrl},
+      ming_pin_hui_content = #{mingPinHuiContent},
+      ming_pin_hui_operate_id = #{mingPinHuiOperateId},
+      ming_pin_hui_type = #{mingPinHuiType},
+      ming_pin_hui_state = #{mingPinHuiState},
+      ming_pin_hui_create_time = #{mingPinHuiCreateTime},
+      ming_pin_hui_update_time = #{mingPinHuiUpdateTime}
+    where ming_pin_hui_cuid = #{mingPinHuiCuid}
+  </update>
+  
+  <select id="selectByAttribute" parameterType="com.hxkj.totops.entity.MingPinHui" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ming_pin_hui
+    <where>
+      <if test="mingPinHuiTitle != null">
+        and ming_pin_hui_title = #{mingPinHuiTitle}
+      </if>
+      <if test="mingPinHuiImage != null">
+        and ming_pin_hui_image = #{mingPinHuiImage}
+      </if>
+      <if test="mingPinHuiImageIcon != null">
+        and ming_pin_hui_image_icon = #{mingPinHuiImageIcon}
+      </if>
+      <if test="mingPinHuiImageUrl != null">
+        and ming_pin_hui_image_url = #{mingPinHuiImageUrl}
+      </if>
+      <if test="mingPinHuiContent != null">
+        and ming_pin_hui_content = #{mingPinHuiContent}
+      </if>
+      <if test="mingPinHuiOperateId != null">
+        and ming_pin_hui_operate_id = #{mingPinHuiOperateId}
+      </if>
+      <if test="mingPinHuiType != null">
+        and ming_pin_hui_type = #{mingPinHuiType}
+      </if>
+      <if test="mingPinHuiState != null">
+        and ming_pin_hui_state = #{mingPinHuiState}
+      </if>
+      <if test="mingPinHuiCreateTime != null">
+        and ming_pin_hui_create_time = #{mingPinHuiCreateTime}
+      </if>
+      <if test="mingPinHuiUpdateTime != null">
+        and ming_pin_hui_update_time = #{mingPinHuiUpdateTime}
+      </if>
+    </where>
+    order by ming_pin_hui_create_time desc
+  </select>
+  
+  <select id="selectByPageAnd" parameterType="com.hxkj.totops.entity.query.PageBean" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ming_pin_hui
+    <where>
+      <if test="b.mingpinhuiTitle != null">
+        and ming_pin_hui_title = #{b.mingpinhuiTitle}
+      </if>
+      <if test="b.mingpinhuiImage != null">
+        and ming_pin_hui_image = #{b.mingpinhuiImage}
+      </if>
+      <if test="b.mingpinhuiImageIcon != null">
+        and ming_pin_hui_image_icon = #{b.mingpinhuiImageIcon}
+      </if>
+      <if test="b.mingpinhuiImageUrl != null">
+        and ming_pin_hui_image_url = #{b.mingpinhuiImageUrl}
+      </if>
+      <if test="b.mingpinhuiContent != null">
+        and ming_pin_hui_content = #{b.mingpinhuiContent}
+      </if>
+      <if test="b.mingpinhuiOperateId != null">
+        and ming_pin_hui_operate_id = #{b.mingpinhuiOperateId}
+      </if>
+      <if test="b.mingpinhuiType != null">
+        and ming_pin_hui_type = #{b.mingpinhuiType}
+      </if>
+      <if test="b.mingpinhuiState != null">
+        and ming_pin_hui_state = #{b.mingpinhuiState}
+      </if>
+      <if test="b.mingpinhuiCreateTime != null">
+        and ming_pin_hui_create_time = #{b.mingpinhuiCreateTime}
+      </if>
+      <if test="b.mingpinhuiUpdateTime != null">
+        and ming_pin_hui_update_time = #{b.mingpinhuiUpdateTime}
+      </if>
+    </where>
+    order by ming_pin_hui_create_time desc
+    limit #{startLine},#{pageSize}
+  </select>
+  
+  <select id="selectByPageAndCount" parameterType="com.hxkj.totops.entity.query.PageBean" resultType="int">
+    select 
+    count(1)
+    from ming_pin_hui
+    <where>
+      <if test="b.mingpinhuiTitle != null">
+        and ming_pin_hui_title = #{b.mingpinhuiTitle}
+      </if>
+      <if test="b.mingpinhuiImage != null">
+        and ming_pin_hui_image = #{b.mingpinhuiImage}
+      </if>
+      <if test="b.mingpinhuiImageIcon != null">
+        and ming_pin_hui_image_icon = #{b.mingpinhuiImageIcon}
+      </if>
+      <if test="b.mingpinhuiImageUrl != null">
+        and ming_pin_hui_image_url = #{b.mingpinhuiImageUrl}
+      </if>
+      <if test="b.mingpinhuiContent != null">
+        and ming_pin_hui_content = #{b.mingpinhuiContent}
+      </if>
+      <if test="b.mingpinhuiOperateId != null">
+        and ming_pin_hui_operate_id = #{b.mingpinhuiOperateId}
+      </if>
+      <if test="b.mingpinhuiType != null">
+        and ming_pin_hui_type = #{b.mingpinhuiType}
+      </if>
+      <if test="b.mingpinhuiState != null">
+        and ming_pin_hui_state = #{b.mingpinhuiState}
+      </if>
+      <if test="b.mingpinhuiCreateTime != null">
+        and ming_pin_hui_create_time = #{b.mingpinhuiCreateTime}
+      </if>
+      <if test="b.mingpinhuiUpdateTime != null">
+        and ming_pin_hui_update_time = #{b.mingpinhuiUpdateTime}
+      </if>
+    </where>
+  </select>
+</mapper>

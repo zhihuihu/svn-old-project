@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户帖子回复管理</title>
+    <link href="css/baseCss.css"  rel="stylesheet">
+    <script type="text/javascript" src="js/replyManager.js"></script>
+</head>
+<body>
+<div style="width: 100%;font-weight: bold;margin-top: 5px;">
+	<center>
+	<p>回复管理</p>
+	</center>
+	<hr style="margin-top: 5px;">
+</div>
+<div class="header-search">
+    <div class="header-one">
+        <div class="header-name">
+            开始时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="startTime"
+                   placeholder="请输入开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+    <div class="header-one">
+        <div class="header-name">
+            结束时间:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="endTime"
+                   placeholder="请输入结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+    </div>
+
+    <div class="header-right">
+        <button class="btn btn-success" style="margin-left: 5px" id="searchBtn">搜索</button>
+    </div>
+    <div class="header-right">
+        <div class="header-name">
+            搜索框:
+        </div>
+        <div class="header-input">
+            <input type="text" class="form-control" id="searchName"
+                   placeholder="帖子名称">
+        </div>
+    </div>
+    <div style="clear: both">
+
+    </div>
+</div>
+<div class="content-body">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>帖子标题</th>
+            <th>回复人账号</th>
+            <th>回帖图片</th>
+            <th>回帖主要内容</th>
+            <th>回帖时间</th>
+            <th>回帖地点</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="appendBody">
+        <tr>
+            <td>TanmaeBangalore</td>
+            <td>Bangalangalorev</td>
+            <td>560lore</td>
+            <td>Tanmay</td>
+            <td>Bangal</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showReplyDetails">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Sachin</td>
+            <td>Mumbai</td>
+            <td>400003</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showReplyDetails">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Uma</td>
+            <td>Pune</td>
+            <td>411027</td>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td>
+                <button class="btn btn-success" style="margin-left: 5px" data-toggle="modal"
+                        data-target="#showReplyDetails">查看详情
+                </button>
+                <button class="btn btn-success" style="margin-left: 5px">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="jqueryPage" class="tcdPageCode">
+
+    </div>
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="showReplyDetails" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+                    帖子标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">帖子标题:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="postTitle" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">回复人账号:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="sysUserLoginName" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">回帖图片信息</label>
+                        <div class="col-sm-10" id="repliesTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">主要内容:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="repliesContent"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">回帖时间:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="repliesCreateTime" type="text"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">回帖地点:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="repliesAddress" type="text"
+                                   value="成都市郫县">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-danger btn-delete" id="replies-delete-btn">
+                    删除回复
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script type="text/html" id="reply-template">
+    {{each msg as replies i}}
+    <tr>
+        <td>{{replies.post.postTitle}}</td>
+        <td>{{replies.sysUser.sysUserLoginName}}</td>
+        <td>{{replies.repliesTitle}}</td>
+        <td>{{replies.repliesContent}}</td>
+        <td>{{replies.repliesCreateTime}}</td>
+        <td>成都郫县</td>
+        <td>
+            <button class="btn btn-success btn-details" style="margin-left: 5px" data-toggle="modal"
+                    data-target="#showReplyDetails" repliesCuid="{{replies.repliesCuid}}">查看详情
+            </button>
+            <button class="btn btn-danger btn-delete" style="margin-left: 5px" repliesCuid="{{replies.repliesCuid}}">删除</button>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dy.weike.dao.IUserClassDao" >
+
+  <resultMap id="BaseResultMap" type="com.dy.weike.entity.UserClass" >
+    <id column="class_id" property="classId" jdbcType="INTEGER" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="study_progress" property="studyProgress" jdbcType="REAL" />
+    <result column="study_off" property="studyOff" jdbcType="BIT" />
+    <result column="study_attention" property="studyAttention" jdbcType="BIT" />
+    <result column="user_star" property="userStar" jdbcType="INTEGER" />
+    <result column="user_class_createTime" property="userClassCreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    class_id, user_id, study_progress, study_off, study_attention, user_star, user_class_createTime
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserClass" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_class
+    where class_id = #{classId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.dy.weike.entity.UserClass" >
+    delete from user_class
+    where class_id = #{classId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </delete>  
+  
+  <insert id="insert" parameterType="com.dy.weike.entity.UserClass" >
+    insert into user_class (class_id, user_id, study_progress, 
+      study_off, study_attention, user_star, 
+      user_class_createTime)
+    values (#{classId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{studyProgress,jdbcType=REAL}, 
+      #{studyOff,jdbcType=BIT}, #{studyAttention,jdbcType=BIT}, #{userStar,jdbcType=INTEGER}, 
+      #{userClassCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.dy.weike.entity.UserClass" >
+    insert into user_class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="studyProgress != null" >
+        study_progress,
+      </if>
+      <if test="studyOff != null" >
+        study_off,
+      </if>
+      <if test="studyAttention != null" >
+        study_attention,
+      </if>
+      <if test="userStar != null" >
+        user_star,
+      </if>
+      <if test="userClassCreatetime != null" >
+        user_class_createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="studyProgress != null" >
+        #{studyProgress,jdbcType=REAL},
+      </if>
+      <if test="studyOff != null" >
+        #{studyOff,jdbcType=BIT},
+      </if>
+      <if test="studyAttention != null" >
+        #{studyAttention,jdbcType=BIT},
+      </if>
+      <if test="userStar != null" >
+        #{userStar,jdbcType=INTEGER},
+      </if>
+      <if test="userClassCreatetime != null" >
+        #{userClassCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.dy.weike.entity.UserClass" >
+    update user_class
+    set study_progress = #{studyProgress,jdbcType=REAL},
+      study_off = #{studyOff,jdbcType=BIT},
+      study_attention = #{studyAttention,jdbcType=BIT},
+      user_star = #{userStar,jdbcType=INTEGER},
+      user_class_createTime = #{userClassCreatetime,jdbcType=TIMESTAMP}
+    where class_id = #{classId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+ 
+  <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="com.dy.weike.entity.UserClass" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_class
+    <where>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER)
+      </if>
+      <if test="classId != null">
+        and class_id = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="studyProgress != null">
+        and study_progress = #{studyProgress,jdbcType=REAL}
+      </if>
+      <if test="studyOff != null" >
+        and study_off = #{studyOff,jdbcType=BIT}
+      </if>
+      <if test="studyAttention != null" >
+        and study_attention = #{studyAttention,jdbcType=BIT}
+      </if>
+      <if test="userStar != null and userStar != 0" >
+        and user_star = #{userStar,jdbcType=INTEGER}
+      </if>
+      <if test="userClassCreatetime != null" >
+        and user_class_createTime = #{userClassCreatetime,jdbcType=TIMESTAMP}
+      </if>
+    </where>  
+  </select>   
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.ISpecialTypeDao">
+
+	<resultMap id="SpecialTypeResultMap" type="SpecialType">
+		<id property="specialTypeCuid" column="SPECIAL_TYPE_CUID" />
+		<result property="dataTypeCuid" column="DATA_TYPE_CUID" />
+		<result property="specialTypeName" column="SPECIAL_TYPE_NAME" />
+		<result property="specialTypeCreateTime" column="SPECIAL_TYPE_CREATE_TIME" />
+		<result property="specialTypeTotalNumber" column="SPECIAL_TYPE_TOTAL_NUMBER" />
+		<result property="specialTypeShow" column="SPECIAL_TYPE_SHOW" />
+	</resultMap>
+
+	<select id="getAll" resultMap="SpecialTypeResultMap">
+		SELECT
+			special_type.SPECIAL_TYPE_CUID,
+			special_type.DATA_TYPE_CUID,
+			special_type.SPECIAL_TYPE_NAME,
+			special_type.SPECIAL_TYPE_CREATE_TIME,
+			special_type.SPECIAL_TYPE_TOTAL_NUMBER,
+			special_type.SPECIAL_TYPE_SHOW
+		FROM
+			special_type
+		WHERE
+			special_type.SPECIAL_TYPE_SHOW = "1"
+	</select>
+
+	<select id="getById" parameterType="String" resultMap="SpecialTypeResultMap">
+		SELECT
+			special_type.SPECIAL_TYPE_CUID,
+			special_type.DATA_TYPE_CUID,
+			special_type.SPECIAL_TYPE_NAME,
+			special_type.SPECIAL_TYPE_CREATE_TIME,
+			special_type.SPECIAL_TYPE_TOTAL_NUMBER,
+			special_type.SPECIAL_TYPE_SHOW
+		FROM
+			special_type
+		WHERE
+			special_type.SPECIAL_TYPE_CUID = #{specialTypeCuid}
+			AND special_type.SPECIAL_TYPE_SHOW = "1"
+	</select>
+	
+	
+	
+	<select id="getSpecialTypeByDataTypeCuid" parameterType="PageBean" resultMap="SpecialTypeResultMap">
+		SELECT
+			special_type.SPECIAL_TYPE_CUID,
+			special_type.DATA_TYPE_CUID,
+			special_type.SPECIAL_TYPE_NAME,
+			special_type.SPECIAL_TYPE_CREATE_TIME,
+			special_type.SPECIAL_TYPE_TOTAL_NUMBER,
+			special_type.SPECIAL_TYPE_SHOW
+		FROM
+			special_type
+		WHERE
+			special_type.DATA_TYPE_CUID = #{b.dataTypeCuid}
+			AND special_type.SPECIAL_TYPE_SHOW = "1"
+		LIMIT
+			#{currentPage},#{lineSize}
+	</select>
+
+	<insert id="doInsert" parameterType="SpecialType">
+		INSERT INTO special_type
+			(SPECIAL_TYPE_CUID,DATA_TYPE_CUID,SPECIAL_TYPE_NAME,SPECIAL_TYPE_CREATE_TIME,SPECIAL_TYPE_TOTAL_NUMBER,SPECIAL_TYPE_SHOW)
+		VALUES 
+			(#{specialTypeCuid},#{dataTypeCuid},#{specialTypeName},#{specialTypeCreateTime},#{specialTypeTotalNumber},#{specialTypeShow})
+	</insert>
+
+	<update id="doUpdate" parameterType="SpecialType">
+		UPDATE special_type
+		<set>
+			<if test="dataTypeCuid != null and dataTypeCuid !=''">
+				DATA_TYPE_CUID = #{dataTypeCuid},
+			</if>
+			<if test="specialTypeName != null and specialTypeName !=''">
+				SPECIAL_TYPE_NAME = #{specialTypeName},
+			</if>
+			<if test="specialTypeCreateTime != null and specialTypeCreateTime !=''">
+				SPECIAL_TYPE_CREATE_TIME = #{specialTypeCreateTime},
+			</if>
+			<if test="specialTypeTotalNumber != 0">
+				SPECIAL_TYPE_TOTAL_NUMBER = #{specialTypeTotalNumber},
+			</if>
+			<if test="specialTypeShow != null and specialTypeShow !=''">
+				SPECIAL_TYPE_SHOW = #{specialTypeShow}
+			</if>
+		</set>
+		WHERE
+			SPECIAL_TYPE_CUID = #{specialTypeCuid}
+	</update>
+	
+	<update id="doUpdateToTalNumber" parameterType="SpecialType">
+		UPDATE 
+			special_type
+		SET
+			SPECIAL_TYPE_TOTAL_NUMBER = SPECIAL_TYPE_TOTAL_NUMBER + #{specialTypeTotalNumber}
+		WHERE
+			SPECIAL_TYPE_CUID = #{specialTypeCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="SpecialTypeResultMap">
+		SELECT
+			special_type.SPECIAL_TYPE_CUID,
+			special_type.DATA_TYPE_CUID,
+			special_type.SPECIAL_TYPE_NAME,
+			special_type.SPECIAL_TYPE_CREATE_TIME,
+			special_type.SPECIAL_TYPE_TOTAL_NUMBER,
+			special_type.SPECIAL_TYPE_SHOW
+		FROM
+			special_type
+		WHERE
+			special_type.SPECIAL_TYPE_SHOW = "1"
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			special_type
+		<where>
+			<if test="b.dataTypeCuid != null and b.dataTypeCuid !=''">
+				AND DATA_TYPE_CUID = #{b.dataTypeCuid}
+			</if>
+			<if test="b.specialTypeName != null and b.specialTypeName !=''">
+				AND SPECIAL_TYPE_NAME = #{b.specialTypeName}
+			</if>
+			<if test="b.specialTypeCreateTime != null and b.specialTypeCreateTime !=''">
+				AND SPECIAL_TYPE_CREATE_TIME = #{b.specialTypeCreateTime} 
+			</if>
+			<if test="b.specialTypeTotalNumber != 0">
+				AND SPECIAL_TYPE_TOTAL_NUMBER = #{b.specialTypeTotalNumber}
+			</if>
+			<if test="b.specialTypeShow != null and b.specialTypeShow !=''">
+				AND SPECIAL_TYPE_SHOW = #{b.specialTypeShow}
+			</if>
+			AND special_type.SPECIAL_TYPE_SHOW = "1"
+		</where>
+	</select>
+	
+	<select id="getAllByPageCountOr" parameterType="PageBean" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			special_type
+		<where>
+			<choose>
+				<when test="b.dataTypeCuid != null and b.dataTypeCuid !=''">
+					DATA_TYPE_CUID = #{b.dataTypeCuid}
+				</when>
+				<when test="b.specialTypeName != null and b.specialTypeName !=''">
+					AND SPECIAL_TYPE_NAME = #{b.specialTypeName}
+				</when>
+				<when test="b.specialTypeCreateTime != null and b.specialTypeCreateTime !=''">
+					AND SPECIAL_TYPE_CREATE_TIME = #{b.specialTypeCreateTime} 
+				</when>
+				<when test="b.specialTypeTotalNumber != 0">
+					AND SPECIAL_TYPE_TOTAL_NUMBER = #{b.specialTypeTotalNumber}
+				</when>
+			</choose>
+			AND special_type.SPECIAL_TYPE_SHOW = "1"
+		</where>
+		LIMIT
+			#{currentPage},#{lineSize}
+	</select>
+	<select id="getSpecialTypeByAttributeOr" parameterType="PageBean" resultMap="SpecialTypeResultMap">
+		SELECT
+			special_type.SPECIAL_TYPE_CUID,
+			special_type.DATA_TYPE_CUID,
+			special_type.SPECIAL_TYPE_NAME,
+			special_type.SPECIAL_TYPE_CREATE_TIME,
+			special_type.SPECIAL_TYPE_TOTAL_NUMBER,
+			special_type.SPECIAL_TYPE_SHOW
+		FROM
+			special_type
+		<where>
+			<choose>
+				<when test="b.dataTypeCuid != null and b.dataTypeCuid !=''">
+					DATA_TYPE_CUID = #{b.dataTypeCuid}
+				</when>
+				<when test="b.specialTypeName != null and b.specialTypeName !=''">
+					AND SPECIAL_TYPE_NAME = #{b.specialTypeName}
+				</when>
+				<when test="b.specialTypeCreateTime != null and b.specialTypeCreateTime !=''">
+					AND SPECIAL_TYPE_CREATE_TIME = #{b.specialTypeCreateTime} 
+				</when>
+				<when test="b.specialTypeTotalNumber != 0">
+					AND SPECIAL_TYPE_TOTAL_NUMBER = #{b.specialTypeTotalNumber}
+				</when>
+			</choose>
+			AND special_type.SPECIAL_TYPE_SHOW = "1"
+		</where>
+		LIMIT
+			#{currentPage},#{lineSize}
+	</select>
+	
+	<select id="getSpecialTypeByAttributeAnd" parameterType="PageBean"
+		resultMap="SpecialTypeResultMap">
+		SELECT
+			special_type.SPECIAL_TYPE_CUID,
+			special_type.DATA_TYPE_CUID,
+			special_type.SPECIAL_TYPE_NAME,
+			special_type.SPECIAL_TYPE_CREATE_TIME,
+			special_type.SPECIAL_TYPE_TOTAL_NUMBER,
+			special_type.SPECIAL_TYPE_SHOW
+		FROM
+			special_type
+		<where>
+			<if test="b.dataTypeCuid != null and b.dataTypeCuid !=''">
+				AND DATA_TYPE_CUID = #{b.dataTypeCuid}
+			</if>
+			<if test="b.specialTypeName != null and b.specialTypeName !=''">
+				AND SPECIAL_TYPE_NAME = #{b.specialTypeName}
+			</if>
+			<if test="b.specialTypeCreateTime != null and b.specialTypeCreateTime !=''">
+				AND SPECIAL_TYPE_CREATE_TIME = #{b.specialTypeCreateTime} 
+			</if>
+			<if test="b.specialTypeTotalNumber != 0">
+				AND SPECIAL_TYPE_TOTAL_NUMBER = #{b.specialTypeTotalNumber}
+			</if>
+			AND special_type.SPECIAL_TYPE_SHOW = "1"
+		</where>
+	</select>
+</mapper>

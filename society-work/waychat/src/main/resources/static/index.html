@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/base/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/index.css}" />
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- header -->
+	<div>
+		
+	</div>
+	
+	<!-- content -->
+	<div class="content">
+		<div class="container">
+			<div class="frient-body pull-right">
+				
+			</div>
+		</div>
+	</div>
+	
+	<!-- footer -->
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<div class="friend-center pull-right">
+				<img th:src="@{/images/user-head.jpg}" alt="..." class="img-circle user-image pull-left"></img>
+				<p class="pull-left">fellow travel</p>
+			</div>
+		</div>
+	</nav>
+
+	<!-- javascript文件区 -->
+	<script type="text/javascript" th:src="@{/base/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/base/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/base/layer/layer.js}"></script>
+	<script type="text/javascript" th:src="@{/js/api.js}"></script>
+	<script type="text/javascript" th:src="@{/base/websocket/sockjs-1.1.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/base/websocket/stomp.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+</body>
+</html>

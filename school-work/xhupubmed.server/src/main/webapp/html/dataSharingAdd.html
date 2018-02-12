@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/baseCss.css" rel="stylesheet">
+    <script type="text/javascript" src="js/dataSharingAdd.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 100%;font-weight: bold;margin-top: 5px;">
+	<center>
+	<p>数据共享添加</p>
+	</center>
+	<hr style="margin-top: 5px;">
+</div>
+<form class="form-horizontal" role="form" style="padding: 50px;">
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">共享标题:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="dataSharingTitle"
+                   placeholder="分享名称..">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">资料类型:</label>
+        <div class="col-sm-11">
+            <select class="form-control" id="dataSharingType">
+                <option value="1">文本</option>
+                <option value="2">文件</option>
+                <option value="3">链接</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">资料标签:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="dataSharingTag"
+                   placeholder="政治/数学/英语">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">分享链接:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="dataSharingUrl"
+                   placeholder="例如www.baidu.com">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">主要内容:</label>
+        <div class="col-sm-11">
+            <textarea id="dataSharingMainContent" class="form-control" placeholder="主要内容"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">文件选择:</label>
+        <div class="col-sm-11" style="position: relative">
+            <div class="form-control" style="left: 0px;top: 0px;">
+                请选择文件,最多选择四个文件
+            </div>
+            <input style="opacity: 0;z-index: 2;left: 0px;top: 0px;margin-top: -34px;cursor: pointer;" type="file" multiple class="form-control" id="choose-file"
+                   placeholder="最多选择四个文件">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label">已经选择文件:</label>
+        <div class="col-sm-11" id="show-file">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-1 control-label"></label>
+        <div class="col-sm-11">
+            <button type="submit" class="btn btn-default btn-insert" id="">确定增加</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

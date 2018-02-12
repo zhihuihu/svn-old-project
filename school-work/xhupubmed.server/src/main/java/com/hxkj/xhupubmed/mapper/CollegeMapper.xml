@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.ICollegeDao" >
+
+	<resultMap id="BaseResultMap" type="College" >
+	    <id column="COLLEGE_CUID" property="collegeCuid"  />
+	    <result column="COLLEGE_NAME" property="collegeName"  />
+	    <result column="COLLEGE_CODE" property="collegeCode"  />
+	    <result column="COLLEGE_MAJOR_NUMBER" property="collegeMajorNumber"  />
+	    <result column="COLLEGE_STATE" property="collegeState"  />
+	    <result column="COLLEGE_CREATE_TIME" property="collegeCreateTime"  />
+	    <result column="COLLEGE_UPDATE_TIME" property="collegeUpdateTime"  />
+  	</resultMap>
+  	
+  	<sql id="Base_Column_List" >
+	    COLLEGE_CUID, 
+	    COLLEGE_NAME, 
+	    COLLEGE_CODE, 
+	    COLLEGE_MAJOR_NUMBER, 
+	    COLLEGE_STATE, 
+	    COLLEGE_CREATE_TIME, 
+	    COLLEGE_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="College" >
+	    delete 
+	    from 
+	    	college
+	    where 
+	    	COLLEGE_CUID = #{collegeCuid}
+  	</delete>
+  	
+  	<insert id="doInsert" parameterType="College" >
+	    insert into 
+	    	college 
+	    	(COLLEGE_CUID, 
+	    	COLLEGE_NAME, 
+	    	COLLEGE_CODE, 
+		      COLLEGE_MAJOR_NUMBER, 
+		      COLLEGE_STATE, 
+		      COLLEGE_CREATE_TIME, 
+		      COLLEGE_UPDATE_TIME)
+	    values 
+	    	(#{collegeCuid}, 
+	    	#{collegeName}, 
+	    	#{collegeCode}, 
+	      #{collegeMajorNumber}, 
+	      #{collegeState}, 
+	      #{collegeCreateTime}, 
+	      #{collegeUpdateTime})
+  	</insert>
+	
+	
+	<insert id="doInsertSelective" parameterType="College" >
+	    insert into college
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="collegeCuid != null" >
+	        COLLEGE_CUID,
+	      </if>
+	      <if test="collegeName != null" >
+	        COLLEGE_NAME,
+	      </if>
+	      <if test="collegeCode != null" >
+	        COLLEGE_CODE,
+	      </if>
+	      <if test="collegeMajorNumber != null" >
+	        COLLEGE_MAJOR_NUMBER,
+	      </if>
+	      <if test="collegeState != null" >
+	        COLLEGE_STATE,
+	      </if>
+	      <if test="collegeCreateTime != null" >
+	        COLLEGE_CREATE_TIME,
+	      </if>
+	      <if test="collegeUpdateTime != null" >
+	        COLLEGE_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="collegeCuid != null" >
+	        #{collegeCuid},
+	      </if>
+	      <if test="collegeName != null" >
+	        #{collegeName},
+	      </if>
+	      <if test="collegeCode != null" >
+	        #{collegeCode},
+	      </if>
+	      <if test="collegeMajorNumber != null" >
+	        #{collegeMajorNumber},
+	      </if>
+	      <if test="collegeState != null" >
+	        #{collegeState},
+	      </if>
+	      <if test="collegeCreateTime != null" >
+	        #{collegeCreateTime},
+	      </if>
+	      <if test="collegeUpdateTime != null" >
+	        #{collegeUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="College" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	college
+	    where 
+	    	COLLEGE_CUID = #{collegeCuid}
+  	</select>
+  	
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="College" >
+	    update college
+	    <set >
+	      <if test="collegeName != null" >
+	        COLLEGE_NAME = #{collegeName},
+	      </if>
+	      <if test="collegeCode != null" >
+	        COLLEGE_CODE = #{collegeCode},
+	      </if>
+	      <if test="collegeMajorNumber != null and collegeMajorNumber != 0 " >
+	        COLLEGE_MAJOR_NUMBER = #{collegeMajorNumber},
+	      </if>
+	      <if test="collegeState != null" >
+	        COLLEGE_STATE = #{collegeState},
+	      </if>
+	      <if test="collegeCreateTime != null" >
+	        COLLEGE_CREATE_TIME = #{collegeCreateTime},
+	      </if>
+	      <if test="collegeUpdateTime != null" >
+	        COLLEGE_UPDATE_TIME = #{collegeUpdateTime},
+	      </if>
+	    </set>
+	    where COLLEGE_CUID = #{collegeCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="College" >
+	    update 
+	    	college
+	    set COLLEGE_NAME = #{collegeName},
+	      COLLEGE_CODE = #{collegeCode},
+	      COLLEGE_MAJOR_NUMBER = #{collegeMajorNumber},
+	      COLLEGE_STATE = #{collegeState},
+	      COLLEGE_CREATE_TIME = #{collegeCreateTime},
+	      COLLEGE_UPDATE_TIME = #{collegeUpdateTime}
+	    where COLLEGE_CUID = #{collegeCuid}
+  	</update>
+  	
+  	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	college
+	    <where>
+	    	<if test="b.collegeName != null" >
+	        COLLEGE_NAME = #{b.collegeName}
+	      </if>
+	      <if test="b.collegeCode != null" >
+	        and COLLEGE_CODE = #{b.collegeCode}
+	      </if>
+	      <if test="b.collegeMajorNumber != null and b.collegeMajorNumber != 0 " >
+	        and COLLEGE_MAJOR_NUMBER = #{b.collegeMajorNumber}
+	      </if>
+	      <if test="b.collegeState != null and b.collegeState != 0" >
+	        and COLLEGE_STATE = #{b.collegeState}
+	      </if>
+	      <if test="b.collegeCreateTime != null" >
+	        and COLLEGE_CREATE_TIME = #{b.collegeCreateTime}
+	      </if>
+	      <if test="b.collegeUpdateTime != null" >
+	        and COLLEGE_UPDATE_TIME = #{b.collegeUpdateTime}
+	      </if>
+	      and COLLEGE_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	college
+	    <where>
+	    	<if test="b.collegeName != null" >
+	        COLLEGE_NAME = #{b.collegeName}
+	      </if>
+	      <if test="b.collegeCode != null" >
+	        and COLLEGE_CODE = #{b.collegeCode}
+	      </if>
+	      <if test="b.collegeMajorNumber != null and b.collegeMajorNumber != 0 " >
+	        and COLLEGE_MAJOR_NUMBER = #{b.collegeMajorNumber}
+	      </if>
+	      <if test="b.collegeState != null and b.collegeState != 0" >
+	        and COLLEGE_STATE = #{b.collegeState}
+	      </if>
+	      <if test="b.collegeCreateTime != null" >
+	        and COLLEGE_CREATE_TIME = #{b.collegeCreateTime}
+	      </if>
+	      <if test="b.collegeUpdateTime != null" >
+	        and COLLEGE_UPDATE_TIME = #{b.collegeUpdateTime}
+	      </if>
+	      and COLLEGE_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	college
+	    <where>
+	    	<choose>
+	    		<when test="b.collegeName != null" >
+		        COLLEGE_NAME = #{b.collegeName}
+		      </when>
+		      <when test="b.collegeCode != null" >
+		        and COLLEGE_CODE = #{b.collegeCode}
+		      </when>
+		      <when test="b.collegeMajorNumber != null and b.collegeMajorNumber != 0 " >
+		        and COLLEGE_MAJOR_NUMBER = #{b.collegeMajorNumber}
+		      </when>
+		      <when test="b.collegeState != null and b.collegeState != 0" >
+		        and COLLEGE_STATE = #{b.collegeState}
+		      </when>
+		      <when test="b.collegeCreateTime != null" >
+		        and COLLEGE_CREATE_TIME = #{b.collegeCreateTime}
+		      </when>
+		      <when test="b.collegeUpdateTime != null" >
+		        and COLLEGE_UPDATE_TIME = #{b.collegeUpdateTime}
+		      </when>
+	    	</choose>
+	    	and COLLEGE_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    	count(1)
+	    from 
+	    	college
+	    <where>
+	    	<choose>
+	    		<when test="b.collegeName != null" >
+		        COLLEGE_NAME = #{b.collegeName}
+		      </when>
+		      <when test="b.collegeCode != null" >
+		        and COLLEGE_CODE = #{b.collegeCode}
+		      </when>
+		      <when test="b.collegeMajorNumber != null and b.collegeMajorNumber != 0 " >
+		        and COLLEGE_MAJOR_NUMBER = #{b.collegeMajorNumber}
+		      </when>
+		      <when test="b.collegeState != null b.collegeState != 0" >
+		        and COLLEGE_STATE = #{b.collegeState}
+		      </when>
+		      <when test="b.collegeCreateTime != null" >
+		        and COLLEGE_CREATE_TIME = #{b.collegeCreateTime}
+		      </when>
+		      <when test="b.collegeUpdateTime != null" >
+		        and COLLEGE_UPDATE_TIME = #{b.collegeUpdateTime}
+		      </when>
+	    	</choose>
+	    	and COLLEGE_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	
+</mapper>

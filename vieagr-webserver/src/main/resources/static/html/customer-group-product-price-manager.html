@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分组顾客定价管理 | 万象农业配送系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../base-component/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../base-component/datetimepicker/css/amazeui.datetimepicker.css"/>
+    <link rel="stylesheet" href="../base-component/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../assets/css/customer-group-product-price-manager.css"/>
+    <style>
+
+    </style>
+</head>
+<body style="overflow-y: auto">
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">分组顾客定价管理</strong>
+    </div>
+</div>
+<div class="am-g">
+    <div class="am-u-sm-12">
+        <div class="am-u-sm-6" style="margin: 0px;padding: 0px;">
+            <table class="am-table am-table-compact am-u-sm-6" style="margin: 0px;padding: 0px;">
+                <tr>
+                    <td class="am-u-sm-4">
+                        <button class="am-btn am-btn-primary am-btn-sm choose-sys-customer-group">选择分组信息</button>
+                    </td>
+                    <td class="am-u-sm-8">
+                        <div class="am-input-group am-input-group-sm"
+                             style="padding-left: 0px;padding-right: 0px;">
+                            <span class="am-input-group-label">当前选择：</span>
+                            <div class="am-form-field" id="show-choose-sys-customer-group">
+
+                            </div>
+                            <span class="am-form-caret"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="am-u-sm-6">
+            <table class="am-table am-table-compact am-u-sm-6" style="margin: 0px;padding: 0px;">
+                <tr>
+                    <td class="am-u-sm-12">
+                        <div class="am-input-group am-input-group-sm"
+                             style="padding-left: 0px;padding-right: 0px;">
+                            <span class="am-input-group-label">顾客选择：</span>
+                            <select id="currentChooseGroupCustomerId" class="am-form-field" name="vehiclesId">
+                            </select>
+                            <span class="am-form-caret"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--商品列表-->
+    <div class="am-cf am-padding am-padding-bottom-0" style="margin-top: 70px;">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品价格列表</strong>
+        </div>
+    </div>
+    <div class="am-u-sm-12">
+        <form method="post" class="am-form" id="sys-product-form-list-search">
+            <div class="am-u-sm-6 am-u-md-6 am-input-group am-input-group-sm"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label" class="">商品类型</span>
+                <select id="sysProductTypeSearchId" class="am-form-field">
+                    <!--<option value="1">普通客车</option>
+                    <option value="2">24234</option>-->
+                </select>
+            </div>
+            <div class="am-u-sm-6 am-u-md-6 am-fr am-input-group am-input-group-sm"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">搜索:</span>
+                <input id="sysProductSearchName" type="text" class="am-form-field"
+                       placeholder="请输入商品名称/商品编码">
+                <span class="am-input-group-btn">
+                                <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                            </span>
+            </div>
+        </form>
+        <table class="am-table am-table-striped am-table-hover am-text-sm am-table-compact">
+            <thead>
+            <tr class="am-table">
+                <th class="am-text-truncate">商品名称</th>
+                <th class="am-text-truncate">商品类型</th>
+                <th class="am-text-truncate">员工餐卖价</th>
+                <th class="am-text-truncate">普通订单卖价</th>
+                <th class="am-text-truncate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="sys-product-list-body">
+            </tbody>
+        </table>
+        <div id="sys-product-list-body-page" class="am-fr" style="margin-bottom: 50px;"></div>
+    </div>
+</div>
+<!--编辑按钮-->
+<div class="update-all-product">
+    <button class="am-btn am-btn-success am-btn-sm am-fl" id="update-all-product-choose-btn">统一修改</button>
+    <button class="am-btn am-btn-danger am-btn-sm am-fr" id="update-all-product-price-btn">确认</button>
+</div>
+
+
+<!--分组详情弹框-->
+<div class="am-modal-dialog" id="choose-sys-customer-group-model" style="display: none;">
+    <div class="am-u-sm-12 am-u-md-12 am-modal-content" style="max-height: 400px;overflow: auto">
+        <form method="post" class="am-form" id="sys-customer-group-search-form">
+            <div class="am-u-sm-12 am-fr am-input-group am-input-group-sm"
+                 style="padding-left: 0px;padding-right: 0px;">
+                <span class="am-input-group-label">搜索:</span>
+                <input id="sysCustomerGroupNameSearch" type="text" class="am-form-field" placeholder="请输入分组名称...">
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                </span>
+            </div>
+        </form>
+        <div class="am-scrollable-horizontal">
+            <table class="am-table am-table-striped am-table-hover am-text-sm">
+                <thead>
+                <tr class="am-table">
+                    <th class="am-text-truncate am-tab-width-min">分组名称</th>
+                    <th class="am-text-truncate am-tab-width-min">操作</th>
+                </tr>
+                </thead>
+                <tbody id="sys-customer-group-list-body">
+                <!-- <tr>
+                    <td class="am-text-truncate am-tab-width-min">Amaze UI</td>
+                    <td class="am-text-truncate am-tab-width-min">http://amazeui.org</td>
+                    <td class="am-text-truncate am-tab-width-min">2012-10-01</td>
+                </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--分组产品价格弹框-->
+<div class="am-modal-dialog" id="sys-customer-group-product-update-model" style="display: none;">
+    <div class="am-u-sm-12 am-u-md-12 am-modal-content" style="max-height: 400px;overflow: auto">
+        <form class="am-form" id="update-sys-customer-group-product-form" data-am-validator>
+            <fieldset>
+                <input type="hidden" id="sysCustomerGroupProductIdUpdate">
+                <div class="am-form-group">
+                    <label for="">商品名称</label>
+                    <input class="" type="text" class="" id="sysCustomerGroupProductProductNameUpdate"
+                           disabled required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="">员工餐卖价</label>
+                    <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                           id="sysCustomerGroupProductProductStaffPriceUpdate"
+                           placeholder="请输入员工餐卖价..."
+                           required>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="">普通订单卖价</label>
+                    <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');" class="" type="text" class=""
+                           id="sysCustomerGroupProductProductOrdinaryPriceUpdate"
+                           placeholder="请输入普通订单卖价..."
+                           required>
+                </div>
+
+
+                <p>
+                    <button type="submit" class="am-btn am-btn-secondary">修改</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!--顾客分组列表TPL-->
+<script id="customerGroupListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <tr>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysCustomerGroupName }}</td>
+        <td class="am-text-truncate am-tab-width-min">
+            <div class="am-btn-group am-btn-group-xs">
+                <input type="button" class="am-btn am-btn-success btn-sys-customer-group-choose"
+                       sysCustomerGroupId="{{ item.sysCustomerGroupId }}"
+                       sysCustomerGroupName="{{ item.sysCustomerGroupName }}"
+                       value="选择"/>
+            </div>
+        </td>
+    </tr>
+    {{#  }); }}
+</script>
+
+<!--商品列表TPL-->
+<script id="groupProductListTpl" type="text/html">
+    {{#  layui.each(d.msg, function(index, item){ }}
+    <tr>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysCustomerGroupProductProductName }}</td>
+        <td class="am-text-truncate am-tab-width-min">{{ item.sysProductTypeName }}</td>
+        <td class="am-text-truncate am-tab-width-min">
+            <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');"
+                   class="update-sysCustomerGroupProductProductStaffPrice-input-{{ item.sysCustomerGroupProductId }} update-price-input update-price-input-disable"
+                   disabled="true" type="text" value="{{ item.sysCustomerGroupProductProductStaffPrice }}">
+        </td>
+        <td class="am-text-truncate am-tab-width-min">
+            <input onkeyup="this.value=this.value.replace(/[^0-9.]/g,'');"
+                   class="update-sysCustomerGroupProductProductOrdinaryPrice-input-{{ item.sysCustomerGroupProductId }} update-price-input-main update-price-input update-price-input-disable"
+                   disabled="true" type="text" value="{{ item.sysCustomerGroupProductProductOrdinaryPrice }}"
+                   sysCustomerGroupProductId="{{ item.sysCustomerGroupProductId }}">
+        </td>
+        <td class="am-text-truncate am-tab-width-min">
+            <div class="am-btn-group am-btn-group-xs">
+                <input type="button" class="am-btn am-btn-success btn-sys-customer-group-product-update"
+                       sysCustomerGroupProductId="{{ item.sysCustomerGroupProductId }}"
+                       sysCustomerGroupProductProductName="{{ item.sysCustomerGroupProductProductName }}"
+                       sysCustomerGroupProductProductStaffPrice="{{ item.sysCustomerGroupProductProductStaffPrice }}"
+                       sysCustomerGroupProductProductOrdinaryPrice="{{ item.sysCustomerGroupProductProductOrdinaryPrice }}"
+                       value="修改"/>
+            </div>
+        </td>
+    </tr>
+    {{#  }); }}
+</script>
+
+<script src="../base-component/jquery/jquery.min.js"></script>
+<script src="../base-component/amazeui/js/amazeui.min.js"></script>
+<script src="../base-component/datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+<script src="../base-component/layui/layui.js"></script>
+<script src="../base-component/layer/layer.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/customer-group-product-price-manager.js"></script>
+
+</body>
+</html>

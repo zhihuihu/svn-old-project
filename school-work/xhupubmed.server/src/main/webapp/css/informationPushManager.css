@@ -1,0 +1,38 @@
+.header-search{
+    padding: 3px;
+    width: 100%;
+    height: auto;
+}
+.header-one{
+    float: left;
+    width: 220px;
+    height: 34px;
+}
+.header-name{
+    width: 60px;
+    text-align: right;
+    height: 34px;
+    line-height: 34px;
+    float: left;
+    font-weight: bold;
+}
+.header-input{
+    width: 160px;
+    height: 34px;
+    line-height: 34px;
+    float: right;
+}
+.header-right{
+    float: right;
+    width: 220px;
+    height: 34px;
+}
+.content-body{
+    padding: 3px 5px;
+}
+.table tr td{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 300px;
+}

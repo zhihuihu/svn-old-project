@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.totop.dao.IPingLifeDao" >
+    <resultMap id="BaseResultMap" type="PingLife" >
+        <id column="PING_LIFE_CUID" property="pingLifeCuid" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_MAIN_URL" property="pingLifeMainUrl" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_MAIN_NOTES" property="pingLifeMainNotes" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_CATEGORY" property="pingLifeCategory" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_CATEGORY_CODE" property="pingLifeCategoryCode" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_TITLE_NAME" property="pingLifeTitleName" jdbcType="VARCHAR" />
+        <result column="PING_LIFE_TYPE" property="pingLifeType" jdbcType="INTEGER" />
+        <result column="PING_LIFE_STATE" property="pingLifeState" jdbcType="INTEGER" />
+        <result column="PING_LIFE_CREATE_TIME" property="pingLifeCreateTime" jdbcType="TIMESTAMP" />
+        <result column="PING_LIFE_UPDATE_TIME" property="pingLifeUpdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        PING_LIFE_CUID, PING_LIFE_MAIN_URL, PING_LIFE_MAIN_NOTES, PING_LIFE_CATEGORY, PING_LIFE_CATEGORY_CODE,
+        PING_LIFE_TITLE_NAME, PING_LIFE_TYPE, PING_LIFE_STATE, PING_LIFE_CREATE_TIME, PING_LIFE_UPDATE_TIME
+    </sql>
+
+    <insert id="doInsert" parameterType="PingLife" >
+        <selectKey keyProperty="pingLifeCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_PING_LIFE_CUID()
+        </selectKey>
+        insert into ping_life (PING_LIFE_CUID, PING_LIFE_MAIN_URL, PING_LIFE_MAIN_NOTES,
+        PING_LIFE_CATEGORY, PING_LIFE_CATEGORY_CODE,
+        PING_LIFE_TITLE_NAME, PING_LIFE_TYPE, PING_LIFE_STATE,
+        PING_LIFE_CREATE_TIME, PING_LIFE_UPDATE_TIME
+        )
+        values (#{pingLifeCuid,jdbcType=VARCHAR}, #{pingLifeMainUrl,jdbcType=VARCHAR}, #{pingLifeMainNotes,jdbcType=VARCHAR},
+        #{pingLifeCategory,jdbcType=VARCHAR}, #{pingLifeCategoryCode,jdbcType=VARCHAR},
+        #{pingLifeTitleName,jdbcType=VARCHAR}, #{pingLifeType,jdbcType=INTEGER}, #{pingLifeState,jdbcType=INTEGER},
+        #{pingLifeCreateTime,jdbcType=TIMESTAMP}, #{pingLifeUpdateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="doInsertSelective" parameterType="PingLife" >
+        <selectKey keyProperty="pingLifeCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_PING_LIFE_CUID()
+        </selectKey>
+        insert into ping_life
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="pingLifeCuid != null" >
+                PING_LIFE_CUID,
+            </if>
+            <if test="pingLifeMainUrl != null" >
+                PING_LIFE_MAIN_URL,
+            </if>
+            <if test="pingLifeMainNotes != null" >
+                PING_LIFE_MAIN_NOTES,
+            </if>
+            <if test="pingLifeCategory != null" >
+                PING_LIFE_CATEGORY,
+            </if>
+            <if test="pingLifeCategoryCode != null" >
+                PING_LIFE_CATEGORY_CODE,
+            </if>
+            <if test="pingLifeTitleName != null" >
+                PING_LIFE_TITLE_NAME,
+            </if>
+            <if test="pingLifeType != null" >
+                PING_LIFE_TYPE,
+            </if>
+            <if test="pingLifeState != null" >
+                PING_LIFE_STATE,
+            </if>
+            <if test="pingLifeCreateTime != null" >
+                PING_LIFE_CREATE_TIME,
+            </if>
+            <if test="pingLifeUpdateTime != null" >
+                PING_LIFE_UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="pingLifeCuid != null" >
+                #{pingLifeCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeMainUrl != null" >
+                #{pingLifeMainUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeMainNotes != null" >
+                #{pingLifeMainNotes,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeCategory != null" >
+                #{pingLifeCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeCategoryCode != null" >
+                #{pingLifeCategoryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeTitleName != null" >
+                #{pingLifeTitleName,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeType != null" >
+                #{pingLifeType,jdbcType=INTEGER},
+            </if>
+            <if test="pingLifeState != null" >
+                #{pingLifeState,jdbcType=INTEGER},
+            </if>
+            <if test="pingLifeCreateTime != null" >
+                #{pingLifeCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pingLifeUpdateTime != null" >
+                #{pingLifeUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="doDeleteByPrimaryKey" parameterType="PingLife" >
+        delete from ping_life
+        where PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="doUpdateByPrimaryKeySelective" parameterType="PingLife" >
+        update ping_life
+        <set >
+            <if test="pingLifeMainUrl != null" >
+                PING_LIFE_MAIN_URL = #{pingLifeMainUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeMainNotes != null" >
+                PING_LIFE_MAIN_NOTES = #{pingLifeMainNotes,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeCategory != null" >
+                PING_LIFE_CATEGORY = #{pingLifeCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeCategoryCode != null" >
+                PING_LIFE_CATEGORY_CODE = #{pingLifeCategoryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeTitleName != null" >
+                PING_LIFE_TITLE_NAME = #{pingLifeTitleName,jdbcType=VARCHAR},
+            </if>
+            <if test="pingLifeType != null and pingLifeType != 0" >
+                PING_LIFE_TYPE = #{pingLifeType,jdbcType=INTEGER},
+            </if>
+            <if test="pingLifeState != null" >
+                PING_LIFE_STATE = #{pingLifeState,jdbcType=INTEGER},
+            </if>
+            <if test="pingLifeCreateTime != null" >
+                PING_LIFE_CREATE_TIME = #{pingLifeCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pingLifeUpdateTime != null" >
+                PING_LIFE_UPDATE_TIME = #{pingLifeUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="doUpdateByPrimaryKey" parameterType="PingLife" >
+        update ping_life
+        set PING_LIFE_MAIN_URL = #{pingLifeMainUrl,jdbcType=VARCHAR},
+        PING_LIFE_MAIN_NOTES = #{pingLifeMainNotes,jdbcType=VARCHAR},
+        PING_LIFE_CATEGORY = #{pingLifeCategory,jdbcType=VARCHAR},
+        PING_LIFE_CATEGORY_CODE = #{pingLifeCategoryCode,jdbcType=VARCHAR},
+        PING_LIFE_TITLE_NAME = #{pingLifeTitleName,jdbcType=VARCHAR},
+        PING_LIFE_TYPE = #{pingLifeType,jdbcType=INTEGER},
+        PING_LIFE_STATE = #{pingLifeState,jdbcType=INTEGER},
+        PING_LIFE_CREATE_TIME = #{pingLifeCreateTime,jdbcType=TIMESTAMP},
+        PING_LIFE_UPDATE_TIME = #{pingLifeUpdateTime,jdbcType=TIMESTAMP}
+        where PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="PingLife" >
+        select
+        <include refid="Base_Column_List" />
+        from ping_life
+        where PING_LIFE_CUID = #{pingLifeCuid,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectByAttribute" resultMap="BaseResultMap" parameterType="PingLife" >
+        select
+        <include refid="Base_Column_List" />
+        from ping_life
+        <where>
+            <if test="pingLifeMainUrl != null" >
+                PING_LIFE_MAIN_URL = #{pingLifeMainUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="pingLifeMainNotes != null" >
+                and PING_LIFE_MAIN_NOTES = #{pingLifeMainNotes,jdbcType=VARCHAR}
+            </if>
+            <if test="pingLifeCategory != null" >
+                and PING_LIFE_CATEGORY = #{pingLifeCategory,jdbcType=VARCHAR}
+            </if>
+            <if test="pingLifeCategoryCode != null" >
+                and PING_LIFE_CATEGORY_CODE = #{pingLifeCategoryCode,jdbcType=VARCHAR}
+            </if>
+            <if test="pingLifeTitleName != null" >
+                and PING_LIFE_TITLE_NAME = #{pingLifeTitleName,jdbcType=VARCHAR}
+            </if>
+            <if test="pingLifeType != null and pingLifeType != 0" >
+                and PING_LIFE_TYPE = #{pingLifeType,jdbcType=INTEGER}
+            </if>
+            <if test="pingLifeState != null and pingLifeState != 0" >
+                and PING_LIFE_STATE = #{pingLifeState,jdbcType=INTEGER}
+            </if>
+            <if test="pingLifeCreateTime != null" >
+                and PING_LIFE_CREATE_TIME = #{pingLifeCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="pingLifeUpdateTime != null" >
+                and PING_LIFE_UPDATE_TIME = #{pingLifeUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+        select
+        <include refid="Base_Column_List" />
+        from ping_life
+        <where>
+            <if test="b.pingLifeMainUrl != null" >
+                PING_LIFE_MAIN_URL = #{b.pingLifeMainUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeMainNotes != null" >
+                and PING_LIFE_MAIN_NOTES = #{b.pingLifeMainNotes,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeCategory != null" >
+                and PING_LIFE_CATEGORY = #{b.pingLifeCategory,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeCategoryCode != null" >
+                and PING_LIFE_CATEGORY_CODE = #{b.pingLifeCategoryCode,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeTitleName != null" >
+                and PING_LIFE_TITLE_NAME = #{b.pingLifeTitleName,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeType != null and b.pingLifeType != 0 " >
+                and PING_LIFE_TYPE = #{b.pingLifeType,jdbcType=INTEGER}
+            </if>
+            <if test="b.pingLifeState != null and b.pingLifeState != 0" >
+                and PING_LIFE_STATE = #{b.pingLifeState,jdbcType=INTEGER}
+            </if>
+            <if test="b.pingLifeCreateTime != null" >
+                and PING_LIFE_CREATE_TIME = #{b.pingLifeCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="b.pingLifeUpdateTime != null" >
+                and PING_LIFE_UPDATE_TIME = #{b.pingLifeUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by PING_LIFE_CREATE_TIME DESC
+        limit
+            #{startLine},#{pageSize}
+    </select>
+
+    <select id="selectByAttributeAndCount" resultType="int" parameterType="PageBean" >
+        select
+        COUNT(1)
+        from ping_life
+        <where>
+            <if test="b.pingLifeMainUrl != null" >
+                PING_LIFE_MAIN_URL = #{b.pingLifeMainUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeMainNotes != null" >
+                and PING_LIFE_MAIN_NOTES = #{b.pingLifeMainNotes,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeCategory != null" >
+                and PING_LIFE_CATEGORY = #{b.pingLifeCategory,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeCategoryCode != null" >
+                and PING_LIFE_CATEGORY_CODE = #{b.pingLifeCategoryCode,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeTitleName != null" >
+                and PING_LIFE_TITLE_NAME = #{b.pingLifeTitleName,jdbcType=VARCHAR}
+            </if>
+            <if test="b.pingLifeType != null and b.pingLifeType != 0 " >
+                and PING_LIFE_TYPE = #{b.pingLifeType,jdbcType=INTEGER}
+            </if>
+            <if test="b.pingLifeState != null and b.pingLifeState != 0" >
+                and PING_LIFE_STATE = #{b.pingLifeState,jdbcType=INTEGER}
+            </if>
+            <if test="b.pingLifeCreateTime != null" >
+                and PING_LIFE_CREATE_TIME = #{b.pingLifeCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="b.pingLifeUpdateTime != null" >
+                and PING_LIFE_UPDATE_TIME = #{b.pingLifeUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+</mapper>

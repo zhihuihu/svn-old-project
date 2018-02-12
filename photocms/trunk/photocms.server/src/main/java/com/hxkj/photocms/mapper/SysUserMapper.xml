@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxkj.photocms.dao.ISysUserDao">
+
+	<resultMap id="SysUserResultMap" type="SysUser">
+		<id property="sysUserCuid" column="SYS_USER_CUID" />
+		<result property="userTypeCuid" column="USER_TYPE_CUID" />
+		<result property="sysUserLoginName" column="SYS_USER_LOGIN_NAME" />
+		<result property="sysUserRelName" column="SYS_USER_REL_NAME" />
+		<result property="sysUserPassword" column="SYS_USER_PASSWORD" />
+		<result property="sysUserTele" column="SYS_USER_TELE" />
+		<result property="sysUserMail" column="SYS_USER_MAIL" />
+		<result property="sysUserAddress" column="SYS_USER_ADDRESS" />
+		<result property="sysUserVerCode" column="SYS_USER_VER_CODE" />
+		<result property="sysUserCreateTime" column="SYS_USER_CREATE_TIME" />
+		<result property="sysUserUpdateTime" column="SYS_USER_UPDATE_TIME" />
+	</resultMap>
+
+	<select id="getAll" resultMap="SysUserResultMap">
+		SELECT
+			sys_user.SYS_USER_CUID,
+			sys_user.USER_TYPE_CUID,
+			sys_user.SYS_USER_LOGIN_NAME,
+			sys_user.SYS_USER_REL_NAME,
+			sys_user.SYS_USER_PASSWORD,
+			sys_user.SYS_USER_TELE,
+			sys_user.SYS_USER_MAIL,
+			sys_user.SYS_USER_ADDRESS,
+			sys_user.SYS_USER_VER_CODE,
+			sys_user.SYS_USER_CREATE_TIME,
+			sys_user.SYS_USER_UPDATE_TIME
+		FROM
+			sys_user
+	</select>
+
+	<select id="getById" parameterType="int" resultMap="SysUserResultMap">
+		SELECT
+			sys_user.SYS_USER_CUID,
+			sys_user.USER_TYPE_CUID,
+			sys_user.SYS_USER_LOGIN_NAME,
+			sys_user.SYS_USER_REL_NAME,
+			sys_user.SYS_USER_PASSWORD,
+			sys_user.SYS_USER_TELE,
+			sys_user.SYS_USER_MAIL,
+			sys_user.SYS_USER_ADDRESS,
+			sys_user.SYS_USER_VER_CODE,
+			sys_user.SYS_USER_CREATE_TIME,
+			sys_user.SYS_USER_UPDATE_TIME
+		FROM
+			sys_user
+		WHERE
+			sys_user.SYS_USER_CUID = #{sysUserCuid}
+	</select>
+	
+	<select id="login" parameterType="SysUser" resultMap="SysUserResultMap">
+		SELECT
+			sys_user.SYS_USER_CUID,
+			sys_user.USER_TYPE_CUID,
+			sys_user.SYS_USER_LOGIN_NAME,
+			sys_user.SYS_USER_REL_NAME,
+			sys_user.SYS_USER_PASSWORD,
+			sys_user.SYS_USER_TELE,
+			sys_user.SYS_USER_MAIL,
+			sys_user.SYS_USER_ADDRESS,
+			sys_user.SYS_USER_VER_CODE,
+			sys_user.SYS_USER_CREATE_TIME,
+			sys_user.SYS_USER_UPDATE_TIME
+		FROM
+			sys_user
+		WHERE
+			sys_user.SYS_USER_LOGIN_NAME = #{sysUserLoginName} AND
+			sys_user.SYS_USER_PASSWORD = #{sysUserPassword}
+	</select>
+
+	<insert id="doInsert" parameterType="SysUser">
+		INSERT INTO sys_user
+			(SYS_USER_CUID,USER_TYPE_CUID,SYS_USER_LOGIN_NAME,SYS_USER_REL_NAME,SYS_USER_PASSWORD,SYS_USER_TELE,
+			SYS_USER_MAIL,SYS_USER_ADDRESS,SYS_USER_VER_CODE,SYS_USER_CREATE_TIME,SYS_USER_UPDATE_TIME)
+		VALUES 
+			(#{sysUserCuid},#{userTypeCuid},#{sysUserLoginName},#{sysUserRelName},#{sysUserPassword},#{sysUserTele},#{sysUserMail},
+			#{sysUserAddress},#{sysUserVerCode},#{sysUserCreateTime},#{sysUserUpdateTime})
+	</insert>
+
+	<update id="doUpdate" parameterType="SysUser">
+		UPDATE sys_user
+		<set>
+			<if test="userTypeCuid != null and userTypeCuid !=''">
+				USER_TYPE_CUID = #{userTypeCuid},
+			</if>
+			<if test="sysUserLoginName != null and sysUserLoginName !=''">
+				SYS_USER_LOGIN_NAME = #{sysUserLoginName},
+			</if>
+			<if test="sysUserRelName != null and sysUserRelName !=''">
+				SYS_USER_REL_NAME = #{sysUserRelName},
+			</if>
+			<if test="sysUserPassword != null and sysUserPassword !=''">
+				SYS_USER_PASSWORD = #{sysUserPassword},
+			</if>
+			<if test="sysUserTele != null and sysUserTele !=''">
+				SYS_USER_TELE = #{sysUserTele},
+			</if>
+			<if test="sysUserMail != null and sysUserMail !=''">
+				SYS_USER_MAIL = #{sysUserMail},
+			</if>
+			<if test="sysUserAddress != null and sysUserAddress !=''">
+				SYS_USER_ADDRESS = #{sysUserAddress},
+			</if>
+			<if test="sysUserVerCode != null and sysUserVerCode !=''">
+				SYS_USER_VER_CODE = #{sysUserVerCode},
+			</if>
+			<if test="sysUserCreateTime != null and sysUserCreateTime !=''">
+				SYS_USER_CREATE_TIME = #{sysUserCreateTime},
+			</if>
+			<if test="sysUserUpdateTime != null and sysUserUpdateTime !=''">
+				SYS_USER_UPDATE_TIME = #{sysUserUpdateTime}
+			</if>
+		</set>
+		WHERE
+			SYS_USER_CUID = #{sysUserCuid}
+	</update>
+
+	<select id="getAllByPage" parameterType="PageBean"
+		resultMap="SysUserResultMap">
+		SELECT
+			sys_user.SYS_USER_CUID,
+			sys_user.USER_TYPE_CUID,
+			sys_user.SYS_USER_LOGIN_NAME,
+			sys_user.SYS_USER_REL_NAME,
+			sys_user.SYS_USER_PASSWORD,
+			sys_user.SYS_USER_TELE,
+			sys_user.SYS_USER_MAIL,
+			sys_user.SYS_USER_ADDRESS,
+			sys_user.SYS_USER_VER_CODE,
+			sys_user.SYS_USER_CREATE_TIME,
+			sys_user.SYS_USER_UPDATE_TIME
+		FROM
+			sys_user
+		LIMIT
+		#{currentPage},#{lineSize}
+	</select>
+
+
+	<select id="getAllByPageCount" parameterType="PageBean"
+		resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			sys_user
+	</select>
+
+</mapper>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.xhupubmed.dao.IMajorDao" >
+	
+	<resultMap id="BaseResultMap" type="Major" >
+	    <id column="MAJOR_CUID" property="majorCuid"  />
+	    <result column="COLLEGE_CUID" property="collegeCuid"  />
+	    <result column="MAJOR_NAME" property="majorName"  />
+	    <result column="MAJOR_CODE" property="majorCode"  />
+	    <result column="MAJOR_STUDENT_NUMBER" property="majorStudentNumber" />
+	    <result column="MAJOR_STATE" property="majorState" />
+	    <result column="MAJOR_CREATE_TIME" property="majorCreateTime" />
+	    <result column="MAJOR_UPDATE_TIME" property="majorUpdateTime" />
+  	</resultMap>
+  	
+  	
+  	<sql id="Base_Column_List" >
+	    MAJOR_CUID, 
+	    COLLEGE_CUID, 
+	    MAJOR_NAME, 
+	    MAJOR_CODE, 
+	    MAJOR_STUDENT_NUMBER, 
+	    MAJOR_STATE, 
+	    MAJOR_CREATE_TIME, 
+	    MAJOR_UPDATE_TIME
+  	</sql>
+  	
+  	<delete id="doDeleteByPrimaryKey" parameterType="Major" >
+	    delete 
+	    from 
+	    	major
+	    where 
+	    	MAJOR_CUID = #{majorCuid}
+  	</delete>
+  	
+  	
+  	<insert id="doInsert" parameterType="Major" >
+	    insert into 
+	    	major 
+	    		(MAJOR_CUID, 
+	    		COLLEGE_CUID, 
+	    		MAJOR_NAME, 
+		      MAJOR_CODE, 
+		      MAJOR_STUDENT_NUMBER, 
+		      MAJOR_STATE, 
+		      MAJOR_CREATE_TIME, 
+		      MAJOR_UPDATE_TIME)
+	    values 
+		    	(#{majorCuid}, 
+		    	#{collegeCuid}, 
+		    	#{majorName}, 
+		      #{majorCode}, 
+		      #{majorStudentNumber}, 
+		      #{majorState}, 
+		      #{majorCreateTime}, 
+		      #{majorUpdateTime})
+  	</insert>
+	
+	<insert id="doInsertSelective" parameterType="Major" >
+	    insert into major
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="majorCuid != null" >
+	        MAJOR_CUID,
+	      </if>
+	      <if test="collegeCuid != null" >
+	        COLLEGE_CUID,
+	      </if>
+	      <if test="majorName != null" >
+	        MAJOR_NAME,
+	      </if>
+	      <if test="majorCode != null" >
+	        MAJOR_CODE,
+	      </if>
+	      <if test="majorStudentNumber != null" >
+	        MAJOR_STUDENT_NUMBER,
+	      </if>
+	      <if test="majorState != null" >
+	        MAJOR_STATE,
+	      </if>
+	      <if test="majorCreateTime != null" >
+	        MAJOR_CREATE_TIME,
+	      </if>
+	      <if test="majorUpdateTime != null" >
+	        MAJOR_UPDATE_TIME,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="majorCuid != null" >
+	        #{majorCuid},
+	      </if>
+	      <if test="collegeCuid != null" >
+	        #{collegeCuid},
+	      </if>
+	      <if test="majorName != null" >
+	        #{majorName},
+	      </if>
+	      <if test="majorCode != null" >
+	        #{majorCode},
+	      </if>
+	      <if test="majorStudentNumber != null" >
+	        #{majorStudentNumber},
+	      </if>
+	      <if test="majorState != null" >
+	        #{majorState},
+	      </if>
+	      <if test="majorCreateTime != null" >
+	        #{majorCreateTime},
+	      </if>
+	      <if test="majorUpdateTime != null" >
+	        #{majorUpdateTime},
+	      </if>
+	    </trim>
+  	</insert>
+  	
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Major" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	major
+	    where 
+	    	MAJOR_CUID = #{majorCuid}
+  	</select>
+  	
+  	<update id="doUpdateByPrimaryKeySelective" parameterType="Major" >
+	    update major
+	    <set >
+	      <if test="collegeCuid != null" >
+	        COLLEGE_CUID = #{collegeCuid},
+	      </if>
+	      <if test="majorName != null" >
+	        MAJOR_NAME = #{majorName},
+	      </if>
+	      <if test="majorCode != null" >
+	        MAJOR_CODE = #{majorCode},
+	      </if>
+	      <if test="majorStudentNumber != null and majorStudentNumber != 0" >
+	        MAJOR_STUDENT_NUMBER = #{majorStudentNumber},
+	      </if>
+	      <if test="majorState != null and majorStudentNumber != 0" >
+	        MAJOR_STATE = #{majorState},
+	      </if>
+	      <if test="majorCreateTime != null" >
+	        MAJOR_CREATE_TIME = #{majorCreateTime},
+	      </if>
+	      <if test="majorUpdateTime != null" >
+	        MAJOR_UPDATE_TIME = #{majorUpdateTime},
+	      </if>
+	    </set>
+	    where MAJOR_CUID = #{majorCuid}
+  	</update>
+  	
+  	<update id="doUpdateByPrimaryKey" parameterType="Major" >
+	    update major
+	    set COLLEGE_CUID = #{collegeCuid},
+	      MAJOR_NAME = #{majorName},
+	      MAJOR_CODE = #{majorCode},
+	      MAJOR_STUDENT_NUMBER = #{majorStudentNumber},
+	      MAJOR_STATE = #{majorState},
+	      MAJOR_CREATE_TIME = #{majorCreateTime},
+	      MAJOR_UPDATE_TIME = #{majorUpdateTime}
+	    where MAJOR_CUID = #{majorCuid}
+  	</update>
+	
+	
+	<select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	major
+	    <where>
+	    	<if test="b.collegeCuid != null" >
+	        COLLEGE_CUID = #{b.collegeCuid}
+	      </if>
+	      <if test="b.majorName != null" >
+	        and MAJOR_NAME = #{b.majorName}
+	      </if>
+	      <if test="b.majorCode != null" >
+	        and MAJOR_CODE = #{b.majorCode}
+	      </if>
+	      <if test="b.majorStudentNumber != null and b.majorStudentNumber != 0" >
+	        and MAJOR_STUDENT_NUMBER = #{b.majorStudentNumber}
+	      </if>
+	      <if test="b.majorState != null and b.majorStudentNumber != 0" >
+	        and MAJOR_STATE = #{b.majorState}
+	      </if>
+	      <if test="b.majorCreateTime != null" >
+	        and MAJOR_CREATE_TIME = #{b.majorCreateTime}
+	      </if>
+	      <if test="b.majorUpdateTime != null" >
+	        and MAJOR_UPDATE_TIME = #{b.majorUpdateTime}
+	      </if>
+	      and MAJOR_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountAnd" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	major
+	    <where>
+	    	<if test="b.collegeCuid != null" >
+	        COLLEGE_CUID = #{b.collegeCuid}
+	      </if>
+	      <if test="b.majorName != null" >
+	        and MAJOR_NAME = #{b.majorName}
+	      </if>
+	      <if test="b.majorCode != null" >
+	        and MAJOR_CODE = #{b.majorCode}
+	      </if>
+	      <if test="b.majorStudentNumber != null and b.majorStudentNumber != 0" >
+	        and MAJOR_STUDENT_NUMBER = #{b.majorStudentNumber}
+	      </if>
+	      <if test="b.majorState != null and b.majorStudentNumber != 0" >
+	        and MAJOR_STATE = #{b.majorState}
+	      </if>
+	      <if test="b.majorCreateTime != null" >
+	        and MAJOR_CREATE_TIME = #{b.majorCreateTime}
+	      </if>
+	      <if test="b.majorUpdateTime != null" >
+	        and MAJOR_UPDATE_TIME = #{b.majorUpdateTime}
+	      </if>
+	      and MAJOR_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+  	
+  	<select id="selectByAttributeOr" resultMap="BaseResultMap" parameterType="PageBean" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    	major
+	    <where>
+	    	<choose>
+	    		<when test="b.collegeCuid != null" >
+		        COLLEGE_CUID = #{b.collegeCuid}
+		      </when>
+		      <when test="b.majorName != null" >
+		        and MAJOR_NAME = #{b.majorName}
+		      </when>
+		      <when test="b.majorCode != null" >
+		        and MAJOR_CODE = #{b.majorCode}
+		      </when>
+		      <when test="b.majorStudentNumber != null and b.majorStudentNumber != 0" >
+		        and MAJOR_STUDENT_NUMBER = #{b.majorStudentNumber}
+		      </when>
+		      <when test="b.majorState != null and b.majorStudentNumber != 0" >
+		        and MAJOR_STATE = #{b.majorState}
+		      </when>
+		      <when test="b.majorCreateTime != null" >
+		        and MAJOR_CREATE_TIME = #{b.majorCreateTime}
+		      </when>
+		      <when test="b.majorUpdateTime != null" >
+		        and MAJOR_UPDATE_TIME = #{b.majorUpdateTime}
+		      </when>
+	    	</choose>
+	      and MAJOR_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+	    limit 
+	    	#{startLine},#{lineSize}
+  	</select>
+  	
+  	
+  	<select id="selectByAttributeCountOr" resultType="int" parameterType="PageBean" >
+	    select 
+	    count(1)
+	    from 
+	    	major
+	    <where>
+	    	<choose>
+	    		<when test="b.collegeCuid != null" >
+		        COLLEGE_CUID = #{b.collegeCuid}
+		      </when>
+		      <when test="b.majorName != null" >
+		        and MAJOR_NAME = #{b.majorName}
+		      </when>
+		      <when test="b.majorCode != null" >
+		        and MAJOR_CODE = #{b.majorCode}
+		      </when>
+		      <when test="b.majorStudentNumber != null and b.majorStudentNumber != 0" >
+		        and MAJOR_STUDENT_NUMBER = #{b.majorStudentNumber}
+		      </when>
+		      <when test="b.majorState != null and b.majorStudentNumber != 0" >
+		        and MAJOR_STATE = #{b.majorState}
+		      </when>
+		      <when test="b.majorCreateTime != null" >
+		        and MAJOR_CREATE_TIME = #{b.majorCreateTime}
+		      </when>
+		      <when test="b.majorUpdateTime != null" >
+		        and MAJOR_UPDATE_TIME = #{b.majorUpdateTime}
+		      </when>
+	    	</choose>
+	      and MAJOR_STATE != 4
+	    </where>
+	    <if test="orderByString != null">
+	    	${orderByString}
+	    </if>
+  	</select>
+	
+	
+</mapper>

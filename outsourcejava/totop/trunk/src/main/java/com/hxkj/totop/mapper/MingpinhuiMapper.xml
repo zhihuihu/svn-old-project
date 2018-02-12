@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxkj.totop.dao.IMingpinhuiDao" >
+    <resultMap id="BaseResultMap" type="Mingpinhui" >
+        <id column="MINGPINTHUI_CUID" property="mingpinthuiCuid" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_NAME" property="mingpinthuiName" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_TITLE" property="mingpinthuiTitle" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_THUMB_URL" property="mingpinthuiThumbUrl" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_MAIN_CONTENT" property="mingpinthuiMainContent" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_MAIN_IMAGE_URL1" property="mingpinthuiMainImageUrl1" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_MAIN_IMAGE_URL2" property="mingpinthuiMainImageUrl2" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_MAIN_IMAGE_URL3" property="mingpinthuiMainImageUrl3" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_MAIN_IMAGE_URL4" property="mingpinthuiMainImageUrl4" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_MAIN_IMAGE_URL5" property="mingpinthuiMainImageUrl5" jdbcType="VARCHAR" />
+        <result column="MINGPINTHUI_STATE" property="mingpinthuiState" jdbcType="INTEGER" />
+        <result column="MINGPINTHUI_CREATE_TIME" property="mingpinthuiCreateTime" jdbcType="TIMESTAMP" />
+        <result column="MINGPINTHUI_UPDATE_TIME" property="mingpinthuiUpdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        MINGPINTHUI_CUID, MINGPINTHUI_NAME, MINGPINTHUI_TITLE, MINGPINTHUI_THUMB_URL, MINGPINTHUI_MAIN_CONTENT,
+        MINGPINTHUI_MAIN_IMAGE_URL1, MINGPINTHUI_MAIN_IMAGE_URL2, MINGPINTHUI_MAIN_IMAGE_URL3,
+        MINGPINTHUI_MAIN_IMAGE_URL4, MINGPINTHUI_MAIN_IMAGE_URL5, MINGPINTHUI_STATE, MINGPINTHUI_CREATE_TIME,
+        MINGPINTHUI_UPDATE_TIME
+    </sql>
+
+    <insert id="doInsert" parameterType="Mingpinhui" >
+        <selectKey keyProperty="mingpinthuiCuid" order="BEFORE" resultType="String">
+            SELECT SELECT_MINGPINGHUI_CUID()
+        </selectKey>
+        insert into mingpinhui (MINGPINTHUI_CUID, MINGPINTHUI_NAME,
+        MINGPINTHUI_TITLE, MINGPINTHUI_THUMB_URL,
+        MINGPINTHUI_MAIN_CONTENT, MINGPINTHUI_MAIN_IMAGE_URL1,
+        MINGPINTHUI_MAIN_IMAGE_URL2, MINGPINTHUI_MAIN_IMAGE_URL3,
+        MINGPINTHUI_MAIN_IMAGE_URL4, MINGPINTHUI_MAIN_IMAGE_URL5,
+        MINGPINTHUI_STATE, MINGPINTHUI_CREATE_TIME,
+        MINGPINTHUI_UPDATE_TIME)
+        values (#{mingpinthuiCuid,jdbcType=VARCHAR}, #{mingpinthuiName,jdbcType=VARCHAR},
+        #{mingpinthuiTitle,jdbcType=VARCHAR}, #{mingpinthuiThumbUrl,jdbcType=VARCHAR},
+        #{mingpinthuiMainContent,jdbcType=VARCHAR}, #{mingpinthuiMainImageUrl1,jdbcType=VARCHAR},
+        #{mingpinthuiMainImageUrl2,jdbcType=VARCHAR}, #{mingpinthuiMainImageUrl3,jdbcType=VARCHAR},
+        #{mingpinthuiMainImageUrl4,jdbcType=VARCHAR}, #{mingpinthuiMainImageUrl5,jdbcType=VARCHAR},
+        #{mingpinthuiState,jdbcType=INTEGER}, #{mingpinthuiCreateTime,jdbcType=TIMESTAMP},
+        #{mingpinthuiUpdateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="doInsertSelective" parameterType="Mingpinhui" >
+        insert into mingpinhui
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="mingpinthuiCuid != null" >
+                MINGPINTHUI_CUID,
+            </if>
+            <if test="mingpinthuiName != null" >
+                MINGPINTHUI_NAME,
+            </if>
+            <if test="mingpinthuiTitle != null" >
+                MINGPINTHUI_TITLE,
+            </if>
+            <if test="mingpinthuiThumbUrl != null" >
+                MINGPINTHUI_THUMB_URL,
+            </if>
+            <if test="mingpinthuiMainContent != null" >
+                MINGPINTHUI_MAIN_CONTENT,
+            </if>
+            <if test="mingpinthuiMainImageUrl1 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL1,
+            </if>
+            <if test="mingpinthuiMainImageUrl2 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL2,
+            </if>
+            <if test="mingpinthuiMainImageUrl3 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL3,
+            </if>
+            <if test="mingpinthuiMainImageUrl4 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL4,
+            </if>
+            <if test="mingpinthuiMainImageUrl5 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL5,
+            </if>
+            <if test="mingpinthuiState != null" >
+                MINGPINTHUI_STATE,
+            </if>
+            <if test="mingpinthuiCreateTime != null" >
+                MINGPINTHUI_CREATE_TIME,
+            </if>
+            <if test="mingpinthuiUpdateTime != null" >
+                MINGPINTHUI_UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="mingpinthuiCuid != null" >
+                #{mingpinthuiCuid,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiName != null" >
+                #{mingpinthuiName,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiTitle != null" >
+                #{mingpinthuiTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiThumbUrl != null" >
+                #{mingpinthuiThumbUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainContent != null" >
+                #{mingpinthuiMainContent,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl1 != null" >
+                #{mingpinthuiMainImageUrl1,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl2 != null" >
+                #{mingpinthuiMainImageUrl2,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl3 != null" >
+                #{mingpinthuiMainImageUrl3,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl4 != null" >
+                #{mingpinthuiMainImageUrl4,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl5 != null" >
+                #{mingpinthuiMainImageUrl5,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiState != null" >
+                #{mingpinthuiState,jdbcType=INTEGER},
+            </if>
+            <if test="mingpinthuiCreateTime != null" >
+                #{mingpinthuiCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mingpinthuiUpdateTime != null" >
+                #{mingpinthuiUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="doDeleteByPrimaryKey" parameterType="Mingpinhui" >
+        delete from mingpinhui
+        where MINGPINTHUI_CUID = #{mingpinthuiCuid,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="doUpdateByPrimaryKeySelective" parameterType="Mingpinhui" >
+        update mingpinhui
+        <set >
+            <if test="mingpinthuiName != null" >
+                MINGPINTHUI_NAME = #{mingpinthuiName,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiTitle != null" >
+                MINGPINTHUI_TITLE = #{mingpinthuiTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiThumbUrl != null" >
+                MINGPINTHUI_THUMB_URL = #{mingpinthuiThumbUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainContent != null" >
+                MINGPINTHUI_MAIN_CONTENT = #{mingpinthuiMainContent,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl1 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL1 = #{mingpinthuiMainImageUrl1,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl2 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL2 = #{mingpinthuiMainImageUrl2,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl3 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL3 = #{mingpinthuiMainImageUrl3,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl4 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL4 = #{mingpinthuiMainImageUrl4,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiMainImageUrl5 != null" >
+                MINGPINTHUI_MAIN_IMAGE_URL5 = #{mingpinthuiMainImageUrl5,jdbcType=VARCHAR},
+            </if>
+            <if test="mingpinthuiState != null and mingpinthuiState != 0" >
+                MINGPINTHUI_STATE = #{mingpinthuiState,jdbcType=INTEGER},
+            </if>
+            <if test="mingpinthuiCreateTime != null" >
+                MINGPINTHUI_CREATE_TIME = #{mingpinthuiCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mingpinthuiUpdateTime != null" >
+                MINGPINTHUI_UPDATE_TIME = #{mingpinthuiUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where MINGPINTHUI_CUID = #{mingpinthuiCuid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="doUpdateByPrimaryKey" parameterType="Mingpinhui" >
+        update mingpinhui
+        set MINGPINTHUI_NAME = #{mingpinthuiName,jdbcType=VARCHAR},
+        MINGPINTHUI_TITLE = #{mingpinthuiTitle,jdbcType=VARCHAR},
+        MINGPINTHUI_THUMB_URL = #{mingpinthuiThumbUrl,jdbcType=VARCHAR},
+        MINGPINTHUI_MAIN_CONTENT = #{mingpinthuiMainContent,jdbcType=VARCHAR},
+        MINGPINTHUI_MAIN_IMAGE_URL1 = #{mingpinthuiMainImageUrl1,jdbcType=VARCHAR},
+        MINGPINTHUI_MAIN_IMAGE_URL2 = #{mingpinthuiMainImageUrl2,jdbcType=VARCHAR},
+        MINGPINTHUI_MAIN_IMAGE_URL3 = #{mingpinthuiMainImageUrl3,jdbcType=VARCHAR},
+        MINGPINTHUI_MAIN_IMAGE_URL4 = #{mingpinthuiMainImageUrl4,jdbcType=VARCHAR},
+        MINGPINTHUI_MAIN_IMAGE_URL5 = #{mingpinthuiMainImageUrl5,jdbcType=VARCHAR},
+        MINGPINTHUI_STATE = #{mingpinthuiState,jdbcType=INTEGER},
+        MINGPINTHUI_CREATE_TIME = #{mingpinthuiCreateTime,jdbcType=TIMESTAMP},
+        MINGPINTHUI_UPDATE_TIME = #{mingpinthuiUpdateTime,jdbcType=TIMESTAMP}
+        where MINGPINTHUI_CUID = #{mingpinthuiCuid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Mingpinhui" >
+        select
+        <include refid="Base_Column_List" />
+        from mingpinhui
+        where MINGPINTHUI_CUID = #{mingpinthuiCuid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByAttributeAnd" resultMap="BaseResultMap" parameterType="PageBean" >
+        select
+        <include refid="Base_Column_List" />
+        from mingpinhui
+        <where>
+            <if test="b.mingpinthuiName != null" >
+                MINGPINTHUI_NAME = #{b.mingpinthuiName,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiTitle != null" >
+                and MINGPINTHUI_TITLE = #{b.mingpinthuiTitle,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiThumbUrl != null" >
+                and MINGPINTHUI_THUMB_URL = #{b.mingpinthuiThumbUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainContent != null" >
+                and MINGPINTHUI_MAIN_CONTENT = #{b.mingpinthuiMainContent,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl1 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL1 = #{b.mingpinthuiMainImageUrl1,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl2 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL2 = #{b.mingpinthuiMainImageUrl2,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl3 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL3 = #{b.mingpinthuiMainImageUrl3,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl4 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL4 = #{b.mingpinthuiMainImageUrl4,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl5 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL5 = #{b.mingpinthuiMainImageUrl5,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiState != null and b.mingpinthuiState != 0" >
+                and MINGPINTHUI_STATE = #{b.mingpinthuiState,jdbcType=INTEGER}
+            </if>
+            <if test="b.mingpinthuiCreateTime != null" >
+                and MINGPINTHUI_CREATE_TIME = #{b.mingpinthuiCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="b.mingpinthuiUpdateTime != null" >
+                and MINGPINTHUI_UPDATE_TIME = #{b.mingpinthuiUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by MINGPINTHUI_CREATE_TIME DESC
+        limit
+            #{startLine},#{pageSize}
+    </select>
+
+    <select id="selectByAttributeAndCount" resultType="int" parameterType="PageBean" >
+        select
+        COUNT(1)
+        from mingpinhui
+        <where>
+            <if test="b.mingpinthuiName != null" >
+                MINGPINTHUI_NAME = #{b.mingpinthuiName,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiTitle != null" >
+                and MINGPINTHUI_TITLE = #{b.mingpinthuiTitle,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiThumbUrl != null" >
+                and MINGPINTHUI_THUMB_URL = #{b.mingpinthuiThumbUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainContent != null" >
+                and MINGPINTHUI_MAIN_CONTENT = #{b.mingpinthuiMainContent,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl1 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL1 = #{b.mingpinthuiMainImageUrl1,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl2 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL2 = #{b.mingpinthuiMainImageUrl2,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl3 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL3 = #{b.mingpinthuiMainImageUrl3,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl4 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL4 = #{b.mingpinthuiMainImageUrl4,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiMainImageUrl5 != null" >
+                and MINGPINTHUI_MAIN_IMAGE_URL5 = #{b.mingpinthuiMainImageUrl5,jdbcType=VARCHAR}
+            </if>
+            <if test="b.mingpinthuiState != null and b.mingpinthuiState != 0" >
+                and MINGPINTHUI_STATE = #{b.mingpinthuiState,jdbcType=INTEGER}
+            </if>
+            <if test="b.mingpinthuiCreateTime != null" >
+                and MINGPINTHUI_CREATE_TIME = #{b.mingpinthuiCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="b.mingpinthuiUpdateTime != null" >
+                and MINGPINTHUI_UPDATE_TIME = #{b.mingpinthuiUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+</mapper>
