@@ -6,6 +6,7 @@ import com.vieagr.distribution.dao.base.IBaseDao;
 import com.vieagr.distribution.entity.BetOrderProduct;
 import com.vieagr.distribution.param.SerOrderParam;
 import com.vieagr.distribution.query.SerOrderQuery;
+import com.vieagr.distribution.query.SysProductQuery;
 
 public interface BetOrderProductDao extends IBaseDao<BetOrderProduct>{
 	
@@ -43,5 +44,12 @@ public interface BetOrderProductDao extends IBaseDao<BetOrderProduct>{
 	 * @return
 	 */
 	public List<BetOrderProduct> selectBetOrderProductByVehiclesId(SerOrderQuery serOrderQuery);
+	
+	/**
+	 * 根据订单id和商品id查询订单商品详情中的对应商品信息
+	 * @param sysProductQuery
+	 * @return
+	 */
+	public BetOrderProduct selectBetOrderProductBySerOrderIdAndProductId(SysProductQuery sysProductQuery);
 	
 }

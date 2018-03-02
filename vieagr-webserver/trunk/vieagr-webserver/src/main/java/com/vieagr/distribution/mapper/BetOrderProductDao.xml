@@ -449,4 +449,12 @@
 	order by bet_order_product_product_type_id, bet_order_product_product_name
   </select>
   
+  <select id="selectBetOrderProductBySerOrderIdAndProductId" parameterType="com.vieagr.distribution.query.SysProductQuery" 
+  		 resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List"/>
+    from bet_order_product 
+    where bet_order_product_order_id = #{serOrderId} and bet_order_product_product_id = #{productId}
+  </select>
+  
 </mapper>

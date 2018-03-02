@@ -149,7 +149,6 @@ public class SysProductController {
 	 */
 	@RequestMapping(value = "updateSysProduct", method = RequestMethod.POST)
 	public Object updateSysProduct(String jsonStr) throws Exception{
-		logger.info("-----商品--更新");
 		SysProduct sysProduct = Utils.jsonStrToObject(jsonStr, SysProduct.class);
 		return sysProductService.updateSysProduct(sysProduct);
 	}

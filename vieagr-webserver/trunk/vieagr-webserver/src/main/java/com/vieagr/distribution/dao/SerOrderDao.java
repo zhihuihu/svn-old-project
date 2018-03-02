@@ -85,4 +85,11 @@ public interface SerOrderDao extends IBaseDao<SerOrder> {
 	 */
 	public List<SerOrder> selectOrdersForCustomerExcel(SerOrder serOrder);
 	
+	/**
+	 * 根据配送时间查询订单集合
+	 * @param serOrderQuery
+	 * @return
+	 */
+	public List<SerOrder> selectSerOrderBySendTime(SerOrderQuery serOrderQuery);
+	
 }

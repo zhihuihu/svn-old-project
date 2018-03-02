@@ -18,10 +18,12 @@ import com.vieagr.distribution.base.util.PinYinUtils;
 import com.vieagr.distribution.base.util.PropertiesUtils;
 import com.vieagr.distribution.base.util.ReturnUtils;
 import com.vieagr.distribution.base.util.Utils;
+import com.vieagr.distribution.dao.BetOrderProductDao;
 import com.vieagr.distribution.dao.SerOrderDao;
 import com.vieagr.distribution.dao.SysCustomerGroupDao;
 import com.vieagr.distribution.dao.SysCustomerGroupProductDao;
 import com.vieagr.distribution.dao.SysProductDao;
+import com.vieagr.distribution.entity.BetOrderProduct;
 import com.vieagr.distribution.entity.SerOrder;
 import com.vieagr.distribution.entity.SysCustomerGroup;
 import com.vieagr.distribution.entity.SysCustomerGroupProduct;
@@ -48,6 +50,9 @@ public class SysProductServiceImpl extends BaseService<SysProduct>implements ISy
 	
 	@Autowired
 	private SerOrderDao serOrderDao;
+	
+	@Autowired
+	private BetOrderProductDao betOrderProductDao;
 	
 	
 	@Override
@@ -138,6 +143,24 @@ public class SysProductServiceImpl extends BaseService<SysProduct>implements ISy
 		sysProductCheck.setSysProductName(sysProduct.getSysProductName());
 		sysProduct.setSysProductImgUrl(Base64FileUtils.base64ToImageFile(sysProduct.getSysProductImgUrl(), PropertiesUtils.getProperties(Constant.SERVER_FILE_IMAGE_PHYSICAL_URL_PRE), Utils.getImageName()));
 		int flg = sysProductDao.updateByPrimaryKeySelective(sysProduct);
+		/**
+		 * 修改商品对应的今日已下订单中商品详情的商品进价
+		 */
+		SerOrderQuery serOrderQuery = new SerOrderQuery();
+		serOrderQuery.setOrderSendTime(Utils.getNowDate());
+		List<SerOrder> list = serOrderDao.selectSerOrderBySendTime(serOrderQuery);
+		
+		SysProductQuery sysProductQuery = new SysProductQuery();
+		for (SerOrder serOrder : list) {
+			sysProductQuery.setSerOrderId(serOrder.getSerOrderId());
+			sysProductQuery.setProductId(sysProduct.getSysProductId());
+			BetOrderProduct betOrderProduct = betOrderProductDao.selectBetOrderProductBySerOrderIdAndProductId(sysProductQuery);
+			if(betOrderProduct != null){
+				betOrderProduct.setBetOrderProductProductBidPrice(serOrder.getSerOrderType().equals(2) 
+						? sysProduct.getSysProductStaffBidPrice() : sysProduct.getSysProductOrdinaryBidPrice());
+				betOrderProductDao.updateByPrimaryKeySelective(betOrderProduct);
+			}
+		}
 		if(flg > 0){
 			return ReturnUtils.forNoraml(Constant.RESPONSE_CODE_SUCCESS, Constant.UPDATE_SUCCESS);
 		}else{
@@ -178,6 +201,27 @@ public class SysProductServiceImpl extends BaseService<SysProduct>implements ISy
 			sysProduct.setSysProductStaffBidPrice(sysProductStaffBidPrice.get(i));
 			sysProduct.setSysProductOrdinaryBidPrice(sysProductOrdinaryBidPrice.get(i));
 			updateCount = updateCount + sysProductDao.updateByPrimaryKeySelective(sysProduct);
+		}
+		/**
+		 * 修改当天配送的订单的对应商品的进价
+		 */
+		SerOrderQuery serOrderQuery = new SerOrderQuery();
+		serOrderQuery.setOrderSendTime(Utils.getNowDate());
+		List<SerOrder> list = serOrderDao.selectSerOrderBySendTime(serOrderQuery);
+		
+		SysProductQuery sysProductQuery = new SysProductQuery();
+
+		for (int i = 0; i < sysProductIds.size(); i++) {
+			for (SerOrder serOrder : list) {
+				sysProductQuery.setSerOrderId(serOrder.getSerOrderId());
+				sysProductQuery.setProductId(sysProductIds.get(i));
+				BetOrderProduct betOrderProduct = betOrderProductDao.selectBetOrderProductBySerOrderIdAndProductId(sysProductQuery);
+				if(betOrderProduct != null){
+					betOrderProduct.setBetOrderProductProductBidPrice(serOrder.getSerOrderType().equals(2) 
+							? sysProductStaffBidPrice.get(i) : sysProductOrdinaryBidPrice.get(i));
+					betOrderProductDao.updateByPrimaryKeySelective(betOrderProduct);
+				}
+			}
 		}
 		return ReturnUtils.forNoraml(Constant.RESPONSE_CODE_SUCCESS, Constant.RESPONSE_MESSAGE_SUCCESS);
 	}

@@ -462,4 +462,8 @@
 	order by ser_order_create_time
   </select>
 
+	<select id="selectSerOrderBySendTime" parameterType="com.vieagr.distribution.query.SerOrderQuery" resultMap="BaseResultMap">
+		select ser_order_id, ser_order_type from ser_order where ser_order_send_time = #{orderSendTime} and ser_order_state = 4
+	</select>
+
 </mapper>
